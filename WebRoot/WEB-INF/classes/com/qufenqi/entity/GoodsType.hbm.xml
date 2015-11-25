@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.GoodsType" table="goodstype" lazy="false">
+		<id name="goodsTypeId" type="java.lang.Long">
+			<column name="goodsTypeId" />
+			<generator class="native" />
+		</id>
+		
+		<property name="goodsNameType" type="string">
+			<column name="goodsNameType" length="255" not-null="true" />
+		</property>
+		
+		<set name="goods" cascade="save-update">
+            <key>
+                <column name="goodsTypeId" />
+            </key>
+            <one-to-many class="com.qufenqi.entity.Goods" />
+        </set>
+	</class>
+</hibernate-mapping>

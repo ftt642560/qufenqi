@@ -21,13 +21,13 @@ public interface GoodsService {
 	 * 商品浏览：浏览商品详细信息,查找商品的详细信息
 	 * @param 商品ID goodsID
 	 */
-	public Goods QueryOneGoods(String goodsId);
+	public Goods QueryOneGoods(Long goodsId);
 	
 	/**
-	 * 商品购买：对商品购买的操作，相应的商品库存量减少
-	 * @param 商品ID goodsID
+	 * 商品购买：对商品购买的操作，买了多少件商品，相应的商品库存量减少
+	 * @param 商品ID goodsID , 购买数量 buyNum
 	 */
-	public void ReduceGoodsNum(String goodsId);
+	public void ReduceGoodsNum(Long goodsId,int buyNum);
 	
 	
 }
