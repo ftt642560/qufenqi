@@ -8,7 +8,7 @@
 	<!-- 定义数据源： -->
 	  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
-		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/cms"/>
+		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/qufenqi"/>
 		<property name="user" value="root"/>
 		<property name="password" value="root"/>
 		<property name="maxPoolSize" value="100"></property>
