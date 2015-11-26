@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!DOCTYPE struts PUBLIC
+	 "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+	 "http://struts.apache.org/dtds/struts-2.1.dtd">
+<!-- 指定struts2配置文件的根元素 -->
 <struts>
-
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" /> 
+	<constant name="struts.action.extension" value="action"/>	
+	
+	<include file="struts-default.xml" />
+	
+	<!-- 配置第一个包，该包名为user，继承sturts-default -->
+	<!-- 用户管理模块 -->
+	<package name="user" extends="struts-default" >
+		<action name="login" class="loginAction" method="login">
+			<result name="success">index.jsp</result>
+			<result name="error">login.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+		<action name="quit" class="loginAction" method="quit">
+			<result name="success">login.jsp</result>
+			<result name="error">login.jsp</result>
+			<result name="input">input.jsp</result>
+		</action>
+	</package>
 </struts>    

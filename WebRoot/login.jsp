@@ -8,9 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    
-    <title>My JSP 'error.jsp' starting page</title>
-    
+  
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -19,11 +17,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
   </head>
   
   <body>
-    <h1>首页</h1>
-    <a href="quit">退出登录</a>
+	<form name="from1"  method="post"  action="login.action">
+		 ${requestScope.mess }
+		  用户名:<input name="user.userName" type="text" size="10">
+		  &nbsp;密码:<input name="user.password" type="password" size="10">
+		 <input name="submit" type="submit"  value="登录">
+	</form>
   </body>
 </html>

@@ -9,10 +9,11 @@
 		创建IOC容器对应的对象
 		把这个对象放到了application对应的域里面
 	 -->
-   <listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
- 	 </listener>
-
+  <!-- 使用 ContextLoaderListener来初始化Spring容器-->
+  <listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 配置Spring配置文件的位置 -->
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>WEB-INF/applicationContext.xml</param-value>
@@ -21,15 +22,19 @@
 	
   <display-name></display-name>	
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- 定义struts2的核心Filter -->
   <filter>
   	<filter-name>struts2</filter-name>
   	<filter-class>
   		org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter
   	</filter-class>
   </filter>
+  <!-- 让struts2的核心Filter拦截所有的用户请求 -->
   <filter-mapping>
   	<filter-name>struts2</filter-name>
   	<url-pattern>/*</url-pattern>
-  </filter-mapping></web-app>
+  </filter-mapping>
+</web-app>

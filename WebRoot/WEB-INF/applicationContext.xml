@@ -5,7 +5,8 @@
 	xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<!-- 定义数据源： -->
+	<!-- 定义数据源Bean,使用C3P0数据源实现 -->
+	<!-- 设置连接数据库的驱动、URL、用户名、密码、连接池最大连接数、最小连接数、初始连接池等参数 -->
 	  <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
 		<property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/qufenqi"/>
@@ -16,18 +17,38 @@
 		<property name="initialPoolSize" value="1"/>
 		<property name="maxIdleTime" value="30"/>
 	  </bean>
-
-
+	  
+	<!-- 定义Hibernate的SessionFactory -->
+	<!-- 依赖注入数据源，注入正式上面的dateSource -->
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
 			<ref bean="dataSource" />
 		</property>
+		
+		<!-- mappingResources属性用来列出全部的映射文件 -->
+		<property name="mappingResources">
+			<list>
+				<!-- 以下用来列出Hibernate的 映射文件-->
+				<value>com/qufenqi/entity/User.hbm.xml</value>
+			</list>
+		</property>
+		
+		<!-- 定义Hibernate的SessionFactory的属性 -->
 		<property name="hibernateProperties">
 			<props>
+				<!-- 指定数据库方言 -->
 				<prop key="hibernate.dialect">
 					org.hibernate.dialect.MySQLDialect
 				</prop>
+				<!-- 是否自动创建表 -->
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<!-- 是否生成sql语句 -->
+				<prop key="hibernate.show_sql">true</prop>
+				<!--  
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>
+				-->
 			</props>
 		</property>
 	</bean>
@@ -38,16 +59,17 @@
 	<!-- 定义商品类型实体类 -->
 	<bean id="goodsType" class="com.qufenqi.entity.GoodsType"></bean>
 	
+	<!-- 定义实体类 -->
+	<bean id="user" class="com.qufenqi.entity.User"></bean>
+	
 	<!-- 定义商品模块Dao -->
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>
-		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<!-- 定义商品模块service -->
-	<bean id="goodsServiceImpl" class="com.qufenqi.service.impl.GoodsServiceImpl">
-		<property name="goods" ref="goods"></property>
-		<property name="goodsDaoImpl" ref="goodsDaoImpl"></property>		
+	<!-- 定义Dao -->
+	<bean id="userDao" class="com.qufenqi.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessioinFactory"></property>
 	</bean>
-	
+
 </beans>
