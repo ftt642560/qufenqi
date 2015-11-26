@@ -23,7 +23,6 @@ public class LoginAction {
 	private static final int NULL = 1;
 	private String flag = null;
 	private HttpServletRequest request = ServletActionContext.getRequest();
-	private HttpServletResponse response = ServletActionContext.getResponse();
 	/**
 	 * 用户实体类
 	 */

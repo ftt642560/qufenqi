@@ -1,0 +1,40 @@
+package com.qufenqi.interceptor;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.Action;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.qufenqi.entity.User;
+
+/**
+ * 登录检查拦截器类
+ * @author Administrator
+ *
+ */
+public class LoginInterceptor extends AbstractInterceptor{
+
+	/**
+	 * 拦截Action处理的拦截方法
+	 */
+	public String intercept(ActionInvocation invocation) throws Exception {
+		System.out.println("拦截器类");
+		//获取请求相关的ActionContext实例
+		Map<String, Object> session = invocation.getInvocationContext().getSession();
+		//去除名为user的session属性
+		User user = (User)session.get("user");
+		if(user==null){
+			HttpServletRequest req = ServletActionContext.getRequest();
+			req.setAttribute("mess", "您尚未登录，请输入账号、密码");
+			return Action.LOGIN;
+		}
+		String result = invocation.invoke();
+		return result;
+	}
+
+}

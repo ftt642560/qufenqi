@@ -17,10 +17,9 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 * @param userName 需加载的User实例的用户的登录名
 	 * @return User 指定用户登录名对应的User实例
 	 */
-	public User find(String userName) {
+	public List<User> find(String userName) {
 		String sql = "select user from User as user where user.userName = '"+userName+"'";
-		User userFromBase = (User) getHibernateTemplate().find(sql).get(0);
-		return userFromBase ;
+		return (List<User>)getHibernateTemplate().find(sql); 
 	}
 	/**
 	 * 根据标识来加载User实例

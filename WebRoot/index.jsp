@@ -24,6 +24,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <h1>首页</h1>
-    <a href="quit">退出登录</a>
+    <a href="quit.action">退出登录</a>
   </body>
 </html>

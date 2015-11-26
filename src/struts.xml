@@ -13,6 +13,19 @@
 	<!-- 配置第一个包，该包名为user，继承sturts-default -->
 	<!-- 用户管理模块 -->
 	<package name="user" extends="struts-default" >
+		<!-- 定义全部的拦截器 -->
+		<interceptors>
+			<!-- 通过指定拦截器名和拦截器实现类来定义拦截器 -->
+			<interceptor name="loginInterceptor" class="com.qufenqi.interceptor.LoginInterceptor"/>
+			<!-- 定义一个包含包含权限检查的拦截器栈 -->
+			<interceptor-stack name="wall">
+				<!-- 定义拦截器栈包含的默认拦截器 -->
+				<interceptor-ref name="defaultStack"/>
+				<!-- 定义拦截器栈包含的自定义拦截器 -->
+				<interceptor-ref name="loginInterceptor"/>
+			</interceptor-stack>
+		</interceptors>
+		
 		<action name="login" class="loginAction" method="login">
 			<result name="success">index.jsp</result>
 			<result name="error">login.jsp</result>
@@ -21,7 +34,9 @@
 		<action name="quit" class="loginAction" method="quit">
 			<result name="success">login.jsp</result>
 			<result name="error">login.jsp</result>
-			<result name="input">input.jsp</result>
+			<result name="login">login.jsp</result>
+			<!-- 应用自定义拦截器 -->
+			<interceptor-ref name="wall"/>
 		</action>
 	</package>
 </struts>    

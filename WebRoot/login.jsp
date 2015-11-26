@@ -22,10 +22,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
 	<form name="from1"  method="post"  action="login.action">
-		 ${requestScope.mess }
-		  用户名:<input name="user.userName" type="text" size="10">
+		 <p>${requestScope.mess }</p>
+		  用户名:<input name="user.userName" type="text" size="10"><br>
 		  &nbsp;密码:<input name="user.password" type="password" size="10">
+		  <br>
 		 <input name="submit" type="submit"  value="登录">
+		 <a href="quit.action">退出登录</a>
 	</form>
   </body>
 </html>
