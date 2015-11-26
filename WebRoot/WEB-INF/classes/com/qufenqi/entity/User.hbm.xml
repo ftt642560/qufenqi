@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.User" table="user">
+		<id name="userId" type="integer" column="userId">
+			<generator class="native"/>
+		</id>
+		<property name="userName" type="string" column="userName" not-null="true"/>
+		<property name="password" type="string" column="password" not-null="true"/>
+		<property name="name" type="string" column="name" not-null="true"/>
+		<property name="telephone" type="long" column="telephone" not-null="true"/>
+		<property name="idCard" type="string" column="idCard" not-null="true"/>
+		<property name="email" type="string" column="email" not-null="true"/>
+		<property name="quota" type="integer" column="quota" not-null="true"/>
+	</class>
+</hibernate-mapping>
