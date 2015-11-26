@@ -25,6 +25,16 @@
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
   
+  <!-- 自定义的Filter -->
+  <filter>
+  	<filter-name>loginFilter</filter-name>
+  	<filter-class>com.qufenqi.filter.LoginFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>loginFilter</filter-name>
+  	<url-pattern>*.jsp</url-pattern>
+  </filter-mapping>
+  
   <!-- 定义struts2的核心Filter -->
   <filter>
   	<filter-name>struts2</filter-name>
