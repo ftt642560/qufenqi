@@ -39,4 +39,18 @@
 			<interceptor-ref name="wall"/>
 		</action>
 	</package>
+	
+	<package name="goods" extends="struts-default" namespace="/goods">
+		<action name="searchGoods" method="searchGoods">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="queryOneGoods" method="queryOneGoods">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="buyGoods" method="buyGoods">
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
 </struts>    

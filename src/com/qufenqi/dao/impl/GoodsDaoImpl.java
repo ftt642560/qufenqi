@@ -10,7 +10,11 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.qufenqi.dao.GoodsDao;
 import com.qufenqi.entity.Goods;
-
+/**
+ * 商品实现类
+ * @author zlin
+ *
+ */
 public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 
 	public Goods goods;//商品类
@@ -24,7 +28,7 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	}
 
 	/**
-	 * 查找商品
+	 * 查找商品:模糊查找商品
 	 * @param 商品类goods
 	 * 
 	 */
@@ -33,7 +37,7 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		List<Goods> l_goods=new ArrayList<Goods>();
 		try{
 			String goodsName = goods.getGoodsName();
-			String sql="select * from Goods as goods where goods.goodsName like '% "+goodsName+"%'"; //模糊查询
+			String sql="select * from Goods as goods where goods.goodsName like '% "+goodsName+"%'"; //模糊查询，在任何字段存在有关键字的，都查询出来
 			System.out.println("===========GoodsDaoImpl===模糊查询QueryGoods====sql==="+sql+"================");
 			l_goods = (this).getHibernateTemplate().find(sql);
 			
@@ -57,7 +61,7 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	 */
 	@Override
 	public Goods QueryOneGoods(Long GoodsId) {
-		goods = (Goods)this.getHibernateTemplate().get(Goods.class, GoodsId);//������ƷID������Ʒ
+		goods = (Goods)this.getHibernateTemplate().get(Goods.class, GoodsId);//按照商品ID，查找商品信息
 		return goods;
 	}
 
@@ -75,5 +79,6 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		
 
 	}
+	
 
 }

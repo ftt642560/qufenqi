@@ -31,8 +31,12 @@
 			<list>
 				<!-- 以下用来列出Hibernate的 映射文件-->
 				<value>com/qufenqi/entity/User.hbm.xml</value>
+				<value>com/qufenqi/entity/Goods.hbm.xml</value>
+				<value>com/qufenqi/entity/GoodsType.hbm.xml</value>
 			</list>
 		</property>
+		
+		
 		
 		<!-- 定义Hibernate的SessionFactory的属性 -->
 		<property name="hibernateProperties">
@@ -65,11 +69,24 @@
 	<!-- 定义商品模块Dao -->
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>
+		<property name="sessionFactory" ref="sessioinFactory"></property>
 	</bean>
 	
 	<!-- 定义Dao -->
 	<bean id="userDao" class="com.qufenqi.dao.impl.UserDaoImpl">
 		<property name="sessionFactory" ref="sessioinFactory"></property>
+	</bean>
+	
+	<!-- 商品模块Service -->
+	<bean id="goodsServiceImpl" class="com.qufenqi.service.impl.GoodsServiceImpl">
+		<property name="goodsDaoImpl" ref="goodsDaoImpl"></property>
+		<property name="goods" ref="goods"></property>
+	</bean>
+	
+	<!-- 定义商品Action -->
+	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">
+		<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
+		<property name="goods" ref="goods"></property>
 	</bean>
 
 </beans>
