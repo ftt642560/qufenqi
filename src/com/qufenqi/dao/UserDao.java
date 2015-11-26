@@ -15,11 +15,11 @@ public interface UserDao {
 	 * @param userName 需加载的User实例的用户的登录名
 	 * @return User 指定用户登录名对应的User实例
 	 */
-	User find(String userName);
+	List<User> find(String userName);
 	/**
 	 * 根据标识来加载User实例
 	 * @param userId 需加载的User实例的标识属性值
-	 * @return User 指定标识属性对应的User实例
+	 * @return List<User> 指定标识属性对应的User实例
 	 */
 	User get(int userId);
 	/**
