@@ -31,4 +31,23 @@
 			</props>
 		</property>
 	</bean>
+	
+	<!-- 定义商品实体类 -->
+	<bean id="goods" class="com.qufenqi.entity.Goods"></bean>
+	
+	<!-- 定义商品类型实体类 -->
+	<bean id="goodsType" class="com.qufenqi.entity.GoodsType"></bean>
+	
+	<!-- 定义商品模块Dao -->
+	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
+		<property name="goods" ref="goods"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 定义商品模块service -->
+	<bean id="goodsServiceImpl" class="com.qufenqi.service.impl.GoodsServiceImpl">
+		<property name="goods" ref="goods"></property>
+		<property name="goodsDaoImpl" ref="goodsDaoImpl"></property>		
+	</bean>
+	
 </beans>

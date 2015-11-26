@@ -6,28 +6,28 @@ import com.qufenqi.entity.Goods;
 
 /**
  * 
- * ÉÌÆ·Ä£¿é Dao²ã
+ * å•†å“æ¨¡å—GoodsDao
  * @author zlin
  *
  */
 public interface GoodsDao {
 	/**
-	 * Ä£ºı²éÑ¯ÉÌÆ·
-	 * @param ÉÌÆ·Àà goods
+	 * æŸ¥æ‰¾å•†å“
+	 * @param å•†å“ç±»goods
 	 * 
 	 */
 	public List QueryGoods(Goods goods);
 	
 	/**
-	 * ²éÕÒÒ»¸öÉÌÆ·ĞÅÏ¢
-	 * @param ÉÌÆ·ID GoodsId
+	 * æŸ¥æ‰¾å•†å“è¯¦æƒ…
+	 * @param  å•†å“ID GoodsId
 	 * 
 	 */
 	public Goods QueryOneGoods(Long GoodsId);
 	
 	/**
-	 * °´ÕÕ¹ºÂòµÄ¶àÉÙ£¬ÏàÓ¦µØ¼õÉÙÉÌÆ·¿â´æÁ¿
-	 * @param ÉÌÆ·ID GoodsID,¹ºÂòÊıÁ¿ buyNum
+	 *å‡å°‘å•†å“åº“å­˜é‡
+	 * @param å•†å“ID GoodsId,è´­ä¹°æ•°é‡ buyNum
 	 */
 	public void ReduceGoodsNum(Long GoodsId,int buyNum);
 	
