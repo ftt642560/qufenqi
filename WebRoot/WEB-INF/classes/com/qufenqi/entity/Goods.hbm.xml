@@ -3,3 +3,52 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.Goods" table="goods" lazy="false">
+		<id name="goodsId" type="java.lang.Long">
+			<column name="goodsId" />
+			<generator class="native" />
+		</id>
+		
+		<property name="goodsName" type="string">
+			<column name="goodsname" length="255" not-null="true" />		
+		</property>
+		
+		<property name="brand" type="string">
+			<column name="brand" length="255" not-null="false" />		
+		</property>
+		
+		<property name="model" type="string">
+			<column name="model" length="255" not-null="false" />		
+		</property>
+		
+		<property name="size" type="string">
+			<column name="size" length="255" not-null="false" />		
+		</property>
+		
+		<property name="color" type="string">
+			<column name="color" length="255" not-null="false" />		
+		</property>
+		
+		<property name="material" type="string">
+			<column name="material" length="255" not-null="false" />		
+		</property>
+		
+		<property name="storeNum" type="string">
+			<column name="storeNum" length="255" not-null="true" />		
+		</property>
+		
+		<property name="goodsPrice" type="string">
+			<column name="goodsPrice" length="255" not-null="true" />		
+		</property>
+		
+		<property name="weight" type="long">
+			<column name="weight" length="20" not-null="true" />		
+		</property>
+		
+		<property name="status" type="int">
+			<column name="status" length="11" not-null="true" />		
+		</property>
+		
+	</class>
+</hibernate-mapping>
