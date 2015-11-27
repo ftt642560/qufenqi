@@ -1,40 +1,89 @@
 package com.qufenqi.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.qufenqi.dao.impl.GoodsDaoImpl;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.service.GoodsService;
 
+/**
+ * 
+ * å•†å“æœåŠ¡ç±»
+ * @author zlin
+ *
+ */
 public class GoodsServiceImpl implements GoodsService {
+	public Goods goods;
+	public GoodsDaoImpl goodsDaoImpl;
+	public Goods getGoods() {
+		return goods;
+	}
+
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+
+	public GoodsDaoImpl getGoodsDaoImpl() {
+		return goodsDaoImpl;
+	}
+
+	public void setGoodsDaoImpl(GoodsDaoImpl goodsDaoImpl) {
+		this.goodsDaoImpl = goodsDaoImpl;
+	}
 
 	/**
-	 * ÉÌÆ·ËÑË÷£º°´ÕÕÌõ¼şËÑË÷ÉÌÆ·
-	 * @param ÉÌÆ· goods
+	 * æœç´¢å•†å“
+	 * @param å•†å“ç±» goods
+	 * @return List<Goods>
 	 */
 	@Override
 	public List<Goods> SearchGoods(Goods goods) {
-		// TODO Auto-generated method stub
+		List<Goods> l_goods = new ArrayList<Goods>();
+		try{		
+		l_goods=goodsDaoImpl.QueryGoods(goods);
 		
-		return null;
+		}catch(Exception e)
+		{
+			
+			e.printStackTrace();
+		}
+		return l_goods;
 	}
 
 	/**
-	 * ÉÌÆ·ä¯ÀÀ£ºä¯ÀÀÉÌÆ·ÏêÏ¸ĞÅÏ¢,²éÕÒÉÌÆ·µÄÏêÏ¸ĞÅÏ¢
-	 * @param ÉÌÆ·ID goodsID
+	 * æµè§ˆå•†å“ï¼šæŸ¥æ‰¾å•†å“è¯¦æƒ…
+	 * @param å•†å“ID  goodsId
+	 * @return Goods goods
 	 */
 	@Override
 	public Goods QueryOneGoods(Long goodsId) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			goods=goodsDaoImpl.QueryOneGoods(goodsId);
+		}
+		catch(Exception e)
+		{
+			
+			e.printStackTrace();
+		}
+		return goods;
 	}
 
 	/**
-	 * ÉÌÆ·¹ºÂò£º¶ÔÉÌÆ·¹ºÂòµÄ²Ù×÷£¬¹ºÂòÁË¶àÉÙ¼şÉÌÆ·£¬ÏàÓ¦µÄÉÌÆ·¿â´æÁ¿¼õÉÙ
-	 * @param ÉÌÆ·ID goodsID, ¹ºÂòÊıÁ¿ buyNum
+	 * è´­ä¹°å•†å“ï¼šç›¸åº”åœ°å‡å°‘å•†å“é‡
+	 * @param å•†å“ID goodsID, è´­ä¹°æ•°é‡ buyNum
+	 * @return æ— 
 	 */
 	@Override
 	public void ReduceGoodsNum(Long goodsId,int buyNum) {
-		// TODO Auto-generated method stub
+		try{
+			goodsDaoImpl.ReduceGoodsNum(goodsId, buyNum);
+		}
+		catch(Exception e)
+		{
+			
+			e.printStackTrace();
+		}
 
 	}
 

@@ -31,8 +31,12 @@
 			<list>
 				<!-- 以下用来列出Hibernate的 映射文件-->
 				<value>com/qufenqi/entity/User.hbm.xml</value>
+				<value>com/qufenqi/entity/Goods.hbm.xml</value>
+				<value>com/qufenqi/entity/GoodsType.hbm.xml</value>
 			</list>
 		</property>
+		
+		
 		
 		<!-- 定义Hibernate的SessionFactory的属性 -->
 		<property name="hibernateProperties">
@@ -53,22 +57,36 @@
 		</property>
 	</bean>
 	
+	<!-- 定义商品实体类 -->
+	<bean id="goods" class="com.qufenqi.entity.Goods"></bean>
+	
+	<!-- 定义商品类型实体类 -->
+	<bean id="goodsType" class="com.qufenqi.entity.GoodsType"></bean>
+	
 	<!-- 定义实体类 -->
 	<bean id="user" class="com.qufenqi.entity.User"></bean>
 	
-	<!-- 定义DAO： -->  
+	<!-- 定义商品模块Dao -->
+	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
+		<property name="goods" ref="goods"></property>
+		<property name="sessionFactory" ref="sessioinFactory"></property>
+	</bean>
+	
+	<!-- 定义Dao -->
 	<bean id="userDao" class="com.qufenqi.dao.impl.UserDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="sessionFactory" ref="sessioinFactory"></property>
 	</bean>
 	
-	<!-- 定义业务逻辑Service -->
-	<bean id="userService" class="com.qufenqi.service.impl.UserServiceImpl">
-	  	<property name="userDao" ref="userDao"></property>
+	<!-- 商品模块Service -->
+	<bean id="goodsServiceImpl" class="com.qufenqi.service.impl.GoodsServiceImpl">
+		<property name="goodsDaoImpl" ref="goodsDaoImpl"></property>
+		<property name="goods" ref="goods"></property>
 	</bean>
 	
-	<!-- 定义Action -->
-	  <bean id="loginAction" class="com.qufenqi.action.LoginAction" scope="prototype">
-	  	<property name="user" ref="user"></property>
-		<property name="userService" ref="userService"></property>
-	  </bean>
+	<!-- 定义商品Action -->
+	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">
+		<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
+		<property name="goods" ref="goods"></property>
+	</bean>
+
 </beans>

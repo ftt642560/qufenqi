@@ -1,51 +1,84 @@
 package com.qufenqi.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transaction;
+
+import org.hibernate.HibernateException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.qufenqi.dao.GoodsDao;
 import com.qufenqi.entity.Goods;
-
+/**
+ * å•†å“å®ç°ç±»
+ * @author zlin
+ *
+ */
 public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 
-	public Goods goods;//ÉÌÆ·Àà
+	public Goods goods;//å•†å“ç±»
 	
+	public Goods getGoods() {
+		return goods;
+	}
+
+	public void setGoods(Goods goods) {
+		this.goods = goods;
+	}
+
 	/**
-	 * Ä£ºı²éÑ¯ÉÌÆ·
-	 * @param ÉÌÆ·Àà goods
+	 * æŸ¥æ‰¾å•†å“:æ¨¡ç³ŠæŸ¥æ‰¾å•†å“
+	 * @param å•†å“ç±»goods
 	 * 
 	 */
 	@Override
 	public List QueryGoods(Goods goods) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Goods> l_goods=new ArrayList<Goods>();
+		try{
+			String goodsName = goods.getGoodsName();
+			String sql="select * from Goods as goods where goods.goodsName like '% "+goodsName+"%'"; //æ¨¡ç³ŠæŸ¥è¯¢ï¼Œåœ¨ä»»ä½•å­—æ®µå­˜åœ¨æœ‰å…³é”®å­—çš„ï¼Œéƒ½æŸ¥è¯¢å‡ºæ¥
+			System.out.println("===========GoodsDaoImpl===æ¨¡ç³ŠæŸ¥è¯¢QueryGoods====sql==="+sql+"================");
+			l_goods = (this).getHibernateTemplate().find(sql);
+			
+			if(l_goods == null)
+			{
+				System.out.println("======GoodsDaoImpl===l_goodsä¸ºç©º");
+				
+			}
+			
+		}catch(HibernateException e)
+		{
+			e.printStackTrace();
+		}
+		return l_goods;
 	}
 
 	/**
-	 * ²éÕÒÒ»¸öÉÌÆ·ĞÅÏ¢
-	 * @param ÉÌÆ·ID GoodsId
+	 * æŸ¥æ‰¾å•†å“è¯¦æƒ…
+	 * @param  å•†å“ID GoodsId
 	 * 
 	 */
 	@Override
 	public Goods QueryOneGoods(Long GoodsId) {
-		goods = (Goods)this.getHibernateTemplate().get(Goods.class, GoodsId);//°´ÕÕÉÌÆ·ID²éÕÒÉÌÆ·
+		goods = (Goods)this.getHibernateTemplate().get(Goods.class, GoodsId);//æŒ‰ç…§å•†å“IDï¼ŒæŸ¥æ‰¾å•†å“ä¿¡æ¯
 		return goods;
 	}
 
 	/**
-	 * ¼õÉÙÉÌÆ·¿â´æÁ¿
-	 * @param ÉÌÆ·ID GoodsId,¹ºÂòÊıÁ¿ buyNum
+	 *å‡å°‘å•†å“åº“å­˜é‡
+	 * @param å•†å“ID GoodsId,è´­ä¹°æ•°é‡ buyNum
 	 */
 	@Override
 	public void ReduceGoodsNum(Long GoodsId,int buyNum) {
-		goods = QueryOneGoods(GoodsId);//°´ÕÕID²éÕÒµ½ÉÌÆ·
-		int goodsStoreNum = goods.getStoreNum();//»ñÈ¡ÉÌÆ·µÄ¿â´æÁ¿
-		goodsStoreNum=goodsStoreNum-buyNum;//ÂòÁË¶àÉÙ¼şÉÌÆ·£¬¿â´æÁ¿¾Í¼õÉÙ¶àÉÙ¼ş
-		goods.setStoreNum(goodsStoreNum);//ĞŞ¸ÄÉÌÆ·¶ÔÏóµÄ¿â´æÁ¿
-		this.getHibernateTemplate().update(goods);//¸üĞÂÊı¾İ¿â
+		goods = QueryOneGoods(GoodsId);//æŒ‰ç…§å•†å“IDæŸ¥æ‰¾ä¸€ä¸ªå•†å“
+		int goodsStoreNum = goods.getStoreNum();//è·å–å•†å“åº“å­˜é‡
+		goodsStoreNum=goodsStoreNum-buyNum;//å•†å“åº“å­˜é‡ç›¸åº”åœ°å‡å°‘ä»¶æ•°
+		goods.setStoreNum(goodsStoreNum);//æ›´æ–°å•†å“åº“å­˜é‡
+		this.getHibernateTemplate().update(goods);//è¿æ¥æ•°æ®åº“ä¿®æ”¹
 		
 
 	}
+	
 
 }

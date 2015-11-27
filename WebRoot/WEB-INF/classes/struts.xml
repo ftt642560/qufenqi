@@ -57,4 +57,18 @@
 			<result name="login">login.jsp</result>
 		</action>
 	</package>
+	
+	<package name="goods" extends="struts-default" namespace="/goods">
+		<action name="searchGoods" class="goodsAction" method="searchGoods">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="queryOneGoods" class="goodsAction" method="queryOneGoods">
+			<result name="success">index.jsp</result>
+		</action>
+		
+		<action name="buyGoods" class="goodsAction" method="buyGoods">
+			<result name="success">index.jsp</result>
+		</action>
+	</package>
 </struts>    

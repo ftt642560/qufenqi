@@ -5,27 +5,27 @@ import java.util.List;
 
 /**
  * 
- * илф╥дё©И╫с©з
+ * Е∙├Е⌠│Ф╗║Е²≈Ф°█Е┼║Е╠┌
  * @author zlin
  *
  */
 public interface GoodsService {
 	
 	/**
-	 * илф╥кякВё╨╟╢уулУ╪ЧкякВилф╥
-	 * @param илф╥ goods
+	 * Ф░°Г╢╒Е∙├Е⌠│
+	 * @param Е∙├Е⌠│Г╠╩ goods
 	 */
 	public List<Goods> SearchGoods(Goods goods);
 	
 	/**
-	 * илф╥Д╞ююё╨Д╞ююилф╥оЙо╦пео╒,╡Иурилф╥╣доЙо╦пео╒
-	 * @param илф╥ID goodsID
+	 * Ф╣▐Х╖┬Е∙├Е⌠│О╪ Ф÷╔Ф┴╬Е∙├Е⌠│Х╞╕Ф┐┘
+	 * @param Е∙├Е⌠│ID  goodsId
 	 */
 	public Goods QueryOneGoods(Long goodsId);
 	
 	/**
-	 * илф╥╧╨бРё╨╤тилф╥╧╨бР╣д╡ывВё╛бРак╤Юиы╪Чилф╥ё╛оЮс╕╣дилф╥©Б╢Фа©╪Уиы
-	 * @param илф╥ID goodsID , ╧╨бРйЩа© buyNum
+	 * Х╢╜Д╧╟Е∙├Е⌠│О╪ Г⌡╦Е╨■Е°╟Е┤▐Е╟▒Е∙├Е⌠│И┤▐
+	 * @param Е∙├Е⌠│ID goodsID, Х╢╜Д╧╟Ф∙╟И┤▐ buyNum
 	 */
 	public void ReduceGoodsNum(Long goodsId,int buyNum);
 	
