@@ -38,5 +38,23 @@
 			<!-- 应用自定义拦截器 -->
 			<interceptor-ref name="wall"/>
 		</action>
+		
+		<action name="*" class="loginAction" method="{1}">
+			<result name="success">/index.jsp</result>
+			<result name="error">login.jsp</result>
+			<result name="login">login.jsp</result>
+			<interceptor-ref name="wall"/>
+		</action>
+		<action name="query" class="loginAction" method="query">
+			<result name="success">update.jsp</result>
+			<result name="error">login.jsp</result>
+			<result name="login">login.jsp</result>
+			<interceptor-ref name="wall"/>
+		</action>
+		<action name="register" class="loginAction" method="register">
+			<result name="success">login.jsp</result>
+			<result name="error">register.jsp</result>
+			<result name="login">login.jsp</result>
+		</action>
 	</package>
 </struts>    

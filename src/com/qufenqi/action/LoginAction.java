@@ -1,5 +1,10 @@
 package com.qufenqi.action;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,6 +37,22 @@ public class LoginAction {
 	 */
 	private UserService userService;
 	
+	private int userId;
+	
+	private InputStream inputStream;
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+	
+	public int getUserId() {
+		return userId;
+	}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 	public User getUser() {
 		return user;
 	}
@@ -49,9 +70,35 @@ public class LoginAction {
 	public LoginAction() {
 		super();
 	}
+	/**
+	 * 注册
+	 * @return
+	 */
 	public String register(){
-		
+		//刚开始注册status为0
+		//该开始注册信誉度为0
+		user.setStatus(0);
+		user.setQuota(0);
+		System.out.println("register user==="+user);
+		int registerId = userService.register(user);
+		if (registerId == 0) {
+			request.setAttribute("mess", "注册失败");
+			flag = "error";
+		}else{
+			request.setAttribute("mess", "请到"+user.getEmail()+"激活");
+			flag = "success";
+		}
 		return flag;
+	}
+	
+	/**
+	 * 通过激活邮箱注册成功
+	 * @return
+	 */
+	public String finishregister(){
+		user.setStatus(2);
+		userService.update(user);
+		return "success";
 	}
 
 	/**
@@ -99,4 +146,38 @@ public class LoginAction {
 		}
 		return flag;
 	}
+	
+	public String findAll(){
+		List<User> userLists = userService.findAlls();
+		System.out.println(userLists.size());
+		request.setAttribute("userLists", userLists);
+		return "success";
+	}
+	
+	public String delete(){
+		userService.deleteById(userId);
+		try {
+			inputStream =  new ByteArrayInputStream("1".getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			try {
+				inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+		}
+		return "success";
+	}
+	
+	public String update(){
+		userService.update(user);
+		return "success";
+	}
+	
+	public String query(){
+		User user = userService.getById(userId);
+		request.setAttribute("user", user);
+		return "success";
+	}
+	
 }

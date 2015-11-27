@@ -9,10 +9,11 @@
 		</id>
 		<property name="userName" type="string" column="userName" not-null="true"/>
 		<property name="password" type="string" column="password" not-null="true"/>
-		<property name="name" type="string" column="name" not-null="true"/>
-		<property name="telephone" type="long" column="telephone" not-null="true"/>
-		<property name="idCard" type="string" column="idCard" not-null="true"/>
+		<property name="name" type="string" column="name" not-null="false"/>
+		<property name="telephone" type="long" column="telephone" not-null="false"/>
+		<property name="idCard" type="string" column="idCard" not-null="false"/>
 		<property name="email" type="string" column="email" not-null="true"/>
-		<property name="quota" type="integer" column="quota" not-null="true"/>
+		<property name="quota" type="integer" column="quota" not-null="false"/>
+		<property name="status" type="integer" column="status" not-null="false"/>
 	</class>
 </hibernate-mapping>
