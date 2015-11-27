@@ -38,6 +38,13 @@ public class User {
 	 * 用户的信誉度
 	 */
 	private int quota;
+	private int status;
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public int getUserId() {
 		return userId;
 	}

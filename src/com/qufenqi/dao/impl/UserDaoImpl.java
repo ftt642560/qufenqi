@@ -49,7 +49,8 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 * @return User实例被持久化后的标识属性
 	 */
 	public Integer save(User user) {
-		return (Integer) getHibernateTemplate().save(user);
+		System.out.println(user);
+		return (Integer)getHibernateTemplate().save(user);
 	}
 	/**
 	 * 根据标识属性删除User实例
