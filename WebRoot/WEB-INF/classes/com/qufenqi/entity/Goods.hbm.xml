@@ -46,7 +46,7 @@
 			<column name="weight" length="20" not-null="true" />		
 		</property>
 		
-		<property name="status" type="int">
+		<property name="status" type="integer">
 			<column name="status" length="11" not-null="true" />		
 		</property>
 		

@@ -10,8 +10,8 @@
 			<generator class="native" />
 		</id>
 		
-		<property name="goodsNameType" type="string">
-			<column name="goodsNameType" length="255" not-null="true" />
+		<property name="goodsTypeName" type="string">
+			<column name="goodsTypeName" length="255" not-null="true" />
 		</property>
 		
 		<set name="goods" cascade="save-update">

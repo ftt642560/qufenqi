@@ -69,12 +69,12 @@
 	<!-- 定义商品模块Dao -->
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>
-		<property name="sessionFactory" ref="sessioinFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
 	<!-- 定义Dao -->
 	<bean id="userDao" class="com.qufenqi.dao.impl.UserDaoImpl">
-		<property name="sessionFactory" ref="sessioinFactory"></property>
+		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
 	<!-- 商品模块Service -->

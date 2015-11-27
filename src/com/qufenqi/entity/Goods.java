@@ -1,22 +1,22 @@
 package com.qufenqi.entity;
 
 /**
- * ÉÌÆ·ÊµÌåÀà
+ * å•†å“ç±»
  * @author zlin
  *
  */
 public class Goods {
-	private long goodsId;//ÉÌÆ·ID
-	private String goodsName;//ÉÌÆ·Ãû
-	private String brand; //ÉÌÆ·Æ·ÅÆ
-	private String model;//ÉÌÆ·ĞÍºÅ
-	private String size; //ÉÌÆ·³ß´ç
-	private String color;//ÉÌÆ·ÑÕÉ«
-	private String material;//ÉÌÆ·²ÄÖÊ
-	private int storeNum;//¿â´æÁ¿
-	private String goodsPrice;//ÉÌÆ·¼Û¸ñ
-	private long weight;//ÉÌÆ·µÄÏúÊÛÁ¿
-	private int status;//ÉÌÆ·ÊÇ·ñÉÏ¼Ü£»0±íÊ¾Î´ÉÏ¼Ü£¬1±íÊ¾ÉÏ¼Ü
+	private long goodsId;//å•†å“ID
+	private String goodsName;//å•†å“å
+	private String brand; //å“ç‰Œ
+	private String model;//ç±»å‹
+	private String size; //å¤§å°
+	private String color;//é¢œè‰²
+	private String material;//ææ–™
+	private int storeNum;//åº“å­˜é‡
+	private String goodsPrice;//ä»·æ ¼
+	private long weight;//æƒé‡ï¼šç”¨ä»¥ç»Ÿè®¡å•†å“è´­ä¹°é‡
+	private int status;//çŠ¶æ€ï¼šä»£è¡¨å•†å“æ˜¯å¦å•†å®¶
 	
 	public long getGoodsId() {
 		return goodsId;

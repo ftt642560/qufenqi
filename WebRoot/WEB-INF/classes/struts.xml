@@ -42,7 +42,7 @@
 	
 	<package name="goods" extends="struts-default" namespace="/goods">
 		<action name="searchGoods" class="goodsAction" method="searchGoods">
-			<result name="success">index.jsp</result>
+			<result name="success">test_goods.jsp</result>
 		</action>
 		
 		<action name="queryOneGoods" class="goodsAction" method="queryOneGoods">
