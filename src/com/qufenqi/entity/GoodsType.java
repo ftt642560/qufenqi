@@ -3,14 +3,14 @@ package com.qufenqi.entity;
 import java.util.Set;
 
 /**
- * ÉÌÆ·ÀàĞÍ
+ * ï¿½ï¿½Æ·ï¿½ï¿½ï¿½ï¿½
  * @author zlin
  *
  */
 public class GoodsType {
-	private long goodsTypeId;//ÉÌÆ·ÀàĞÍID
-	private String goodsTypeName; //ÉÌÆ·ÀàĞÍÃû
-	private Set<Goods> goods; //Ò»¸öÉÌÆ·¼¯ºÏ
+	private long goodsTypeId;//å•†å“ç±»å‹ID
+	private String goodsTypeName; //å•†å“ç±»å‹å
+	private Set<Goods> goods; //å•†å“
 	
 	public Set<Goods> getGoods() {
 		return goods;
