@@ -8,16 +8,16 @@ import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
-import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
+import com.qufenqi.entity.Manager;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.User;
 
 /**
- * 登录检查拦截器类
- * @author Administrator
+ * 后台登录检查拦截器类
+ * @author ftt
  *
  */
-public class LoginInterceptor extends AbstractInterceptor{
-
+public class BgLoginInterceptor {
 	/**
 	 * 拦截Action处理的拦截方法
 	 */
@@ -26,8 +26,9 @@ public class LoginInterceptor extends AbstractInterceptor{
 		//获取请求相关的ActionContext实例
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
 		//去除名为user的session属性
-		User user = (User)session.get("user");
-		if(user==null){
+		Seller seller = (Seller)session.get("seller");
+		Manager manager = (Manager) session.get("manager");
+		if(seller==null && manager == null){
 			HttpServletRequest req = ServletActionContext.getRequest();
 			req.setAttribute("mess", "您尚未登录，请输入账号、密码");
 			return Action.LOGIN;

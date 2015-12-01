@@ -89,9 +89,14 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+	<bean id="pageBaseDao" class="com.qufenqi.dao.impl.PageBaseDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
 	<!-- 定义业务逻辑Service -->
 	<bean id="goodsServiceImpl" class="com.qufenqi.service.impl.GoodsServiceImpl">
 		<property name="goodsDaoImpl" ref="goodsDaoImpl"></property>
+		<property name="pageBaseDao" ref="pageBaseDao"></property>
 		<property name="goods" ref="goods"></property>
 	</bean>
 	<bean id="userService" class="com.qufenqi.service.impl.UserServiceImpl">
@@ -104,6 +109,7 @@
 	  	<property name="sellerBaseDao" ref="sellerBaseDao"/>
 	  	<property name="userDao" ref="userDao"></property>
 	  	<property name="sellerDao" ref="sellerDao"></property>
+	  	<property name="pageBaseDao" ref="pageBaseDao"></property>
 	</bean>
 	
 	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">

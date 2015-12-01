@@ -7,9 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionContext;
-import com.opensymphony.xwork2.util.ValueStack;
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.PageBean;
 import com.qufenqi.service.impl.GoodsServiceImpl;
 
 /**
@@ -27,6 +26,33 @@ public class GoodsAction {
 	public String goodsId;//前后台关联的ID，从前台传过来的数据为String类型
 	
 	
+	
+	//房婷婷-2015-12-1
+	//第几页
+	private int page;    
+	//包含分布信息的bean
+	private PageBean pageBean; 
+
+	public int getPage() {
+		return page;
+	}
+
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+
 	public String getGoodsId() {
 		return goodsId;
 	}
@@ -138,8 +164,14 @@ public class GoodsAction {
 		goodsserviceimpl.ReduceGoodsNum(goodsid, buynum);
 		return "success";
 	}
-		
 	
+	//房婷婷2015-12-1
+	 public String findAll() throws Exception {
+	     //分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
+		this.pageBean = goodsserviceimpl.queryForPage( 2, page);
+		System.out.println(pageBean);
+		return "success";
+	 }
 	
 	
 }

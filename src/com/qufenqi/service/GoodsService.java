@@ -1,6 +1,7 @@
 package com.qufenqi.service;
 
 import com.qufenqi.entity.*;
+
 import java.util.List;
 
 /**
@@ -36,5 +37,16 @@ public interface GoodsService {
 	 * 
 	 */
 	public List<Goods> SellerSearchGoods(int sellerId);
+	
+	
+	
+	/**
+     * 分页查询
+     * @param currentPage 当前第几页
+     * @param pageSize 每页大小
+     * @return 封闭了分页信息(包括记录集list)的Bean
+     */
+	/////房婷婷 2015-12-1
+    PageBean queryForPage( int pageSize,int currentPage);
 	
 }

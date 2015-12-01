@@ -7,8 +7,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.qufenqi.entity.Order;
+import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.User;
 import com.qufenqi.service.UserService;
 
@@ -18,6 +18,24 @@ public class UserAction {
 	private HttpSession session = request.getSession();
 	private UserService userService;
 	private User user;
+	//第几页
+	private int page;    
+	//包含分布信息的bean
+    private PageBean pageBean;    
+	
+	public int getPage() {
+		return page;
+	}
+	//若URL中无此参数,会默认为第1页
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
 	public UserService getUserService() {
 		return userService;
 	}
@@ -52,33 +70,28 @@ public class UserAction {
 		int userId = 0;
 		return "success";
 	}
-	public String findAll(){
-		System.out.println(111111);
-		List<User> userList = userService.findAlls();
-		int size = userList.size();
-		System.out.println("size===="+size);
-		System.out.println("listUsers==="+userList);
-		if(size != 0){
-			ActionContext.getContext().put("userList", userList);
-			request.setAttribute("userList", userList);
-			return "success";
+	
+	public String findSome(){
+		if(user.getUserName().trim().equals("")){
+			this.pageBean = userService.queryForPage(null , 2, page);
+			request.setAttribute("pageBean", pageBean);
+		    return "success";
+		}
+		if(!user.getUserName().trim().equals("")){
+			this.pageBean = userService.queryForPage(user , 2, page);
+			request.setAttribute("pageBean", pageBean);
+		    return "success";
 		}
 		return "error";
 	}
 	
-	public String findSome(){
-		System.out.println(222222);
-		String userName = user.getUserName();
-		System.out.println(user.getUserName());
-		List<User> userList = userService.getByUserName(userName);
-		int size = userList.size();
-		System.out.println("size===="+size);
-		System.out.println("listUsers==="+userList);
-		if(size != 0){
-			ActionContext.getContext().put("userList", userList);
-			request.setAttribute("userList", userList);
-			return "success";
-		}
-		return "error";
-	}
+	 public String findAll() throws Exception {
+	     //分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
+		 if(user == null){
+			 this.pageBean = userService.queryForPage(null , 2, page);
+		     request.setAttribute("pageBean", pageBean);
+		     return "success";
+		 }
+		 return "error";
+	 }
 }

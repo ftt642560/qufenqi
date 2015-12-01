@@ -29,9 +29,11 @@
   <SCRIPT LANGUAGE="javaScript">
 	function goSearch(){
 		if($("#username").val()==""){
-			document.getElementById("userForm").action = "<%=basePath%>findAllUser.action";
+			alert("222");
+			document.getElementById("userForm").action = "<%=basePath%>findAllUsers.action";
 		}else{
-			document.getElementById("userForm").action = "<%=basePath%>findAllUser.action";
+			alert(22233);
+			document.getElementById("userForm").action = "<%=basePath%>findSomeUsers.action";
 		}
 	}
 	
@@ -68,13 +70,13 @@
 </SCRIPT>
 
 	<body background="<%=basePath%>/image/bg.gif">
-		<FORM ID="userForm" method="post"  action="findSome.action"  >
+		<FORM ID="userForm" method="post"  action=""  >
           <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 			<tr>
 				<td class="headerbar61">查询用户信息</td>
 				<td class="headerbar61">
 					<p align="right">
-						<input type="submit" value="查 询 ">
+						<input type="submit" value=" 查 询 " onClick="goSearch();">
 					</p>
 				</td>
 			</tr>
@@ -109,8 +111,6 @@
 				</tr>
 			</table>
 			
-			
-						
 			<s:if test="#request.pageBean == null || #request.pageBean.size() == 0">
 				<table border=0 cellspacing=0 cellpadding=0 width="100%" height=5>
 					<tr>
@@ -142,39 +142,38 @@
 									<td  class="headerbar82">删除</td>	
 								</tr>
 								
-								<s:iterator value="#request.pageBean.list" status="status">
 								
-									<s:if test="#status.odd">
-										<tr>
-											<td class="gridbar11" align="center">${userId }</td>
-											<td class="gridbar11" align="center">${userName }</td>
-											<td class="gridbar11" align="center">${password }</td>
-											<td class="gridbar11" align="center">${name }</td>
-											<td class="gridbar11" align="center">${telephone }</td>
-											<td class="gridbar11" align="center">${idCard }</td>
-											<td class="gridbar11" align="center">${email }</td>
-											<td class="gridbar11" align="center">${quota }</td>
-											<td class="gridbar11" align="center">${status }</td>
-											<td class="gridbar11" align="center">
+								<s:iterator value="#request.pageBean.list" id="user">
+							       <s:if test="#status.odd">
+							        <tr>
+							            <th class="gridbar11" align="center"><s:property value="#user.userId"/></th>
+							            <th class="gridbar11" align="center"><s:property value="#user.userName"/></th>
+							            <th class="gridbar11" align="center"><s:property value="#user.password"/></th> 
+							            <th class="gridbar11" align="center" ><s:property value="#user.name"/></th> 
+							            <th class="gridbar11" align="center"><s:property value="#user.telephone"/></th> 
+							            <th class="gridbar11" align="center"><s:property value="#user.idCard"/></th> 
+							            <th class="gridbar11" align="center"><s:property value="#user.email"/></th>   
+							            <th class="gridbar11" align="center"><s:property value="#user.quota"/></th> 
+							            <th class="gridbar11" align="center"><s:property value="#user.status"/></th>
+							            <td class="gridbar11" align="center">
 												<a href="<%=basePath%>/delete.action?userId=${userId}" class="delete">
 													<input type="hidden" value="${userId }">
 													<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />
 												</a>
-											</td>
-										</tr>
-									</s:if>
-									
-									<s:else>
-										<tr>
-											<td class="gridbar01" align="center">${userId }</td>
-											<td class="gridbar01" align="center">${userName }</td>
-											<td class="gridbar01" align="center">${password }</td>
-											<td class="gridbar01" align="center">${name }</td>
-											<td class="gridbar01" align="center">${telephone }</td>
-											<td class="gridbar01" align="center">${idCard }</td>
-											<td class="gridbar01" align="center">${email }</td>
-											<td class="gridbar01" align="center">${quota }</td>
-											<td class="gridbar01" align="center">${status }</td>
+										</td>      
+							        </tr>
+							        </s:if>
+							        <s:else>
+							        	<tr>
+											<th class="gridbar01" align="center"><s:property value="#user.userId"/></th>
+								            <th class="gridbar01" align="center"><s:property value="#user.userName"/></th>
+								            <th class="gridbar01" align="center"><s:property value="#user.password"/></th> 
+								            <th class="gridbar01" align="center" ><s:property value="#user.name"/></th> 
+								            <th class="gridbar01" align="center"><s:property value="#user.telephone"/></th> 
+								            <th class="gridbar01" align="center"><s:property value="#user.idCard"/></th> 
+								            <th class="gridbar01" align="center"><s:property value="#user.email"/></th>   
+								            <th class="gridbar01" align="center"><s:property value="#user.quota"/></th> 
+								            <th class="gridbar01" align="center"><s:property value="#user.status"/></th>
 											<td class="gridbar01" align="center">
 												<a href="<%=basePath%>/outOrder/del.action?userId=${userId}" class="delete">
 													<input type="hidden" value="${userId }">
@@ -182,14 +181,15 @@
 												</a>
 											</td>
 										</tr>
-									</s:else>
-								</s:iterator>
+							        </s:else>
+							    </s:iterator>
 			  				</table>
 			  			</td>
 					</tr>
 				</table>
 			</s:else>
 		</form>
+		
 		
 		<center>
 	        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
@@ -216,7 +216,7 @@
 	        </s:else>
 	    
 	    </center><br>
-		
+
 		<div id="div" style="color: black; display:none; border: 1px; width: 200px; height: 50px ; 
 			background-color: yellow ; z-index: 1; position: absolute; left: 400px;
 			top: 180px; padding-top: 15px; font-weight: bolder;font-size: 18px;padding-left: 55px">

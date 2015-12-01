@@ -81,7 +81,7 @@ function gotostore(){
                     	</div>
                     </td> 
                     <td>
-                    	<a href="<%=basePath%>findAllUsers.action" target="main" onClick="jsgoto('<%=basePath%>/system/userList.jsp');">用户管理</a>
+                    	<a href="<%=basePath%>findAllUser.action" target="main" onClick="jsgoto('<%=basePath%>/system/userList.jsp');">用户管理</a>
                     </td> 
                   </tr> 
 				  <tr> 
@@ -91,7 +91,7 @@ function gotostore(){
                     	</div>
                     </td> 
                     <td>
-                    	<a href="<%=basePath%>/system/left.jsp" onClick="gotoclothing();">商品管理</a>
+                    	<a href="<%=basePath%>/goods/findAllGoods.action" target="main" onClick="jsgoto('<%=basePath%>/goods/findAllGoods.jsp');">商品管理</a>
                     </td> 
                   </tr>                 
 				   <tr> 
@@ -101,7 +101,7 @@ function gotostore(){
                     	</div>
                     </td> 
                     <td>
-                    	<a href="<%=basePath%>/system/left.jsp" onClick="gotostore();">商家管理</a>
+                    	<a href="<%=basePath%>findAll.action" target="main" onClick="jsgoto('<%=basePath%>/seller/findAllSeller.jsp');">商家管理</a>
                     </td> 
                   </tr>  
                   <tr> 

@@ -63,7 +63,7 @@ public interface UserDao {
 	 * @param pageSize 一页最多显示多少条记录
 	 * @return length
 	 */
-	List<User> queryByPage(final String hql, final int offset,final int length);
+	public List queryForPage(final String hql,final int offset,final int length);
 	/**
 	 * 查询所有的记录数
 	 * @param hql 查询条件

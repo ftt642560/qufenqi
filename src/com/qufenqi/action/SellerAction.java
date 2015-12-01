@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.Seller;
 import com.qufenqi.service.SellerService;
 
@@ -17,7 +18,26 @@ public class SellerAction {
 	private Seller seller;
 	private SellerService sellerService;
 	private InputStream inputStream;
-
+	
+	//第几页
+	private int page;
+	//包含查询结果的信息的bean
+	private PageBean pageBean;
+	public int getPage() {
+		return page;
+	}
+	//如果穿过来的url无参数则说明是第一页
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+	
+	
 	public void setSellerService(SellerService sellerService) {
 		this.sellerService = sellerService;
 	}
@@ -138,5 +158,15 @@ public class SellerAction {
 		}
 		result = "修改失败";
 		return "error";
+	}
+	
+	public String findAll(){
+		System.out.println("进来了");
+		System.out.println("seller=="+seller);
+		if(seller == null){
+			this.pageBean = sellerService.queryForPage(null, 2, page);
+			System.out.println(pageBean);
+		}
+		return "success";
 	}
 }

@@ -3,8 +3,11 @@ package com.qufenqi.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.qufenqi.dao.PageBaseDao;
 import com.qufenqi.dao.impl.GoodsDaoImpl;
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.PageBean;
+import com.qufenqi.entity.User;
 import com.qufenqi.service.GoodsService;
 
 /**
@@ -16,6 +19,7 @@ import com.qufenqi.service.GoodsService;
 public class GoodsServiceImpl implements GoodsService {
 	public Goods goods;
 	public GoodsDaoImpl goodsDaoImpl;
+	private PageBaseDao pageBaseDao;
 	public Goods getGoods() {
 		return goods;
 	}
@@ -30,6 +34,14 @@ public class GoodsServiceImpl implements GoodsService {
 
 	public void setGoodsDaoImpl(GoodsDaoImpl goodsDaoImpl) {
 		this.goodsDaoImpl = goodsDaoImpl;
+	}
+
+	public PageBaseDao getPageBaseDao() {
+		return pageBaseDao;
+	}
+
+	public void setPageBaseDao(PageBaseDao pageBaseDao) {
+		this.pageBaseDao = pageBaseDao;
 	}
 
 	/**
@@ -103,6 +115,40 @@ public class GoodsServiceImpl implements GoodsService {
 		
 		return l_goods;
 	}
-	
 
+	
+	
+	/**
+     * 分页查询
+     * @param currentPage 当前第几页
+     * @param pageSize 每页大小
+     * @return 封闭了分页信息(包括记录集list)的Bean
+     */
+	/////房婷婷 2015-12-1
+	public PageBean queryForPage( int pageSize, int page) {
+		String hql = "";
+			hql = "from Goods";
+		//查询语句
+		//查询数据库中一共有多少条记录
+		int allRow = pageBaseDao.getAllRowCount(hql);
+		//查询总页数
+		int totalPage = PageBean.countTotalPage(pageSize, allRow);
+		//当前页的开始记录
+		final int offset = PageBean.countOffset(pageSize, page);
+		//每页的记录数
+		final int length = pageSize;
+		//获得当前页
+		final int currentPage = PageBean.countCurrentPage(page);
+		//一页的记录
+		 List<User> list = pageBaseDao.queryForPage(hql, offset, length);
+		 //把分页信息保存到Bean中
+	     PageBean pageBean = new PageBean();
+	     pageBean.setPageSize(pageSize);    
+	     pageBean.setCurrentPage(currentPage);
+	     pageBean.setAllRow(allRow);
+	     pageBean.setTotalPage(totalPage);
+	     pageBean.setList(list);
+	     pageBean.init();
+		 return pageBean;
+	}
 }

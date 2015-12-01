@@ -43,4 +43,6 @@ public interface GoodsDao {
 	 */
 	public List<Goods> SellerQueryAllGoods(int sellerid);
 	
+	
+	
 }

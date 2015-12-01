@@ -8,13 +8,12 @@
 	<constant name="struts.devMode" value="false" /> 
 	<constant name="struts.action.extension" value="action"/>	
 	
-	<include file="struts-default.xml" />
-	
 	<!-- 配置第一个包，该包名为user，继承sturts-default -->
 	<!-- 用户管理模块 -->
 	<package name="user" extends="struts-default" >
 		<!-- 定义全部的拦截器 -->
 		<interceptors>
+			<interceptor name="BgLoginInterceptor" class="com.qufenqi.interceptor.BgLoginInterceptor"/>
 			<!-- 通过指定拦截器名和拦截器实现类来定义拦截器 -->
 			<interceptor name="loginInterceptor" class="com.qufenqi.interceptor.LoginInterceptor"/>
 			<!-- 定义一个包含包含权限检查的拦截器栈 -->
@@ -27,32 +26,35 @@
 		</interceptors>
 		
 		<!-- 用户模块 -->
-		<action name="*Users" class="userAction" method="findAll">
+		<action name="findAllUser" class="userAction" method="findAll">
 			<result name="success">/system/findAllUser.jsp</result>
 			<result name="error">/system/index.jsp</result>
+			<result name="login">/login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor" />
 		</action>
-		<action name="findSomeUsers" class="userAction" method="findSome">
+		
+		<action name="findSome" class="userAction" method="findSome">
 			<result name="success">/system/findAllUser.jsp</result>
 			<result name="error">/system/index.jsp</result>
+			<result name="login">/login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		<action name="delete" class="loginAction" method="delete">
 			<result type="stream" name="success">
 		        <param name="contentType">text/html</param>
 		        <param name="inputName">inputStream</param>
 		    </result>
+		    <result name="login">/login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor" />
 		</action>
-		
+		<!-- 用户的登录 -->
 		<action name="login" class="loginAction" method="login">
 			<result name="success">index.jsp</result>
 			<result name="error">login.jsp</result>
-			<result name="input">input.jsp</result>
 		</action>
 		<action name="quit" class="loginAction" method="quit">
 			<result name="success">login.jsp</result>
 			<result name="error">login.jsp</result>
-			<result name="login">login.jsp</result>
-			<!-- 应用自定义拦截器 -->
-			<interceptor-ref name="wall"/>
 		</action>
 		
 		<action name="*" class="loginAction" method="{1}">
@@ -70,23 +72,25 @@
 		<action name="register" class="loginAction" method="register">
 			<result name="success">login.jsp</result>
 			<result name="error">register.jsp</result>
-			<result name="login">login.jsp</result>
 		</action>
 		<action name="registbyEmail" class="loginAction" method="registbyEmail">
 			<result name="success">login.jsp</result>
 			<result name="error">register.jsp</result>
-			<result name="login">login.jsp</result>
 		</action>
 		
 		<action name="queryByName" class="loginAction" method="queryByName">
 			<result name="success">queryByName.jsp</result>
 			<result name="error">index.jsp</result>
 			<result name="login">login.jsp</result>
+			<interceptor-ref name="wall"/>
 		</action>
+		
+		<!-- 支付模块：查询订单 -->
 		<action name="queryOrders" class="paymentAction" method="query">
 			<result name="success">order.jsp</result>
 			<result name="error">index.jsp</result>
 			<result name="login">login.jsp</result>
+			<interceptor-ref name="wall"/>
 		</action>
 		
 		
@@ -102,14 +106,27 @@
 		<action name="modifySeller" class="sellerAction" method="modify">
 			<result name="success">login.jsp</result>
 			<result name="error">Main.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="quitSeller" class="sellerAction" method="quit">
 			<result name="success">login.jsp</result>
-			<result name="error">bottom.jsp</result>
+			<result name="error">login.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		<action name="findAll" class="sellerAction" method="findAll">
+			<result name="success">/seller/findAllSeller.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 	</package>
 	
 	<package name="goods" extends="struts-default" namespace="/goods">
+		<!-- 房婷婷加的 -->
+		<interceptors>
+			<interceptor name="BgLoginInterceptor" class="com.qufenqi.interceptor.BgLoginInterceptor"/>
+		</interceptors>
 		<action name="searchGoods" class="goodsAction" method="searchGoods">
 			<result name="success">/test_goods.jsp</result>
 		</action>
@@ -120,6 +137,12 @@
 		
 		<action name="buyGoods" class="goodsAction" method="buyGoods">
 			<result name="success">/buygoodsresult.jsp</result>
+		</action>
+		
+		<action name="findAllGoods" class="goodsAction" method="findAll">
+			<result name="success">/goods/findAllGoods.jsp</result>
+			<result name="input">/login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 	</package>
 </struts>    

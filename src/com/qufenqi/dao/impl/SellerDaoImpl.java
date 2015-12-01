@@ -20,22 +20,6 @@ public class SellerDaoImpl implements SellerDao {
 	public SellerDaoImpl() {
 		// TODO Auto-generated constructor stub
 	}
-	@Override
-	public void register(Seller seller) {
-		
-	}
-
-	@Override
-	public void login(Seller seller) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void quit() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public Seller querySelf(int id) {

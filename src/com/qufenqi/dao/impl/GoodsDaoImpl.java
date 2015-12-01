@@ -107,6 +107,5 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		return l_goods;
 		
 	}
-	
 
 }

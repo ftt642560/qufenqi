@@ -92,7 +92,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
      * @param length 一次查询几条记录
      * @return
      */
-	public List<User> queryByPage(final String hql, final int offset, final int length) {
+	public List<User> queryForPage(final String hql, final int offset, final int length) {
 		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
 
 			@Override

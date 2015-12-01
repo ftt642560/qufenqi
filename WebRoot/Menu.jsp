@@ -115,13 +115,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
 						</td>
 						<td class="top1" onClick="jsgoto(8);" id="ttd8">
-							<a href="<%=basePath%>stock/index.jsp" target="midFrame">商家管理</a>
+							<a href="<%=basePath%>stock/index.jsp" target="midFrame">支付管理</a>
 						</td> 
 						<td>
 							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
 						</td>
 						<td class="top1" onClick="jsgoto(1);" id="ttd1" >
-							<a href="<%=basePath%>user/index.jsp" target="midFrame">用户管理</a>
+							<a href="<%=basePath%>user/index.jsp" target="midFrame">辅助管理</a>
 						</td>
 					</s:if>	
 					
