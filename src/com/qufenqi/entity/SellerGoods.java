@@ -8,7 +8,7 @@ package com.qufenqi.entity;
  *
  */
 public class SellerGoods {
-	private int id;//主键：自增
+	private long id;//主键：自增
 	private int quantity;//商品数量
 	private Seller seller;
 	private Goods goods;
@@ -29,11 +29,11 @@ public class SellerGoods {
 		this.goods = goods;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

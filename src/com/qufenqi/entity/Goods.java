@@ -1,5 +1,6 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -19,9 +20,15 @@ public class Goods {
 	private String goodsPrice;//价格
 	private long weight;//权重：用以统计商品购买量
 	private int status;//状态：代表商品是否商家
-	
+	private Set<Order> orders = new HashSet<Order>();
 	private Set<SellerGoods> sellergoods;//商家和商品表关联中间表:sellergoods，多对多，转成两个1对多
-	
+	private Coupon coupon;
+	public Coupon getCoupon() {
+		return coupon;
+	}
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
+	}
 	public Set<SellerGoods> getSellergoods() {
 		return sellergoods;
 	}
@@ -94,6 +101,12 @@ public class Goods {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	
 	
