@@ -1,5 +1,8 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 物流信息实体类
  * @author Administrator
@@ -18,6 +21,8 @@ public class Logistics {
 	 * 物流的状态
 	 */
 	private String logisticsStatus;
+	
+	private Set<Order> orders = new HashSet<Order>();
 	public int getLogisticsId() {
 		return logisticsId;
 	}
@@ -35,6 +40,12 @@ public class Logistics {
 	}
 	public void setLogisticsStatus(String logisticsStatus) {
 		this.logisticsStatus = logisticsStatus;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	@Override
 	public String toString() {

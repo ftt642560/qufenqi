@@ -2,6 +2,7 @@ package com.qufenqi.service;
 
 import java.util.List;
 
+import com.qufenqi.entity.Order;
 import com.qufenqi.entity.User;
 
 /**
@@ -38,4 +39,8 @@ public interface UserService {
 	
 	
 	User getById(int userId);
+	
+	List<User> getByUserName(String userName);
+	
+	List<Order> queryOrderByUserId(int userId);
 }

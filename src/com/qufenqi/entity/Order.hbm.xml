@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.Order" table="orders">
+		<id name="orderId" type="integer" column="orderId">
+			<generator class="native"/>
+		</id>
+		<property name="carriage" type="float" column="carriage" not-null="true"/>
+		<property name="orderAmount" type="float" column="orderAmount" not-null="true"/>
+		<property name="orderTime" type="date" column="orderTime" not-null="true"/>
+		<property name="orderStatus" type="string" column="orderStatus" not-null="true"/>
+	 	
+	 	<many-to-one name="delivery" column="deliveryId" class="com.qufenqi.entity.Delivery" lazy="false" cascade="save-update"></many-to-one>
+	 	<many-to-one name="repayment" column="repaymentId" class="com.qufenqi.entity.Repayment" lazy="false" cascade="save-update"></many-to-one>
+	 	<many-to-one name="logistics" column="logisticsId" class="com.qufenqi.entity.Logistics" lazy="false" cascade="save-update"></many-to-one>
+	 	<many-to-one name="periodPlan" column="periodId" class="com.qufenqi.entity.PeriodPlan" lazy="false" cascade="save-update"></many-to-one>
+	 	<many-to-one name="user" column="userId" class="com.qufenqi.entity.User" lazy="false" cascade="save-update"></many-to-one>
+	 	<many-to-one name="seller" column="sellerId" class="com.qufenqi.entity.Seller" lazy="false" cascade="save-update"></many-to-one>
+	 	<many-to-one name="goods" column="goodsId" class="com.qufenqi.entity.Goods" lazy="false" cascade="save-update"></many-to-one>
+	</class>
+</hibernate-mapping>

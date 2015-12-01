@@ -1,14 +1,20 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Manager 
 {
-	private int managerId;//¹ÜÀíÔ±ID
-	private String managName;//µÇÂ½ĞÕÃû
-	private int password;//ÃÜÂë
-	private String name;//¹ÜÀíÔ±ĞÕÃû
-	private int telephone;//¹ÜÀíÔ±Éí·İÖ¤
-	private int idCard;//ÓÃ»§¼ò½é
-	private String email;//ÓÊÏä
+	private int managerId;//ï¿½ï¿½ï¿½ï¿½Ô±ID
+	private String managName;//ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½
+	private int password;//ï¿½ï¿½ï¿½ï¿½
+	private String name;//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½
+	private int telephone;//ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½Ö¤
+	private int idCard;//ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
+	private String email;//ï¿½ï¿½ï¿½ï¿½
+	private int role;
+	private Set<Seller> sellers = new HashSet<Seller>();
+	
 	public int getManagerId() {
 		return managerId;
 	}
@@ -50,6 +56,25 @@ public class Manager
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public int getRole() {
+		return role;
+	}
+	public void setRole(int role) {
+		this.role = role;
+	}
+	public Set<Seller> getSellers() {
+		return sellers;
+	}
+	public void setSellers(Set<Seller> sellers) {
+		this.sellers = sellers;
+	}
+	@Override
+	public String toString() {
+		return "Manager [managerId=" + managerId + ", managName=" + managName
+				+ ", password=" + password + ", name=" + name + ", telephone="
+				+ telephone + ", idCard=" + idCard + ", email=" + email
+				+ ", role=" + role + "]";
 	}
 	
 

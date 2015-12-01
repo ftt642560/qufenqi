@@ -1,5 +1,8 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 商品类
  * @author zlin
@@ -17,6 +20,11 @@ public class Goods {
 	private String goodsPrice;//价格
 	private long weight;//权重：用以统计商品购买量
 	private int status;//状态：代表商品是否商家
+	
+	//自己加的
+	private Set<Order> orders = new HashSet<Order>();
+	//自己加的
+	private Coupon coupon;
 	
 	public long getGoodsId() {
 		return goodsId;
@@ -84,6 +92,18 @@ public class Goods {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+	public Coupon getCoupon() {
+		return coupon;
+	}
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
 	}
 	
 	

@@ -1,5 +1,8 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 用户实体类
  * @author Administrator
@@ -39,6 +42,9 @@ public class User {
 	 */
 	private int quota;
 	private int status;
+	
+	private Set<Order> orders = new HashSet<Order>();
+	
 	public int getStatus() {
 		return status;
 	}
@@ -92,6 +98,12 @@ public class User {
 	}
 	public void setQuota(int quota) {
 		this.quota = quota;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	@Override
 	public String toString() {

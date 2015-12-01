@@ -3,8 +3,10 @@ package com.qufenqi.service.impl;
 import java.util.List;
 
 import com.qufenqi.dao.UserDao;
+import com.qufenqi.entity.Order;
 import com.qufenqi.entity.User;
 import com.qufenqi.service.UserService;
+import com.qufenqi.util.MD5;
 import com.qufenqi.util.SendEmail;
 
 public class UserServiceImpl implements UserService {
@@ -28,14 +30,27 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public int register(User user) {
-		System.out.println("register service user===="+user);
-		int registerId = userDao.save(user);
-		if(registerId > 0){
-			String toEmail = user.getEmail();
-			System.out.println(toEmail);
-			SendEmail.send(toEmail);
+		String userName = user.getUserName();
+		String email = user.getEmail();
+		List<User> userlistByUserName = userDao.find(userName);
+		if(userlistByUserName.size() != 0){
+			return 1;
 		}
-		return registerId;
+		List<User> userListByEmail = userDao.findByEmail(email);
+		System.out.println("userListByEmail.size()==="+userListByEmail);
+		if(userListByEmail.size() != 0){
+			return 2;
+		}else{
+			String password = MD5.getMD5(user.getPassword());
+			user.setPassword(password);
+			int registerId = userDao.save(user);
+			if(registerId > 0){
+				String toEmail = user.getEmail();
+				System.out.println(toEmail);
+				SendEmail.send(toEmail);
+			}
+			return 3;
+		}
 	}
 
 	/**
@@ -45,7 +60,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	public int login(User user) {
 		String userName = user.getUserName();
-		String password = user.getPassword();
+		String password = MD5.getMD5(user.getPassword());
 		//1:判断用户名是否为空
 		if(userName == null || userName.trim().equals("")){
 			return  1;
@@ -59,6 +74,7 @@ public class UserServiceImpl implements UserService {
 			return 2;
 		}
 		String pass = userList.get(0).getPassword();
+		System.out.println("pass"+pass);
 		if(!password.equals(pass)){
 			System.out.println("用户的密码不正确！");
 			return 3;
@@ -92,5 +108,13 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User getById(int userId) {
 		return userDao.get(userId);
+	}
+	@Override
+	public List<User> getByUserName(String userName) {
+		return userDao.find(userName);
+	}
+	@Override
+	public List<Order> queryOrderByUserId(int userId) {
+		return userDao.queryOrderByUserId(userId);
 	}
 }

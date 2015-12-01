@@ -26,6 +26,22 @@
 			</interceptor-stack>
 		</interceptors>
 		
+		<!-- 用户模块 -->
+		<action name="*Users" class="userAction" method="findAll">
+			<result name="success">/system/findAllUser.jsp</result>
+			<result name="error">/system/index.jsp</result>
+		</action>
+		<action name="findSomeUsers" class="userAction" method="findSome">
+			<result name="success">/system/findAllUser.jsp</result>
+			<result name="error">/system/index.jsp</result>
+		</action>
+		<action name="delete" class="loginAction" method="delete">
+			<result type="stream" name="success">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		</action>
+		
 		<action name="login" class="loginAction" method="login">
 			<result name="success">index.jsp</result>
 			<result name="error">login.jsp</result>
@@ -55,6 +71,41 @@
 			<result name="success">login.jsp</result>
 			<result name="error">register.jsp</result>
 			<result name="login">login.jsp</result>
+		</action>
+		<action name="registbyEmail" class="loginAction" method="registbyEmail">
+			<result name="success">login.jsp</result>
+			<result name="error">register.jsp</result>
+			<result name="login">login.jsp</result>
+		</action>
+		
+		<action name="queryByName" class="loginAction" method="queryByName">
+			<result name="success">queryByName.jsp</result>
+			<result name="error">index.jsp</result>
+			<result name="login">login.jsp</result>
+		</action>
+		<action name="queryOrders" class="paymentAction" method="query">
+			<result name="success">order.jsp</result>
+			<result name="error">index.jsp</result>
+			<result name="login">login.jsp</result>
+		</action>
+		
+		
+		<!-- 商家模块 -->
+		<action name="sellerRegister" class="sellerAction" method="register">
+			<result name="success">login.jsp</result>
+			<result name="error">/stock/register.jsp</result>
+		</action>
+		<action name="loginSeller" class="sellerAction" method="login">
+			<result name="success">Main.jsp</result>
+			<result name="error">login.jsp</result>
+		</action>
+		<action name="modifySeller" class="sellerAction" method="modify">
+			<result name="success">login.jsp</result>
+			<result name="error">Main.jsp</result>
+		</action>
+		<action name="quitSeller" class="sellerAction" method="quit">
+			<result name="success">login.jsp</result>
+			<result name="error">bottom.jsp</result>
 		</action>
 	</package>
 	

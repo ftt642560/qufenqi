@@ -2,6 +2,7 @@ package com.qufenqi.dao;
 
 import java.util.List;
 
+import com.qufenqi.entity.Order;
 import com.qufenqi.entity.User;
 
 /**
@@ -16,6 +17,7 @@ public interface UserDao {
 	 * @return User 指定用户登录名对应的User实例
 	 */
 	List<User> find(String userName);
+	List<User> findByEmail(String email);
 	/**
 	 * 根据标识来加载User实例
 	 * @param userId 需加载的User实例的标识属性值
@@ -48,4 +50,24 @@ public interface UserDao {
 	 * @param user 需要删除的User实例
 	 */
 	void delete(User user);
+	/**
+	 * 根据用户名查询订单
+	 * @param userId 用户的id
+	 * @return
+	 */
+	List<Order> queryOrderByUserId(int userId);
+	/**
+	 * 分页查询
+	 * @param hql 查询的条件
+	 * @param offset 开始记录
+	 * @param pageSize 一页最多显示多少条记录
+	 * @return length
+	 */
+	List<User> queryByPage(final String hql, final int offset,final int length);
+	/**
+	 * 查询所有的记录数
+	 * @param hql 查询条件
+	 * @return 总的记录数
+	 */
+	int getAllRowCount(String hql);
 }

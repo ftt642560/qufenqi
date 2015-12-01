@@ -34,8 +34,8 @@
 			<column name="material" length="255" not-null="false" />		
 		</property>
 		
-		<property name="storeNum" type="string">
-			<column name="storeNum" length="255" not-null="true" />		
+		<property name="storeNum" type="integer">
+			<column name="storeNum" not-null="true" />		
 		</property>
 		
 		<property name="goodsPrice" type="string">
@@ -49,6 +49,12 @@
 		<property name="status" type="integer">
 			<column name="status" length="11" not-null="true" />		
 		</property>
+		
+		<set name="orders" cascade="save-update" inverse="true">
+			 <key column="goodsId"></key>
+			 <one-to-many class="com.qufenqi.entity.Order"/>
+		</set>
+		<many-to-one name="coupon" cascade="save-update" update="true" class="com.qufenqi.entity.Coupon" column="couponId"/>
 		
 	</class>
 </hibernate-mapping>

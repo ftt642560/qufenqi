@@ -22,7 +22,7 @@
 	
   <display-name></display-name>	
   <welcome-file-list>
-    <welcome-file>login.jsp</welcome-file>
+    <welcome-file>loginBackground.jsp</welcome-file>
   </welcome-file-list>
   
   <!-- 自定义的Filter -->
