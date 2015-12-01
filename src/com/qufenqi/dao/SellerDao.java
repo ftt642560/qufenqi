@@ -34,9 +34,8 @@ public interface SellerDao {
 	/**
 	 * 商家修改自己的信息
 	 * @param seller
+	 * @return 
 	 */
-	public void updateSelf(Seller seller);
-	
-	
+	public int updateSelf(String sellerPassword);
 	
 }

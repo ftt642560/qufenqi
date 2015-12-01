@@ -1,6 +1,7 @@
 package com.qufenqi.action;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
@@ -28,6 +29,8 @@ public class LoginAction {
 	private static final int NULL = 1;
 	private String flag = null;
 	private HttpServletRequest request = ServletActionContext.getRequest();
+	private HttpSession session = request.getSession();
+	private InputStream inputStream;
 	/**
 	 * 用户实体类
 	 */
@@ -39,14 +42,12 @@ public class LoginAction {
 	
 	private int userId;
 	
-	private InputStream inputStream;
-	public void setInputStream(InputStream inputStream) {
-		this.inputStream = inputStream;
-	}
 	public InputStream getInputStream() {
 		return inputStream;
 	}
-	
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
 	public int getUserId() {
 		return userId;
 	}
@@ -80,9 +81,12 @@ public class LoginAction {
 		user.setStatus(0);
 		user.setQuota(0);
 		System.out.println("register user==="+user);
-		int registerId = userService.register(user);
-		if (registerId == 0) {
-			request.setAttribute("mess", "注册失败");
+		int status = userService.register(user);
+		if (status == 1) {
+			request.setAttribute("mess", "该用户名已注册");
+			flag = "error";
+		}else if(status == 2){
+			request.setAttribute("mess", "该邮箱已注册");
 			flag = "error";
 		}else{
 			request.setAttribute("mess", "请到"+user.getEmail()+"激活");
@@ -95,8 +99,9 @@ public class LoginAction {
 	 * 通过激活邮箱注册成功
 	 * @return
 	 */
-	public String finishregister(){
+	public String registbyEmail(){
 		user.setStatus(2);
+		user.setQuota(100);
 		userService.update(user);
 		return "success";
 	}
@@ -121,7 +126,6 @@ public class LoginAction {
 			flag = "error";
 			break;
 		case SUCCESS:
-			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
 			flag = "success";
 			break;
@@ -153,7 +157,6 @@ public class LoginAction {
 		request.setAttribute("userLists", userLists);
 		return "success";
 	}
-	
 	public String delete(){
 		userService.deleteById(userId);
 		try {
@@ -180,4 +183,21 @@ public class LoginAction {
 		return "success";
 	}
 	
+	public String queryByName(){
+		User user = (User) session.getAttribute("user");
+		String userName = user.getUserName();
+		System.out.println("userName===="+userName);
+		List<User> userList = userService.getByUserName(userName);
+		System.out.println("userList.size()==="+userList.size());
+		if(userList.size() == 0){;
+			flag = "error";
+		}else{
+			user = userList.get(0);
+			request.setAttribute("user", user);
+			//查看我的信誉度
+//			int quote = user.getQuota();
+			flag = "success";
+		}
+		return flag;
+	}
 }

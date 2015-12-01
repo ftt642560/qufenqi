@@ -1,5 +1,8 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 收货人的信息实体类
  * @author Administrator
@@ -22,6 +25,9 @@ public class Delivery {
 	 * 收货人姓名
 	 */
 	private String contactPersonName;
+	
+	private Set<Order> orders = new HashSet<Order>();
+	
 	public int getDeliveryId() {
 		return deliveryId;
 	}
@@ -45,6 +51,12 @@ public class Delivery {
 	}
 	public void setContactPersonName(String contactPersonName) {
 		this.contactPersonName = contactPersonName;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	@Override
 	public String toString() {

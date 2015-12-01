@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.Manager" table="manager">
+		<id name="managerId" type="java.lang.Integer">
+			<column name="managerId" />
+			<generator class="native" />
+		</id>
+		
+		<property name="managName" type="java.lang.String">
+			<column name="managerName" not-null="true" />
+		</property>
+		
+		<property name="password" type="java.lang.Integer">
+			<column name="password" not-null="true" />
+		</property>	
+		
+		
+		
+		<property name="name" type="java.lang.String">
+			<column name="name" not-null="true"/>
+		</property>
+		
+		<property name="telephone" type="java.lang.Integer">
+			<column name="telephone" not-null="true"/>
+		</property>
+		
+		<property name="idCard" type="java.lang.Integer">
+			<column name="idCard" not-null="true"/>
+		</property>
+		
+		<property name="email" type="java.lang.String">
+			<column name="email" not-null="true"/>
+		</property>
+		<property name="role" type="integer" column="role" not-null="true"/>
+		
+		<set name="sellers" cascade="save-update" inverse="true">
+            <key>
+                <column name="managerId" />
+            </key>
+            <one-to-many class="com.qufenqi.entity.Manager" />
+        </set>
+		
+		</class>
+</hibernate-mapping>

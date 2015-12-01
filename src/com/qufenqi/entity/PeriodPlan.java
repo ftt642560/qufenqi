@@ -1,5 +1,8 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 分期方案实体类
  * @author Administrator
@@ -18,6 +21,10 @@ public class PeriodPlan {
 	 * 分期的首付
 	 */
 	private int downPayment;
+	
+	private Set<Order> orders = new HashSet<Order>();
+	private InterestPlan interestPlan;
+	
 	public int getPeriodId() {
 		return periodId;
 	}
@@ -35,6 +42,18 @@ public class PeriodPlan {
 	}
 	public void setDownPayment(int downPayment) {
 		this.downPayment = downPayment;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
+	}
+	public InterestPlan getInterestPlan() {
+		return interestPlan;
+	}
+	public void setInterestPlan(InterestPlan interestPlan) {
+		this.interestPlan = interestPlan;
 	}
 	@Override
 	public String toString() {

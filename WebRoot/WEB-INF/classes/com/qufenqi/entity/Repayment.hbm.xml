@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.Repayment" table="repayment">
+		<id name="repaymentId" type="integer" column="repaymentId">
+			<generator class="native"/>
+		</id>
+		<property name="finishPeriodNum" type="integer" column="finishPeriodNum" not-null="true"/>
+		<property name="needPeriodNum" type="integer" column="needPeriodNum" not-null="true"/>
+		<property name="onePeriodMoney" type="float" column="onePeriodMoney" not-null="true"/>
+		<property name="repaymentState" type="integer" column="repaymentState" not-null="true"/>
+		
+		<set name="orders" cascade="save-update" inverse="true">
+            <key>
+                <column name="repaymentId" />
+            </key>
+            <one-to-many class="com.qufenqi.entity.Order" />
+        </set>
+	</class>
+</hibernate-mapping>

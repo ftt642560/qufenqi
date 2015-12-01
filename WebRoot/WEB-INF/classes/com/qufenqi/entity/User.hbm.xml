@@ -15,5 +15,12 @@
 		<property name="email" type="string" column="email" not-null="true"/>
 		<property name="quota" type="integer" column="quota" not-null="false"/>
 		<property name="status" type="integer" column="status" not-null="false"/>
+	
+		<set name="orders" cascade="save-update">
+            <key>
+                <column name="userId" />
+            </key>
+            <one-to-many class="com.qufenqi.entity.Order" />
+        </set>
 	</class>
 </hibernate-mapping>

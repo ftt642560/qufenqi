@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.User;
 
 public class LoginFilter extends HttpServlet implements Filter{
@@ -29,12 +30,20 @@ public class LoginFilter extends HttpServlet implements Filter{
 		HttpSession session = request.getSession();
 		String url = request.getServletPath();
 		String contextPath = request.getContextPath();
+		
 		if(url.equals("")){
 			url+="/";
 		}
-		if((url.startsWith("/")&&!url.startsWith("/login")&&!url.startsWith("/register"))){//若访问后台资源 过滤到login    
-			User user = (User) session.getAttribute("user");
-			if(user == null){
+//		if((url.startsWith("/")&&!url.startsWith("/login")&&!url.startsWith("/register"))){//若访问后台资源 过滤到login    
+//			User user = (User) session.getAttribute("user");
+//			if(user == null){
+//				response.sendRedirect(contextPath+"/login.jsp");
+//				return;
+//			}
+//		}
+		if((url.startsWith("/")&&!url.startsWith("/stock/register") && !url.startsWith("/login"))){//若访问后台资源 过滤到login    
+			Seller seller = (Seller) session.getAttribute("seller");
+			if(seller == null){
 				response.sendRedirect(contextPath+"/login.jsp");
 				return;
 			}

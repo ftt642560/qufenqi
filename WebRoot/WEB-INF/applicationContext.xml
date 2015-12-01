@@ -33,6 +33,15 @@
 				<value>com/qufenqi/entity/User.hbm.xml</value>
 				<value>com/qufenqi/entity/Goods.hbm.xml</value>
 				<value>com/qufenqi/entity/GoodsType.hbm.xml</value>
+				<value>com/qufenqi/entity/Seller.hbm.xml</value>
+				<value>com/qufenqi/entity/Repayment.hbm.xml</value>
+				<value>com/qufenqi/entity/PeriodPlan.hbm.xml</value>
+				<value>com/qufenqi/entity/Order.hbm.xml</value>
+				<value>com/qufenqi/entity/Logistics.hbm.xml</value>
+				<value>com/qufenqi/entity/InterestPlan.hbm.xml</value>
+				<value>com/qufenqi/entity/Coupon.hbm.xml</value>
+				<value>com/qufenqi/entity/Delivery.hbm.xml</value>
+				<value>com/qufenqi/entity/Manager.hbm.xml</value>
 			</list>
 		</property>
 		
@@ -59,12 +68,22 @@
 	<bean id="user" class="com.qufenqi.entity.User"></bean>
 	<bean id="goods" class="com.qufenqi.entity.Goods"></bean>
 	<bean id="goodsType" class="com.qufenqi.entity.GoodsType"></bean>
+	<bean id="seller" class="com.qufenqi.entity.Seller"></bean>
 	<!-- 定义DAO： -->  
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="userDao" class="com.qufenqi.dao.impl.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="paymentDao" class="com.qufenqi.dao.impl.PaymentDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="sellerBaseDao" class="com.qufenqi.dao.impl.SellerBaseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="sellerDao" class="com.qufenqi.dao.impl.SellerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
@@ -76,6 +95,15 @@
 	<bean id="userService" class="com.qufenqi.service.impl.UserServiceImpl">
 	  	<property name="userDao" ref="userDao"></property>
 	</bean>
+	<bean id="paymentService" class="com.qufenqi.service.impl.PaymentServiceImpl">
+	  	<property name="paymentDao" ref="paymentDao"></property>
+	</bean>
+	<bean id="sellerService" class="com.qufenqi.service.impl.SellerServiceImpl">
+	  	<property name="sellerBaseDao" ref="sellerBaseDao"/>
+	  	<property name="userDao" ref="userDao"></property>
+	  	<property name="sellerDao" ref="sellerDao"></property>
+	</bean>
+	
 	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">
 		<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
 		<property name="goods" ref="goods"></property>
@@ -84,5 +112,17 @@
 	  <bean id="loginAction" class="com.qufenqi.action.LoginAction" scope="prototype">
 	  	<property name="user" ref="user"></property>
 		<property name="userService" ref="userService"></property>
+	  </bean>
+	  <bean id="userAction" class="com.qufenqi.action.UserAction" scope="prototype">
+		<property name="userService" ref="userService"></property>
+	  </bean>
+	  
+	  <bean id="paymentAction" class="com.qufenqi.action.PaymentAction" scope="prototype">
+		<property name="paymentService" ref="paymentService"></property>
+		<property name="userService" ref="userService"></property>
+	  </bean>
+	  <bean id="sellerAction" class="com.qufenqi.action.SellerAction" scope="prototype">
+	  	<property name="sellerService" ref="sellerService"/>
+	  	<property name="seller" ref="seller"></property>
 	  </bean>
 </beans>

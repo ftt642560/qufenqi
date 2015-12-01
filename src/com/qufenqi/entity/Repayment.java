@@ -1,5 +1,8 @@
 package com.qufenqi.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 还款实体
  * @author Administrator
@@ -26,6 +29,8 @@ public class Repayment {
 	 * 还款状态
 	 */
 	private int repaymentState;
+	
+	private Set<Order> orders = new HashSet<Order>();
 	public int getRepaymentId() {
 		return repaymentId;
 	}
@@ -55,6 +60,12 @@ public class Repayment {
 	}
 	public void setRepaymentState(int repaymentState) {
 		this.repaymentState = repaymentState;
+	}
+	public Set<Order> getOrders() {
+		return orders;
+	}
+	public void setOrders(Set<Order> orders) {
+		this.orders = orders;
 	}
 	@Override
 	public String toString() {

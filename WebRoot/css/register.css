@@ -1,0 +1,23 @@
+#registerForm{
+	position: relative;
+	top: 110px;
+	left: 600px;
+	font-size: 18px;
+}
+
+.style{
+	font-size: 16px;
+	color: red;
+}
+
+#mess{
+	position: relative;
+	top: 100px;
+	left: 600px;
+	height: 30px;
+	width: 250px;
+	background-color: yellow;
+	text-align: center;
+	border-radius: 6px;
+	visibility: hidden;
+}

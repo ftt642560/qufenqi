@@ -1,10 +1,16 @@
 package com.qufenqi.dao.impl;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.qufenqi.dao.UserDao;
+import com.qufenqi.entity.Order;
 import com.qufenqi.entity.User;
 /**
  * 用户数据库访问接口的实现
@@ -18,6 +24,7 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 * @return User 指定用户登录名对应的User实例
 	 */
 	public List<User> find(String userName) {
+		System.out.println("dao userName=="+userName);
 		String sql = "select user from User as user where user.userName = '"+userName+"'";
 		return (List<User>)getHibernateTemplate().find(sql); 
 	}
@@ -65,5 +72,47 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 */
 	public void delete(User user) {
 		getHibernateTemplate().delete(user);
+	}
+	/**
+	 * 根据用户id查询用户的订单
+	 */
+	public List<Order> queryOrderByUserId(int userId) {
+		return getHibernateTemplate().find("from Order as order where order.userId = "+userId);
+	}
+	@Override
+	public List<User> findByEmail(String email) {
+		String sql = "select user from User as user where user.email = '"+email+"'";
+		return (List<User>)getHibernateTemplate().find(sql); 
+	}
+	
+	/**
+     * 分页查询
+     * @param hql 查询的条件
+     * @param offset 开始记录
+     * @param length 一次查询几条记录
+     * @return
+     */
+	public List<User> queryByPage(final String hql, final int offset, final int length) {
+		List list = getHibernateTemplate().executeFind(new HibernateCallback() {
+
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException,
+					SQLException {
+				Query query = session.createQuery(hql);
+				query.setFirstResult(offset);
+	            query.setMaxResults(length);
+	            List list = query.list();
+				return list;
+			}
+		});
+		return list;
+	}
+	/**
+	 * 查询所有的记录数
+	 * @param hql 查询条件
+	 * @return 总的记录数
+	 */
+	public int getAllRowCount(String hql) {
+		return getHibernateTemplate().find(hql).size();
 	}
 }

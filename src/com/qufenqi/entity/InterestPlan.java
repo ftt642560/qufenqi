@@ -2,9 +2,9 @@ package com.qufenqi.entity;
 
 public class InterestPlan 
 {
-	private int interestId;//利率编号
-	private float interest;//利率
-	private int month;//期数
+	private int interestId;
+	private float interest;
+	private int month;
 	public int getInterestId() {
 		return interestId;
 	}

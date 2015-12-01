@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.PeriodPlan" table="periodplan">
+		<id name="periodId" type="integer" column="periodId">
+			<generator class="native"/>
+		</id>
+		<property name="periodNumber" type="integer" column="periodNumber" not-null="true"/>
+		<property name="downPayment" type="integer" column="downPayment" not-null="true"/>
+		<set name="orders" cascade="save-update" inverse="true">
+			<key column="periodId"/>
+			<one-to-many class="com.qufenqi.entity.Order"/>
+		</set>
+		<many-to-one name="interestPlan" class="com.qufenqi.entity.InterestPlan"  cascade ="save-update" column ="interestId" unique="true"/>
+	</class>
+</hibernate-mapping>

@@ -24,6 +24,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div>
     	<a href="quit.action">退出登录</a>
     	<a href="findAll.action">查询所有的用户</a>
+    	<a href="queryOrders.action">查看我的订单</a>
     </div>
     <div>
 		<table  border="1" cellspacing="1" cellpadding="2">

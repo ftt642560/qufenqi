@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.Logistics" table="logistics">
+		<id name="logisticsId" type="integer" column="logisticsId">
+			<generator class="native"/>
+		</id>
+		<property name="company" type="string" column="company" not-null="true"/>
+		<property name="logisticsStatus" type="string" column="logisticsStatus" not-null="true"/>
+	
+		<set name="orders" cascade="save-update" inverse="true">
+			<key column="logisticsId"/>
+			<one-to-many class="com.qufenqi.entity.Order"/>
+		</set>
+	</class>
+</hibernate-mapping>
