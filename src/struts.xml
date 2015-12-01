@@ -60,15 +60,15 @@
 	
 	<package name="goods" extends="struts-default" namespace="/goods">
 		<action name="searchGoods" class="goodsAction" method="searchGoods">
-			<result name="success">test_goods.jsp</result>
+			<result name="success">/test_goods.jsp</result>
 		</action>
 		
 		<action name="queryOneGoods" class="goodsAction" method="queryOneGoods">
-			<result name="success">index.jsp</result>
+			<result name="success">/test_goodsdetail.jsp</result>
 		</action>
 		
 		<action name="buyGoods" class="goodsAction" method="buyGoods">
-			<result name="success">index.jsp</result>
+			<result name="success">/buygoodsresult.jsp</result>
 		</action>
 	</package>
 </struts>    

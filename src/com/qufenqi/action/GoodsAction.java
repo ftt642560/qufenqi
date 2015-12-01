@@ -3,6 +3,12 @@ package com.qufenqi.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.struts2.ServletActionContext;
+
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.util.ValueStack;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.service.impl.GoodsServiceImpl;
 
@@ -16,15 +22,40 @@ public class GoodsAction {
 	public GoodsServiceImpl goodsserviceimpl;//商品服务类
 	public Goods goods;//商品类
 	public List<Goods> l_goods; //搜索到的商品的链表
-	public int buynum;//用户购买的商品量
+	public String sbuynum;//用户购买的商品量
+	public String goodsName;//前台与后台关联的商品名
+	public String goodsId;//前后台关联的ID，从前台传过来的数据为String类型
 	
-	public int getBuynum() {
-		return buynum;
+	
+	public String getGoodsId() {
+		return goodsId;
 	}
 
 
-	public void setBuynum(int buynum) {
-		this.buynum = buynum;
+	public void setGoodsId(String goodsId) {
+		this.goodsId = goodsId;
+	}
+
+
+	public String getGoodsName() {
+		return goodsName;
+	}
+
+
+	public void setGoodsName(String goodsName) {
+		this.goodsName = goodsName;
+	}
+
+
+
+
+	public String getSbuynum() {
+		return sbuynum;
+	}
+
+
+	public void setSbuynum(String sbuynum) {
+		this.sbuynum = sbuynum;
 	}
 
 
@@ -65,8 +96,9 @@ public class GoodsAction {
 	 */
 	public String searchGoods()
 	{
+		
 		l_goods=new ArrayList<Goods>();
-		l_goods=goodsserviceimpl.SearchGoods(goods);
+		l_goods=goodsserviceimpl.SearchGoods(goodsName);
 		return "success";
 	}
 	
@@ -76,8 +108,17 @@ public class GoodsAction {
 	 */
 	public String queryOneGoods()
 	{
-		Long goodsid = goods.getGoodsId();//用户选中的用来查看详情的商品
-		goodsserviceimpl.QueryOneGoods(goodsid);//通过商品ID查找相应的商品信息
+		System.out.println("GoodsAction==查询商品详细信息，从前台传过来的ID="+goodsId);
+		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型
+		goods=goodsserviceimpl.QueryOneGoods(goodsid);//通过商品ID查找相应的商品信息
+		System.out.println("queryOneGoods -------goodsId="+goods.getGoodsId());
+		//HttpServletRequest request=null;
+		//request=ServletActionContext.getRequest();	
+		//request.setAttribute("goods", goods);
+		//------------------把数据放到了session范围中....----------------------------------------------------
+		//ActionContext.getContext().getSession().put("goods",goods);	
+		//ActionContext.getContext().getValueStack().push(goods);
+		
 		return "success";
 	}
 	
@@ -87,10 +128,18 @@ public class GoodsAction {
 	 */
 	public String buyGoods()
 	{
-		Long goodsid = goods.getGoodsId();
+		System.out.println("===GoodsAction======buyGoods");
+		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型;
+		
+		int buynum = Integer.parseInt(sbuynum);
+		System.out.println("sbuynum="+sbuynum);
+		System.out.println("buyGoods=========goodsid="+goodsid+"  buynum="+buynum);
+		
 		goodsserviceimpl.ReduceGoodsNum(goodsid, buynum);
 		return "success";
 	}
 		
+	
+	
 	
 }

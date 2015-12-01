@@ -13,9 +13,9 @@ public interface GoodsService {
 	
 	/**
 	 * 搜索商品
-	 * @param 商品类 goods
+	 * @param 商品名 goodsName
 	 */
-	public List<Goods> SearchGoods(Goods goods);
+	public List<Goods> SearchGoods(String goodsName);
 	
 	/**
 	 * 浏览商品：查找商品详情
@@ -29,5 +29,12 @@ public interface GoodsService {
 	 */
 	public void ReduceGoodsNum(Long goodsId,int buyNum);
 	
+	/**
+	 * 商家查询自己的所有商品信息
+	 * @param 商家ID
+	 * @return 商品列表
+	 * 
+	 */
+	public List<Goods> SellerSearchGoods(int sellerId);
 	
 }

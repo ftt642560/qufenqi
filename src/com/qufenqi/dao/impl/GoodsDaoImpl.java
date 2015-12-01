@@ -3,8 +3,6 @@ package com.qufenqi.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transaction;
-
 import org.hibernate.HibernateException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -29,21 +27,35 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 
 	/**
 	 * 查找商品:模糊查找商品
-	 * @param 商品类goods
+	 * @param 商品名 goodsName
 	 * 
 	 */
 	@Override
-	public List QueryGoods(Goods goods) {
+	public List<Goods> QueryGoods(String goodsName) {
 		List<Goods> l_goods=new ArrayList<Goods>();
 		try{
-			String goodsName = goods.getGoodsName();
-			String sql="select * from Goods as goods where goods.goodsName like '% "+goodsName+"%'"; //模糊查询，在任何字段存在有关键字的，都查询出来
-			System.out.println("===========GoodsDaoImpl===模糊查询QueryGoods====sql==="+sql+"================");
-			l_goods = (this).getHibernateTemplate().find(sql);
 			
-			if(l_goods == null)
+			String sql="from Goods as goods where goods.goodsName like '%"+goodsName+"%'"; //模糊查询，在任何字段存在有关键字的，都查询出来
+			System.out.println("===========GoodsDaoImpl===模糊查询QueryGoods====sql==="+sql+"================");
+			
+			if(this.getHibernateTemplate()==null)
+				System.out.println("getHibernateTemplate is null");
+			else{
+				
+				System.out.println("getHibernateTemplate is not null");
+			}
+			l_goods = this.getHibernateTemplate().find(sql);
+			
+			if(l_goods.size() == 0)
 			{
 				System.out.println("======GoodsDaoImpl===l_goods为空");
+				
+			}
+			else{
+				for(int i=0;i<l_goods.size();i++)
+				{
+					System.out.println("===GoodsDaoImpl====goodsname="+l_goods.get(i).getGoodsName());
+				}
 				
 			}
 			
@@ -61,7 +73,8 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	 */
 	@Override
 	public Goods QueryOneGoods(Long GoodsId) {
-		goods = (Goods)this.getHibernateTemplate().get(Goods.class, GoodsId);//按照商品ID，查找商品信息
+		goods = this.getHibernateTemplate().get(Goods.class, GoodsId);//按照商品ID，查找商品信息
+		System.out.println("GoodsDaoImpl=======QueryOneGoods====goodsName="+goods.getGoodsName());
 		return goods;
 	}
 
@@ -77,7 +90,22 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		goods.setStoreNum(goodsStoreNum);//更新商品库存量
 		this.getHibernateTemplate().update(goods);//连接数据库修改
 		
+		System.out.println("GoodsDaoImpl========ReduceGoodsNum====storenum="+goods.getStoreNum());
 
+	}
+	
+	/**
+	 * 商家查找属于他自己的商品信息
+	 * @param 商家ID
+	 * @return List<Goods>
+	 * 
+	 */
+	@Override
+	public List<Goods> SellerQueryAllGoods(int sellerid)
+	{
+		List<Goods> l_goods = new ArrayList<Goods>();
+		return l_goods;
+		
 	}
 	
 

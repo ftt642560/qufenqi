@@ -34,15 +34,15 @@ public class GoodsServiceImpl implements GoodsService {
 
 	/**
 	 * 搜索商品
-	 * @param 商品类 goods
+	 * @param 商品名 goodsName
 	 * @return List<Goods>
 	 */
 	@Override
-	public List<Goods> SearchGoods(Goods goods) {
+	public List<Goods> SearchGoods(String goodsName) {
 		List<Goods> l_goods = new ArrayList<Goods>();
 		try{		
-		l_goods=goodsDaoImpl.QueryGoods(goods);
-		
+		l_goods=goodsDaoImpl.QueryGoods(goodsName);
+		System.out.println("===GoodsServiceImpl======l_goods="+l_goods);
 		}catch(Exception e)
 		{
 			
@@ -60,6 +60,7 @@ public class GoodsServiceImpl implements GoodsService {
 	public Goods QueryOneGoods(Long goodsId) {
 		try{
 			goods=goodsDaoImpl.QueryOneGoods(goodsId);
+			System.out.println("GoodsServiceImpl=====QueryOneGoods====goodsName="+goods.getGoodsName());
 		}
 		catch(Exception e)
 		{
@@ -86,5 +87,22 @@ public class GoodsServiceImpl implements GoodsService {
 		}
 
 	}
+	
+	
+	/**
+	 * 商家查询自己的所有商品信息
+	 * @param 商家ID
+	 * @return 商品列表
+	 * 
+	 */
+	@Override
+	public List<Goods> SellerSearchGoods(int sellerId)
+	{
+		List<Goods> l_goods=new ArrayList<Goods>();
+		
+		
+		return l_goods;
+	}
+	
 
 }

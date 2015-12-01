@@ -1,5 +1,7 @@
 package com.qufenqi.entity;
 
+import java.util.Set;
+
 /**
  * 商品类
  * @author zlin
@@ -18,6 +20,14 @@ public class Goods {
 	private long weight;//权重：用以统计商品购买量
 	private int status;//状态：代表商品是否商家
 	
+	private Set<SellerGoods> sellergoods;//商家和商品表关联中间表:sellergoods，多对多，转成两个1对多
+	
+	public Set<SellerGoods> getSellergoods() {
+		return sellergoods;
+	}
+	public void setSellergoods(Set<SellerGoods> sellergoods) {
+		this.sellergoods = sellergoods;
+	}
 	public long getGoodsId() {
 		return goodsId;
 	}

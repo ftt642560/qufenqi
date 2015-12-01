@@ -12,12 +12,12 @@ import com.qufenqi.entity.Goods;
  */
 public interface GoodsDao {
 	/**
-	 * 查找商品
+	 * 查找商品:按照商品名进行模糊查询
 	 * @param 商品类goods
 	 * @return List
 	 * 
 	 */
-	public List QueryGoods(Goods goods);
+	public List QueryGoods(String goodsName);
 	
 	/**
 	 * 查找商品详情
@@ -33,5 +33,14 @@ public interface GoodsDao {
 	 * @return 无
 	 */
 	public void ReduceGoodsNum(Long GoodsId,int buyNum);
+	
+	
+	/**
+	 * 商家查找属于他自己的商品信息
+	 * @param 商家ID
+	 * @return List<Goods>
+	 * 
+	 */
+	public List<Goods> SellerQueryAllGoods(int sellerid);
 	
 }

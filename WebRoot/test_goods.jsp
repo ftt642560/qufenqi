@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
@@ -9,7 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<base href="<%=basePath%>">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>test_goods</title>
 </head>
 
@@ -17,7 +18,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	function searchGoods()
 	{
 		var targetForm = document.forms[0];
-		targetForm.action="goods/searchGoods.action";
+		targetForm.action="<%=basePath%>goods/searchGoods.action";
 	}
 </script>
 
@@ -37,10 +38,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>材料</td>
 				<td>库存量</td>				
 			</tr>
+			
+			<script language="javascript">
+			
+				function gotodetails(id)
+				{
+				//	alert("gotoupdate");
+				//	alert("id="+id);
+
+					window.location.href="<%=basePath%>goods/queryOneGoods.action?goodsId="+id;
+					
+				}
+			</script>
 			<s:iterator value="l_goods" id="l_goods" status="status">
 				<tr>
 					<td align="center"><s:property value="#l_goods.goodsId"/></td>
-					<td align="center"><s:property value="#l_goods.goodsName"/></td>
+					<a  style="color:blue;cursor:pointer;" onclick="gotodetails(<s:property value="#l_goods.goodsId" />);">
+						<s:property value="#l_goods.goodsName" ></s:property>
+					</a>
 					<td align="center"><s:property value="#l_goods.brand"/></td>
 					<td align="center"><s:property value="#l_goods.model"/></td>
 					<td align="center"><s:property value="#l_goods.size"/></td>
