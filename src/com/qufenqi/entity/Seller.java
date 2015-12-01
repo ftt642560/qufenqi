@@ -43,6 +43,15 @@ public class Seller {
 	
 	private Manager manager;
 	
+	//商家商品---zlin
+	private Set<SellerGoods> sellergoods = new HashSet<SellerGoods>();
+	
+	public Set<SellerGoods> getSellergoods() {
+		return sellergoods;
+	}
+	public void setSellergoods(Set<SellerGoods> sellergoods) {
+		this.sellergoods = sellergoods;
+	}
 	public int getSellerId() {
 		return sellerId;
 	}

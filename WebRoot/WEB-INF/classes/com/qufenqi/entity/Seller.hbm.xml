@@ -19,5 +19,11 @@
 			<one-to-many class="com.qufenqi.entity.Order"/>
 		</set>
 		<many-to-one name="manager" column="managerId" class="com.qufenqi.entity.Manager" lazy="false" cascade="save-update"></many-to-one>
+		
+		<set name="sellergoods" lazy="true" inverse="true">
+			<key column="sellerId" />
+			<one-to-many class="com.qufenqi.entity.SellerGoods"></one-to-many>
+		</set>
+		
 	</class>
 </hibernate-mapping>

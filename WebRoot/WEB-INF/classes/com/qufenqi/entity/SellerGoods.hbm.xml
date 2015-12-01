@@ -11,7 +11,7 @@
 		</id>
 		
 		<property name="quantity" type="integer">
-			<column name="goodsPrice" length="11" not-null="false" />
+			<column name="quantity" length="11" not-null="false" />
 		</property>
 		
 		<many-to-one name="seller" column="sellerId" class="com.qufenqi.entity.Seller" not-null="true"></many-to-one>
