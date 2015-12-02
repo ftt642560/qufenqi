@@ -62,6 +62,7 @@ public class UserServiceImpl implements UserService {
 	public int login(User user) {
 		String userName = user.getUserName();
 		String password = MD5.getMD5(user.getPassword());
+		System.out.println(password);
 		//1:判断用户名是否为空
 		if(userName == null || userName.trim().equals("")){
 			return  1;
@@ -74,8 +75,9 @@ public class UserServiceImpl implements UserService {
 			System.out.println("用户名没有注册");
 			return 2;
 		}
+		System.out.println(userList.size());
 		String pass = userList.get(0).getPassword();
-		System.out.println("pass"+pass);
+		System.out.println("pass===="+pass);
 		if(!password.equals(pass)){
 			System.out.println("用户的密码不正确！");
 			return 3;

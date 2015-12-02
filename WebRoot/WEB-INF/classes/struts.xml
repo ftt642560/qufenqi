@@ -144,5 +144,16 @@
 			<result name="input">/login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
+		
+		<!-- 商家查找商品信息 -->
+		<action name="sellerquerygoods" class="goodsAction" method="sellerquerygoods">
+			<result name="success">/buygoodsresult.jsp</result>
+		</action>
+		
+		<!-- 用户搜索商品 -->
+		<action name="usersearchgoods" class="goodsAction" method="userSearchGoods">
+			<result name="success">/test_usersearchgoods.jsp</result>
+		</action>
+		
 	</package>
 </struts>    

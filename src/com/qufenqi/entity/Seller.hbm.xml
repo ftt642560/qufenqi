@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.qufenqi.entity.Seller" table="seller">
+	<class name="com.qufenqi.entity.Seller" table="seller" lazy="false">
 		<id name="sellerId" type="integer" column="sellerId">
 			<generator class="native"/>
 		</id>

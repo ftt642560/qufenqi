@@ -7,6 +7,7 @@ import com.qufenqi.dao.PageBaseDao;
 import com.qufenqi.dao.impl.GoodsDaoImpl;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.PageBean;
+import com.qufenqi.entity.SellerGoods;
 import com.qufenqi.entity.User;
 import com.qufenqi.service.GoodsService;
 
@@ -111,8 +112,12 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<Goods> SellerSearchGoods(int sellerId)
 	{
 		List<Goods> l_goods=new ArrayList<Goods>();
-		
-		
+		l_goods=goodsDaoImpl.SellerQueryAllGoods(sellerId);
+		for(int i=0;i<l_goods.size();i++)
+		{
+			System.out.println("====sellersearchgoods-----l_goods[i]="+l_goods.get(i).getGoodsName());
+			
+		}
 		return l_goods;
 	}
 
@@ -151,4 +156,20 @@ public class GoodsServiceImpl implements GoodsService {
 	     pageBean.init();
 		 return pageBean;
 	}
+	
+	
+	 /**
+     * 用户根据关键字搜索商品
+     * @param 商品名 GoodsName
+     */
+    public List<SellerGoods> UserSearchGoods(String GoodsName)
+    {
+    	System.out.println("goodsservice======= usersearchgoods");
+    	List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
+    	l_sellergoods = goodsDaoImpl.UserSearchGoods(GoodsName);
+    	return l_sellergoods;
+    	
+    }
+	
+	
 }

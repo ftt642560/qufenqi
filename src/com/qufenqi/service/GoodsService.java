@@ -48,5 +48,10 @@ public interface GoodsService {
      */
 	/////房婷婷 2015-12-1
     PageBean queryForPage( int pageSize,int currentPage);
-	
+    
+    /**
+     * 用户根据关键字搜索商品
+     * @param 商品名 GoodsName
+     */
+    public List<SellerGoods> UserSearchGoods(String GoodsName);
 }

@@ -8,6 +8,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.qufenqi.dao.GoodsDao;
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.SellerGoods;
 /**
  * 商品实现类
  * @author zlin
@@ -104,7 +105,50 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	public List<Goods> SellerQueryAllGoods(int sellerid)
 	{
 		List<Goods> l_goods = new ArrayList<Goods>();
+		String sql="from SellerGoods as sellergoods where sellergoods.seller.sellerId="+sellerid;//查找商家商品表
+		List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
+		l_sellergoods = this.getHibernateTemplate().find(sql);
+		for(int i=0;i<l_sellergoods.size();i++)
+		{
+				System.out.println("商家查找属于它的商品信息---l_sellergoods[i].goodsid==="+l_sellergoods.get(i).getGoods().getGoodsId());
+				Goods goods=l_sellergoods.get(i).getGoods();
+				l_goods.add(goods);
+		}
+		
+		System.out.println("商家查找属于它的商品信息--信息放入到l_goods链表里，循环输出l_goods");
+		for(int i=0;i<l_goods.size();i++)
+		{
+			System.out.println("l_goods[i]="+l_goods.get(i).getGoodsName());
+			
+		}
 		return l_goods;
+		
+	}
+	
+	
+	/**
+	 * 用户按关键字查找商品
+	 * @param 商品名
+	 * @return List<SellerGoods>
+	 * 
+	 */
+	public List<SellerGoods> UserSearchGoods(String GoodsName)
+	{
+		List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
+		//String sql="from Goods as goods where goods.goodsName like '%"+GoodsName+"%'"; //模糊查询，在任何字段存在有关键字的，都查询出来
+		String sql = "from SellerGoods as sellergoods where sellergoods.goods.goodsName like '%"+GoodsName+"%'";
+		l_sellergoods = this.getHibernateTemplate().find(sql);
+		if(l_sellergoods.size() ==0)
+		{
+			System.out.println("goodsdao=====l_sellergoods is null");
+		}
+		System.out.println("用户按照关键字查找所有商品信息==GoodsDaoImpl====UserSearchGoods====\n");
+		for(int i=0;i<l_sellergoods.size();i++)
+		{
+			System.out.print("GoodsDaoIimp====l_sellergoods.goodsName=="+l_sellergoods.get(i).getGoods().getGoodsName()+"\n");
+		}
+		
+		return l_sellergoods;
 		
 	}
 

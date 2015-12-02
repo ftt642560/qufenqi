@@ -34,20 +34,20 @@ public class LoginFilter extends HttpServlet implements Filter{
 		if(url.equals("")){
 			url+="/";
 		}
-//		if((url.startsWith("/")&&!url.startsWith("/login")&&!url.startsWith("/register"))){//若访问后台资源 过滤到login    
-//			User user = (User) session.getAttribute("user");
-//			if(user == null){
-//				response.sendRedirect(contextPath+"/login.jsp");
-//				return;
-//			}
-//		}
-		if((url.startsWith("/")&&!url.startsWith("/stock/register") && !url.startsWith("/login"))){//若访问后台资源 过滤到login    
-			Seller seller = (Seller) session.getAttribute("seller");
-			if(seller == null){
+		if((url.startsWith("/")&&!url.startsWith("/login")&&!url.startsWith("/register"))){//若访问后台资源 过滤到login    
+			User user = (User) session.getAttribute("user");
+			if(user == null){
 				response.sendRedirect(contextPath+"/login.jsp");
 				return;
 			}
 		}
+//		if((url.startsWith("/")&&!url.startsWith("/stock/register") && !url.startsWith("/login"))){//若访问后台资源 过滤到login    
+//			Seller seller = (Seller) session.getAttribute("seller");
+//			if(seller == null){
+//				response.sendRedirect(contextPath+"/login.jsp");
+//				return;
+//			}
+//		}
 		filterChain.doFilter(request, response);
 	}
 
