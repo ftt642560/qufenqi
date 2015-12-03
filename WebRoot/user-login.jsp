@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<base href="<%=basePath%>">
 <title>Login</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -45,7 +46,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header_bottom">
 	<div class="container">
 	  <div class="login">
-					<img src="images/logo4.png" class="img-responsive" alt=""/>
+					<img src="<%=basePath%>/image/logo4.png" class="img-responsive" alt=""/>
 				 </div>
  </div>
 </div>
@@ -56,20 +57,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="container">
 	    <div class="register">
 			   <div class="login-left">
-					<img src="images/logo3.png" class="img-responsive" alt=""/>
+					<img src="<%=basePath%>/image/logo3.png" class="img-responsive" alt=""/>
 				 </div>
 			   <div class="col-md-6 login-right">
 			  	<h3>用户登录</h3>
 				<p>如果您已经拥有我们的账号，请<a class="" href="user-login.jsp">登录</a>！</p>
 				<p>如果没有，请<a class="" href="register.jsp">注册</a>！</p>
-				<form>
+				<!-- 登录ftt添加 -->
+				<p>${requestScope.mess }</p>
+				<form name="from1"  method="post"  action="login.action">
 				  <div>
 					<span>账号：</span>
-					<input type="text"> 
+					<input type="text" name="user.userName"> 
 				  </div>
 				  <div>
 					<span>密码：</span>
-					<input type="password"> 
+					<input type="password" name="user.password"> 
 				  </div>
 				  <a class="forgot" href="#">忘记密码?</a>
 				  <input type="submit" value="Login">
