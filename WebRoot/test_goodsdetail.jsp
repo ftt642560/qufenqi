@@ -83,6 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 		购买数量<input type="text" value="" name="sbuynum" id="sbuynum" />
 		<input type="submit" value="购买" onClick="buygoods();" />
+		
+	
 	</form>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.qufenqi.entity.SellerGoodsImages" table="sellergoodsimages" lazy="false">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		
+		<property name="imageName" type="string">
+			<column name="imageName" length="255" not-null="false" />		
+		</property>
+		
+		<property name="imageUrl" type="string">
+			<column name="imageUrl" length="255" not-null="false" />		
+		</property>
+	</class>
+</hibernate-mapping>

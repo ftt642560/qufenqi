@@ -3,6 +3,7 @@ package com.qufenqi.dao;
 import java.util.List;
 
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.SellerGoods;
 
 /**
  * 
@@ -38,11 +39,17 @@ public interface GoodsDao {
 	/**
 	 * 商家查找属于他自己的商品信息
 	 * @param 商家ID
+	 * @return List<SellerGoods>
+	 * 
+	 */
+	public List<SellerGoods> SellerQueryAllGoods(int sellerid);
+	
+	/**
+	 * 用户按关键字查找商品
+	 * @param 商品名
 	 * @return List<Goods>
 	 * 
 	 */
-	public List<Goods> SellerQueryAllGoods(int sellerid);
-	
-	
+	public List<SellerGoods> UserSearchGoods(String GoodsName);
 	
 }
