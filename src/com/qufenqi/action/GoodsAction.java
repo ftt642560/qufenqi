@@ -237,16 +237,28 @@ public class GoodsAction {
 	 public String userSearchGoods()
 	 {
 		 System.out.println("==GoodsAction==userSearchGoods====");
-		 l_sellergoods = goodsserviceimpl.UserSearchGoods(goodsName);
-		 if(l_sellergoods.size()==0)
-		 {
-			 	System.out.println("l_sellergoods is null");
-		 }
-		 for(int i=0;i<l_sellergoods.size();i++)
-		 {
-			// System.out.println("====l_goods.goodsbrand===="+l_sellergoods.get(i).getGoods().getBrand()+"\n");
-			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
-		 }
+//		 l_sellergoods = goodsserviceimpl.UserSearchGoods(goodsName);
+//		 if(l_sellergoods.size()==0)
+//		 {
+//			 	System.out.println("l_sellergoods is null");
+//		 }
+//		 for(int i=0;i<l_sellergoods.size();i++)
+//		 {
+//			// System.out.println("====l_goods.goodsbrand===="+l_sellergoods.get(i).getGoods().getBrand()+"\n");
+//			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
+//		 }
+		 
+		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 5, page);
+		 System.out.println("goodsaction====usersearchgoods===分页查询==pageBean===="+pageBean);
+		 l_sellergoods = pageBean.getList();
+		 
+		 System.out.println(l_sellergoods.get(0).getGoods().getColor());
+		 
+//		 for(int i=0;i<l_sellergoods.size();i++)
+//		 {
+//			// System.out.println("====l_goods.goodsbrand===="+l_sellergoods.get(i).getGoods().getBrand()+"\n");
+//			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
+//		 }
 		 return "success";
 	 }
 	

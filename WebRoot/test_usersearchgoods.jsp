@@ -67,6 +67,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</s:iterator>
 		</table>
 		
+		<center>
+	        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+	        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+	        
+	        <s:if test="#request.pageBean.currentPage == 1">
+	           	 首页&nbsp;上一页
+	        </s:if>
+	        
+	        <s:else>
+	            <a href="findAllUser.action">首页</a>
+	            &nbsp;
+	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	        </s:else>
+	        	&nbsp;
+	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            &nbsp;
+	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	        </s:if>
+	        
+	        <s:else>
+	            	下一页&nbsp;尾页
+	        </s:else>
+	    
+	    </center><br>
 		
 	</form>
 </body>

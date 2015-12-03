@@ -164,14 +164,47 @@ public class GoodsServiceImpl implements GoodsService {
      * 用户根据关键字搜索商品
      * @param 商品名 GoodsName
      */
-    public List<SellerGoods> UserSearchGoods(String GoodsName)
+    public PageBean UserSearchGoods(String GoodsName,int pageSize, int page)
     {
-    	System.out.println("goodsservice======= usersearchgoods");
-    	List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
-    	l_sellergoods = goodsDaoImpl.UserSearchGoods(GoodsName);
-    	return l_sellergoods;
+    	System.out.println("goodsservice===分页==== usersearchgoods");
+    	
+		String hql = "";
+		hql = "from SellerGoods as sellergoods where sellergoods.goods.goodsName like '%"+GoodsName+"%'";
+	//查询语句
+	//查询数据库中一共有多少条记录
+	int allRow = pageBaseDao.getAllRowCount(hql);
+	//查询总页数
+	int totalPage = PageBean.countTotalPage(pageSize, allRow);
+	//当前页的开始记录
+	final int offset = PageBean.countOffset(pageSize, page);
+	//每页的记录数
+	final int length = pageSize;
+	//获得当前页
+	final int currentPage = PageBean.countCurrentPage(page);
+	//一页的记录
+	 List<SellerGoods> list = pageBaseDao.queryForPage(hql, offset, length);
+	 //把分页信息保存到Bean中
+     PageBean pageBean = new PageBean();
+     pageBean.setPageSize(pageSize);    
+     pageBean.setCurrentPage(currentPage);
+     pageBean.setAllRow(allRow);
+     pageBean.setTotalPage(totalPage);
+     pageBean.setList(list);
+     pageBean.init();
+	 return pageBean;
     	
     }
+    
+	//未分页的查询
+//    public List<SellerGoods> UserSearchGoods(String GoodsName)
+//    {
+//    	//未分页的模糊 查询
+//    	System.out.println("goodsservice===未分页==== usersearchgoods");
+//    	List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
+//    	l_sellergoods = goodsDaoImpl.UserSearchGoods(GoodsName);
+//    	return l_sellergoods;
+//    	
+//    }
 	
 	
 }
