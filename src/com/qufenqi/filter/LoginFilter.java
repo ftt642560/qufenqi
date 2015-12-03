@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.qufenqi.entity.Seller;
-import com.qufenqi.entity.User;
-
 public class LoginFilter extends HttpServlet implements Filter{
 	@Override
 	public void destroy() {
