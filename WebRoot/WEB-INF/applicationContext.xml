@@ -43,7 +43,6 @@
 				<value>com/qufenqi/entity/Delivery.hbm.xml</value>
 				<value>com/qufenqi/entity/Manager.hbm.xml</value>
 				<value>com/qufenqi/entity/SellerGoods.hbm.xml</value>
-				<value>com/qufenqi/entity/SellerGoodsImages.hbm.xml</value>
 			</list>
 		</property>
 		
@@ -72,7 +71,7 @@
 	<bean id="goodsType" class="com.qufenqi.entity.GoodsType"></bean>
 	<bean id="seller" class="com.qufenqi.entity.Seller"></bean>
 	<bean id="sellergoods" class="com.qufenqi.entity.SellerGoods"></bean>
-	<bean id="sellergoodsimages" class="com.qufenqi.entity.SellerGoodsImages"></bean>
+	<bean id="manager" class="com.qufenqi.entity.Manager"></bean>
 	<!-- 定义DAO： -->  
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>
@@ -88,6 +87,9 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	<bean id="sellerDao" class="com.qufenqi.dao.impl.SellerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="managerDao" class="com.qufenqi.dao.impl.ManagerDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
@@ -113,6 +115,9 @@
 	  	<property name="sellerDao" ref="sellerDao"></property>
 	  	<property name="pageBaseDao" ref="pageBaseDao"></property>
 	</bean>
+	<bean id="managerService" class="com.qufenqi.service.impl.ManagerServiceImpl">
+	  	<property name="managerDao" ref="managerDao"></property>
+	</bean>
 	
 	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">
 		<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
@@ -133,6 +138,13 @@
 	  </bean>
 	  <bean id="sellerAction" class="com.qufenqi.action.SellerAction" scope="prototype">
 	  	<property name="sellerService" ref="sellerService"/>
+	  	<property name="managerService" ref="managerService"/>
 	  	<property name="seller" ref="seller"></property>
+	  	<property name="manager" ref="manager"/>
+	  	<property name="user" ref="user"></property>
 	  </bean>
+	  <bean id="managerAction" class="com.qufenqi.action.ManagerAction" scope="prototype">
+		<property name="managerService" ref="managerService"></property>
+	  </bean>
+	  
 </beans>

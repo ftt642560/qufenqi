@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	-->
 
 	<TITLE>button</TITLE>
-	<META content="text/html; charset=gb2312" http-equiv=Content-Type>
+	<META content="text/html; charset=UTF-8" http-equiv=Content-Type>
 	<SCRIPT>
 	function oa_tool(){
 	//alert(window.parent.oa_frame.cols);

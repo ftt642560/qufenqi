@@ -38,8 +38,8 @@
 		$(function(){
 				//1. 点击 delete 时, 弹出 确定是要删除 xx 的信息吗 ? 若确定, 执行删除, 若不确定, 则取消
 				$(".delete").click(function(){
-					var userId = $(this).next(":input").val();//this代表a链接
-					var flag = confirm("确定要删除"+ userId +"的信息吗？");
+					var goodsId = $(this).next(":input").val();//this代表a链接
+					var flag = confirm("确定要删除"+ goodsId +"的信息吗？");
 					alert(flag+"11");
 					if(flag){//真的要删除
 						alert(1111);
@@ -71,7 +71,7 @@
 		<FORM ID="userForm" method="post"  action="findSome.action"  >
           <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 			<tr>
-				<td class="headerbar61">查询商家信息</td>
+				<td class="headerbar61">查询商品信息</td>
 				<td class="headerbar61">
 					<p align="right">
 						<input type="submit" value="查 询 ">
@@ -88,9 +88,9 @@
 			
 		  	<table border=0 cellspacing=1 cellpadding=2 width="100%" bgcolor="gray">
 				<tr>
-					<td class="textbar81" width="15%">商家用户名</td>
+					<td class="textbar81" width="15%">商品名</td>
 					<td class="textbar01" width="35%">
-						<input type="text" id="username" name="seller.sellerName" size="20">
+						<input type="text" id="username" name="user.userName" size="20">
 					</td>
 				</tr>
 			</table>
@@ -105,7 +105,7 @@
 		<form name="form2" id="idmig0101" action="" method="post" onsubmit="">
 			<table border="0" width="100%" id="table1" cellspacing="0"  cellpadding="2"  bgcolor="gray">
 				<tr>
-			  		<td class="headerbar61" width="100%" colspan="1">商家信息列表</td>
+			  		<td class="headerbar61" width="100%" colspan="1">商品信息列表</td>
 				</tr>
 			</table>
 			
@@ -120,7 +120,7 @@
 				
 				<table border="1" cellspacing="0" cellpadding="0" width="100%" height="">
 					<tr>
-						<td style="color: red ; font-weight: bolder;"><center>没有商家</center></td>
+						<td style="color: red ; font-weight: bolder;"><center>没有商品</center></td>
 					</tr>
 				</table>
 			</s:if>
@@ -130,15 +130,17 @@
 			  			<td  width="100%" colspan="1">
 			  				<table  border="0" cellspacing="1" cellpadding="2" width="100%">
 				  				<tr>
-									<td  width="8%"  class="headerbar82">序号</td>
-									<td  width="10%"  class="headerbar82">用户名</td>
-									<td  width="8%" class="headerbar82">密码</td>
-									<td  width="8%" class="headerbar82">姓名</td>					
-									<td  width="12%" class="headerbar82">身份证</td>
-									<td  width="16%" class="headerbar82">电话</td>
-									<td  width="13%" class="headerbar82">邮箱</td>
-									<td  width="5%" class="headerbar82">角色(1:已认证 0：未通过)</td>
-									<td  width="13%" class="headerbar82">认证的管理员</td>
+									<td  width="3%"  class="headerbar82">序号</td>
+									<td  width="6%"  class="headerbar82">商品名</td>
+									<td  width="9%" class="headerbar82">品牌</td>
+									<td  width="9%" class="headerbar82">类型</td>					
+									<td  width="9%" class="headerbar82">大小</td>
+									<td  width="7%" class="headerbar82">颜色</td>
+									<td  width="9%" class="headerbar82">材料</td>
+									<td  width="7%" class="headerbar82">库存量</td>
+									<td  width="9%" class="headerbar82">价格</td>
+									<td  width="9%" class="headerbar82">权重</td>
+									<td  width="11%" class="headerbar82">状态(1:已上架 0:未上架)</td>
 									<td  class="headerbar82">删除</td>	
 								</tr>
 								
@@ -146,18 +148,20 @@
 								
 									<s:if test="#status.odd">
 										<tr>
-											<td class="gridbar11" align="center">${sellerId }</td>
-											<td class="gridbar11" align="center">${sellerName }</td>
-											<td class="gridbar11" align="center">${sellerpassword }</td>
-											<td class="gridbar11" align="center">${name }</td>
-											<td class="gridbar11" align="center">${idCard }</td>
-											<td class="gridbar11" align="center">${telephone }</td>
-											<td class="gridbar11" align="center">${email }</td>
-											<td class="gridbar11" align="center">${role }</td>
-											<td class="gridbar11" align="center">${manager}</td>
+											<td class="gridbar11" align="center">${goodsId }</td>
+											<td class="gridbar11" align="center">${goodsName }</td>
+											<td class="gridbar11" align="center">${brand }</td>
+											<td class="gridbar11" align="center">${model }</td>
+											<td class="gridbar11" align="center">${size }</td>
+											<td class="gridbar11" align="center">${color }</td>
+											<td class="gridbar11" align="center">${material }</td>
+											<td class="gridbar11" align="center">${storeNum }</td>
+											<td class="gridbar11" align="center">${goodsPrice }</td>
+											<td class="gridbar11" align="center">${weight }</td>
+											<td class="gridbar11" align="center">${status }</td>
 											<td class="gridbar11" align="center">
-												<a href="<%=basePath%>/delete.action?sellerId=${sellerId}" class="delete">
-													<input type="hidden" value="${sellerId }">
+												<a href="<%=basePath%>/deleteGoods.action?goodsId=${goodsId}" class="delete">
+													<input type="hidden" value="${goodsId }">
 													<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />
 												</a>
 											</td>
@@ -166,18 +170,19 @@
 									
 									<s:else>
 										<tr>
-											<td class="gridbar01" align="center">${sellerId }</td>
-											<td class="gridbar01" align="center">${sellerName }</td>
-											<td class="gridbar01" align="center">${sellerpassword }</td>
+											<td class="gridbar01" align="center">${goodsId }</td>
+											<td class="gridbar01" align="center">${brand }</td>
 											<td class="gridbar01" align="center">${name }</td>
-											<td class="gridbar01" align="center">${idCard }</td>
-											<td class="gridbar01" align="center">${telephone }</td>
-											<td class="gridbar01" align="center">${email }</td>
-											<td class="gridbar01" align="center">${role }</td>
-											<td class="gridbar01" align="center">${manager.managName }</td>
+											<td class="gridbar01" align="center">${model }</td>
+											<td class="gridbar01" align="center">${color }</td>
+											<td class="gridbar01" align="center">${material }</td>
+											<td class="gridbar01" align="center">${storeNum }</td>
+											<td class="gridbar01" align="center">${goodsPrice }</td>
+											<td class="gridbar01" align="center">${weight }</td>
+											<td class="gridbar01" align="center">${status }</td>
 											<td class="gridbar01" align="center">
-												<a href="<%=basePath%>/delete.action?sellerId=${sellerId}" class="delete">
-													<input type="hidden" value="${sellerId }">
+												<a href="<%=basePath%>/deleteGoods.action?goodsId=${goodsId}" class="delete">
+													<input type="hidden" value="${goodsId }">
 													<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />
 												</a>
 											</td>
@@ -200,15 +205,15 @@
 	        </s:if>
 	        
 	        <s:else>
-	            <a href="findAllUser.action">首页</a>
+	            <a href="findAllGoods.action">首页</a>
 	            &nbsp;
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	            <a href="findAllGoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 	        </s:else>
 	        	&nbsp;
 	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            <a href="findAllGoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 	            &nbsp;
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	            <a href="findAllGoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 	        </s:if>
 	        
 	        <s:else>

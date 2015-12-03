@@ -101,13 +101,16 @@
 		</action>
 		<action name="loginSeller" class="sellerAction" method="login">
 			<result name="success">Main.jsp</result>
-			<result name="error">login.jsp</result>
+			<result name="error">login_1.jsp</result>
 		</action>
+			
 		<action name="modifySeller" class="sellerAction" method="modify">
-			<result name="success">login.jsp</result>
-			<result name="error">Main.jsp</result>
-			<result name="input">login.jsp</result>
-			<interceptor-ref name="BgLoginInterceptor"/>
+			<result type="stream" name="success">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		    <result name="login">/login.jsp</result>
+		    <interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		<action name="quitSeller" class="sellerAction" method="quit">
 			<result name="success">login.jsp</result>
@@ -116,14 +119,33 @@
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="findAll" class="sellerAction" method="findAll">
-			<result name="success">/seller/findAllSeller.jsp</result>
+			<result name="success">/system/findAllSeller.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		<action name="findSomeSeller" class="sellerAction" method="findSomeSeller">
+			<result name="success">/system/findAllSeller.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		<action name="deleteSeller" class="sellerAction" method="delete">
+			<result type="stream" name="success">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		    <result name="login">/login.jsp</result>
+		    <interceptor-ref name="BgLoginInterceptor" />
+		    
+		</action>
+		<action name="findSelf" class="sellerAction" method="findSelf">
+			<result name="success">/common/querySelfMess.jsp</result>
 			<result name="input">login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 	</package>
 	
 	<package name="goods" extends="struts-default" namespace="/goods">
-		<!-- 房婷婷加的 -->
+		<!-- 房婷婷加的拦截器 -->
 		<interceptors>
 			<interceptor name="BgLoginInterceptor" class="com.qufenqi.interceptor.BgLoginInterceptor"/>
 		</interceptors>
@@ -139,12 +161,20 @@
 			<result name="success">/buygoodsresult.jsp</result>
 		</action>
 		
+		<!-- 房婷婷加的 -->
 		<action name="findAllGoods" class="goodsAction" method="findAll">
-			<result name="success">/goods/findAllGoods.jsp</result>
+			<result name="success">/system/findAllGoods.jsp</result>
 			<result name="input">/login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
-		
+		<action name="deleteGoods" class="managerAction" method="delete">
+			<result type="stream" name="success">
+		        <param name="contentType">text/html</param>
+		        <param name="inputName">inputStream</param>
+		    </result>
+		    <result name="login">/login.jsp</result>
+		    <interceptor-ref name="BgLoginInterceptor" />
+		</action>
 		<!-- 商家查找商品信息 -->
 		<action name="sellerquerygoods" class="goodsAction" method="sellerquerygoods">
 			<result name="success">/buygoodsresult.jsp</result>

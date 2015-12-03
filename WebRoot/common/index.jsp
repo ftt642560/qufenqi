@@ -25,7 +25,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <frameset cols="180,10,*" name="sss" frameborder="NO" border="0" framespacing="0" rows="*">
 		    <frame name="left" noresize scrolling="auto" src="<%=basePath%>/common/left.jsp">
 		    <frame src="<%=basePath%>/common/middle.jsp" name="middle" scrolling="NO" noresize>
-		    <frame name="main" src="<%=basePath%>/common/PASSWORD1001.jsp" scrolling="auto">
+		    <frame name="main" src="<%=basePath%>/common/updatePassword.jsp" scrolling="auto">
   	 </frameset>
   	 	<noframes></noframes>
 		<noframes><body>

@@ -25,47 +25,78 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/jscript" language="JavaScript" src="<%=basePath%>/js/page.js"></script>
   </head>
   
-  <body nLoad="widgets.ToggleWidget(hideTop2);widgets.ToggleWidget(hideBest);widgets.ToggleWidget(hideBoard);widgets.ToggleWidget(hideSearch);">
-    	<FORM METHOD=POST ACTION="">
-			<table width="180" height="100%"  border="0" cellpadding="0" cellspacing="0">
-			  <tr>
-			    <td valign="top" class="left"><table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0">
-			      <tr>
-			        <td  height="9"></td>
-			      </tr>
-			      <tr>
-			        <td >
-					<table width="100%" cellspacing="0" cellpadding="0" border="0">
-							<tr>
-							<td  class="left1">
-							<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);"><img id="exp5" alt="折叠" src="<%=basePath%>/image/qq_minimize.gif"  border="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">辅助管理</a></td>
-							</tr>
-						</table>
-					</td>
-			        </tr>
-			      <tr>
-			        <td class="left2" >
-					<div id="hideTop1" class="hiderScroll" img="exp5" openAlt="折叠" closedAlt="展开">
-					<table width="100%"  border="0" cellspacing="1" cellpadding="0">
-					<!--begin个导航1-->
-					<tr>
-					<td>
-					<div  id="menuDiv2" class="menu" onClick="javascript:setClass(menuDiv2);menuGoto('<%=basePath%>/common/PASSWORD1001.jsp','main');">&nbsp;&nbsp;&nbsp;<img  src="<%=basePath%>/image/right2.gif" >&nbsp;&nbsp;修改密码</div>
-					</td>
-					</tr>
-					<!--end导航1-->   
-					 <tr>
-			        <td>&nbsp;</td>
-			      </tr>
-			        </table>
-					</div></td>
-			      </tr>	  
-			      <tr>
-			        <td>&nbsp;</td>
-			      </tr>
-			    </table></td>
-			  </tr>
-			</table>
-		</FORM>
+  <script type="text/javascript">
+  	function gotoQuerySelfMess(){
+		document.idFrmMain.action="<%=basePath%>findSelf.action";
+		document.idFrmMain.target = "main";
+		document.idFrmMain.submit();
+	}
+	function gotoUpdatePassage(){
+		document.idFrmMain.action="<%=basePath%>/common/updatePassword.jsp";
+		document.idFrmMain.target = "main";
+		document.idFrmMain.submit();
+	}
+  </script>
+  
+  <body onLoad="widgets.ToggleWidget(hideTop2);widgets.ToggleWidget(hideBest);widgets.ToggleWidget(hideBoard);widgets.ToggleWidget(hideSearch);">
+    	<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT=""> 
+		  <table width="180" height="100%"  border="0" cellpadding="0" cellspacing="0"> 
+		    <tr> 
+		      <td valign="top" class="left"><table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0"> 
+		          <tr> 
+		            <td  height="9"></td> 
+		          </tr> 
+		          <tr> 
+		            <td > 
+			            <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+			                <tr> 
+			                  <td  class="left1"> 
+			                  	<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);" >
+			                  		<img id="exp5" alt="折叠" src="<%=basePath%>/image/qq_minimize.gif"  border="0">
+			                  	</a> 
+			                  	&nbsp;&nbsp;&nbsp;&nbsp;
+			                  	<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">系统管理</a>
+			                  	
+			                  </td> 
+			                </tr> 
+			              </table>
+		              </td> 
+		          </tr> 
+		          <tr> 
+		            <td class="left2" > <div id="hideTop1"  img="exp5" openAlt="折叠" closedAlt="展开"> 
+		                <table width="100%"  border="0" cellspacing="1" cellpadding="0"> 
+		                  
+		                  <tr> 
+			                   <td>
+						           	<div align="right">
+						            	<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
+						            </div>
+					           </td> 
+					           <td>
+					           		<a href="<%=basePath%>/common/left.jsp" onClick="gotoUpdatePassage();">修改密码</a>
+					           </td> 
+		                  </tr> 
+						   <tr> 
+						   		<td>
+			                    	<div align="right">
+			                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
+			                    	</div>
+			                    </td> 
+		                    <td>
+		                    	<a href="<%=basePath%>/common/left.jsp" onClick="gotoQuerySelfMess();">查看个人信息</a>
+		                    </td> 
+		                  </tr>  
+		                  <tr> 
+		                    <td colspan="2"  height="10"></td> 
+		                  </tr> 
+		                </table> 
+		              </div>
+		            </td> 
+		          </tr> 
+		        </table>
+		      </td> 
+		    </tr> 
+		  </table> 
+	</form> 
   </body>
 </html>

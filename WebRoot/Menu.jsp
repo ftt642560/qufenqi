@@ -102,9 +102,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<table width="100%"  border="0" cellpadding="0" cellspacing="0">
 				  <tr>
 					<td>&nbsp;</td>
-					
-					
-					<s:if test="#session.seller.role == 1">
 						<td>
 							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
 						</td>
@@ -115,36 +112,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
 						</td>
 						<td class="top1" onClick="jsgoto(8);" id="ttd8">
-							<a href="<%=basePath%>stock/index.jsp" target="midFrame">支付管理</a>
-						</td> 
-						<td>
-							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
-						</td>
-						<td class="top1" onClick="jsgoto(1);" id="ttd1" >
-							<a href="<%=basePath%>user/index.jsp" target="midFrame">辅助管理</a>
-						</td>
-					</s:if>	
-					
-					<s:if test="#session.seller.role == 2">
-						<td>
-							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
-						</td>
-						<td class="top1" onClick="jsgoto(1);" id="ttd1" >
-							<a href="<%=basePath%>goods/index.jsp" target="midFrame">商品管理</a>
-						</td>
-						
-						<td>
-							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
-						</td>
-						<td class="top1" onClick="jsgoto(10);" id="ttd10">
 							<a href="<%=basePath%>payment/index.jsp" target="midFrame">支付管理</a>
+						</td> 
+					
+						<td>
+							<img src="<%=basePath%>image/top_line.gif" width="2" height="29">
+						</td>
+						<td class="top1" onClick="jsgoto(1);" id="ttd1" >
+							<a href="<%=basePath%>goods/index.jsp" target="midFrame">商家商品管理</a>
 						</td>
 						
 						<td><img src="<%=basePath%>image/top_line.gif" width="2" height="29"></td>
 						<td class="top1" onClick="jsgoto(10);" id="ttd10">
 							<a href="<%=basePath%>common/index.jsp" target="midFrame">辅助管理</a>
 						</td>
-					</s:if>
 					<td><img src="<%=basePath%>image/top_line.gif" width="2" height="29"></td>
 					<td align="right">admin,您好！<span id="clock"></span></td>
 					

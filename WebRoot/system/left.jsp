@@ -29,106 +29,94 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 function  Content(){
 parent.main.location="<%=basePath%>/system/main.jsp";
 }
-function jsgoto(surl){
-	document.idFrmMain.action = surl;
-	document.idFrmMain.target = "main";
-	document.idFrmMain.submit();
-}
 
-function gotoclothing(){
-		document.idFrmMain.action="<%=basePath%>/zlinclothing/findallclothing.action";
+function gotoUsers(){
+		document.idFrmMain.action="<%=basePath%>findAllUser.action";
+		document.idFrmMain.target = "main";
+		document.idFrmMain.submit();
+	}
+
+function gotogoods(){
+		document.idFrmMain.action="<%=basePath%>/goods/findAllGoods.action";
 		document.idFrmMain.target = "main";
 		document.idFrmMain.submit();
 	}
 	
-function gotostore(){
-	document.idFrmMain.action="<%=basePath%>/zlinstore/findallstore.action";
+function gotoseller(){
+	document.idFrmMain.action="<%=basePath%>/findAll.action";
 		document.idFrmMain.target = "main";
 		document.idFrmMain.submit();
 }
 </SCRIPT>
   
-  <body nLoad="widgets.ToggleWidget(hideTop1);widgets.ToggleWidget(hideTop2);widgets.ToggleWidget(hideTop3)">
+  <body onLoad="widgets.ToggleWidget(hideTop1);widgets.ToggleWidget(hideTop2);widgets.ToggleWidget(hideTop3)">
     	<FORM NAME="idFrmMain" ID="idFrmMain" METHOD="POST"  ACTION="" ONSUBMIT=""> 
-  <table width="180" height="100%"  border="0" cellpadding="0" cellspacing="0"> 
-    <tr> 
-      <td valign="top" class="left"><table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0"> 
-          <tr> 
-            <td  height="9"></td> 
-          </tr> 
-          <tr> 
-            <td > <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
-                <tr> 
-                  <td  class="left1"> 
-                  	<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);" >
-                  		<img id="exp5" alt="折叠" src="<%=basePath%>/image/qq_minimize.gif"  border="0">
-                  	</a> 
-                  	&nbsp;&nbsp;&nbsp;&nbsp;
-                  	<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">系统管理</a>
-                  	
-                  </td> 
-                </tr> 
-              </table></td> 
-          </tr> 
-          <tr> 
-            <td class="left2" > <div id="hideTop1"  img="exp5" openAlt="折叠" closedAlt="展开"> 
-                <table width="100%"  border="0" cellspacing="1" cellpadding="0"> 
-                  
-                  <tr> 
-                    <td>
-                    	<div align="right">
-                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
-                    	</div>
-                    </td> 
-                    <td>
-                    	<a href="<%=basePath%>findAllUser.action" target="main" onClick="jsgoto('<%=basePath%>/system/userList.jsp');">用户管理</a>
-                    </td> 
-                  </tr> 
-				  <tr> 
-                    <td>
-                    	<div align="right">
-                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
-                    	</div>
-                    </td> 
-                    <td>
-                    	<a href="<%=basePath%>/goods/findAllGoods.action" target="main" onClick="jsgoto('<%=basePath%>/goods/findAllGoods.jsp');">商品管理</a>
-                    </td> 
-                  </tr>                 
-				   <tr> 
-                    <td>
-                    	<div align="right">
-                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
-                    	</div>
-                    </td> 
-                    <td>
-                    	<a href="<%=basePath%>findAll.action" target="main" onClick="jsgoto('<%=basePath%>/seller/findAllSeller.jsp');">商家管理</a>
-                    </td> 
-                  </tr>  
-                  <tr> 
-                    <td colspan="2"  height="10"></td> 
-                  </tr> 
-                </table> 
-              </div></td> 
-          </tr> 
-		  
-		  
-		  <!--需要修改4个id和两个div的id--> 
-          <tr> 
-            <td height="8"></td> 
-          </tr> 
-         
-          <tr> 
-            <td height="8"></td> 
-          </tr> 
-          <tr> 
-            <td>&nbsp;</td> 
-          </tr> 
-        </table></td> 
-    </tr> 
-  </table> 
-</form> 
+		  <table width="180" height="100%"  border="0" cellpadding="0" cellspacing="0"> 
+		    <tr> 
+		      <td valign="top" class="left"><table width="98%"  border="0" align="center" cellpadding="0" cellspacing="0"> 
+		          <tr> 
+		            <td  height="9"></td> 
+		          </tr> 
+		          <tr> 
+		            <td > 
+			            <table width="100%" cellspacing="0" cellpadding="0" border="0"> 
+			                <tr> 
+			                  <td  class="left1"> 
+			                  	<a id="exp52" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);" >
+			                  		<img id="exp5" alt="折叠" src="<%=basePath%>/image/qq_minimize.gif"  border="0">
+			                  	</a> 
+			                  	&nbsp;&nbsp;&nbsp;&nbsp;
+			                  	<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">系统管理</a>
+			                  	
+			                  </td> 
+			                </tr> 
+			              </table>
+		              </td> 
+		          </tr> 
+		          <tr> 
+		            <td class="left2" > <div id="hideTop1"  img="exp5" openAlt="折叠" closedAlt="展开"> 
+		                <table width="100%"  border="0" cellspacing="1" cellpadding="0"> 
+		                  
+		                  <tr> 
+		                    <td>
+		                    	<div align="right">
+		                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16"> 
+		                    	</div>
+		                    </td> 
+		                    <td>
+		                    	<a href="<%=basePath%>/system/left.jsp" onClick="gotoUsers();">用户管理</a>
+		                    </td> 
+		                  </tr> 
+						  <tr> 
+		                    <td>
+		                    	<div align="right">
+		                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
+		                    	</div>
+		                    </td> 
+		                    <td>
+		                    	<a href="<%=basePath%>/system/left.jsp" onClick="gotogoods();">商品管理</a>
+		                    </td> 
+		                  </tr>                 
+						   <tr> 
+						   		<td>
+			                    	<div align="right">
+			                    		<img src="<%=basePath%>/image/dot1.gif" width="13" height="16">
+			                    	</div>
+			                    </td> 
+		                    <td>
+		                    	<a href="<%=basePath%>/system/left.jsp" onClick="gotoseller();">商家管理</a>
+		                    </td> 
+		                  </tr>  
+		                  <tr> 
+		                    <td colspan="2"  height="10"></td> 
+		                  </tr> 
+		                </table> 
+		              </div>
+		            </td> 
+		          </tr> 
+		        </table></td> 
+		    </tr> 
+		  </table> 
+	</form> 
   </body>
 </html>
-
-<SCRIPT LANGUAGE="javascript">
-</SCRIPT>

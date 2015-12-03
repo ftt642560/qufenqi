@@ -25,8 +25,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <SCRIPT language=JavaScript>
-	function  Content(){
-	parent.main.location="<%=basePath%>/system/main.jsp";
+  
+	function gotoGoodsOfSeller(){
+		document.idFrmMain.action="<%=basePath%>/findGoodsBySeller.action";
+		document.idFrmMain.target = "main";
+		document.idFrmMain.submit();
 	}
 	function jsgoto(surl){
 		document.idFrmMain.action = surl;
@@ -34,14 +37,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		document.idFrmMain.submit();
 	}
 	
-	function gotoclothing(){
-			document.idFrmMain.action="<%=basePath%>/zlinclothing/findallclothing.action";
+	function gotoOnShelf(){
+			document.idFrmMain.action="<%=basePath%>/OnShelf.action";
 			document.idFrmMain.target = "main";
 			document.idFrmMain.submit();
 		}
 		
-	function gotostore(){
-		document.idFrmMain.action="<%=basePath%>/zlinstore/findallstore.action";
+	function gotoUnderShelf(){
+		document.idFrmMain.action="<%=basePath%>/UnderShelf.action";
 			document.idFrmMain.target = "main";
 			document.idFrmMain.submit();
 	}
@@ -63,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   		<img id="exp5" alt="折叠" src="<%=basePath%>/image/qq_minimize.gif"  border="0">
                   	</a> 
                   	&nbsp;&nbsp;&nbsp;&nbsp;
-                  	<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">商品管理</a>
+                  	<a id="exp51" title="折叠" href="javascript:widgets.ToggleWidget(hideTop1);">商家商品管理</a>
                   </td> 
                 </tr> 
               </table></td> 
@@ -74,15 +77,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   
                   <tr> 
                     <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="<%=basePath%>/system/left.jsp" onClick="jsgoto('<%=basePath%>/system/USER1001.jsp');">用户管理</a></td> 
+                    <td><a href="<%=basePath%>/goods/left.jsp" onClick="gotoGoodsOfSeller();">商家查询</a></td> 
                   </tr> 
 				  <tr> 
                     <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="<%=basePath%>/system/left.jsp" onClick="gotoclothing();">货号</a></td> 
+                    <td><a href="<%=basePath%>/goods/left.jsp" onClick="gotoOnShelf();">上架商家</a></td> 
                   </tr>                 
 				   <tr> 
                     <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="<%=basePath%>/system/left.jsp" onClick="gotostore();">仓库</a></td> 
+                    <td><a href="<%=basePath%>/goods/left.jsp" onClick="gotoUnderShelf();">下架商品</a></td> 
                   </tr>  
                   <tr> 
                     <td colspan="2"  height="10"></td> 

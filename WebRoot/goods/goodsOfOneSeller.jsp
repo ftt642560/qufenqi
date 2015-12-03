@@ -130,14 +130,15 @@
 			  			<td  width="100%" colspan="1">
 			  				<table  border="0" cellspacing="1" cellpadding="2" width="100%">
 				  				<tr>
-									<td  width="9%"  class="headerbar82">序号</td>
+									<td  width="5%"  class="headerbar82">序号</td>
 									<td  width="9%"  class="headerbar82">商品名</td>
 									<td  width="9%" class="headerbar82">品牌</td>
 									<td  width="9%" class="headerbar82">类型</td>					
 									<td  width="9%" class="headerbar82">大小</td>
-									<td  width="9%" class="headerbar82">颜色</td>
+									<td  width="7%" class="headerbar82">颜色</td>
 									<td  width="9%" class="headerbar82">材料</td>
-									<td  width="9%" class="headerbar82">库存量</td>
+									<td  width="7%" class="headerbar82">库存量</td>
+									<td  width="9%" class="headerbar82">价格</td>
 									<td  width="9%" class="headerbar82">权重</td>
 									<td  width="11%" class="headerbar82">状态(1:已上架 0:未上架)</td>
 									<td  class="headerbar82">删除</td>	
@@ -150,8 +151,8 @@
 											<td class="gridbar11" align="center">${goodsId }</td>
 											<td class="gridbar11" align="center">${goodsName }</td>
 											<td class="gridbar11" align="center">${brand }</td>
-											<td class="gridbar11" align="center">${name }</td>
 											<td class="gridbar11" align="center">${model }</td>
+											<td class="gridbar11" align="center">${size }</td>
 											<td class="gridbar11" align="center">${color }</td>
 											<td class="gridbar11" align="center">${material }</td>
 											<td class="gridbar11" align="center">${storeNum }</td>
@@ -205,15 +206,15 @@
 	        </s:if>
 	        
 	        <s:else>
-	            <a href="findAllUser.action">首页</a>
+	            <a href="findAllGoods.action">首页</a>
 	            &nbsp;
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	            <a href="findAllGoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 	        </s:else>
 	        	&nbsp;
 	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            <a href="findAllGoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 	            &nbsp;
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	            <a href="findAllGoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 	        </s:if>
 	        
 	        <s:else>

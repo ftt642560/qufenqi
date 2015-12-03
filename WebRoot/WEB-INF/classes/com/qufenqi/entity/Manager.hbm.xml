@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.qufenqi.entity.Manager" table="manager">
+	<class name="com.qufenqi.entity.Manager" table="manager" lazy="false">
 		<id name="managerId" type="java.lang.Integer">
 			<column name="managerId" />
 			<generator class="native" />
@@ -13,7 +13,7 @@
 			<column name="managerName" not-null="true" />
 		</property>
 		
-		<property name="password" type="java.lang.Integer">
+		<property name="password" type="string">
 			<column name="password" not-null="true" />
 		</property>	
 		

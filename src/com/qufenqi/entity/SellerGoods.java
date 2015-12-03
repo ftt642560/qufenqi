@@ -44,6 +44,15 @@ public class SellerGoods {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	@Override
+	public String toString() {
+		return "SellerGoods [id=" + id + ", quantity=" + quantity + ", seller="
+				+ seller + ", goods=" + goods + "]";
+	}
 	
+	/**
+	 * 自己加的
+	 */
 	
 }
