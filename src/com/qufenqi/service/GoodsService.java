@@ -55,4 +55,11 @@ public interface GoodsService {
      */
     //public List<SellerGoods> UserSearchGoods(String GoodsName);
     public PageBean UserSearchGoods(String GoodsName,int pageSize, int page);
+    
+    
+    /**
+     * 用户根据商品类型查找商品
+     * @param 商品类型
+     */
+    public PageBean UserSearchByType(String GoodsTypeName,int pageSize,int page);
 }

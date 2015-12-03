@@ -55,9 +55,11 @@
 			 <one-to-many class="com.qufenqi.entity.Order"/>
 		</set>
 		<many-to-one name="coupon" cascade="save-update" update="true" class="com.qufenqi.entity.Coupon" column="couponId"/>
-		<set name="sellergoods" lazy="true" inverse="true">
+		<set name="sellergoods" lazy="false" inverse="true">
 			<key column="goodsId" />
 			<one-to-many class="com.qufenqi.entity.SellerGoods"></one-to-many>
 		</set>
+		
+		<many-to-one name="goodstype" column="goodsTypeId" class="com.qufenqi.entity.GoodsType" lazy="false" />    
 	</class>
 </hibernate-mapping>

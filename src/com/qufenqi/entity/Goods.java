@@ -23,6 +23,15 @@ public class Goods {
 	private Set<Order> orders = new HashSet<Order>();
 	private Set<SellerGoods> sellergoods;//商家和商品表关联中间表:sellergoods，多对多，转成两个1对多
 	private Coupon coupon;
+	private GoodsType goodstype;
+	
+	
+	public GoodsType getGoodstype() {
+		return goodstype;
+	}
+	public void setGoodstype(GoodsType goodstype) {
+		this.goodstype = goodstype;
+	}
 	public Coupon getCoupon() {
 		return coupon;
 	}

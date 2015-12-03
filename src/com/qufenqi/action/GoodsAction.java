@@ -2,12 +2,14 @@ package com.qufenqi.action;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.SellerGoods;
 import com.qufenqi.service.impl.GoodsServiceImpl;
@@ -26,7 +28,32 @@ public class GoodsAction {
 	public String goodsName;//前台与后台关联的商品名
 	public String goodsId;//前后台关联的ID，从前台传过来的数据为String类型
 	public List<SellerGoods> l_sellergoods;//商家商品中间表
+	public String goodsTypeName; //商品类型名
+	public List<GoodsType> l_ofgoodsType;//商品类型链表
 	
+	
+
+
+	public List<GoodsType> getL_ofgoodsType() {
+		return l_ofgoodsType;
+	}
+
+
+	public void setL_ofgoodsType(List<GoodsType> l_ofgoodsType) {
+		this.l_ofgoodsType = l_ofgoodsType;
+	}
+
+
+	public String getGoodsTypeName() {
+		return goodsTypeName;
+	}
+
+
+	public void setGoodsTypeName(String goodsTypeName) {
+		this.goodsTypeName = goodsTypeName;
+	}
+
+
 	public List<SellerGoods> getL_sellergoods() {
 		return l_sellergoods;
 	}
@@ -216,6 +243,7 @@ public class GoodsAction {
 		 int id=Integer.parseInt(testsellerid);
 		 System.out.println("商家查找商品信息，商家id="+id);
 		 //l_ofsellergoods=goodsserviceimpl.SellerSearchGoods(id);
+		 pageBean=null;
 		 pageBean = goodsserviceimpl.SellerSearchGoods(id, 5, page);
 		 l_ofsellergoods = pageBean.getList();
 		 System.out.println("商家查找商品，查找成功。。");
@@ -229,7 +257,7 @@ public class GoodsAction {
 		 for(int i=0;i<l_ofsellergoods.size();i++)
 			{
 				System.out.println("sellerquerygoods.action======l_ofsellergoods[i]="+l_ofsellergoods.get(i).getGoods().getGoodsName());
-				
+				System.out.println("查找出来的商品类型======l_offsellergoods[i].goodstype=="+l_ofsellergoods.get(i).getGoods().getGoodstype().getGoodsTypeName());
 			}
 		 return "success";
 		 
@@ -262,6 +290,31 @@ public class GoodsAction {
 //			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
 //		 }
 		 return "success";
+	 }
+	 
+	 
+	 //用户根据商品类型名查找商品
+	 public String UserSearchByType()
+	 {
+		//分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
+		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 5, page);
+		List<GoodsType> l_goodstype = pageBean.getList();
+
+				
+		for(int i=0;i<l_goodstype.size();i++)
+		{
+			Set<Goods> s_goods = l_goodstype.get(i).getGoods();//一个商品类型的所有商品，
+			List<Goods> l_temp1 = new ArrayList<Goods>(s_goods); //将查找到的相应的商品集合转成List类型
+			System.out.println("l_goodsType.typename="+l_goodstype.get(i).getGoodsTypeName());
+			for(int j=0;j<l_temp1.size();j++)
+			{
+				List<SellerGoods> l_temp2 = new ArrayList<SellerGoods>(l_temp1.get(j).getSellergoods()); //一个商品对应的多个商家			
+				System.out.println("l_temp2=="+l_temp2.get(j).getSeller().getSellerName());
+				l_sellergoods.add(l_temp2.get(j));//把一个商品的商家商品信息放入到链表中，在前台可以通过这个链表查找出所有的信息
+				System.out.println("商品的信息==="+l_temp2.get(j).getGoods().getGoodsName()+" ===所属商家=="+l_temp2.get(j).getSeller().getSellerName());
+			}
+		}
+		return "success";
 	 }
 	
 	

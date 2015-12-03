@@ -185,5 +185,10 @@
 			<result name="success">/test_usersearchgoods.jsp</result>
 		</action>
 		
+		<!-- 用户按照商品类型查找商品，在不同的商家商家所卖的同一种类型商品，其商品不同 -->
+		<action name="usersearchbytypename" class="goodsAction" method="UserSearchByType">
+			<result name="success">/test_usersearchgoods.jsp</result>
+		</action>
+		
 	</package>
 </struts>    
