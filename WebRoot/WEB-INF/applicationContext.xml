@@ -43,6 +43,7 @@
 				<value>com/qufenqi/entity/Delivery.hbm.xml</value>
 				<value>com/qufenqi/entity/Manager.hbm.xml</value>
 				<value>com/qufenqi/entity/SellerGoods.hbm.xml</value>
+				<value>com/qufenqi/entity/SellerGoodsImages.hbm.xml</value>
 			</list>
 		</property>
 		
@@ -71,6 +72,7 @@
 	<bean id="goodsType" class="com.qufenqi.entity.GoodsType"></bean>
 	<bean id="seller" class="com.qufenqi.entity.Seller"></bean>
 	<bean id="sellergoods" class="com.qufenqi.entity.SellerGoods"></bean>
+	<bean id="sellergoodsimages" class="com.qufenqi.entity.SellerGoodsImages"></bean>
 	<!-- 定义DAO： -->  
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>

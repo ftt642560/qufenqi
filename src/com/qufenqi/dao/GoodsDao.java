@@ -39,10 +39,10 @@ public interface GoodsDao {
 	/**
 	 * 商家查找属于他自己的商品信息
 	 * @param 商家ID
-	 * @return List<Goods>
+	 * @return List<SellerGoods>
 	 * 
 	 */
-	public List<Goods> SellerQueryAllGoods(int sellerid);
+	public List<SellerGoods> SellerQueryAllGoods(int sellerid);
 	
 	/**
 	 * 用户按关键字查找商品

@@ -38,15 +38,15 @@ public class GoodsAction {
 
 	//----------------------测试属性------------------
 	public String testsellerid;//前台用来测试--商家查找属于它自己的商品信息
-	public List<Goods> l_ofsellergoods;//商家的商品列表
+	public List<SellerGoods> l_ofsellergoods;//商家的商品列表
 	
 	
-	public List<Goods> getL_ofsellergoods() {
+	public List<SellerGoods> getL_ofsellergoods() {
 		return l_ofsellergoods;
 	}
 
 
-	public void setL_ofsellergoods(List<Goods> l_ofsellergoods) {
+	public void setL_ofsellergoods(List<SellerGoods> l_ofsellergoods) {
 		this.l_ofsellergoods = l_ofsellergoods;
 	}
 
@@ -216,9 +216,17 @@ public class GoodsAction {
 		 int id=Integer.parseInt(testsellerid);
 		 System.out.println("商家查找商品信息，商家id="+id);
 		 l_ofsellergoods=goodsserviceimpl.SellerSearchGoods(id);
-		 for(int i=0;i<l_goods.size();i++)
+		 System.out.println("商家查找商品，查找成功。。");
+		 if(l_sellergoods.size() ==0)
+			 System.out.println("l_sellergoods is null");
+		 else
+		 {
+			 System.out.println("l_sellergoods is not null===l_sellergoods.size()"+l_sellergoods.size());
+		 }
+		 
+		 for(int i=0;i<l_ofsellergoods.size();i++)
 			{
-				System.out.println("sellerquerygoods.action======l_ofsellergoods[i]="+l_ofsellergoods.get(i).getGoodsName());
+				System.out.println("sellerquerygoods.action======l_ofsellergoods[i]="+l_ofsellergoods.get(i).getGoods().getGoodsName());
 				
 			}
 		 return "success";

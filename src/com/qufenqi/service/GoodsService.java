@@ -36,7 +36,7 @@ public interface GoodsService {
 	 * @return 商品列表
 	 * 
 	 */
-	public List<Goods> SellerSearchGoods(int sellerId);
+	public List<SellerGoods> SellerSearchGoods(int sellerId);
 	
 	
 	

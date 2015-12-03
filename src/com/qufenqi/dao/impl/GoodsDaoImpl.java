@@ -102,26 +102,28 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	 * 
 	 */
 	@Override
-	public List<Goods> SellerQueryAllGoods(int sellerid)
+	//public List<Goods> SellerQueryAllGoods(int sellerid)
+	public List<SellerGoods> SellerQueryAllGoods(int sellerid)
 	{
-		List<Goods> l_goods = new ArrayList<Goods>();
+//		List<Goods> l_goods = new ArrayList<Goods>();
 		String sql="from SellerGoods as sellergoods where sellergoods.seller.sellerId="+sellerid;//查找商家商品表
 		List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
 		l_sellergoods = this.getHibernateTemplate().find(sql);
 		for(int i=0;i<l_sellergoods.size();i++)
 		{
-				System.out.println("商家查找属于它的商品信息---l_sellergoods[i].goodsid==="+l_sellergoods.get(i).getGoods().getGoodsId());
-				Goods goods=l_sellergoods.get(i).getGoods();
-				l_goods.add(goods);
+				System.out.println("商家查找属于它的商品信息---l_sellergoods[i].goodsid==="+l_sellergoods.get(i).getGoods().getGoodsName());
+//				Goods goods=l_sellergoods.get(i).getGoods();
+//				l_goods.add(goods);
 		}
-		
-		System.out.println("商家查找属于它的商品信息--信息放入到l_goods链表里，循环输出l_goods");
-		for(int i=0;i<l_goods.size();i++)
-		{
-			System.out.println("l_goods[i]="+l_goods.get(i).getGoodsName());
-			
-		}
-		return l_goods;
+//		
+//		System.out.println("商家查找属于它的商品信息--信息放入到l_goods链表里，循环输出l_goods");
+//		for(int i=0;i<l_goods.size();i++)
+//		{
+//			System.out.println("l_goods[i]="+l_goods.get(i).getGoodsName());
+//			
+//		}
+//		return l_goods;
+		return l_sellergoods;
 		
 	}
 	

@@ -66,21 +66,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="logo">
 				<a href="index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
 			</div>
-			<div class="search">
-			  <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-			  <input type="submit" value="">
-			  
-			<nav id="navigation">
-			  <ul>
-			        <li class="hotSearchings"><a href="">iphone 7</a></li>
-					<li><a href="">魅族</a></li>
-					<li><a href="">华为</a></li>
-					<li><a href="">小米</a></li>
-					<li><a href="">运动户外</a></li>
-					
-			  </ul>
-			  </nav>
-	  		</div>
+			
+			<script language="javascript">
+				function searchGoods()
+				{
+					var targetForm = document.forms[0];
+					targetForm.action="<%=basePath%>goods/usersearchgoods.action";
+				}
+			</script>
+			
+			<form method="post" action="" >
+				<div class="search">
+				  <input type="text" value="" name="goodsName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+				  <input type="submit" value="" onClick="searchGoods();">
+
+
+					<nav id="navigation">
+				  	<ul>
+				        <li class="hotSearchings"><a href="">iphone 7</a></li>
+						<li><a href="">魅族</a></li>
+						<li><a href="">华为</a></li>
+						<li><a href="">小米</a></li>
+						<li><a href="">运动户外</a></li>
+				 	 </ul>
+				 	 </nav>
+		  		</div>
+	  		</form>
+	  		
+	  		
 	  		<div class="2D-code">
 				<a href="index.jsp"><img src="<%=basePath%>image/2D-code.jpg" alt=""/></a>
 			</div>

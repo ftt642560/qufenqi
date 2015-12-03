@@ -47,16 +47,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<s:iterator value="l_ofsellergoods" id="l_ofsellergoods" status="status">
 				<tr>
-					<td align="center"><s:property value="#l_ofsellergoods.goodsId"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.goods.goodsId"/></td>
 					<td>
-						<s:property value="#l_ofsellergoods.goodsName" ></s:property>
+						<s:property value="#l_ofsellergoods.goods.goodsName" ></s:property>
 					</td>
-					<td align="center"><s:property value="#l_ofsellergoods.brand"/></td>
-					<td align="center"><s:property value="#l_ofsellergoods.model"/></td>
-					<td align="center"><s:property value="#l_ofsellergoods.size"/></td>
-					<td align="center"><s:property value="#l_ofsellergoods.color"/></td>
-					<td align="center"><s:property value="#l_ofsellergoods.material"/></td>
-					<td align="center"><s:property value="#l_ofsellergoods.storeNum"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.goods.brand"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.goods.model"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.goods.size"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.goods.color"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.goods.material"/></td>
+					<td align="center"><s:property value="#l_ofsellergoods.quantity"/></td>
 				</tr>
 			</s:iterator>
 		</table>

@@ -109,16 +109,18 @@ public class GoodsServiceImpl implements GoodsService {
 	 * 
 	 */
 	@Override
-	public List<Goods> SellerSearchGoods(int sellerId)
+	public List<SellerGoods> SellerSearchGoods(int sellerId)
 	{
-		List<Goods> l_goods=new ArrayList<Goods>();
-		l_goods=goodsDaoImpl.SellerQueryAllGoods(sellerId);
-		for(int i=0;i<l_goods.size();i++)
+//		List<Goods> l_goods=new ArrayList<Goods>();
+//		l_goods=goodsDaoImpl.SellerQueryAllGoods(sellerId);
+		List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
+		l_sellergoods = goodsDaoImpl.SellerQueryAllGoods(sellerId);
+		for(int i=0;i<l_sellergoods.size();i++)
 		{
-			System.out.println("====sellersearchgoods-----l_goods[i]="+l_goods.get(i).getGoodsName());
+			System.out.println("====sellersearchgoods-----l_goods[i]="+l_sellergoods.get(i).getGoods().getGoodsName());
 			
 		}
-		return l_goods;
+		return l_sellergoods;
 	}
 
 	
