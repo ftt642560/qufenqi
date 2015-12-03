@@ -6,6 +6,7 @@ import java.util.List;
 import com.qufenqi.dao.PageBaseDao;
 import com.qufenqi.dao.impl.GoodsDaoImpl;
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.SellerGoods;
 import com.qufenqi.entity.User;
@@ -237,5 +238,39 @@ public class GoodsServiceImpl implements GoodsService {
 //    	
 //    }
 	
+    /**
+     * 用户根据商品类型查找商品
+     * @param 商品类型名称
+     */
+    public PageBean UserSearchByType(String GoodsTypeName,int pageSize,int page)
+    {
+       	System.out.println("goodsservice===分页==== 用户根据商品类型查找商品");
+    	
+    		String hql = "";
+    		hql = "from GoodsType as goodstype where goodstype.goodsTypeName like '%"+GoodsTypeName+"%'";
+    	//查询语句
+    	//查询数据库中一共有多少条记录
+    	int allRow = pageBaseDao.getAllRowCount(hql);
+    	//查询总页数
+    	int totalPage = PageBean.countTotalPage(pageSize, allRow);
+    	//当前页的开始记录
+    	final int offset = PageBean.countOffset(pageSize, page);
+    	//每页的记录数
+    	final int length = pageSize;
+    	//获得当前页
+    	final int currentPage = PageBean.countCurrentPage(page);
+    	//一页的记录
+    	 List<GoodsType> list = pageBaseDao.queryForPage(hql, offset, length);
+    	 //把分页信息保存到Bean中
+         PageBean pageBean = new PageBean();
+         pageBean.setPageSize(pageSize);    
+         pageBean.setCurrentPage(currentPage);
+         pageBean.setAllRow(allRow);
+         pageBean.setTotalPage(totalPage);
+         pageBean.setList(list);
+         pageBean.init();
+    	 return pageBean;
+    	
+    }
 	
 }

@@ -14,11 +14,11 @@
 			<column name="goodsTypeName" length="255" not-null="true" />
 		</property>
 		
-		<set name="goods" cascade="save-update">
+		<set name="goods" cascade="save-update" inverse="true" lazy="false">
             <key>
                 <column name="goodsTypeId" />
             </key>
-            <one-to-many class="com.qufenqi.entity.Goods" />
+            <one-to-many class="com.qufenqi.entity.Goods"  />
         </set>
 	</class>
 </hibernate-mapping>
