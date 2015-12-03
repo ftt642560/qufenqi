@@ -109,19 +109,50 @@ public class GoodsServiceImpl implements GoodsService {
 	 * 
 	 */
 	@Override
-	public List<SellerGoods> SellerSearchGoods(int sellerId)
+	public PageBean SellerSearchGoods(int sellerID,int pageSize, int page)
 	{
-//		List<Goods> l_goods=new ArrayList<Goods>();
-//		l_goods=goodsDaoImpl.SellerQueryAllGoods(sellerId);
-		List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
-		l_sellergoods = goodsDaoImpl.SellerQueryAllGoods(sellerId);
-		for(int i=0;i<l_sellergoods.size();i++)
-		{
-			System.out.println("====sellersearchgoods-----l_goods[i]="+l_sellergoods.get(i).getGoods().getGoodsName());
-			
-		}
-		return l_sellergoods;
+		String hql = "";
+		hql ="from SellerGoods as sellergoods where sellergoods.seller.sellerId="+sellerID;//查找商家商品表
+	//查询语句
+	//查询数据库中一共有多少条记录
+	int allRow = pageBaseDao.getAllRowCount(hql);
+	//查询总页数
+	int totalPage = PageBean.countTotalPage(pageSize, allRow);
+	//当前页的开始记录
+	final int offset = PageBean.countOffset(pageSize, page);
+	//每页的记录数
+	final int length = pageSize;
+	//获得当前页
+	final int currentPage = PageBean.countCurrentPage(page);
+	//一页的记录
+	List<SellerGoods> list  = pageBaseDao.queryForPage(hql, offset, length);
+	 
+	 //把分页信息保存到Bean中
+     PageBean pageBean = new PageBean();
+     pageBean.setPageSize(pageSize);    
+     pageBean.setCurrentPage(currentPage);
+     pageBean.setAllRow(allRow);
+     pageBean.setTotalPage(totalPage);
+     pageBean.setList(list);
+     pageBean.init();
+	 return pageBean;
+		
 	}
+	
+//	//未分页
+//	public List<SellerGoods> SellerSearchGoods(int sellerId)
+//	{
+////		List<Goods> l_goods=new ArrayList<Goods>();
+////		l_goods=goodsDaoImpl.SellerQueryAllGoods(sellerId);
+//		List<SellerGoods> l_sellergoods = new ArrayList<SellerGoods>();
+//		l_sellergoods = goodsDaoImpl.SellerQueryAllGoods(sellerId);
+//		for(int i=0;i<l_sellergoods.size();i++)
+//		{
+//			System.out.println("====sellersearchgoods-----l_goods[i]="+l_sellergoods.get(i).getGoods().getGoodsName());
+//			
+//		}
+//		return l_sellergoods;
+//	}
 
 	
 	

@@ -215,7 +215,9 @@ public class GoodsAction {
 		 System.out.println("seller search goods");
 		 int id=Integer.parseInt(testsellerid);
 		 System.out.println("商家查找商品信息，商家id="+id);
-		 l_ofsellergoods=goodsserviceimpl.SellerSearchGoods(id);
+		 //l_ofsellergoods=goodsserviceimpl.SellerSearchGoods(id);
+		 pageBean = goodsserviceimpl.SellerSearchGoods(id, 5, page);
+		 l_ofsellergoods = pageBean.getList();
 		 System.out.println("商家查找商品，查找成功。。");
 		 if(l_sellergoods.size() ==0)
 			 System.out.println("l_sellergoods is null");
