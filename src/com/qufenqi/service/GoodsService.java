@@ -36,8 +36,8 @@ public interface GoodsService {
 	 * @return 商品列表
 	 * 
 	 */
-	public List<SellerGoods> SellerSearchGoods(int sellerId);
-	
+	//public List<SellerGoods> SellerSearchGoods(int sellerId);
+	public PageBean SellerSearchGoods(int sellerID,int pageSize, int page);
 	
 	
 	/**

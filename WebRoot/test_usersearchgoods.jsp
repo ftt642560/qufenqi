@@ -76,15 +76,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </s:if>
 	        
 	        <s:else>
-	            <a href="findAllUser.action">首页</a>
+	            <a href="usersearchgoods.action">首页</a>
 	            &nbsp;
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 	        </s:else>
 	        	&nbsp;
 	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 	            &nbsp;
-	            <a href="findAllUser.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 	        </s:if>
 	        
 	        <s:else>
