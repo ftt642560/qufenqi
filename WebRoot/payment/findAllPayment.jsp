@@ -145,7 +145,7 @@ function goSearch(){
     	<FORM ID="userForm" method="post"  action=""  >
           <table border=0 cellspacing=0 cellpadding=2 width="100%" bgcolor="gray">
 			<tr>
-				<td class="headerbar61">用户明细查询</td>
+				<td class="headerbar61">查询</td>
 				<td class="headerbar61"><p align="right"><input type="button" value=" 查 询 " onClick="goSearch();"></p></td>
 			</tr>
   </table>

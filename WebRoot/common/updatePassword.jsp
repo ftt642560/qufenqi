@@ -54,13 +54,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				  return false; 
 			}
 			$.ajax({  
-		        url : "<%=basePath%>modifySeller.action?user.usercode="+$("#usercode").val(),  
+		        url : "<%=basePath%>modifySeller.action",  
 		        type : "POST",
 		        data:$("#modifyPwd").serialize(),
 		        success : function(data) {
 					alert(data.result);
-					if(data.result!="旧密码或者登录账号不正确")
-						location.href="<%=basePath%>/system/USER1001.jsp";
+					if(data.result!=1)
+						location.href="<%=basePath%>/system/index.jsp";
 					
 		        },
 		        error:function(){
@@ -88,30 +88,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td></td>
 				</tr>
 				</table>
-				<input type="hidden" id="userid" name="seller.sellerId"/>
 				<table border=0 cellspacing=1 cellpadding=2 width="100%" bgcolor="gray">
-				<tr>
-					<td class="textbar81" width="15%">旧密码</td>
-					<td class="textbar01" width="85%">
-						<input type="password" id="password0" name="oldPassword" size="30" >
-						<span id="password0Span"></span>
-					</td>				
-				</tr>	
-				<tr>
-					<td class="textbar81" width="15%">新密码</td>
-					<td class="textbar01" width="85%">
-						<input type="password" id="password1" size="30" >
-						<span id="password1Span"></span>
-					</td>				
-				</tr>	
-				<tr>
-					<td class="textbar81" width="15%">确认密码</td>
-					<td class="textbar01" width="85%">
-						<input type="password" id="password2" name="seller.sellerPassword" size="30" >
-						<span id="password2Span"></span>
-					</td>				
-				</tr>			
-			</table>
+					<tr>
+						<td class="textbar81" width="15%">旧密码</td>
+						<td class="textbar01" width="85%">
+							<input type="password" id="password0" name="oldPassword" size="30" >
+							<span id="password0Span"></span>
+						</td>				
+					</tr>	
+					<tr>
+						<td class="textbar81" width="15%">新密码</td>
+						<td class="textbar01" width="85%">
+							<input type="password" id="password1" size="30" >
+							<span id="password1Span"></span>
+						</td>				
+					</tr>	
+					<tr>
+						<td class="textbar81" width="15%">确认密码</td>
+						<td class="textbar01" width="85%">
+							<input type="password" id="password2" name="seller.sellerPassword" size="30" >
+							<span id="password2Span"></span>
+						</td>				
+					</tr>			
+				</table>
 	
 		</FORM>
   </body>

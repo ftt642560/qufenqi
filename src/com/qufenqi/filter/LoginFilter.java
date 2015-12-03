@@ -34,20 +34,22 @@ public class LoginFilter extends HttpServlet implements Filter{
 		if(url.equals("")){
 			url+="/";
 		}
-//		if((url.startsWith("/")&&!url.startsWith("/login")&&!url.startsWith("/register"))){//若访问后台资源 过滤到login    
+//		//首先判断是否是除前台页面的注册页面，登陆页面，如果是就判断User是否为空，如果为空，就不允许登录，跳到登录页面
+//		if((url.startsWith("/")&&!url.startsWith("/login_1")&&!url.startsWith("/register"))){//若访问后台资源 过滤到login    
 //			User user = (User) session.getAttribute("user");
 //			if(user == null){
 //				response.sendRedirect(contextPath+"/login.jsp");
 //				return;
 //			}
 //		}
-		if((url.startsWith("/")&&!url.startsWith("/stock/register") && !url.startsWith("/login"))){//若访问后台资源 过滤到login    
-			Seller seller = (Seller) session.getAttribute("seller");
-			if(seller == null){
-				response.sendRedirect(contextPath+"/login.jsp");
-				return;
-			}
-		}
+//		//后台登录的时候，如果不是注册页面登录页面，就判断Seller是否为空（前提是商家已经是用户）
+//		if((url.startsWith("/")&&!url.startsWith("/stock/register") && !url.startsWith("/login"))){//若访问后台资源 过滤到login    
+//			Seller seller = (Seller) session.getAttribute("seller");
+//			if(seller == null){
+//				response.sendRedirect(contextPath+"/login.jsp");
+//				return;
+//			}
+//		}
 		filterChain.doFilter(request, response);
 	}
 

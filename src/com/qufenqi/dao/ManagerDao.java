@@ -1,13 +1,18 @@
 package com.qufenqi.dao;
+import java.util.List;
+
 import com.qufenqi.entity.Manager;
 
 	
 	public interface ManagerDao{
-	    //新增管理员
-		public void save(Manager manager);
-		//id更改管理员
-		public void save(String sql);
-		//删除管理员
-		public void delete(int id);
+		
+		public Manager get(int sellerId);
+		
+		public Integer save(Manager manager);
+		
+		public List<Manager> find(String managerName); 
+		
+		void delete(long id);
+		
 }
 

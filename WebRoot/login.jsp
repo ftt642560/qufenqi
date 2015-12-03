@@ -72,12 +72,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div id="mess" style="visibility: visible;">${requestScope.mess }</div>
 	</s:if>
 	<form id="loginForm" method="post" action="">
-		用户名:<input name="seller.sellerName" id="usercode" type="text" size="10">
+		用户名:<input name="loginName" id="usercode" type="text" size="10">
 		<span id="userDiv" class="style"></span>
 		<br><br>
-	   	密 &nbsp;&nbsp;码:<input name="seller.sellerPassword" id="password" type="password" size="10">
+	   	密 &nbsp;&nbsp;码:<input name="password" id="password" type="password" size="10">
 	   	<span id="pswDiv" class="style"></span>
 	   	<br><br>
+	   	管理员:<input type="radio" name="role" value="0"/> &nbsp;&nbsp;
+	   	商家:<input type="radio" name="role" value="1"><br><br>
 	    <input name="<%=basePath%>imageField" type="submit" onclick="login()" value="登录" alt="登录" width="42" height="32" border="0" >
 	     &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
 	    <input name="<%=basePath%>imageField" type="submit" onclick="register()" value="注册" alt="注册" width="42" height="32" border="0" >

@@ -67,37 +67,39 @@ public class SellerServiceImpl implements SellerService{
 	}
 	@Override
 	public int login(Seller seller) {
+		System.out.println("商家的登录的业务逻辑");
 		String sellerName = seller.getSellerName();
-		System.out.println(MD5.getMD5("627"));
+		System.out.println(MD5.getMD5("216"));
 		String sellerPassword = MD5.getMD5(seller.getSellerPassword());
 		System.out.println(sellerPassword);
 		//根据用户名查询数据库中的用户信息
 		List<Seller> sellerList = sellerBaseDao.find(sellerName);
+		System.out.println("sellerList.size()=="+sellerList.size());
 		if(sellerList.size() == 0){
-			return 4;
+			return 2;
 		}
 		String password = sellerList.get(0).getSellerPassword();
 		if(!password.equals(sellerPassword)){
-			return 3;
-		}
-		int role = sellerList.get(0).getRole();
-		if(role == 1){
-			System.out.println("说明该商家登录成功");
 			return 1;
-		}if(role == 2){
-			System.out.println("说明该管理员登录成功");
-			return 2;
 		}
-		return 0;
+		if(password.equals(sellerPassword)){
+			return 0;
+		}
+		return -1;
 	}
 	@Override
-	public boolean modify(String sellerPsw) {
-		int i = sellerDao.updateSelf(sellerPsw);
-		System.out.println("i====="+i);
-		if(i > 0){
-			return true;
+	public boolean modifyPassword(String oldPassword, String newPassword,String name) {
+		
+		System.out.println("modify");
+		String sql = "select count(*) from Seller as s where s.sellerPassword='"+MD5.getMD5(oldPassword)+"' and s.sellerName="+name;
+		int counts = sellerDao.count(sql); 
+		boolean b = false;
+		if(counts>0){
+			String sql1 = "update seller set sellerPassword='"+MD5.getMD5(newPassword)+"' where sellerName="+name;
+			sellerBaseDao.save(sql1);
+			b = true;
 		}
-		return false;
+		return b ;
 	}
 	/**
      * 分页查询
@@ -105,14 +107,10 @@ public class SellerServiceImpl implements SellerService{
      * @param pageSize 每页大小
      * @return 封闭了分页信息(包括记录集list)的Bean
      */
-	public PageBean queryForPage(Seller seller, int pageSize, int page) {
+	public PageBean queryForPage(int pageSize, int page) {
+		System.out.println("sellerService 进来了");
 		String hql = "";
-		if(seller == null){
-			hql = "from Seller"; 
-		}else{
-			String sellerName = seller.getSellerName();
-			hql = "from Seller as seller where seller.sellerName = '"+ sellerName +"'";
-		}
+		hql = "from Seller"; 
 		//查询语句
 		//查询数据库中一共有多少条记录
 		int allRow = pageBaseDao.getAllRowCount(hql);
@@ -128,7 +126,7 @@ public class SellerServiceImpl implements SellerService{
 		 List<User> list = pageBaseDao.queryForPage(hql, offset, length);
 		 //把分页信息保存到Bean中
 	     PageBean pageBean = new PageBean();
-	     pageBean.setPageSize(pageSize);    
+	     pageBean.setPageSize(pageSize);  
 	     pageBean.setCurrentPage(currentPage);
 	     pageBean.setAllRow(allRow);
 	     pageBean.setTotalPage(totalPage);
@@ -136,5 +134,47 @@ public class SellerServiceImpl implements SellerService{
 	     pageBean.init();
 		 return pageBean;
 	}
-	
+	@Override
+	public void delete(int sellerId) {
+		sellerBaseDao.delete(sellerId);
+	}
+	@Override
+	public PageBean queryForPageCondition(String sellerName, int pageSize ,int page) {
+		String hql = "";
+		if(sellerName.trim().equals("")){
+			hql = "from Seller";
+		}else{
+			hql = "from Seller as s where s.sellerName = '"+sellerName+"'";
+		}
+		//查询语句
+		//查询数据库中一共有多少条记录
+		int allRow = pageBaseDao.getAllRowCount(hql);
+		//查询总页数
+		int totalPage = PageBean.countTotalPage(pageSize, allRow);
+		//当前页的开始记录
+		final int offset = PageBean.countOffset(pageSize, page);
+				//每页的记录数
+		final int length = pageSize;
+				//获得当前页
+		final int currentPage = PageBean.countCurrentPage(page);
+				//一页的记录
+		List<User> list = pageBaseDao.queryForPage(hql, offset, length);
+				 //把分页信息保存到Bean中
+		PageBean pageBean = new PageBean();
+		pageBean.setPageSize(pageSize);  
+		pageBean.setCurrentPage(currentPage);
+		pageBean.setAllRow(allRow);
+		pageBean.setTotalPage(totalPage);
+		pageBean.setList(list);
+		pageBean.init();
+		return pageBean;
+	}
+	@Override
+	public Seller find(String sellerName) {
+		List<Seller> list = sellerBaseDao.find(sellerName);
+		if(list.size() != 0){
+			return list.get(0);
+		}
+		return null;
+	}
 }

@@ -108,8 +108,4 @@ public class Goods {
 	public void setOrders(Set<Order> orders) {
 		this.orders = orders;
 	}
-	
-	
-	
-	
 }

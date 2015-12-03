@@ -60,4 +60,8 @@ public class SellerBaseDao extends HibernateDaoSupport{
 	public List<Seller> findByEmail(String email){
 		return getHibernateTemplate().find("from Seller as seller where seller.email= '"+ email +"'");
 	}
+	
+	public void save(String sql) {
+		this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery(sql).executeUpdate();
+	}
 }

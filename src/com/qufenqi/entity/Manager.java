@@ -7,7 +7,7 @@ public class Manager
 {
 	private int managerId;//����ԱID
 	private String managName;//��½����
-	private int password;//����
+	private String password;//����
 	private String name;//����Ա����
 	private int telephone;//����Ա���֤
 	private int idCard;//�û����
@@ -27,10 +27,10 @@ public class Manager
 	public void setManagName(String managName) {
 		this.managName = managName;
 	}
-	public int getPassword() {
+	public String getPassword() {
 		return password;
 	}
-	public void setPassword(int password) {
+	public void setPassword(String password) {
 		this.password = password;
 	}
 	public String getName() {
@@ -76,6 +76,5 @@ public class Manager
 				+ telephone + ", idCard=" + idCard + ", email=" + email
 				+ ", role=" + role + "]";
 	}
-	
 
 }

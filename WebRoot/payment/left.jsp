@@ -75,16 +75,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                   
                   <tr> 
                     <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="<%=basePath%>/system/left.jsp" onClick="jsgoto('<%=basePath%>/system/USER1001.jsp');">用户管理</a></td> 
+                    <td><a href="<%=basePath%>/system/left.jsp" onClick="jsgoto('<%=basePath%>/system/USER1001.jsp');">订单</a></td> 
                   </tr> 
 				  <tr> 
-                    <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="<%=basePath%>/system/left.jsp" onClick="gotoclothing();">货号</a></td> 
+                    <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16">还款表</div></td> 
+                    <td><a href="<%=basePath%>/system/left.jsp" onClick="gotoclothing();"></a></td> 
                   </tr>                 
-				   <tr> 
-                    <td><div align="right"><img src="<%=basePath%>/image/dot1.gif" width="13" height="16"></div></td> 
-                    <td><a href="<%=basePath%>/system/left.jsp" onClick="gotostore();">仓库</a></td> 
-                  </tr>  
                   <tr> 
                     <td colspan="2"  height="10"></td> 
                   </tr> 

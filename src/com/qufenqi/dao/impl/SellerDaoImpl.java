@@ -38,5 +38,20 @@ public class SellerDaoImpl implements SellerDao {
 		session.close();
 		return i;
 	}
+	@Override
+	public int count(String queryString) {
+		Session session=null;
+		try{
+			 session=sessionFactory.openSession();
+			 Query query = session.createQuery(queryString.toString());
+			 return Integer.parseInt(query.list().iterator().next().toString());
+		}catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}finally{
+			session.flush();
+			session.close();
+		}
+	}
 
 }

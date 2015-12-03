@@ -14,13 +14,13 @@
 		<property name="telephone" type="long" column="telephone" not-null="true"/>
 		<property name="email" type="string" column="email" not-null="true"/>
 		<property name="role" type="integer" column="role" not-null="true"/>
-		<set name="orders" cascade="save-update" inverse="true">
+		<set name="orders" cascade="save-update" inverse="true" lazy="false">
 			<key column="sellerId"></key>
 			<one-to-many class="com.qufenqi.entity.Order"/>
 		</set>
 		<many-to-one name="manager" column="managerId" class="com.qufenqi.entity.Manager" lazy="false" cascade="save-update"></many-to-one>
-		
-		<set name="sellergoods" lazy="true" inverse="true">
+		<!-- lazy开始时true ftt改-->
+		<set name="sellergoods" lazy="false" inverse="true">
 			<key column="sellerId" />
 			<one-to-many class="com.qufenqi.entity.SellerGoods"></one-to-many>
 		</set>
