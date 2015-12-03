@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -28,6 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript" src="js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="<%=basePath%>js/responsiveslides.min.js"></script>
+<script src="<%=basePath%>js/index.js"></script>
 <script>
     $(function () {
       $("#slider").responsiveSlides({
@@ -50,9 +52,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="user-login.jsp">登录</a></li> 
-					<li><a href="register.jsp">注册</a></li>
-					<li><a href="personal center.jsp">个人中心</a></li> 
+					<li id="loginLi" style="color: #fff ; font-size: 13px; ">
+						
+						<s:if test="#session.user == null">
+							未登录
+						</s:if>
+						<s:else>
+							欢迎${user.userName }的登录！
+						</s:else>
+					</li>
+					<li class="active"><a href="<%=basePath%>user-login.jsp">登录</a></li> 
+					<li><a href="<%=basePath%>register.jsp">注册</a></li>
+					<li><a href="<%=basePath%>personal center.jsp">个人中心</a></li> 
+					<li id="quitLi" style="font-size: 13px;">
+						<a href="<%=basePath%>quitUser.action" class="quit">注销</a>
+					</li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>

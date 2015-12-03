@@ -6,6 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<base href="<%=basePath%>">
 <title>个人中心</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,23 +20,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/js/jquery-1.11.1.min.js"></script>
 <!-- dropdown -->
-<script src="js/jquery.easydropdown.js"></script>
+<script src="<%=basePath%>/js/jquery.easydropdown.js"></script>
 <!-- start menu -->
 
-<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/megamenu.js"></script>
+<link href="<%=basePath%>/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath%>/css/menu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="<%=basePath%>/js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<link rel="stylesheet" href="css/etalage.css">
+<link rel="stylesheet" href="<%=basePath%>/css/etalage.css">
 </head>
 <body>
-<iframe id="header" src="header.jsp"  scrolling="no" frameborder="0"></iframe>
+<iframe id="header" src="<%=basePath%>/header.jsp"  scrolling="no" frameborder="0"></iframe>
 
  <nav class="nav">
   <ul class="nav_menu">
-    <li class="nav_menu-item"><a href="index.jsp" target="_top">首页</a></li>
+    <li class="nav_menu-item"><a href="<%=basePath%>/index.jsp" target="_top">首页</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
         <li class="nav_submenu-item"> <a href="" target="_top">手机</a></li>
@@ -59,12 +60,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  <div class="user-container">  
    <div class="main-container">
 	 
-	<iframe id="lefter" src="lefter.jsp"  scrolling="no" frameborder="0"></iframe>
+	<iframe id="lefter" src="<%=basePath%>lefter.jsp"  scrolling="no" frameborder="0"></iframe>
 	
 	  <div class="user-info">
 	  <div class="basic-info">
 		  <div class="portrait">
-		  <img src="images/t7.jpg" alt="头像" >	
+		  <img src="<%=basePath%>/image/t7.jpg" alt="头像" >	
            </div>	
           <div class="basic">		   
 		    <span class="name">XXX</span>
