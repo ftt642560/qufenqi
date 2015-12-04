@@ -13,19 +13,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>/css/style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>/js/jquery-1.11.1.min.js"></script>
 <!-- dropdown -->
-<script src="js/jquery.easydropdown.js"></script>
+<script src="<%=basePath%>/js/jquery.easydropdown.js"></script>
 <!-- start menu -->
-<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/megamenu.js"></script>
+<link href="<%=basePath%>/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="<%=basePath%>/js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 </head>
 <body>
@@ -35,8 +35,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      
 			 <div class="cssmenu">
 				<ul>
-					<li class="active"><a href="user-login.jsp">登录</a></li> 
-					<li><a href="register.jsp">注册</a></li>
+					<li class="active"><a href="<%=basePath%>/user-login.jsp">登录</a></li> 
+					<li><a href="<%=basePath%>/register.jsp">注册</a></li>
 				</ul>
 			</div>
 			<div class="clearfix"></div>
@@ -61,21 +61,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 </div>
 			   <div class="col-md-6 login-right">
 			  	<h3>用户登录</h3>
-				<p>如果您已经拥有我们的账号，请<a class="" href="user-login.jsp">登录</a>！</p>
-				<p>如果没有，请<a class="" href="register.jsp">注册</a>！</p>
+				<p>如果您已经拥有我们的账号，请<a class="" href="<%=basePath%>/user-login.jsp">登录</a>！</p>
+				<p>如果没有，请<a class="" href="<%=basePath%>/register.jsp">注册</a>！</p>
 				<!-- 登录ftt添加 -->
-				<p>${requestScope.mess }</p>
+				<p style="color: red;font-weight: bolder;position: relative;left: 60px;height: -20px;">${requestScope.mess }</p>
+				<!-- form表单 -->
 				<form name="from1"  method="post"  action="login.action">
 				  <div>
 					<span>账号：</span>
-					<input type="text" name="user.userName"> 
+					<input id="userName" type="text" name="user.userName"> 
 				  </div>
 				  <div>
 					<span>密码：</span>
-					<input type="password" name="user.password"> 
+					<input id="password" type="password" name="user.password"> 
 				  </div>
 				  <a class="forgot" href="#">忘记密码?</a>
-				  <input type="submit" value="Login">
+				  <input type="submit" value="Login" onclick="JavaScript:login();">
 			    </form>
 			   </div>	
 			   <div class="clearfix"> </div>
@@ -91,7 +92,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <li><a href="#">商家</a></li>
 		  
 		  <li><a href="#">关于我们</a></li>
-		  <li><a href="contact.jsp">联系我们</a></li>
+		  <li><a href="<%=basePath%>/contact.jsp">联系我们</a></li>
 		</ul>
 		
 	</div>
