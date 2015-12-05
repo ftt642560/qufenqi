@@ -31,8 +31,6 @@ public class GoodsAction {
 	public String goodsTypeName; //商品类型名
 	public List<GoodsType> l_ofgoodsType;//商品类型链表
 	
-	
-
 
 	public List<GoodsType> getL_ofgoodsType() {
 		return l_ofgoodsType;
@@ -278,7 +276,7 @@ public class GoodsAction {
 //			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
 //		 }
 		 
-		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 5, page);
+		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 1, page);
 		 System.out.println("goodsaction====usersearchgoods===分页查询==pageBean===="+pageBean);
 		 l_sellergoods = pageBean.getList();
 		 
@@ -294,26 +292,32 @@ public class GoodsAction {
 	 
 	 
 	 //用户根据商品类型名查找商品
-	 public String UserSearchByType()
+	 public  String UserSearchByType()
 	 {
+		// HttpServletRequest request = ServletActionContext.getRequest();
+		// String roles = request.getParameter("goodsTypeName");
+		 System.out.println("goodstypename="+goodsTypeName);
 		//分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
-		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 5, page);
-		List<GoodsType> l_goodstype = pageBean.getList();
-
-				
-		for(int i=0;i<l_goodstype.size();i++)
-		{
-			Set<Goods> s_goods = l_goodstype.get(i).getGoods();//一个商品类型的所有商品，
-			List<Goods> l_temp1 = new ArrayList<Goods>(s_goods); //将查找到的相应的商品集合转成List类型
-			System.out.println("l_goodsType.typename="+l_goodstype.get(i).getGoodsTypeName());
-			for(int j=0;j<l_temp1.size();j++)
-			{
-				List<SellerGoods> l_temp2 = new ArrayList<SellerGoods>(l_temp1.get(j).getSellergoods()); //一个商品对应的多个商家			
-				System.out.println("l_temp2=="+l_temp2.get(j).getSeller().getSellerName());
-				l_sellergoods.add(l_temp2.get(j));//把一个商品的商家商品信息放入到链表中，在前台可以通过这个链表查找出所有的信息
-				System.out.println("商品的信息==="+l_temp2.get(j).getGoods().getGoodsName()+" ===所属商家=="+l_temp2.get(j).getSeller().getSellerName());
-			}
-		}
+		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 3, page);
+		l_sellergoods = pageBean.getList();
+//		
+//				
+//		for(int i=0;i<l_goodstype.size();i++)
+//		{
+//			Set<Goods> s_goods = l_goodstype.get(i).getGoods();//一个商品类型的所有商品，
+//			List<Goods> l_temp1 = new ArrayList<Goods>(s_goods); //将查找到的相应的商品集合转成List类型
+//			System.out.println("l_goodsType.typename="+l_goodstype.get(i).getGoodsTypeName());
+//			for(int j=0;j<l_temp1.size();j++)
+//			{
+//				List<SellerGoods> l_temp2 = new ArrayList<SellerGoods>(l_temp1.get(j).getSellergoods()); //一个商品对应的多个商家			
+//				System.out.println("l_temp2=="+l_temp2.get(j).getSeller().getSellerName());
+//				//l_sellergoods.add(l_temp2.get(j));//把一个商品的商家商品信息放入到链表中，在前台可以通过这个链表查找出所有的信息
+//				SellerGoods sg = l_temp2.get(j);
+//				System.out.println("temp2.get(j)==="+l_temp2.get(j).getGoods().getGoodsName());
+//				l_sellergoods.add(sg);
+//				System.out.println("商品的信息==="+l_temp2.get(j).getGoods().getGoodsName()+" ===所属商家=="+l_temp2.get(j).getSeller().getSellerName());
+//			}
+//		}
 		return "success";
 	 }
 	

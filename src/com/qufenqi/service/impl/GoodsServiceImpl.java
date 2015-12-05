@@ -1,7 +1,9 @@
 package com.qufenqi.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.qufenqi.dao.PageBaseDao;
 import com.qufenqi.dao.impl.GoodsDaoImpl;
@@ -244,15 +246,11 @@ public class GoodsServiceImpl implements GoodsService {
      */
     public PageBean UserSearchByType(String GoodsTypeName,int pageSize,int page)
     {
-       	System.out.println("goodsservice===分页==== 用户根据商品类型查找商品");
+       	System.out.println("goodsservice===分页==== 用户根据商品类型查找商品====");
     	
-    		String hql = "";
-    		hql = "from GoodsType as goodstype where goodstype.goodsTypeName like '%"+GoodsTypeName+"%'";
-    	//查询语句
-    	//查询数据库中一共有多少条记录
-    	int allRow = pageBaseDao.getAllRowCount(hql);
-    	//查询总页数
-    	int totalPage = PageBean.countTotalPage(pageSize, allRow);
+//    		String hql = "";
+//    		hql = "from GoodsType as goodstype where goodstype.goodsTypeName like '%"+GoodsTypeName+"%'";
+    	
     	//当前页的开始记录
     	final int offset = PageBean.countOffset(pageSize, page);
     	//每页的记录数
@@ -260,7 +258,68 @@ public class GoodsServiceImpl implements GoodsService {
     	//获得当前页
     	final int currentPage = PageBean.countCurrentPage(page);
     	//一页的记录
-    	 List<GoodsType> list = pageBaseDao.queryForPage(hql, offset, length);
+//    	 List<GoodsType> list =new ArrayList<GoodsType>();
+//    	 list=null;
+//    	 list= pageBaseDao.queryForPage(hql, offset, length);
+//    	 
+//    	 System.out.println("list.size()="+list.size());
+//    	 
+//    	 Set<Goods> s_goods = list.get(0).getGoods();
+//    	 List<Goods> l_goods = new ArrayList<Goods>(s_goods);
+//    	 
+//    	 System.out.println("GoodsServiceimpl====l_goods.size()===="+l_goods.size());
+//    	 
+//    	 List<SellerGoods> l_sellergoods= new ArrayList<SellerGoods>(); //查询到的所有商家商品信息
+//    	 
+//    	 for(int i=0;i<l_goods.size();i++)
+//    	 {
+//    		 List<SellerGoods> l_temp1 = new ArrayList<SellerGoods>(l_goods.get(i).getSellergoods());
+//    		 for(int j=0;j<l_temp1.size();j++)
+//    		 {
+//    			 l_sellergoods.add(l_temp1.get(j));
+//    		 }
+//    	 }
+//    	 
+//    	 for(int z=0;z<l_sellergoods.size();z++)
+//    	 {
+//    		 System.out.println("按照商品累心查找商品===商家名=="+l_sellergoods.get(z).getSeller().getSellerName()+"====商品 名====="+l_sellergoods.get(z).getGoods().getGoodsName());
+//    	 }
+    	 
+    	List<SellerGoods> l_sellergoods = this.getGoodsDaoImpl().UserSearchByType(GoodsTypeName);
+    	
+    	List<SellerGoods> list = new ArrayList<SellerGoods>();
+    	list.clear();
+    	//把查询到的链表分段
+    	
+    	int a=pageSize*(page-1); //每一页的起始索引
+    	int b=pageSize*page; //每一页的最后一个索引
+    	
+    	if(a<0)
+    	{
+    		a=0;b=pageSize;
+    	}
+    	
+    	if(b>l_sellergoods.size())
+    	{
+    		b=l_sellergoods.size();
+    	}
+    	System.out.println("page="+page+"===a==="+a+"===b=="+b);
+    	for(int i=a;i<b;i++)
+    	{
+    		SellerGoods sg = l_sellergoods.get(i);
+    		System.out.println("sg==="+sg);
+    		
+    		list.add(sg);
+    	}
+    	
+
+    	    	
+     	//查询数据库中一共有多少条记录
+     	//int allRow = pageBaseDao.getAllRowCount(hql);
+    	 int allRow = l_sellergoods.size();
+     	//查询总页数
+ 		int totalPage = PageBean.countTotalPage(pageSize, allRow);
+    	 
     	 //把分页信息保存到Bean中
          PageBean pageBean = new PageBean();
          pageBean.setPageSize(pageSize);    
@@ -269,6 +328,9 @@ public class GoodsServiceImpl implements GoodsService {
          pageBean.setTotalPage(totalPage);
          pageBean.setList(list);
          pageBean.init();
+         
+         System.out.println("pageBean==="+pageBean);
+         
     	 return pageBean;
     	
     }

@@ -52,4 +52,11 @@ public interface GoodsDao {
 	 */
 	public List<SellerGoods> UserSearchGoods(String GoodsName);
 	
+	/**
+	 * 用户根据商品类型查找商品
+	 * @param 商品类型名
+	 * @return List<SellerGoods>
+	 * 
+	 */
+	public List<SellerGoods> UserSearchByType(String GoodsTypeName);
 }

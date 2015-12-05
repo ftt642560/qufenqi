@@ -2,12 +2,14 @@ package com.qufenqi.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.HibernateException;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.qufenqi.dao.GoodsDao;
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.SellerGoods;
 /**
  * 商品实现类
@@ -153,5 +155,43 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		return l_sellergoods;
 		
 	}
+	
+	/**
+	 * 用户根据商品类型查找商品
+	 * @param 商品类型名
+	 * @return List<SellerGoods>
+	 * 
+	 */
+	public List<SellerGoods> UserSearchByType(String GoodsTypeName)
+	{
+		String hql = "";
+		hql = "from GoodsType as goodstype where goodstype.goodsTypeName like '%"+GoodsTypeName+"%'";
+		
+		System.out.println("用户根据商品类型查找商品==="+hql);
+		
+		List<GoodsType> l_goodstype = this.getHibernateTemplate().find(hql);
+		Set<Goods> s_goods = l_goodstype.get(0).getGoods();
+		List<Goods> l_goods = new ArrayList<Goods>(s_goods);
+		
+	   	 List<SellerGoods> l_sellergoods= new ArrayList<SellerGoods>(); //查询到的所有商家商品信息
+		 
+	   	 for(int i=0;i<l_goods.size();i++)
+	   	 {
+	   		 List<SellerGoods> l_temp1 = new ArrayList<SellerGoods>(l_goods.get(i).getSellergoods());
+	   		 for(int j=0;j<l_temp1.size();j++)
+	   		 {
+	   			 l_sellergoods.add(l_temp1.get(j));
+	   		 }
+	   	 }
+	   	 
+	   	 for(int z=0;z<l_sellergoods.size();z++)
+	   	 {
+	   		 System.out.println("按照商品类型查找商品===商家名=="+l_sellergoods.get(z).getSeller().getSellerName()+"====商品 名====="+l_sellergoods.get(z).getGoods().getGoodsName());
+	   	 }
+		
+		return l_sellergoods;
+		
+	}
+	
 
 }
