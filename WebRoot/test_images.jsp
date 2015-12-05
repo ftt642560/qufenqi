@@ -14,17 +14,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 
-	<s:form action="uploadImage" theme="simple" enctype="multipart/form-data">
-		<input type="text" value="" name="sellerId"/>
+	<s:form action="/goods/uploadImage.action" theme="simple" enctype="multipart/form-data">
+		商家ID<input type="text" value="" name="sellerId"/>
 		<br /><br />
-		<input type="text" value="" name="goodsId" />
+		商品ID<input type="text" value="" name="goodsId" />
 	
 
     	<table align="center" width="50%" border="0">
     		<tr>
     			<td>IMG</td>
     			<td id="more">
-    				<s:file name="file" id="file" onchange="filechange(this)"></s:file>
+    				<s:file name="imagesfile" id="file" onchange="filechange(this)"></s:file>
     				<!-- <input type="button" value="Add More..." onclick="addMore()"> -->
     			</td>
     			<td>

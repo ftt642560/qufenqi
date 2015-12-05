@@ -79,6 +79,7 @@ public class SellerBaseDao extends HibernateDaoSupport{
 		
 		String hql = "from Seller as seller where seller.sellerId="+SellerId;
 		Seller seller = (Seller) this.getHibernateTemplate().find(hql).get(0);
+		System.out.println("sellerbasedao======seller.sellerid=="+seller.getSellerId());
 		return seller;
 	}
 

@@ -211,7 +211,7 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	 */
 	public List<SellerGoodsImages> findImages(String SellerId,String GoodsId)
 	{
-		String hql="from SellerGoodsImages as sgi where sgi.sellerId="+SellerId+" and goodsId="+GoodsId;
+		String hql="from SellerGoodsImages as sgi where sgi.seller.sellerId="+SellerId+" and sgi.goods.goodsId="+GoodsId;
 		List<SellerGoodsImages> l_sgi = this.getHibernateTemplate().find(hql);
 		return l_sgi;
 	}

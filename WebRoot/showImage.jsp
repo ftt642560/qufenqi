@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,11 +22,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   </head>
   
+
   <body>
+  显示图片
    	<table align="left">
-   		<s:iterator value="imageList">
+   		<s:iterator value="sgi">
    			<tr>
-   				<td><img src="${pageContext.request.contextPath}/${url}"/></td>
+   				<td><img src="${pageContext.request.contextPath}/${imageUrl}" /></td>
    			</tr>
    		</s:iterator>
    	</table>
