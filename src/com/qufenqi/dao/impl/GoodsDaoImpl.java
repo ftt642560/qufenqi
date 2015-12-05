@@ -11,6 +11,7 @@ import com.qufenqi.dao.GoodsDao;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.SellerGoods;
+import com.qufenqi.entity.SellerGoodsImages;
 /**
  * 商品实现类
  * @author zlin
@@ -193,5 +194,26 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		
 	}
 	
+	
+	/**
+	 * 商家上传商品图片
+	 * @param Image image
+	 * 
+	 */
+	public void addImages(SellerGoodsImages image)
+	{
+		this.getHibernateTemplate().save(image);
+	}
+	
+	
+	/**
+	 * 获取每个商家某件商品的图片
+	 */
+	public List<SellerGoodsImages> findImages(String SellerId,String GoodsId)
+	{
+		String hql="from SellerGoodsImages as sgi where sgi.sellerId="+SellerId+" and goodsId="+GoodsId;
+		List<SellerGoodsImages> l_sgi = this.getHibernateTemplate().find(hql);
+		return l_sgi;
+	}
 
 }

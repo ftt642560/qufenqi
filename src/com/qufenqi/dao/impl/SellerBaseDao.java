@@ -64,4 +64,24 @@ public class SellerBaseDao extends HibernateDaoSupport{
 	public void save(String sql) {
 		this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery(sql).executeUpdate();
 	}
+	
+	
+	
+	
+	
+	//-----------------zlin---------------
+	/**
+	 * 
+	 * 通过商家ID查找商家
+	 */
+	public Seller findBySellerId(int SellerId)
+	{
+		
+		String hql = "from Seller as seller where seller.sellerId="+SellerId;
+		Seller seller = (Seller) this.getHibernateTemplate().find(hql).get(0);
+		return seller;
+	}
+
+	
+	
 }

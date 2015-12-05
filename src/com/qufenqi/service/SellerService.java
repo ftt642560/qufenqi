@@ -33,4 +33,11 @@ public interface SellerService {
 
 	boolean modifyPassword(String oldPassword, String sellerPassword,
 			String name);
+	
+	//-----------------zlin---------------
+	/**
+	 * 
+	 * 通过商家ID查找商家
+	 */
+	public Seller findBySellerId(int SellerId);
 }

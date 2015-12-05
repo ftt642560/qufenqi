@@ -23,4 +23,6 @@ public interface SellerDao {
 	public int updateSelf(String sellerPassword);
 	
 	public int count(String queryString);
+	
+
 }

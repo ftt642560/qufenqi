@@ -24,8 +24,16 @@ public class Goods {
 	private Set<SellerGoods> sellergoods;//商家和商品表关联中间表:sellergoods，多对多，转成两个1对多
 	private Coupon coupon;
 	private GoodsType goodstype;
+	private Set<SellerGoodsImages> sellergoodsimages;
 	
 	
+	
+	public Set<SellerGoodsImages> getSellergoodsimages() {
+		return sellergoodsimages;
+	}
+	public void setSellergoodsimages(Set<SellerGoodsImages> sellergoodsimages) {
+		this.sellergoodsimages = sellergoodsimages;
+	}
 	public GoodsType getGoodstype() {
 		return goodstype;
 	}

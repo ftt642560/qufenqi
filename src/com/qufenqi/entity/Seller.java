@@ -43,15 +43,23 @@ public class Seller {
 	
 	private Manager manager;
 	
-	//商家商品---zlin
+	//商家商品---zlin-----------------------------------
 	private Set<SellerGoods> sellergoods = new HashSet<SellerGoods>();
+	private Set<SellerGoodsImages> sellergoodsimages = new HashSet<SellerGoodsImages>();
 	
+	public Set<SellerGoodsImages> getSellergoodsimages() {
+		return sellergoodsimages;
+	}
+	public void setSellergoodsimages(Set<SellerGoodsImages> sellergoodsimages) {
+		this.sellergoodsimages = sellergoodsimages;
+	}
 	public Set<SellerGoods> getSellergoods() {
 		return sellergoods;
 	}
 	public void setSellergoods(Set<SellerGoods> sellergoods) {
 		this.sellergoods = sellergoods;
 	}
+	//----------------------------------------------------------------------
 	public int getSellerId() {
 		return sellerId;
 	}

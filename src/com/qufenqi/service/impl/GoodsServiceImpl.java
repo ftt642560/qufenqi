@@ -11,6 +11,7 @@ import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.SellerGoods;
+import com.qufenqi.entity.SellerGoodsImages;
 import com.qufenqi.entity.User;
 import com.qufenqi.service.GoodsService;
 
@@ -333,6 +334,26 @@ public class GoodsServiceImpl implements GoodsService {
          
     	 return pageBean;
     	
+    }
+    
+    
+    /**
+     * 商家为某个商品添加图片
+     */
+    public void addImages(SellerGoodsImages image)
+    {
+    	goodsDaoImpl.addImages(image);
+    }
+    
+
+    
+    /**
+     * 读取某个商家某个商品的图片
+     * 
+     */
+    public List<SellerGoodsImages> findImages(String SellerId,String GoodsId)
+    {
+    	return goodsDaoImpl.findImages(SellerId, GoodsId);
     }
 	
 }

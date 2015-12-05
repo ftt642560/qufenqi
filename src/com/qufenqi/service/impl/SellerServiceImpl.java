@@ -177,4 +177,15 @@ public class SellerServiceImpl implements SellerService{
 		}
 		return null;
 	}
+	
+	//-----------------zlin---------------
+		/**
+		 * 
+		 * 通过商家ID查找商家
+		 */
+		public Seller findBySellerId(int SellerId)
+		{
+			Seller seller=sellerBaseDao.findBySellerId(SellerId);
+			return seller;
+		}
 }
