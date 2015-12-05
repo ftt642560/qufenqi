@@ -67,7 +67,7 @@
 						<dl>
 							<dt>个人信息管理</dt>
 							<dd>
-								<a href="<%=basePath%>findSelf.action">用户管理</a>
+								<a href="<%=basePath%>findSelf.action">个人信息管理</a>
 							</dd>
 							<dt>商品管理</dt>
 							<dd>

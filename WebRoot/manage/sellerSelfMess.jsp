@@ -133,6 +133,7 @@
 						<tr>
 							<th>用户名</th>
 							<th>姓名</th>
+							<th>地址</th>
 							<th>身份证</th>
 							<th>电话</th>
 							<th>邮箱</th>
@@ -144,6 +145,7 @@
 								<tr>
 									<td>${sellerName }</td>
 									<td>${name }</td>
+									<td>${address }</td>
 									<td>${idCard }</td>
 									<td>${telephone }</td>
 									<td>${email }</td>

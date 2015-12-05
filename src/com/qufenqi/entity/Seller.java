@@ -37,7 +37,11 @@ public class Seller {
 	 * 商家的邮箱
 	 */
 	private String email;
+	/**
+	 * 商家的地址
+	 */
 	private int role;
+	private String address;
 	
 	private Set<Order> orders = new HashSet<Order>();
 	
@@ -119,6 +123,12 @@ public class Seller {
 	}
 	public void setRole(int role) {
 		this.role = role;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	@Override
 	public String toString() {
