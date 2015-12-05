@@ -1,5 +1,12 @@
 package com.qufenqi.action;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -8,11 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.PageBean;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.SellerGoods;
+import com.qufenqi.entity.SellerGoodsImages;
+import com.qufenqi.service.SellerService;
 import com.qufenqi.service.impl.GoodsServiceImpl;
+
+
 
 /**
  * 
@@ -30,8 +43,88 @@ public class GoodsAction {
 	public List<SellerGoods> l_sellergoods;//商家商品中间表
 	public String goodsTypeName; //商品类型名
 	public List<GoodsType> l_ofgoodsType;//商品类型链表
+	public String sellerId; //商家Id
+	
+	public SellerService sellerservice;
+    public List<SellerGoodsImages> sgi;
+	
+	public List<SellerGoodsImages> getSgi() {
+		return sgi;
+	}
+
+	public void setSgi(List<SellerGoodsImages> sgi) {
+		this.sgi = sgi;
+	}
+
+	private List<File> imagesfile; 
+	
+	private List<String> imagesfileFileName;
+	
+	private List<String> imagesfileContentType;
+	
+	private List<String> dataUrl;
 	
 	
+
+	public List<File> getImagesfile() {
+		return imagesfile;
+	}
+
+	public SellerService getSellerservice() {
+		return sellerservice;
+	}
+
+
+	public void setSellerservice(SellerService sellerservice) {
+		this.sellerservice = sellerservice;
+	}
+	
+	public void setImagesfile(List<File> imagesfile) {
+		this.imagesfile = imagesfile;
+	}
+
+
+	public List<String> getImagesfileFileName() {
+		return imagesfileFileName;
+	}
+
+
+	public void setImagesfileFileName(List<String> imagesfileFileName) {
+		this.imagesfileFileName = imagesfileFileName;
+	}
+
+
+	public List<String> getImagesfileContentType() {
+		return imagesfileContentType;
+	}
+
+
+	public void setImagesfileContentType(List<String> imagesfileContentType) {
+		this.imagesfileContentType = imagesfileContentType;
+	}
+
+
+	public List<String> getDataUrl() {
+		return dataUrl;
+	}
+
+
+	public void setDataUrl(List<String> dataUrl) {
+		this.dataUrl = dataUrl;
+	}
+
+
+
+
+
+	public String getSellerId() {
+		return sellerId;
+	}
+
+
+	public void setSellerId(String sellerId) {
+		this.sellerId = sellerId;
+	}
 
 
 	public List<GoodsType> getL_ofgoodsType() {
@@ -278,7 +371,7 @@ public class GoodsAction {
 //			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
 //		 }
 		 
-		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 5, page);
+		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 1, page);
 		 System.out.println("goodsaction====usersearchgoods===分页查询==pageBean===="+pageBean);
 		 l_sellergoods = pageBean.getList();
 		 
@@ -294,28 +387,89 @@ public class GoodsAction {
 	 
 	 
 	 //用户根据商品类型名查找商品
-	 public String UserSearchByType()
+	 public  String UserSearchByType()
 	 {
+		// HttpServletRequest request = ServletActionContext.getRequest();
+		// String roles = request.getParameter("goodsTypeName");
+		 System.out.println("goodstypename="+goodsTypeName);
 		//分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
-		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 5, page);
-		List<GoodsType> l_goodstype = pageBean.getList();
-
-				
-		for(int i=0;i<l_goodstype.size();i++)
-		{
-			Set<Goods> s_goods = l_goodstype.get(i).getGoods();//一个商品类型的所有商品，
-			List<Goods> l_temp1 = new ArrayList<Goods>(s_goods); //将查找到的相应的商品集合转成List类型
-			System.out.println("l_goodsType.typename="+l_goodstype.get(i).getGoodsTypeName());
-			for(int j=0;j<l_temp1.size();j++)
-			{
-				List<SellerGoods> l_temp2 = new ArrayList<SellerGoods>(l_temp1.get(j).getSellergoods()); //一个商品对应的多个商家			
-				System.out.println("l_temp2=="+l_temp2.get(j).getSeller().getSellerName());
-				l_sellergoods.add(l_temp2.get(j));//把一个商品的商家商品信息放入到链表中，在前台可以通过这个链表查找出所有的信息
-				System.out.println("商品的信息==="+l_temp2.get(j).getGoods().getGoodsName()+" ===所属商家=="+l_temp2.get(j).getSeller().getSellerName());
-			}
-		}
+		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 3, page);
+		l_sellergoods = pageBean.getList();
+//		
+//				
+//		for(int i=0;i<l_goodstype.size();i++)
+//		{
+//			Set<Goods> s_goods = l_goodstype.get(i).getGoods();//一个商品类型的所有商品，
+//			List<Goods> l_temp1 = new ArrayList<Goods>(s_goods); //将查找到的相应的商品集合转成List类型
+//			System.out.println("l_goodsType.typename="+l_goodstype.get(i).getGoodsTypeName());
+//			for(int j=0;j<l_temp1.size();j++)
+//			{
+//				List<SellerGoods> l_temp2 = new ArrayList<SellerGoods>(l_temp1.get(j).getSellergoods()); //一个商品对应的多个商家			
+//				System.out.println("l_temp2=="+l_temp2.get(j).getSeller().getSellerName());
+//				//l_sellergoods.add(l_temp2.get(j));//把一个商品的商家商品信息放入到链表中，在前台可以通过这个链表查找出所有的信息
+//				SellerGoods sg = l_temp2.get(j);
+//				System.out.println("temp2.get(j)==="+l_temp2.get(j).getGoods().getGoodsName());
+//				l_sellergoods.add(sg);
+//				System.out.println("商品的信息==="+l_temp2.get(j).getGoods().getGoodsName()+" ===所属商家=="+l_temp2.get(j).getSeller().getSellerName());
+//			}
+//		}
 		return "success";
 	 }
 	
 	
+	 //商家上传商品图片
+	 public String UploadImages() throws IOException
+	 {
+			dataUrl=new ArrayList<String>();
+			String imgpath="upload/";
+			
+			int i_sellerid=Integer.parseInt(sellerId);//获取商家ID
+			Long long_goodsid =  Long.parseLong(goodsId);
+			
+			for(int i=0;i<imagesfile.size();i++){
+				InputStream is=new FileInputStream(imagesfile.get(i));
+				
+				String path=ServletActionContext.getServletContext().getRealPath("/");		
+				System.out.println(path);	
+				System.out.println(imgpath+this.getImagesfileFileName().get(i));
+				dataUrl.add(imgpath+this.getImagesfileFileName().get(i));
+				File destFile=new File(path+imgpath,this.getImagesfileFileName().get(i));
+				
+				SellerGoodsImages image=new SellerGoodsImages();
+				Seller seller = new Seller();
+				sellerservice.findBySellerId(i_sellerid); 
+				Goods goods = new Goods();
+				goodsserviceimpl.QueryOneGoods(long_goodsid);
+				
+				image.setSeller(seller); //设置图片的所属商家
+				image.setGoods(goods); //设置图片所属商品
+				image.setImageUrl(imgpath+this.getImagesfileFileName().get(i));
+			    goodsserviceimpl.addImages(image);
+				
+				OutputStream os=new FileOutputStream(destFile);		
+				byte[] buffer=new byte[800];
+				int length=0;
+				while((length=is.read(buffer))>0){
+					os.write(buffer,0,length);
+				}
+				is.close();
+				os.close();
+			}	 
+		 
+		 
+		 return "success";
+	 }
+	 
+	 
+	public String showImage(){
+		
+		List<SellerGoodsImages> sgi = goodsserviceimpl.findImages(sellerId, goodsId);
+		
+		return "success";
+	}
+	 
+	 
+	 
+	 
+	 
 }

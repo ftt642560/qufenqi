@@ -25,6 +25,8 @@
 			</interceptor-stack>
 		</interceptors>
 		
+
+		
 		<!-- 用户模块 -->
 		<action name="findAllUser" class="userAction" method="findAll">
 			<result name="success">/manage/user.jsp</result>
@@ -201,8 +203,36 @@
 		
 		<!-- 用户按照商品类型查找商品，在不同的商家商家所卖的同一种类型商品，其商品不同 -->
 		<action name="usersearchbytypename" class="goodsAction" method="UserSearchByType">
-			<result name="success">/test_usersearchgoods.jsp</result>
+			<result name="success">/test_searchbytype.jsp</result>
+		</action>
+		
+		
+		
+		<!-- 显示商品图片 -->
+		<action name="showImage" class="goodsAction" method="showImage">
+			<result name="success">/showImage.jsp</result>
+		</action>
+		
+		<!-- 商家上传商品图片 -->
+		<action name="uploadImage" class="goodsAction" method="UploadImages">
+			 <result name="success" type="redirectAction">showImage</result>
+             <result name="input">/index.jsp</result>
+             <!-- 定义文件上传拦截器 -->
+             <interceptor-ref name="fileUpload">
+                 <!-- 设置文件上传大小 -->
+                 <!-- 409600    400KB -->
+                 <param name="maximumSize">819200</param>
+                 <!-- 设置文件上传类型 
+                 <param name="allowedTypes">
+                     application/vnd.ms-powerpoint
+                 </param>
+                 -->
+             </interceptor-ref>
+             <!-- 自定义了拦截器后必手动定义默认的拦截器，否则默认的拦截器不会被执行 -->
+             <interceptor-ref name="defaultStack">
+             </interceptor-ref>
 		</action>
 		
 	</package>
+
 </struts>    

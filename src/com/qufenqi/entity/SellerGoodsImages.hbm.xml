@@ -17,5 +17,9 @@
 		<property name="imageUrl" type="string">
 			<column name="imageUrl" length="255" not-null="false" />		
 		</property>
+				
+		<many-to-one name="seller" column="sellerId" class="com.qufenqi.entity.Seller" not-null="true"></many-to-one>
+		<many-to-one name="goods" column="goodsId" class="com.qufenqi.entity.Goods" not-null="true"></many-to-one>
+		
 	</class>
 </hibernate-mapping>

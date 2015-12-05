@@ -20,9 +20,14 @@
 		</set>
 		<many-to-one name="manager" column="managerId" class="com.qufenqi.entity.Manager" lazy="false" cascade="save-update"></many-to-one>
 		<!-- lazy开始时true ftt改-->
-		<set name="sellergoods" lazy="false" inverse="true">
+		<set name="sellergoods" lazy="false" inverse="false">
 			<key column="sellerId" />
 			<one-to-many class="com.qufenqi.entity.SellerGoods"></one-to-many>
+		</set>
+		
+		<set name="sellergoodsimages" lazy="false" inverse="false">
+			<key column="sellerId" />
+			<one-to-many class="com.qufenqi.entity.SellerGoodsImages"></one-to-many>
 		</set>
 		
 	</class>

@@ -8,26 +8,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<script language="javascript">
-	function searchGoods()
-	{
-		var targetForm = document.forms[0];
-		targetForm.action="<%=basePath%>goods/usersearchgoods.action";
-	}
-</script>
+
+		<script language="javascript">
+		
+			function searchbytype()
+			{
+			//	alert("gotoupdate");
+			//	alert("id="+id);
+
+				//window.location.href="";
+		
+	
+				var targetForm = document.forms[0];
+		targetForm.action="<%=basePath%>goods/usersearchbytypename.action";
+	
+			}
+		</script>
+	
 
 <body>
-	<form method="post" action="" >
-		商品名<input type="text" name="goodsName"></input>
-		<input type=submit value="查询" onClick="searchGoods();" id="querygoods" />
-		<br /><br /><br />
-			
-		<table>
+	
+	<s:form name="form1" method="post" action="" >
+			<select name="goodsTypeName">
+			  <option value ="手机">手机</option>
+			  <option value ="平板">平板</option>
+			  <option value="电脑">电脑</option>
+			  <option value="相机">相机</option>
+			</select>
+			<input type="submit" value="按类型查询" onClick="searchbytype();" />
+			<table>
 			<tr>
-				<td>商品ID</td>
+				<td>商品类型名</td>
 				<td>商品名</td>
 				<td>品牌</td>
 				<td>型号</td>
@@ -39,20 +53,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>商家名字</td>			
 			</tr>
 			
-			<script language="javascript">
 			
-				function gotodetails(id)
-				{
-				//	alert("gotoupdate");
-				//	alert("id="+id);
-
-					window.location.href="<%=basePath%>goods/queryOneGoods.action?goodsId="+id;
-					
-				}
-			</script>
 			<s:iterator value="l_sellergoods" id="l_sellergoods" status="status">
 				<tr>
-					<td align="center"><s:property value="#l_sellergoods.goods.goodsId"/></td>
+					<td align="center"><s:property value="#l_sellergoods.goods.goodsType.goodsTypeName"/></td>
 					<td><a  style="color:blue;cursor:pointer;" onclick="gotodetails(<s:property value="#l_sellergoods.goods.goodsId" />);">
 						<s:property value="#l_sellergoods.goods.goodsName" ></s:property>
 					</a></td>
@@ -77,15 +81,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </s:if>
 	        
 	        <s:else>
-	            <a href="usersearchgoods.action">首页</a>
+	            <a href="usersearchbytypename.action">首页</a>
 	            &nbsp;
-	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	            <a href="usersearchbytypename.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 	        </s:else>
 	        	&nbsp;
 	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            <a href="usersearchbytypename.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 	            &nbsp;
-	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	            <a href="usersearchbytypename.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 	        </s:if>
 	        
 	        <s:else>
@@ -93,9 +97,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        </s:else>
 	    
 	    </center><br>
-		
-	</form>
 	
+	
+	</s:form>
 	
 </body>
 </html>

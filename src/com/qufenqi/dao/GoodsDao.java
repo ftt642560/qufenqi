@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.SellerGoods;
+import com.qufenqi.entity.SellerGoodsImages;
 
 /**
  * 
@@ -52,4 +53,24 @@ public interface GoodsDao {
 	 */
 	public List<SellerGoods> UserSearchGoods(String GoodsName);
 	
+	/**
+	 * 用户根据商品类型查找商品
+	 * @param 商品类型名
+	 * @return List<SellerGoods>
+	 * 
+	 */
+	public List<SellerGoods> UserSearchByType(String GoodsTypeName);
+	
+	/**
+	 * 商家上传商品图片
+	 * @param Image image
+	 * 
+	 */
+	public void addImages(SellerGoodsImages image);
+	
+	
+	/**
+	 * 获取每个商家某件商品的图片
+	 */
+	public List<SellerGoodsImages> findImages(String SellerId,String GoodsId);
 }

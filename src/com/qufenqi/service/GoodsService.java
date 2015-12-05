@@ -62,4 +62,16 @@ public interface GoodsService {
      * @param 商品类型
      */
     public PageBean UserSearchByType(String GoodsTypeName,int pageSize,int page);
+    
+    /**
+     * 商家为某个商品添加图片
+     */
+    public void addImages(SellerGoodsImages image);
+    
+    /**
+     * 读取某个商家某个商品的图片
+     * 
+     */
+    public List<SellerGoodsImages> findImages(String SellerId,String GoodsId);
+    
 }

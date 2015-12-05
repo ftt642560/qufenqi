@@ -60,6 +60,11 @@
 			<one-to-many class="com.qufenqi.entity.SellerGoods"></one-to-many>
 		</set>
 		
-		<many-to-one name="goodstype" column="goodsTypeId" class="com.qufenqi.entity.GoodsType" lazy="false" />    
+		<many-to-one name="goodstype" column="goodsTypeId" class="com.qufenqi.entity.GoodsType" lazy="false" />  
+		
+		<set name="sellergoodsimages" lazy="false" inverse="false">
+			<key column="goodsId" />
+			<one-to-many class="com.qufenqi.entity.SellerGoodsImages"></one-to-many>
+		</set>  
 	</class>
 </hibernate-mapping>
