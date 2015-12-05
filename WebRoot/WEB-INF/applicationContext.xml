@@ -125,6 +125,7 @@
 		<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
 		<property name="sellerservice" ref="sellerService"></property>
 		<property name="goods" ref="goods"></property>
+		<property name="seller" ref="seller"></property>
 	</bean>
 	<!-- 定义Action -->
 	  <bean id="loginAction" class="com.qufenqi.action.LoginAction" scope="prototype">

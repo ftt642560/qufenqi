@@ -186,6 +186,7 @@ public class SellerServiceImpl implements SellerService{
 		public Seller findBySellerId(int SellerId)
 		{
 			Seller seller=sellerBaseDao.findBySellerId(SellerId);
+			System.out.println("Sellerserviceimpl======sellerid==="+seller.getSellerId());
 			return seller;
 		}
 }

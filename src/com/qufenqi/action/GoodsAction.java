@@ -47,9 +47,17 @@ public class GoodsAction {
 	
 	public SellerService sellerservice;
     public List<SellerGoodsImages> sgi;
-	
+	public Seller seller;
 	public List<SellerGoodsImages> getSgi() {
 		return sgi;
+	}
+
+	public Seller getSeller() {
+		return seller;
+	}
+
+	public void setSeller(Seller seller) {
+		this.seller = seller;
 	}
 
 	public void setSgi(List<SellerGoodsImages> sgi) {
@@ -420,11 +428,15 @@ public class GoodsAction {
 	 //商家上传商品图片
 	 public String UploadImages() throws IOException
 	 {
+		 System.out.println(" ===== GoodsAction=====UploadImages=========");
 			dataUrl=new ArrayList<String>();
 			String imgpath="upload/";
 			
 			int i_sellerid=Integer.parseInt(sellerId);//获取商家ID
 			Long long_goodsid =  Long.parseLong(goodsId);
+			
+			System.out.println("===图片上传uploadimages.action========imagefiles.size()=="+imagesfile.size());
+			
 			
 			for(int i=0;i<imagesfile.size();i++){
 				InputStream is=new FileInputStream(imagesfile.get(i));
@@ -437,9 +449,10 @@ public class GoodsAction {
 				
 				SellerGoodsImages image=new SellerGoodsImages();
 				Seller seller = new Seller();
-				sellerservice.findBySellerId(i_sellerid); 
+				seller=sellerservice.findBySellerId(i_sellerid); 
+				
 				Goods goods = new Goods();
-				goodsserviceimpl.QueryOneGoods(long_goodsid);
+				goods=goodsserviceimpl.QueryOneGoods(long_goodsid);
 				
 				image.setSeller(seller); //设置图片的所属商家
 				image.setGoods(goods); //设置图片所属商品
@@ -465,6 +478,10 @@ public class GoodsAction {
 		
 		List<SellerGoodsImages> sgi = goodsserviceimpl.findImages(sellerId, goodsId);
 		
+		for(int i=0;i<sgi.size();i++)
+		{
+		System.out.println("goodsaction====showimage==sgi.size()="+sgi.size()+"==sgi.id=="+sgi.get(i).getId()+"==========sgi.url=="+sgi.get(i).getImageUrl());
+		}
 		return "success";
 	}
 	 
