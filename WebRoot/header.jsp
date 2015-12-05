@@ -14,10 +14,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/user-style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -26,8 +26,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="<%=basePath%>/js/jquery.easydropdown.js"></script>
 <!-- start menu -->
 
-<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath%>css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="<%=basePath%>/js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="<%=basePath%>js/index.js"></script>
@@ -67,7 +67,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <div class="header_bottom-box">
 		
 			<div class="logo">
-				<a href="index.jsp"><img src="<%=basePath%>/image/logo.png" alt=""/></a>
+				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>/image/logo.png" alt=""/></a>
 			</div>
 			<div class="search">
 			  <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  </nav>
 	  		</div>
 	  		<div class="2D-code" style="width:120px; float:right; ">
-				<a href="index.jsp"><img src="<%=basePath%>/image/2D-code.jpg" alt="" style="width:70px; height:70px;"/></a>
+				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>/image/2D-code.jpg" alt="" style="width:70px; height:70px;"/></a>
 			</div>
 		</div>
 		

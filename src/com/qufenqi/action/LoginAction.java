@@ -10,7 +10,11 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.qufenqi.entity.Manager;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.User;
+import com.qufenqi.service.ManagerService;
+import com.qufenqi.service.SellerService;
 import com.qufenqi.service.UserService;
 
 
@@ -29,6 +33,13 @@ public class LoginAction {
 	private HttpServletRequest request = ServletActionContext.getRequest();
 	private HttpSession session = request.getSession();
 	private InputStream inputStream;
+	private String userName;//接收前台传来的数据
+	private String password;//接收前台传来的数据
+	private int role;//接收前台传来的数据
+	private Seller seller;
+	private Manager manager;
+	private ManagerService managerService;
+	private SellerService sellerService;
 	/**
 	 * 用户实体类
 	 */
@@ -66,8 +77,50 @@ public class LoginAction {
 		this.userService = userService;
 	}
 	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public int getRole() {
+		return role;
+	}
+	public void setRole(int role) {
+		this.role = role;
+	}
 	public LoginAction() {
 		super();
+	}
+	public Seller getSeller() {
+		return seller;
+	}
+	public void setSeller(Seller seller) {
+		this.seller = seller;
+	}
+	public SellerService getSellerService() {
+		return sellerService;
+	}
+	public void setSellerService(SellerService sellerService) {
+		this.sellerService = sellerService;
+	}
+	public Manager getManager() {
+		return manager;
+	}
+	public void setManager(Manager manager) {
+		this.manager = manager;
+	}
+	public ManagerService getManagerService() {
+		return managerService;
+	}
+	public void setManagerService(ManagerService managerService) {
+		this.managerService = managerService;
 	}
 	/**
 	 * 注册
@@ -109,30 +162,103 @@ public class LoginAction {
 	 * @return
 	 */
 	public String login(){
-		int status = userService.login(user);
-		System.out.println(status+"==status");
-		switch (status) {
-		case NULL:
-			request.setAttribute("mess" , "用户名或者密码不能为空");
-			flag = "error";
-			break;
-		case NOREGIS:
-			request.setAttribute("mess" , "该用户没有注册");
-			flag = "error";
-			break;
-		case PASSWRONG:
-			request.setAttribute("mess" , "密码错误");
-			flag = "error";
-			break;
-		case SUCCESS:
-			session.setAttribute("user", user);
-			flag = "success";
-			break;
-		default:
-			break;
+		System.out.println("role=="+role);
+		if(role == 0){//角色等于0说明是用户登录
+			int status = userService.login(user);
+			System.out.println(status+"==status");
+			switch (status) {
+				case NULL:
+					request.setAttribute("mess" , "用户名或者密码不能为空");
+					flag = "error";
+					break;
+				case NOREGIS:
+					request.setAttribute("mess" , "该用户没有注册");
+					flag = "error";
+					break;
+				case PASSWRONG:
+					request.setAttribute("mess" , "密码错误");
+					flag = "error";
+					break;
+				case SUCCESS:
+					session.setAttribute("user", user);
+					session.setAttribute("role",0);
+					flag = "userLogin";
+					break;
+				default:
+					break;
+			}
+			System.out.println(flag+"==flag");
+			return flag;
+		}else if(role == 1){//角色等于1说明是商家
+			System.out.println("执行管理员的登录");
+			seller.setSellerName(userName);
+			seller.setSellerPassword(password);
+			int status = sellerService.login(seller);
+			switch (status) {
+				case -1:
+					request.setAttribute("mess", "登录失败");
+					flag = "error";
+					break;
+				case 2:
+					request.setAttribute("mess", "该用户名没有注册");
+					flag = "error";
+					break;
+				case 1:
+					request.setAttribute("mess", "用户密码不正确");
+					flag = "error";
+					break;
+				case 0:
+					request.setAttribute("mess", "该商家登录成 功");
+					session.setAttribute("seller", seller);
+					request.setAttribute("role", 1);
+					//因为商家就是管理员，所以将用户登录成功时可以讲登录名和密码赋值给USER,
+					user.setUserName(userName);
+					user.setPassword(password);
+					session.setAttribute("user", user);
+					session.setAttribute("role",1);
+					flag = "sellerLogin";
+					System.out.println("success seller");
+					System.out.println("role==="+role);
+					break;
+				default:
+					break;
+				}
+			System.out.println(flag);
+			return flag;
+		}else {
+			System.out.println("执行管理员的登录");
+			manager.setManagName(userName);
+			manager.setPassword(password);
+			int status = managerService.login(manager);
+			System.out.println(status+"==status");
+			switch (status) {
+				case -1:
+					request.setAttribute("mess", "登录失败");
+					flag = "error";
+					break;
+				case 2:
+					request.setAttribute("mess", "该用户名没有注册");
+					flag = "error";
+					break;
+				case 1:
+					request.setAttribute("mess", "用户密码不正确");
+					flag = "error";
+					break;
+				case 0:
+					request.setAttribute("mess", "该管理员登录成功");
+					session.setAttribute("manager", manager);
+//					request.setAttribute("role", 1);
+					session.setAttribute("role",2);//2是管理员
+					System.out.println("role==="+role);
+					flag = "managerLogin";
+					System.out.println("manager success");
+					break;
+				default:
+					break;
+			}
+			return flag;
 		}
-		System.out.println(flag+"==flag");
-		return flag;
+		
 	}
 	
 	/**

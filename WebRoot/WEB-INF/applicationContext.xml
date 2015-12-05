@@ -130,7 +130,11 @@
 	<!-- 定义Action -->
 	  <bean id="loginAction" class="com.qufenqi.action.LoginAction" scope="prototype">
 	  	<property name="user" ref="user"></property>
+	  	<property name="seller" ref="seller"></property>
+	  	<property name="manager" ref="manager"/>
 		<property name="userService" ref="userService"></property>
+		<property name="sellerService" ref="sellerService"/>
+		<property name="managerService" ref="managerService"/>
 	  </bean>
 	  <bean id="userAction" class="com.qufenqi.action.UserAction" scope="prototype">
 		<property name="userService" ref="userService"></property>

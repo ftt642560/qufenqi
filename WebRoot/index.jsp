@@ -8,6 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
+  	<base href="<%=basePath%>">
 <title>趣分期购物网站</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,8 +16,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link href="<%=basePath%>css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="css/jquery.countdown.css" />
+<link href="<%=basePath%>css/user-style.css" rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="<%=basePath%>css/jquery.countdown.css" />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -78,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <div class="header_bottom-box">
 		
 			<div class="logo">
-				<a href="index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
+				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
 			</div>
 			
 			<script language="javascript">
@@ -109,7 +110,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  		
 	  		
 	  		<div class="2D-code">
-				<a href="index.jsp"><img src="<%=basePath%>image/2D-code.jpg" alt=""/></a>
+				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>image/2D-code.jpg" alt=""/></a>
 			</div>
 		</div>
 		
@@ -119,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <nav class="nav">
   <ul class="nav_menu">
-    <li class="nav_menu-item"><a href="index.jsp" target="_top">首页</a></li>
+    <li class="nav_menu-item"><a href="<%=basePath%>index.jsp" target="_top">首页</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
         <li class="nav_submenu-item"> <a href="" target="_top">手机</a></li>
@@ -602,7 +603,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  <li><a href="#">商家</a></li>
 		  
 		  <li><a href="#">关于我们</a></li>
-		  <li><a href="contact.jsp">联系我们</a></li>
+		  <li><a href="<%=basePath%>contact.jsp">联系我们</a></li>
 		</ul>
 		
 	</div>
