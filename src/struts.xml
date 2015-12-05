@@ -27,9 +27,9 @@
 		
 		<!-- 用户模块 -->
 		<action name="findAllUser" class="userAction" method="findAll">
-			<result name="success">/system/findAllUser.jsp</result>
-			<result name="error">/system/index.jsp</result>
-			<result name="login">/login.jsp</result>
+			<result name="success">/manage/user.jsp</result>
+			<result name="error">/manage/index.jsp</result>
+			<result name="login">/user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		
@@ -49,7 +49,9 @@
 		</action>
 		<!-- 用户的登录 -->
 		<action name="login" class="loginAction" method="login">
-			<result name="success">index.jsp</result>
+			<result name="userLogin">index.jsp</result>
+			<result name="sellerLogin">/manage/index.jsp</result>
+			<result name="managerLogin">/manage/index.jsp</result>
 			<result name="error">user-login.jsp</result>
 		</action>
 		<action name="quitUser" class="loginAction" method="quit">
@@ -121,7 +123,7 @@
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="findAll" class="sellerAction" method="findAll">
-			<result name="success">/system/findAllSeller.jsp</result>
+			<result name="success">/manage/seller.jsp</result>
 			<result name="input">login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
@@ -140,7 +142,17 @@
 		    
 		</action>
 		<action name="findSelf" class="sellerAction" method="findSelf">
-			<result name="success">/common/querySelfMess.jsp</result>
+			<result name="success">/manage/sellerSelfMess.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		<action name="findSelfUpdate" class="sellerAction" method="findSelf">
+			<result name="success">/manage/seller-modify.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		<action name="updateSel" class="sellerAction" method="updateSelf">
+			<result name="success">/manage/sellerSelfMess.jsp</result>
 			<result name="input">login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
@@ -165,8 +177,8 @@
 		
 		<!-- 房婷婷加的 -->
 		<action name="findAllGoods" class="goodsAction" method="findAll">
-			<result name="success">/system/findAllGoods.jsp</result>
-			<result name="input">/login.jsp</result>
+			<result name="success">/manage/product.jsp</result>
+			<result name="input">/user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="deleteGoods" class="managerAction" method="delete">

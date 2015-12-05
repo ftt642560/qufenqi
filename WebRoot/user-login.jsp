@@ -16,7 +16,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="<%=basePath%>/css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="<%=basePath%>/css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>/css/user-style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -26,6 +26,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- start menu -->
 <link href="<%=basePath%>/css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="<%=basePath%>/js/megamenu.js"></script>
+<script type="text/javascript" src="<%=basePath%>/js/login.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 </head>
 <body>
@@ -66,15 +67,60 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				<!-- 登录ftt添加 -->
 				<p style="color: red;font-weight: bolder;position: relative;left: 60px;height: -20px;">${requestScope.mess }</p>
 				<!-- form表单 -->
-				<form name="from1"  method="post"  action="login.action">
-				  <div>
-					<span>账号：</span>
-					<input id="userName" type="text" name="user.userName"> 
-				  </div>
-				  <div>
-					<span>密码：</span>
-					<input id="password" type="password" name="user.password"> 
-				  </div>
+				<form id = "loginForm" name="from1"  method="post"  action="" >
+					<table>
+						<tr>
+							<td colspan="2">
+								<span style="font-weight: bolder; font-size: 14px;">账号：</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<td style="width: 70%"><input id="userName" type="text" name="userName" size="80px"></td>
+										<td style="width: 30%">
+											<span id="userNameDiv" style="color: red"></span>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td colspan="2">
+								<span style="font-weight: bolder; font-size: 14px;">密码：</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<table>
+									<tr>
+										<td style="width: 70%"><input id="password" type="password" name="password" size="80px"></td>
+										<td style="width: 30%">
+											<span id="passwordDiv" style="color: red"></span>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>
+								管理员：<input type="radio" name="role" value="2"/> &nbsp;&nbsp; &nbsp;&nbsp;
+								商家：<input type="radio" name="role" value="1"> &nbsp;&nbsp; &nbsp;&nbsp;
+								用户：<input type="radio" name="role" value="0">
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+						</tr>
+					</table>
 				  <a class="forgot" href="#">忘记密码?</a>
 				  <input type="submit" value="Login" onclick="JavaScript:login();">
 			    </form>

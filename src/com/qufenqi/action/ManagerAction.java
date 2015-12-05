@@ -32,6 +32,7 @@ public class ManagerAction {
 	}
 
 	public String delete(){
+		System.out.println("deleteGoods");
 		managerService.delete(goodsId);
 		try {
 			inputStream =  new ByteArrayInputStream("1".getBytes("UTF-8"));
