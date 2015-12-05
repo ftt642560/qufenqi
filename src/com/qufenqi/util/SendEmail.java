@@ -36,7 +36,7 @@ public  class SendEmail {
 		String portcool = "smtp";
 		String port = "25";
 		String from = "1254171906@qq.com";
-		String password = "bdilubkpwnyibagj";
+		String password = "nfdqiklmzubpgeih";
 //		String from = "fangtt_0627@163.com";//发邮件的出发地（发件人的邮箱）
 //		String password = "whxx06270924"; // 发件人的密码
 		

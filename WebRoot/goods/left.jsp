@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	}
 	
 	function gotoOnShelf(){
-			document.idFrmMain.action="<%=basePath%>/OnShelf.action";
+			document.idFrmMain.action="<%=basePath%>/goods/onShelf.jsp";
 			document.idFrmMain.target = "main";
 			document.idFrmMain.submit();
 		}

@@ -1,13 +1,11 @@
 package com.qufenqi.action;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -112,6 +110,7 @@ public class LoginAction {
 	 */
 	public String login(){
 		int status = userService.login(user);
+		System.out.println(status+"==status");
 		switch (status) {
 		case NULL:
 			request.setAttribute("mess" , "用户名或者密码不能为空");
@@ -132,6 +131,7 @@ public class LoginAction {
 		default:
 			break;
 		}
+		System.out.println(flag+"==flag");
 		return flag;
 	}
 	
@@ -141,14 +141,25 @@ public class LoginAction {
 	 */
 	public String quit(){
 		HttpSession session = request.getSession();
-		User user = (User) session.getAttribute("User");
-		if(user != null){
-			session.removeAttribute("user");
-			flag = "seccess";
-		}else{
-			flag = "error";
+		User user = (User) session.getAttribute("user");
+		session.removeAttribute("user");
+		try {
+			inputStream =  new ByteArrayInputStream("1".getBytes("UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			try {
+				inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
 		}
-		return flag;
+//		if(user != null){
+//			session.removeAttribute("user");
+//			flag = "seccess";
+//		}else{
+//			flag = "error";
+//		}
+		return "success";
 	}
 	
 	public String findAll(){

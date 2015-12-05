@@ -39,7 +39,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			}else{
 				document.getElementById('loginForm').action="<%=basePath%>loginSeller.action";	
 			}
-			
 		}
     </script>
   <body BACKGROUND="<%=basePath%>image/bg.gif">
