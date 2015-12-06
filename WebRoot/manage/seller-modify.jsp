@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -133,48 +134,49 @@
 						<tr>
 							<td class="field">用户名：</td>
 							<td><input type="text" class="text" name="seller.sellerName"
-								value="${sellerName }" readonly="readonly" />
+								value="${seller.sellerName }" readonly="readonly" />
 							</td>
 						</tr>
 						<tr>
 							<td class="field">姓名：</td>
-							<td><input type="text" readonly="readonly" class="text" name="seller.name" value="${seller.name }" />
+							<td>
+								<input type="text" readonly="readonly" class="text" name="seller.name" value="${seller.name }" />
 							</td>
 						</tr>
 						<tr>
 							<td class="field">密码：</td>
-							<td><input type="text" class="text" name="passWord"
-								value="zhangsan" />
+							<td><input type="text" class="text" name="seller.password"
+								value="${seller.sellerPassword }" readonly="readonly"/>
 							</td>
-						</tr>
-						<tr>
-							<td class="field">性别：</td>
-							<td><input type="radio" name="sex" value="1"
-								checked="checked" />男 <input type="radio" name="sex" value="1" />女</td>
-						</tr>
-						<tr>
-							<td class="field">出生日期：</td>
-							<td><select name="birthyear">
-									<option value="2000">2000</option>
-									<option value="1999" selected="selected">1999</option>
-							</select>年 <select name="birthmonth">
-									<option value="12">12</option>
-									<option value="11" selected="selected">11</option>
-							</select>月 <select name="birthday">
-									<option value="2">2</option>
-									<option value="1" selected="selected">1</option>
-							</select>日</td>
 						</tr>
 						<tr>
 							<td class="field">手机号码：</td>
-							<td><input type="text" class="text" name="mobile"
-								value="13800000000" />
+							<td><input type="text" class="text" name="seller.telephone"
+								value="${seller.telephone }" />
 							</td>
 						</tr>
 						<tr>
-							<td class="field">送货地址：</td>
-							<td><input type="text" class="text" name="address"
-								value="高老庄" />
+							<td class="field">身份证：</td>
+							<td><input type="text" class="text" name="seller.idCard"
+								value="${seller.idCard }" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="field">地址：</td>
+							<td><input type="text" class="text" name="seller.address"
+								value="${seller.address }" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">邮箱：</td>
+							<td><input type="text" class="text" name="seller.email"
+								value="${seller.email }" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">角色：</td>
+							<td><input type="text" class="text" name="seller.role"
+								value="${seller.role }" readonly="readonly"/>
 							</td>
 						</tr>
 						<tr>
@@ -184,9 +186,16 @@
 						</tr>
 						<tr>
 							<td></td>
-							<td><label class="ui-blue"><input type="submit"
-									name="submit" value="更新" />
-							</label>
+							<td>
+								<label class="ui-blue">
+									<input type="submit" name="submit" value="更新" />
+								</label>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<label class="ui-blue">
+									<input type="reset" name="reset" value="取消">
+								</label>
 							</td>
 						</tr>
 					</table>

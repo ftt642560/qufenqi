@@ -14,6 +14,7 @@
 		<property name="telephone" type="long" column="telephone" not-null="true"/>
 		<property name="email" type="string" column="email" not-null="true"/>
 		<property name="role" type="integer" column="role" not-null="true"/>
+		<property name="address" type="string" column="address" not-null="true"/>
 		<set name="orders" cascade="save-update" inverse="true" lazy="false">
 			<key column="sellerId"></key>
 			<one-to-many class="com.qufenqi.entity.Order"/>
