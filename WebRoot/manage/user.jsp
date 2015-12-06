@@ -187,7 +187,6 @@
 									<td>${quota }</td>
 									<td>${status }</td>
 									<td class="w1 c">
-										<a href="<%=basePath%>/manage/user-modify.jsp">修改</a> 
 										<a href="<%=basePath%>/delete.action?userId=${userId}" class="delete">
 											<input type="hidden" value="${userId }">
 											<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />

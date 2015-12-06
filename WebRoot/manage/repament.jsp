@@ -9,11 +9,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-		<base href="<%=basePath%>">
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理 - 易买网</title>
-<link type="text/css" rel="stylesheet" href="<%=basePath%>/css/style.css" />
-<script type="text/javascript" src="<%=basePath%>/scripts/function-manage.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="<%=basePath%>/css/style.css" />
+<script type="text/javascript"
+	src="<%=basePath%>/scripts/function-manage.js"></script>
 </head>
 <body>
 	<div id="header" class="wrap">
@@ -66,7 +68,7 @@
 						<dl>
 							<dt>个人信息管理</dt>
 							<dd>
-								<a href="<%=basePath%>findSelf.action">用户管理</a>
+								<a href="<%=basePath%>findAllUser.action">用户管理</a>
 							</dd>
 							<dt>商品管理</dt>
 							<dd>
@@ -127,48 +129,32 @@
 				</div>
 			</div>
 		<div class="main">
-			<h2>修改信息</h2>
+			<h2>订单管理</h2>
 			<div class="manage">
-				<form action="<%=basePath%>/modifyMess.action" method="post">
-					<table class="form">
-						<tr>
-							<td class="field">用户名：</td>
-							<td><input type="hidden" class="text" name="seller.sellerName"
-								value="${seller.sellerName }" />
-							</td>
-						</tr>
-						<tr>
-							<td class="field">手机号码：</td>
-							<td><input type="text" class="text" name="seller.telephone"
-								value="${seller.telephone }" />
-							</td>
-						</tr>
-						<tr>
-							<td class="field">地址：</td>
-							<td><input type="text" class="text" name="seller.address"
-								value="${seller.address }" />
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td>
-								<label class="ui-blue">
-									<input type="submit" name="submit" value="更新" />
-								</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<label class="ui-blue">
-									<input type="reset" name="reset" value="取消">
-								</label>
-							</td>
-						</tr>
-					</table>
-				</form>
+						<table class="list">
+							<tr>
+					  			<td>还款单id</td>
+								<td>已还期数</td>
+								<td>待还期数</td>
+								<td>月还金额</td>
+								<td>还款金额</td>
+							</tr>
+							<s:iterator value="#session.pageBean.list" status="status">
+								<tr>
+									<td>${repayment.repaymentId }</td>
+									<td>${repayment.finishPeriodNum }</td>
+									<td>${repayment.needPeriodNum }</td>
+									<td>${repayment.onePeriodMoney }</td>
+									<td>${repayment.repaymentState }</td>
+								</tr>										
+							</s:iterator>
+						</table>
+			</div>
+			<div>
+				<center><a href="<%=basePath%>queryOrderBySelleName.action">返回订单页</a></center>
 			</div>
 		</div>
 		<div class="clear"></div>
-		<div>${requestScope.mess }</div>
 	</div>
 	<div id="footer">Copyright &copy; 2010 北大青鸟 All Rights Reserved.
 		京ICP证1000001号</div>

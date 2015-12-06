@@ -98,7 +98,11 @@
 			<result name="login">login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
-		
+		<action name="queryOrderBySelleName" class="paymentAction" method="queryOrderBySelleName">
+			<result name="success">/manage/order.jsp</result>
+			<result name="login">/manage/user-login.jsp</result>
+			<interceptor-ref name="wall"/>
+		</action>
 		
 		<!-- 商家模块 -->
 		<action name="sellerRegister" class="sellerAction" method="register">
@@ -158,6 +162,13 @@
 			<result name="input">login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
+		<action name="modifyMess" class="sellerAction" method="modifyMess">
+			<result name="success">/manage/sellerSelfMess.jsp</result>
+			<result name="reWrite">/manage/seller-modify.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		
 	</package>
 	
 	<package name="goods" extends="struts-default" namespace="/goods">
@@ -193,17 +204,26 @@
 		</action>
 		<!-- 商家查找商品信息 -->
 		<action name="sellerquerygoods" class="goodsAction" method="sellerquerygoods">
+			<result name="success">/manage/GoodsMessOfSeller.jsp</result>
+			<!-- 
 			<result name="success">/buygoodsresult.jsp</result>
+			 -->
 		</action>
 		
 		<!-- 用户搜索商品 -->
 		<action name="usersearchgoods" class="goodsAction" method="userSearchGoods">
 			<result name="success">/test_usersearchgoods.jsp</result>
+			<!-- 
+				<result name="success">/test_usersearchgoods.jsp</result>
+			 -->
 		</action>
 		
 		<!-- 用户按照商品类型查找商品，在不同的商家商家所卖的同一种类型商品，其商品不同 -->
 		<action name="usersearchbytypename" class="goodsAction" method="UserSearchByType">
 			<result name="success">/test_searchbytype.jsp</result>
+			<!-- 
+				<result name="success">/test_searchbytype.jsp</result>
+			 -->
 		</action>
 		
 		

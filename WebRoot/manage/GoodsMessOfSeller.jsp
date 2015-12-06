@@ -9,11 +9,13 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-		<base href="<%=basePath%>">
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>后台管理 - 易买网</title>
-<link type="text/css" rel="stylesheet" href="<%=basePath%>/css/style.css" />
-<script type="text/javascript" src="<%=basePath%>/scripts/function-manage.js"></script>
+<link type="text/css" rel="stylesheet"
+	href="<%=basePath%>/css/style.css" />
+<script type="text/javascript"
+	src="<%=basePath%>/scripts/function-manage.js"></script>
 </head>
 <body>
 	<div id="header" class="wrap">
@@ -66,7 +68,7 @@
 						<dl>
 							<dt>个人信息管理</dt>
 							<dd>
-								<a href="<%=basePath%>findSelf.action">用户管理</a>
+								<a href="<%=basePath%>findAllUser.action">用户管理</a>
 							</dd>
 							<dt>商品管理</dt>
 							<dd>
@@ -127,48 +129,64 @@
 				</div>
 			</div>
 		<div class="main">
-			<h2>修改信息</h2>
+			<h2>订单管理</h2>
 			<div class="manage">
-				<form action="<%=basePath%>/modifyMess.action" method="post">
-					<table class="form">
-						<tr>
-							<td class="field">用户名：</td>
-							<td><input type="hidden" class="text" name="seller.sellerName"
-								value="${seller.sellerName }" />
-							</td>
-						</tr>
-						<tr>
-							<td class="field">手机号码：</td>
-							<td><input type="text" class="text" name="seller.telephone"
-								value="${seller.telephone }" />
-							</td>
-						</tr>
-						<tr>
-							<td class="field">地址：</td>
-							<td><input type="text" class="text" name="seller.address"
-								value="${seller.address }" />
-							</td>
-						</tr>
-						<tr>
-							<td></td>
-							<td>
-								<label class="ui-blue">
-									<input type="submit" name="submit" value="更新" />
-								</label>
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<label class="ui-blue">
-									<input type="reset" name="reset" value="取消">
-								</label>
-							</td>
-						</tr>
-					</table>
-				</form>
-			</div>
+						<table class="list">
+							<tr>
+								<td>商品ID</td>
+								<td>商品名</td>
+								<td>品牌</td>
+								<td>型号</td>
+								<td>尺寸</td>
+								<td>颜色</td>
+								<td>材料</td>
+								<td>库存量</td>	
+								<td>商品类型</td>			
+							</tr>
+							<s:iterator value="l_ofsellergoods" id="l_ofsellergoods" status="status">
+								<tr>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.goodsId"/></td>
+									<td>
+										<s:property value="#l_ofsellergoods.goods.goodsName" ></s:property>
+									</td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.brand"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.model"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.size"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.color"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.material"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.quantity"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.goodstype.goodsTypeName"/></td>
+								</tr>
+							</s:iterator>
+						</table>
+				</div>
+				<center style="font-size: 14px">
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+			        
+			        <s:if test="#request.pageBean.currentPage == 1">
+			           	 首页&nbsp;上一页
+			        </s:if>
+			        
+			        <s:else>
+			            <a href="/goods/sellerquerygoods.action">首页</a>
+			            &nbsp;
+			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			        </s:else>
+			        	&nbsp;
+			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            &nbsp;
+			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			        </s:if>
+			        
+			        <s:else>
+			            	下一页&nbsp;尾页
+			        </s:else>
+			    
+			   </center><br>
 		</div>
 		<div class="clear"></div>
-		<div>${requestScope.mess }</div>
 	</div>
 	<div id="footer">Copyright &copy; 2010 北大青鸟 All Rights Reserved.
 		京ICP证1000001号</div>

@@ -3,7 +3,7 @@
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="com.qufenqi.entity.PeriodPlan" table="periodplan">
+	<class name="com.qufenqi.entity.PeriodPlan" table="periodplan" lazy="false">
 		<id name="periodId" type="integer" column="periodId">
 			<generator class="native"/>
 		</id>

@@ -189,7 +189,6 @@
 									<td>${role }</td>
 									<td>${manager.managName}</td>
 									<td>
-										<a href="<%=basePath%>/manage/seller-modify.jsp">修改</a> 
 										<a href="<%=basePath%>/deleteSeller.action?sellerId=${sellerId}" class="delete">
 											<input type="hidden" value="${sellerId }">
 												<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />

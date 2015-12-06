@@ -24,5 +24,6 @@ public interface SellerDao {
 	
 	public int count(String queryString);
 	
+	public int modifyMess(String sql);
 
 }

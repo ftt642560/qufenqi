@@ -31,6 +31,4 @@ public class PaymentDaoImpl implements PaymentDao{
 		session.close();   
 		return orderList;
 	}
-	
-	
 }

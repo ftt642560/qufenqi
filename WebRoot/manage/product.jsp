@@ -181,8 +181,8 @@
 					</tr>
 						<s:iterator value="#request.pageBean.list" status="status">
 							<tr>
-								<td>${goodsId }</td>
-								<td>${goodsName }</td>
+								<td>${goods.goodsId }</td>
+								<td>${goods.Name }</td>
 								<td>${brand }</td>
 								<td>${model }</td>
 								<td>${size }</td>

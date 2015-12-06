@@ -1,6 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -72,15 +71,15 @@
 							<dt>商品管理</dt>
 							<dd>
 								<em><a href="<%=basePath%>/manage/productClass-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理</a>
+								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理${seller.sellerName }</a>
 							</dd>
 							<dd>
 								<em><a href="<%=basePath%>/manage/product-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/findAllGoods.action">商品管理</a>
+								</em><a href="<%=basePath%>/goods/sellerquerygoods.action?sellerName=${seller.sellerName }">商品管理${seller.sellerId }</a>
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
-								<a href="<%=basePath%>/manage/order.jsp">订单管理</a>
+								<a href="<%=basePath%>/queryOrderBySelleName.action">订单管理${seller.sellerName }</a>
 							</dd>
 							<dt>申诉管理</dt>
 							<dd>
