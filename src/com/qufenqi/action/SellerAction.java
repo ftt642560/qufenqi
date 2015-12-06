@@ -319,4 +319,45 @@ public class SellerAction {
 		request.setAttribute("seller", seller);
 		return "success";
 	}
+	
+	public String modifyMess(){
+		System.out.println("modifyMess进来了");
+		String address = seller.getAddress();
+		long telephone = seller.getTelephone();
+		String sellerName  = seller.getSellerName();
+		Seller seller = sellerService.find(sellerName);
+		System.out.println("seller=="+seller);
+		String addre = seller.getAddress();
+		long tele = seller.getTelephone();
+		System.out.println("address=="+address);
+		System.out.println("telephone=="+telephone);
+		if(address.equals(addre) && telephone == tele){
+			System.out.println(1);
+			request.setAttribute("mess", "请填写修改信息");
+			return "reWrite";
+		}
+		if(!address.equals(addre) && telephone == tele){
+			System.out.println(2);
+			sellerService.modify(address, 0);
+			seller.setAddress(address);
+			request.setAttribute("seller", seller);
+			return "success";
+		}
+		if(address.equals(addre) && telephone != tele){
+			System.out.println(3);
+			sellerService.modify("", telephone);
+			seller.setTelephone(telephone);
+			request.setAttribute("seller", seller);
+			return "success";
+		}
+		if(!address.equals(addre) && telephone != tele){
+			System.out.println(4);
+			sellerService.modify(address, telephone);
+			seller.setAddress(address);
+			seller.setTelephone(telephone);
+			request.setAttribute("seller", seller);
+			return "success";
+		}
+		return null;
+	}
 }

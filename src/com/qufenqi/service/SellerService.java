@@ -33,6 +33,7 @@ public interface SellerService {
 
 	boolean modifyPassword(String oldPassword, String sellerPassword,
 			String name);
+	void modify(String address , long tele);
 	
 	//-----------------zlin---------------
 	/**

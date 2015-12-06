@@ -66,9 +66,6 @@ public class SellerBaseDao extends HibernateDaoSupport{
 	}
 	
 	
-	
-	
-	
 	//-----------------zlin---------------
 	/**
 	 * 

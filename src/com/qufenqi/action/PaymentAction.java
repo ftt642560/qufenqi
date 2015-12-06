@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 
 import com.qufenqi.entity.Order;
+import com.qufenqi.entity.PageBean;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.User;
 import com.qufenqi.service.PaymentService;
 import com.qufenqi.service.UserService;
@@ -17,6 +19,10 @@ public class PaymentAction {
 	private HttpSession session = request.getSession();
 	private PaymentService paymentService;
 	private UserService userService;
+	//第几页
+	private int page;
+	//包含查询结果的信息的bean
+	private PageBean pageBean;
 	
 	public PaymentService getPaymentService() {
 		return paymentService;
@@ -43,6 +49,35 @@ public class PaymentAction {
 			System.out.println("orderList.size()==="+orderList.size());
 			request.setAttribute("orderList", orderList);
 		}
+		return "success";
+	}
+	
+	public int getPage() {
+		return page;
+	}
+
+	public void setPage(int page) {
+		this.page = page;
+	}
+
+	public PageBean getPageBean() {
+		return pageBean;
+	}
+
+	public void setPageBean(PageBean pageBean) {
+		this.pageBean = pageBean;
+	}
+
+	/**
+	 * 
+	 * 根据善商家名查找商家的订单
+	 * @return
+	 */
+	public String queryOrderBySelleName(){
+		Seller seller = (Seller) session.getAttribute("seller");
+		int sellerId = seller.getSellerId();
+		this.pageBean = paymentService.queryForPage(sellerId, 2, page);
+		session.setAttribute("pageBean", pageBean);
 		return "success";
 	}
 }

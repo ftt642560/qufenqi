@@ -140,6 +140,52 @@
 					</form>
 				</div>
 				<div class="spacer"></div>
+					
+					<s:if test="#request.pageBean == null || #request.pageBean.size() == 0">
+						<table>
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+						
+						<table border="1" cellspacing="0" cellpadding="0" width="100%" height="">
+							<tr>
+								<td style="color: red ; font-weight: bolder;"><center>没有商品</center></td>
+							</tr>
+						</table>
+					</s:if>
+					<s:else>
+						<table class="list">
+							<tr>
+					  			<td>订单id</td>
+					  			<td>商品名</td>
+								<td>运费</td>
+								<td>总价</td>
+								<td>订货人</td>
+								<td>收货人</td>
+								<td>状态</td>
+								<td>分期</td>
+								<td>还款信息</td>
+								<td>物流</td>
+							</tr>
+							<s:iterator value="#request.pageBean.list" status="status">
+								<tr>
+									<td>${orderId }</td>
+									<td><a href="<%=basePath %>/manage/goodsOfMess.jsp">${goods.brand }</a></td>
+									<td>${carriage }</td>
+									<td>${orderAmount }</td>
+									<td><a href="">${user.userName }</a></td>
+									<td><a href="<%=basePath %>/manage/devilery.jsp">收获详情</a></td>
+									<td>${orderStatus }</td>
+									<td><a href="<%=basePath %>/manage/period.jsp">分期详情</a></td>
+									<td><a href="<%=basePath %>/manage/repament.jsp">还款详情</a></td>
+									<td><a href="<%=basePath %>/manage/logistics.jsp">物流详情</a></td>
+								</tr>										
+							</s:iterator>
+						</table>
+					</s:else>
+				
+				<!-- 
 				<table class="list">
 					<tr>
 						<th>ID</th>
@@ -165,19 +211,38 @@
 							href="javascript:Delete(1);">删除</a></td>
 					</tr>
 				</table>
-				<div class="pager">
-					<ul class="clearfix">
-						<li><a href="#">上一页</a></li>
-						<li class="current">1</li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#">下一页</a></li>
-					</ul>
-				</div>
+				 -->
+				
 			</div>
+			
+			<center style="font-size: 14px">
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+			        
+			        <s:if test="#request.pageBean.currentPage == 1">
+			           	 首页&nbsp;上一页
+			        </s:if>
+			        
+			        <s:else>
+			            <a href="<%=basePath%>/queryOrderBySelleName.action">首页</a>
+			            &nbsp;
+			            <a href="<%=basePath%>/queryOrderBySelleName.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			        </s:else>
+			        	&nbsp;
+			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+			            <a href="<%=basePath%>/queryOrderBySelleName.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            &nbsp;
+			            <a href="<%=basePath%>/queryOrderBySelleName.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			        </s:if>
+			        
+			        <s:else>
+			            	下一页&nbsp;尾页
+			        </s:else>
+			    
+			   </center><br>
 		</div>
+		
+		
 		<div class="clear"></div>
 	</div>
 	<div id="footer">Copyright &copy; 2010 北大青鸟 All Rights Reserved.

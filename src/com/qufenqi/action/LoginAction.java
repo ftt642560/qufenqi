@@ -209,6 +209,8 @@ public class LoginAction {
 					break;
 				case 0:
 					request.setAttribute("mess", "该商家登录成 功");
+					Seller seller = sellerService.find(userName);
+					System.out.println("seller=="+seller);
 					session.setAttribute("seller", seller);
 					request.setAttribute("role", 1);
 					//因为商家就是管理员，所以将用户登录成功时可以讲登录名和密码赋值给USER,

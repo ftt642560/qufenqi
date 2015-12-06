@@ -98,7 +98,11 @@
 			<result name="login">login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
-		
+		<action name="queryOrderBySelleName" class="paymentAction" method="queryOrderBySelleName">
+			<result name="success">/manage/order.jsp</result>
+			<result name="login">/manage/user-login.jsp</result>
+			<interceptor-ref name="wall"/>
+		</action>
 		
 		<!-- 商家模块 -->
 		<action name="sellerRegister" class="sellerAction" method="register">
@@ -158,6 +162,13 @@
 			<result name="input">login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
+		<action name="modifyMess" class="sellerAction" method="modifyMess">
+			<result name="success">/manage/sellerSelfMess.jsp</result>
+			<result name="reWrite">/manage/seller-modify.jsp</result>
+			<result name="input">login.jsp</result>
+			<interceptor-ref name="BgLoginInterceptor"/>
+		</action>
+		
 	</package>
 	
 	<package name="goods" extends="struts-default" namespace="/goods">

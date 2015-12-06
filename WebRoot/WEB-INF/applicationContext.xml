@@ -110,6 +110,7 @@
 	</bean>
 	<bean id="paymentService" class="com.qufenqi.service.impl.PaymentServiceImpl">
 	  	<property name="paymentDao" ref="paymentDao"></property>
+	  	<property name="pageBaseDao" ref="pageBaseDao"></property>
 	</bean>
 	<bean id="sellerService" class="com.qufenqi.service.impl.SellerServiceImpl">
 	  	<property name="sellerBaseDao" ref="sellerBaseDao"/>

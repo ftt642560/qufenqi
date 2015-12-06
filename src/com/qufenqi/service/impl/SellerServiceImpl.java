@@ -177,6 +177,20 @@ public class SellerServiceImpl implements SellerService{
 		}
 		return null;
 	}
+	//String sql1 = "update seller set sellerPassword='"+MD5.getMD5(newPassword)+"' where sellerName="+name;
+	@Override
+	public void modify(String address, long tele) {
+		String hql = "";
+		if(!address.equals("") && tele == 0){
+			hql = "update Seller  as s set s.address = '"+address+"' ";
+		}else if(address.equals("") && tele != 0){
+			hql = "update Seller  as s set s.telephone ="+tele;
+		}else{
+			hql = "update Seller  as s set s.address = '"+address+"', s.telephone ="+tele;
+			System.out.println(hql);
+		}
+		sellerDao.modifyMess(hql);
+	}
 	
 	//-----------------zlin---------------
 		/**

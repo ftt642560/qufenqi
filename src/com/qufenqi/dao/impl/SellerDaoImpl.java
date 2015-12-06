@@ -53,6 +53,17 @@ public class SellerDaoImpl implements SellerDao {
 			session.close();
 		}
 	}
+	@Override
+	public int modifyMess(String sql) {
+		System.out.println("jinlaile");
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session.createQuery(sql);
+		int i = query.executeUpdate();
+		tx.commit();
+		session.close();
+		return i;
+	}
 	
 
 }
