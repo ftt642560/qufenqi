@@ -348,11 +348,12 @@ public class GoodsAction {
 		 pageBean = goodsserviceimpl.SellerSearchGoods(id, 5, page);
 		 l_ofsellergoods = pageBean.getList();
 		 System.out.println("商家查找商品，查找成功。。");
-		 if(l_sellergoods.size() ==0)
-			 System.out.println("l_sellergoods is null");
+		 System.out.println("l_ofsellergoods.size()=="+l_ofsellergoods.size());
+		 if(l_ofsellergoods.size() ==0)
+			 System.out.println("l_ofsellergoods is null");
 		 else
 		 {
-			 System.out.println("l_sellergoods is not null===l_sellergoods.size()"+l_sellergoods.size());
+			 System.out.println("l_ofsellergoods is not null===l_ofsellergoods.size()"+l_ofsellergoods.size());
 		 }
 		 
 		 for(int i=0;i<l_ofsellergoods.size();i++)
