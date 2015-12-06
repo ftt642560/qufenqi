@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    	<table align="left">
    		<s:iterator value="sgi">
    			<tr>
-   				<td><img src="${pageContext.request.contextPath}/${imageUrl}" /></td>
+   				<td><img src="${pageContext.request.contextPath}/${sgi.imageUrl}" /></td>
    			</tr>
    		</s:iterator>
    	</table>
