@@ -167,6 +167,7 @@
 								<td>分期</td>
 								<td>还款信息</td>
 								<td>物流</td>
+								<td>修改</td>
 							</tr>
 							<s:iterator value="#request.pageBean.list" status="status">
 								<tr>
@@ -180,6 +181,9 @@
 									<td><a href="<%=basePath %>/manage/period.jsp">分期详情</a></td>
 									<td><a href="<%=basePath %>/manage/repament.jsp">还款详情</a></td>
 									<td><a href="<%=basePath %>/manage/logistics.jsp">物流详情</a></td>
+									<td>
+										<a href="<%=basePath%>/">修改</a>
+									</td>
 								</tr>										
 							</s:iterator>
 						</table>

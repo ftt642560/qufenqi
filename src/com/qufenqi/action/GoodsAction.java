@@ -340,12 +340,18 @@ public class GoodsAction {
 	 //商家查找商品信息
 	 public String sellerquerygoods()
 	 {
-		 System.out.println("seller search goods");
-		 int id=Integer.parseInt(testsellerid);
-		 System.out.println("商家查找商品信息，商家id="+id);
-		 //l_ofsellergoods=goodsserviceimpl.SellerSearchGoods(id);
+		 /**--------------------房婷婷修改的开始------------------------*/
+		 String sellerName = seller.getSellerName();
+		 System.out.println("seller.getSellerName()=="+sellerName );
+		 Seller seller = sellerservice.find(sellerName);
+		 int id = seller.getSellerId();
+		 /**--------------------房婷婷修改的结束------------------------*/
+//		 System.out.println("seller search goods");
+//		 int id=Integer.parseInt(testsellerid);
+//		 System.out.println("商家查找商品信息，商家id="+id);
+//		 //l_ofsellergoods=goodsserviceimpl.SellerSearchGoods(id);
 		 pageBean=null;
-		 pageBean = goodsserviceimpl.SellerSearchGoods(id, 5, page);
+		 pageBean = goodsserviceimpl.SellerSearchGoods(id,2, page);
 		 l_ofsellergoods = pageBean.getList();
 		 System.out.println("商家查找商品，查找成功。。");
 		 System.out.println("l_ofsellergoods.size()=="+l_ofsellergoods.size());

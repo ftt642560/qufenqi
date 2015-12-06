@@ -133,18 +133,54 @@
 					<table class="form">
 						<tr>
 							<td class="field">订单ID：</td>
-							<td><input type="text" class="text" name="orderId"
+							<td><input type="text" class="text" name="order.orderId"
 								value="100000" readonly="readonly" />
 							</td>
 						</tr>
 						<tr>
-							<td class="field">订购人姓名：</td>
+							<td class="field">商品名：</td>
+							<td><input type="text" class="text" name="seller.sellerName" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">运费:</td>
 							<td><input type="text" class="text" name="name" value="张三" />
 							</td>
 						</tr>
 						<tr>
-							<td class="field">...：</td>
-							<td>...</td>
+							<td class="field">总价</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">订货人：</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">收货人：</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">订单状态：</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">分期：</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">还款信息：</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">物流：</td>
+							<td><input type="text" class="text" name="name" value="张三" />
+							</td>
 						</tr>
 						<tr>
 							<td></td>

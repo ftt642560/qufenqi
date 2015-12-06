@@ -75,7 +75,7 @@
 							</dd>
 							<dd>
 								<em><a href="<%=basePath%>/manage/product-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/sellerquerygoods.action?testsellerid=1">商品管理${seller.sellerId }</a>
+								</em><a href="<%=basePath%>/goods/sellerquerygoods.action?sellerName=${seller.sellerName }">商品管理${seller.sellerId }</a>
 							</dd>
 							<dt>订单管理</dt>
 							<dd>

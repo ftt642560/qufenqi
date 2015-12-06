@@ -80,4 +80,12 @@ public class PaymentAction {
 		session.setAttribute("pageBean", pageBean);
 		return "success";
 	}
+	
+	/**
+	 *根据订单的id去查询 订单
+	 */
+	public String queryOrderByOrderId(){
+		
+		return "";
+	}
 }

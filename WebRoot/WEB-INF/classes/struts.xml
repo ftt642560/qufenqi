@@ -204,17 +204,26 @@
 		</action>
 		<!-- 商家查找商品信息 -->
 		<action name="sellerquerygoods" class="goodsAction" method="sellerquerygoods">
+			<result name="success">/manage/GoodsMessOfSeller.jsp</result>
+			<!-- 
 			<result name="success">/buygoodsresult.jsp</result>
+			 -->
 		</action>
 		
 		<!-- 用户搜索商品 -->
 		<action name="usersearchgoods" class="goodsAction" method="userSearchGoods">
 			<result name="success">/test_usersearchgoods.jsp</result>
+			<!-- 
+				<result name="success">/test_usersearchgoods.jsp</result>
+			 -->
 		</action>
 		
 		<!-- 用户按照商品类型查找商品，在不同的商家商家所卖的同一种类型商品，其商品不同 -->
 		<action name="usersearchbytypename" class="goodsAction" method="UserSearchByType">
 			<result name="success">/test_searchbytype.jsp</result>
+			<!-- 
+				<result name="success">/test_searchbytype.jsp</result>
+			 -->
 		</action>
 		
 		

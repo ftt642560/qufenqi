@@ -11,45 +11,12 @@
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>后台管理 - 趣分期</title>
+<title>后台管理 - 易买网</title>
 <link type="text/css" rel="stylesheet"
 	href="<%=basePath%>/css/style.css" />
 <script type="text/javascript"
 	src="<%=basePath%>/scripts/function-manage.js"></script>
-	<script type="text/javascript" src="<%=basePath%>/js/jquery-1.9.1.min.js"></script>
 </head>
-<script type="text/javascript">
-	$(function(){
-				//1. 点击 delete 时, 弹出 确定是要删除 xx 的信息吗 ? 若确定, 执行删除, 若不确定, 则取消
-				$(".delete").click(function(){
-					var goodsId = $(this).next(":input").val();//this代表a链接
-					var flag = confirm("确定要删除"+ goodsId +"的信息吗？");
-					alert(flag+"11");
-					if(flag){//真的要删除
-						alert(1111);
-						var $tr = $(this).parent().parent();
-						//执行删除，实行ajax的方法
-						var url = this.href;
-						var args = {"time":new Date()};
-						$.post(url , args , function(data){//data如何返回
-							alert(111);
-							alert(data);
-								//若data的返回值为1.则提示删除成功，且把当前行删除，
-								if(data == 1){
-									$tr.remove();
-									document.getElementById('div').innerHTML="删除成功";
-								}else{
-									//若data的返回值不是1，提示删除失败
-									document.getElementById('div').innerHTML="删除失败！";
-								}
-								$("#div").show();
-							});
-					}
-					//(先需要)取消超链接的默认行为
-					return false;
-				});
-		});
-</script>
 <body>
 	<div id="header" class="wrap">
 			<div id="logo">
@@ -162,47 +129,62 @@
 				</div>
 			</div>
 		<div class="main">
-			<h2>商品管理</h2>
+			<h2>订单管理</h2>
 			<div class="manage">
-				<table class="list">
-					<tr>
-						<td  width="5%">序号</td>
-						<td  width="8%">商品名</td>
-						<td  width="9%">品牌</td>
-						<td  width="9%">类型</td>					
-						<td  width="9%">大小</td>
-						<td  width="7%">颜色</td>
-						<td  width="9%">材料</td>
-						<td  width="7%">库存量</td>
-						<td  width="9%">价格</td>
-						<td  width="9%">权重</td>
-						<td  width="5%">状态</td>
-						<td>删除</td>
-					</tr>
-						<s:iterator value="#request.pageBean.list" status="status">
+						<table class="list">
 							<tr>
-								<td>${goods.goodsId }</td>
-								<td>${goods.Name }</td>
-								<td>${brand }</td>
-								<td>${model }</td>
-								<td>${size }</td>
-								<td>${color }</td>
-								<td>${material }</td>
-								<td>${storeNum }</td>
-								<td>${goodsPrice }</td>
-								<td>${weight }</td>
-								<td>${status }</td>
-								<td>
-									<a href="<%=basePath%>/manage/product-modify.jsp">修改</a>
-									<a href="<%=basePath%>/goods/deleteGoods.action?goodsId=${goodsId}" class="delete">
-										<input type="hidden" value="${goodsId }">
-										<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />
-									</a>
-								</td>
-							</tr>				
-						</s:iterator>					
-				</table>
-			</div>
+								<td>商品ID</td>
+								<td>商品名</td>
+								<td>品牌</td>
+								<td>型号</td>
+								<td>尺寸</td>
+								<td>颜色</td>
+								<td>材料</td>
+								<td>库存量</td>	
+								<td>商品类型</td>			
+							</tr>
+							<s:iterator value="l_ofsellergoods" id="l_ofsellergoods" status="status">
+								<tr>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.goodsId"/></td>
+									<td>
+										<s:property value="#l_ofsellergoods.goods.goodsName" ></s:property>
+									</td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.brand"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.model"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.size"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.color"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.material"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.quantity"/></td>
+									<td align="center"><s:property value="#l_ofsellergoods.goods.goodstype.goodsTypeName"/></td>
+								</tr>
+							</s:iterator>
+						</table>
+				</div>
+				<center style="font-size: 14px">
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+			        
+			        <s:if test="#request.pageBean.currentPage == 1">
+			           	 首页&nbsp;上一页
+			        </s:if>
+			        
+			        <s:else>
+			            <a href="/goods/sellerquerygoods.action">首页</a>
+			            &nbsp;
+			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			        </s:else>
+			        	&nbsp;
+			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            &nbsp;
+			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			        </s:if>
+			        
+			        <s:else>
+			            	下一页&nbsp;尾页
+			        </s:else>
+			    
+			   </center><br>
 		</div>
 		<div class="clear"></div>
 	</div>
