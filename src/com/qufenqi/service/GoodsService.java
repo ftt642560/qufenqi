@@ -74,4 +74,15 @@ public interface GoodsService {
      */
     public List<SellerGoodsImages> findImages(String SellerId,String GoodsId);
     
+    /**
+     * 商家添加商品
+     */
+    public void addGoods(Goods goods,Seller seller,int quantity,String goodsTypeName);
+    
+    /**
+     * 
+     * 商品上架、下架
+     */
+    public int changeGoodsStatus(Long goodsId);
+    
 }

@@ -44,7 +44,16 @@ public class GoodsAction {
 	public String goodsTypeName; //商品类型名
 	public List<GoodsType> l_ofgoodsType;//商品类型链表
 	public String sellerId; //商家Id
+	public String quantity;//商家商品数量
 	
+	public String getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(String quantity) {
+		this.quantity = quantity;
+	}
+
 	public SellerService sellerservice;
     public List<SellerGoodsImages> sgi;
 	public Seller seller;
@@ -493,7 +502,28 @@ public class GoodsAction {
 		return "success";
 	}
 	 
+	
+	//商家添加商品
+	public String addGoods()
+	{
+		 String sellerName = seller.getSellerName();
+		 System.out.println("seller.getSellerName()=="+sellerName );
+		 Seller seller = sellerservice.find(sellerName);
+		 System.out.println("添加商品====goodstypename==="+goodsTypeName+"====商品名=="+goods.getGoodsName());
+		 int q = Integer.parseInt(quantity);
+		 goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);
+		 
+		return "success";
+	}
 	 
+	//修改商品状态
+	public String changeGoodsStatus()
+	{
+		//Long long_goodsid =  Long.parseLong(goodsId);
+	   // goodsserviceimpl.changeGoodsStatus(long_goodsid);
+		goodsserviceimpl.changeGoodsStatus(goods.getGoodsId());
+		return "success";
+	}
 	 
 	 
 }

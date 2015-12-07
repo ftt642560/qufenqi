@@ -10,6 +10,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.qufenqi.dao.GoodsDao;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.GoodsType;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.SellerGoods;
 import com.qufenqi.entity.SellerGoodsImages;
 /**
@@ -214,6 +215,70 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		String hql="from SellerGoodsImages as sgi where sgi.seller.sellerId="+SellerId+" and sgi.goods.goodsId="+GoodsId;
 		List<SellerGoodsImages> l_sgi = this.getHibernateTemplate().find(hql);
 		return l_sgi;
+	}
+	
+	/**
+	 * 添加商品
+	 * @param 商品
+	 * @return 返回值为1，添加成功，返回值为0，添加失败
+	 */
+	public void addGoods(Goods goods,Seller seller,int quantity)
+	{
+		
+		this.getHibernateTemplate().save(goods);
+		SellerGoods sellergoods = new SellerGoods();
+		sellergoods.setSeller(seller);
+		sellergoods.setGoods(goods);
+		sellergoods.setQuantity(quantity);
+		this.getHibernateTemplate().save(sellergoods);
+		
+		System.out.println("添加商品，商家名=="+sellergoods.getSeller().getSellerName()+"====商品名=="+sellergoods.getGoods().getGoodsName());
+	}
+	
+	/**
+	 * 
+	 * 商品上架、下架
+	 * @param goodsId
+	 * @return 返回值为1，表示成功；返回值为0，表示失败；
+	 */
+	public int changeState(Long goodsId)
+	{
+		int flag=0;
+		Goods goods=this.QueryOneGoods(goodsId);
+		int status=0;
+		status = goods.getStatus();
+		System.out.println("原来的商品状态===goods.getStatus()==="+goods.getStatus());
+		if(status == 0)
+		{
+			status = 1;
+			System.out.println("修改了status,从0-1===status="+status);
+			flag =1;
+		}
+		else
+		{
+			status =0;
+			System.out.println("修改了status,从1-0===status="+status);
+			flag =1;
+		}
+		
+		goods.setStatus(status);
+		System.out.println("修改goods.setStatus(status)=="+goods.getStatus());
+		this.getHibernateTemplate().update(goods);
+		System.out.println("修改商品状态=====status==="+status+"====flag==="+flag);
+		
+		return flag;
+	}
+	
+	/**
+	 * 通过商品类型名，查找到商品类型对象
+	 */
+	public GoodsType findgoodstypebytypename(String GoodsTypeName)
+	{
+		String hql="from GoodsType as gt where gt.goodsTypeName='"+GoodsTypeName+"'";
+		List<GoodsType> l_goodstype = new ArrayList<GoodsType>();
+		l_goodstype=this.getHibernateTemplate().find(hql);
+		GoodsType gt = l_goodstype.get(0);
+		return gt;
 	}
 
 }

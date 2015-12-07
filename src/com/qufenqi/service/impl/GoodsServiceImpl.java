@@ -10,6 +10,7 @@ import com.qufenqi.dao.impl.GoodsDaoImpl;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.GoodsType;
 import com.qufenqi.entity.PageBean;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.SellerGoods;
 import com.qufenqi.entity.SellerGoodsImages;
 import com.qufenqi.entity.User;
@@ -355,6 +356,27 @@ public class GoodsServiceImpl implements GoodsService {
     public List<SellerGoodsImages> findImages(String SellerId,String GoodsId)
     {
     	return goodsDaoImpl.findImages(SellerId, GoodsId);
+    }
+    
+    /**
+     * 商家添加商品
+     */
+    public void addGoods(Goods goods,Seller seller,int quantity,String goodsTypeName)
+    {
+    	GoodsType gt = goodsDaoImpl.findgoodstypebytypename(goodsTypeName);
+    	goods.setGoodstype(gt);
+    	goodsDaoImpl.addGoods(goods, seller, quantity);
+    }
+    
+    /**
+     * 
+     * 商品上架、下架
+     */
+    public int changeGoodsStatus(Long goodsId)
+    {
+    	int flag=0;
+    	flag = goodsDaoImpl.changeState(goodsId);
+    	return flag;
     }
 	
 }
