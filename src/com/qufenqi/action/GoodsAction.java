@@ -46,7 +46,16 @@ public class GoodsAction {
 	public List<GoodsType> l_ofgoodsType;//商品类型链表
 	public String sellerId; //商家Id
 	public String quantity;//商家商品数量
+	public List<GoodsType> l_goodstype;
 	
+	public List<GoodsType> getL_goodstype() {
+		return l_goodstype;
+	}
+
+	public void setL_goodstype(List<GoodsType> l_goodstype) {
+		this.l_goodstype = l_goodstype;
+	}
+
 	public String getQuantity() {
 		return quantity;
 	}
@@ -516,6 +525,8 @@ public class GoodsAction {
 		 Seller seller = sellerservice.find(sellerName);
 		 System.out.println("添加商品====goodstypename==="+goodsTypeName+"====商品名=="+goods.getGoodsName());
 		 int q = Integer.parseInt(quantity);
+		 goods.setWeight(0);
+		 goods.setStatus(0);
 		 goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);
 		 
 		return "success";
@@ -528,6 +539,18 @@ public class GoodsAction {
 	   // goodsserviceimpl.changeGoodsStatus(long_goodsid);
 		goodsserviceimpl.changeGoodsStatus(goods.getGoodsId());
 		return "success";
+	}
+	
+	//查询所有的商品类型
+	public String queryAllGoodsType()
+	{
+		l_goodstype=goodsserviceimpl.QueryAllGoodsType();
+		for(int i=0;i<l_goodstype.size();i++)
+		{
+			System.out.println("查询商家页面==="+l_goodstype.get(i).getGoodsTypeName());
+		}
+		return "success";
+		
 	}
 	 
 	 

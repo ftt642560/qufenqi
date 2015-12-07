@@ -281,6 +281,11 @@
 		<action name="changegoodsstatus" class="goodsAction" method="changeGoodsStatus">
 			<result name="success">/index.jsp</result>
 		</action>
+		
+		<!-- 查找所有的商品类型 -->
+		<action name="findallgoodstype" class="goodsAction" method="queryAllGoodsType">
+			<result name="success">/test_findgoodstype.jsp</result>
+		</action>
 	</package>
 
 </struts>    
