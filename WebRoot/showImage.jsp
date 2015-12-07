@@ -25,13 +25,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
   <body>
   显示图片
+  <s:form action="/goods/showImage.action" method="POST">
+  	商家ID<input type="text" name="sellerId" /> <br />
+  	商品ID<input type="text" name="goodsId" /> <br />
+  	
    	<table align="left">
    		<s:iterator value="sgi">
    			<tr>
-   				<!-- <td><img src="${pageContext.request.contextPath}/${sgi.imageUrl}" /></td> -->
-   				<td><img src="${pageContext.request.contextPath}/<s:property value="#sgi.imageUrl"/>"></td>
+   				<td><img src="${pageContext.request.contextPath}/${imageUrl}"></td>
    			</tr>
    		</s:iterator>
    	</table>
+   	<input type="submit" value="显示图片" />
+   	
+   	</s:form>
   </body>
 </html>

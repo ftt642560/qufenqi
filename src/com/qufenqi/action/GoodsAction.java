@@ -14,6 +14,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
+import org.jboss.weld.context.ApplicationContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.qufenqi.entity.Goods;
@@ -485,7 +486,7 @@ public class GoodsAction {
 				is.close();
 				os.close();
 			}	 
-		 
+		 System.out.println("====myurl=="+dataUrl);
 		 
 		 return "success";
 	 }
@@ -495,10 +496,14 @@ public class GoodsAction {
 		
 		List<SellerGoodsImages> sgi = goodsserviceimpl.findImages(sellerId, goodsId);
 		
+		//SellerGoodsImages i1=sgi.get(0);
+		//ActionContext.getContext().put("i1", i1);
+		//System.out.println("i1="+i1.getImageUrl());
 		for(int i=0;i<sgi.size();i++)
 		{
 		System.out.println("goodsaction====showimage==sgi.size()="+sgi.size()+"==sgi.id=="+sgi.get(i).getId()+"==========sgi.url=="+sgi.get(i).getImageUrl());
 		}
+		ActionContext.getContext().put("sgi", sgi);
 		return "success";
 	}
 	 
