@@ -7,6 +7,7 @@
 	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 	<constant name="struts.devMode" value="false" /> 
 	<constant name="struts.action.extension" value="action"/>	
+	<constant name="struts.multipart.saveDir" value="true"></constant>
 	
 	<!-- 配置第一个包，该包名为user，继承sturts-default -->
 	<!-- 用户管理模块 -->
@@ -292,6 +293,11 @@
 		<!-- 商家对商品进行上架、下架 -->
 		<action name="changegoodsstatus" class="goodsAction" method="changeGoodsStatus">
 			<result name="success">/index.jsp</result>
+		</action>
+		
+		<!-- 查找所有的商品类型 -->
+		<action name="findallgoodstype" class="goodsAction" method="queryAllGoodsType">
+			<result name="success">/test_findgoodstype.jsp</result>
 		</action>
 	</package>
 

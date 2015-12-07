@@ -1039,7 +1039,7 @@ span.basic-info{
 .ordering{
 	width:650px;
 	border:2px solid #dea32c;
-	height:200px;
+	height:150px;
     float:left;
 	padding-top:20px;
 	background:#1e8449;
@@ -1077,12 +1077,17 @@ span.basic-info{
 }
 .main-container table th{
 	border-bottom:none;
+	border-right:1px solid #f4f4f4;
 }
-
+.main-container table th:last-child{
+	border-right:1px solid #ddd;
+}
 .main-container table tr{
 	border-right:1px solid #ddd;
 }
-
+.main-container table tr td{
+	border-right:1px solid #fff;
+}
 .main-container table tr td:last-child{
 	border-right:1px solid #ddd;
 }

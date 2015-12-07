@@ -85,4 +85,9 @@ public interface GoodsService {
      */
     public int changeGoodsStatus(Long goodsId);
     
+    /**
+     * 查询所有的商品类型
+     */
+    public List<GoodsType> QueryAllGoodsType();
+    
 }

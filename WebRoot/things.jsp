@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>商品</title>
+<title>商品搜索</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link rel="stylesheet" href="css/etalage.css">
 </head>
 <body>
-<div class="header_top">
+<div class="header_top2" style="background:#573c27;position:fixed;z-index:9999;width:1366px;">
   <div class="container">
   	<div class="header_top-box">
   
@@ -77,8 +77,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 
-<nav class="nav">
-  <ul class="nav_menu">
+<nav class="nav" >
+  <ul class="nav_menu" style="top:500px;">
     <li class="nav_menu-item"><a href="" target="_top">所有商品</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
@@ -115,176 +115,262 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </div>
 <div class="goods1">
 <div class="grid_2">
-		<div class="col-md-3 span_6">
+		<div class="goods2">
 			  <div class="box_inner">
-				<img src="images/p1.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				<div class="goods3">
+				<div class="goods-photo"><img src="images/p1.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p2.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p3.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p4.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p1.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p2.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p3.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p4.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			   <div class="goods3">
+				<div class="goods-photo"><img src="images/p1.jpg" class="img-responsive" alt=""/>
+				 </div>
+				 <div class="goods4">
+				 <div class="goods-info">
+				 <a href=""  ><span>商品简介<br></br></span></a>
+				</div>
+				<div class="line">
+		    <span style="width:100%;"></span>
+		    </div>
+				 <div class="shopname">
+				  <a href=""  ><span>店铺信息</span></a>
+				 </div>
+				  </div>
+				 <div class="goods-price">
+				 <span>$150.00</span>
+				 </div>
+				 <div class="goods-buy">
+				 	
+				 	<ul class="list3">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
 				 	  <div class="clearfix"> </div>
 				 	</ul>
 				 	
 				 </div>
 			   </div>
 			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p2.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
+			
+			
+			
+			
+			
+			
 			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p3.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p4.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p2.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p3.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p1.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p2.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p4.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			<div class="col-md-3 span_6">
-			  <div class="box_inner">
-				<img src="images/p1.jpg" class="img-responsive" alt=""/>
-				 
-				 <div class="desc">
-				 	<h3>售价：</h3>
-				 	<h4>首付：</h4>
-					<h5>店铺；</h5>
-				 	<ul class="list2">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
+			
+			
+			
 		</div>
 </div>
 </div>

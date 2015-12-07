@@ -95,5 +95,12 @@ public interface GoodsDao {
 	 * 通过商品类型名，查找到商品类型对象
 	 */
 	public GoodsType findgoodstypebytypename(String GoodsTypeName);
+	
+	/**
+	 * 
+	 * 查找所有的商品类型
+	 */
+	public List<GoodsType> QueryAllGoodsType();
+	
 }
 

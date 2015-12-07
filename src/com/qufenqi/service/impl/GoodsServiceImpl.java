@@ -378,5 +378,13 @@ public class GoodsServiceImpl implements GoodsService {
     	flag = goodsDaoImpl.changeState(goodsId);
     	return flag;
     }
+    
+    /**
+     * 查询所有的商品类型
+     */
+    public List<GoodsType> QueryAllGoodsType()
+    {
+    	return goodsDaoImpl.QueryAllGoodsType();
+    }
 	
 }

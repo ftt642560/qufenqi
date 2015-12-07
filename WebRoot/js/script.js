@@ -1,5 +1,19 @@
 $(function(){
 	
+	var radioList = document.getElementsByTagName("input");
+    var labelList = document.getElementsByTagName("label"); 
+    for(var i=0;i <radioList.length;i++) 
+     { 
+       radioList[i].onclick=function() 
+     { 
+     for(var j=0;j<labelList.length;j++)
+     {
+       labelList[j].style.background="#dea32c"; 
+     }
+     labelList[i].style.background="#ccc"; 
+     } 
+    } 
+
 	var note = $('#note'),
 		ts = new Date(2012, 0, 1),
 		newYear = true;
