@@ -8,15 +8,17 @@
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-	<head>
-		<base href="<%=basePath%>">
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>后台管理 - 趣分期</title>
-		<link type="text/css" rel="stylesheet" href="<%=basePath%>/css/style.css" />
-		<script type="text/javascript" src="<%=basePath%>/scripts/function-manage.js"></script>
-		</head>
-	<body>
-		<div id="header" class="wrap">
+<head>
+<base href="<%=basePath%>">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>后台管理 - 易买网</title>
+<link type="text/css" rel="stylesheet"
+	href="<%=basePath%>/css/style.css" />
+<script type="text/javascript"
+	src="<%=basePath%>/scripts/function-manage.js"></script>
+</head>
+<body>
+	<div id="header" class="wrap">
 			<div id="logo">
 				<img src="<%=basePath%>/images/logo.gif" />
 			</div>
@@ -66,20 +68,20 @@
 						<dl>
 							<dt>个人信息管理</dt>
 							<dd>
-								<a href="<%=basePath%>findSelf.action">个人信息管理</a>
+								<a href="<%=basePath%>findAllUser.action">用户管理</a>
 							</dd>
 							<dt>商品管理</dt>
 							<dd>
 								<em><a href="<%=basePath%>/manage/productClass-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理${seller.sellerName }</a>
+								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理</a>
 							</dd>
 							<dd>
 								<em><a href="<%=basePath%>/manage/product-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/sellerquerygoods.action?sellerName=${seller.sellerName }">商品管理${seller.sellerId }</a>
+								</em><a href="<%=basePath%>/goods/findAllGoods.action">商品管理</a>
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
-								<a href="<%=basePath%>/queryOrderBySelleName.action">订单管理${seller.sellerName }</a>
+								<a href="<%=basePath%>/manage/order.jsp">订单管理</a>
 							</dd>
 							<dt>申诉管理</dt>
 							<dd>
@@ -111,7 +113,7 @@
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
-								<a href="<%=basePath%>/findAllOrders.action">订单管理</a>
+								<a href="<%=basePath%>/manage/order.jsp">订单管理</a>
 							</dd>
 							<dt>申诉管理</dt>
 							<dd>
@@ -126,22 +128,41 @@
 					</s:else>
 				</div>
 			</div>
-			<div class="main">
-				<h2>管理首页</h2>
-				<div id="welcome" class="manage">
-					<div class="shadow">
-						<em class="corner lb"></em> <em class="corner rt"></em>
-						<div class="box">
-							<div class="msg">
-								<p>欢迎回来</p>
-							</div>
-						</div>
-					</div>
-				</div>
+		<div class="main">
+			<h2>订单管理</h2>
+			<div class="manage">
+						<table class="list">
+							<tr>
+					  			<th>ID</th>
+								<th>用户名</th>
+								<th>姓名</th>
+								<th>电话</th>
+								<th>身份证</th>
+								<th>邮箱</th>
+								<th>信誉度</th>
+								<th>状态</th>
+							</tr>
+							<s:iterator value="#session.pageBean.list" status="status">
+								<tr>
+									<td>${user.userId }</td>
+									<td>${user.userName }</td>
+									<td>${user.name }</td>
+									<td>${user.telephone }</td>
+									<td>${user.idCard }</td>
+									<td>${user.email }</td>
+									<td>${user.quota }</td>
+									<td>${user.status }</td>
+								</tr>										
+							</s:iterator>
+						</table>
 			</div>
-			<div class="clear"></div>
+			<div>
+				<center><a href="<%=basePath%>queryOrderBySelleName.action">返回订单页</a></center>
+			</div>
 		</div>
-		<div id="footer">Copyright &copy; 2010 北大青鸟 All Rights Reserved.
-			京ICP证1000001号</div>
-	</body>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">Copyright &copy; 2010 北大青鸟 All Rights Reserved.
+		京ICP证1000001号</div>
+</body>
 </html>

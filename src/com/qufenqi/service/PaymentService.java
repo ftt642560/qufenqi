@@ -2,6 +2,7 @@ package com.qufenqi.service;
 
 import java.util.List;
 
+import com.qufenqi.entity.Delivery;
 import com.qufenqi.entity.Order;
 import com.qufenqi.entity.PageBean;
 /**
@@ -25,4 +26,29 @@ public interface PaymentService {
      * @return 封闭了分页信息(包括记录集list)的Bean
      */
     PageBean queryForPage( int sellerId,int pageSize,int currentPage);
+    
+    /**
+     * 根据订单id去查询订单详细信息
+     * @param orderID
+     * @return
+     */
+    Order get(int orderID);
+    /**
+     * 更新收货人下信息
+     * @param delivery
+     */
+    void updateOrderMess(Delivery delivery);
+    
+    /**
+     * 分页查询
+     * @param currentPage 当前第几页
+     * @param pageSize 每页大小
+     * @return 封闭了分页信息(包括记录集list)的Bean
+     */
+    PageBean queryForPage( int pageSize,int currentPage);
+    /**
+     * 购买保存订单
+     * @param order 
+     */
+    void orders(Order order);
 }

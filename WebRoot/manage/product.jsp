@@ -181,8 +181,8 @@
 					</tr>
 						<s:iterator value="#request.pageBean.list" status="status">
 							<tr>
-								<td>${goods.goodsId }</td>
-								<td>${goods.Name }</td>
+								<td>${goodsId }</td>
+								<td>${goodsName }</td>
 								<td>${brand }</td>
 								<td>${model }</td>
 								<td>${size }</td>
@@ -193,7 +193,6 @@
 								<td>${weight }</td>
 								<td>${status }</td>
 								<td>
-									<a href="<%=basePath%>/manage/product-modify.jsp">修改</a>
 									<a href="<%=basePath%>/goods/deleteGoods.action?goodsId=${goodsId}" class="delete">
 										<input type="hidden" value="${goodsId }">
 										<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />

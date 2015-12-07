@@ -103,6 +103,24 @@
 			<result name="login">/manage/user-login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
+		<action name="queryOrderByOrderId" class="paymentAction" method="queryOrderByOrderId">
+			<result name="success">/manage/order-modify.jsp</result>
+			<result name="error">/manage/user-login.jsp</result>
+			<result name="login">/manage/user-login.jsp</result>
+			<interceptor-ref name="wall"/>
+		</action>
+		<action name="findAllOrders" class="paymentAction" method="findAllOrders">
+			<result name="success">/manage/order.jsp</result>
+			
+		</action>
+		<action name="updateOrderMess" class="paymentAction" method="updateOrderMess">
+			<result name="success" type="redirectAction">
+				<param name="actionName">queryOrderBySelleName</param>
+				<!-- 
+				<param name="namespace">/</param>
+				 -->
+			</result>
+		</action>
 		
 		<!-- 商家模块 -->
 		<action name="sellerRegister" class="sellerAction" method="register">

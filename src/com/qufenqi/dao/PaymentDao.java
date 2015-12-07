@@ -15,4 +15,9 @@ public interface PaymentDao {
 	 * @return 用户的所有的订单
 	 */
 	List<Order> findAll(int userId);
+	/**
+	 * 查询所有的订单
+	 * @return
+	 */
+	List<Order> findAllOrders();
 }

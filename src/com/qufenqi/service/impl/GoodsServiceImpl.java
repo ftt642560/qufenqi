@@ -182,7 +182,8 @@ public class GoodsServiceImpl implements GoodsService {
 		//获得当前页
 		final int currentPage = PageBean.countCurrentPage(page);
 		//一页的记录
-		 List<User> list = pageBaseDao.queryForPage(hql, offset, length);
+		 List<Goods> list = pageBaseDao.queryForPage(hql, offset, length);
+		 System.out.println("list.size()"+list.size());
 		 //把分页信息保存到Bean中
 	     PageBean pageBean = new PageBean();
 	     pageBean.setPageSize(pageSize);    

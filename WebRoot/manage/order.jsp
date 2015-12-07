@@ -175,51 +175,23 @@
 									<td><a href="<%=basePath %>/manage/goodsOfMess.jsp">${goods.brand }</a></td>
 									<td>${carriage }</td>
 									<td>${orderAmount }</td>
-									<td><a href="">${user.userName }</a></td>
+									<td><a href="<%=basePath %>/manage/userMessOfBuyGoods.jsp">${user.userName }</a></td>
 									<td><a href="<%=basePath %>/manage/devilery.jsp">收获详情</a></td>
 									<td>${orderStatus }</td>
 									<td><a href="<%=basePath %>/manage/period.jsp">分期详情</a></td>
 									<td><a href="<%=basePath %>/manage/repament.jsp">还款详情</a></td>
 									<td><a href="<%=basePath %>/manage/logistics.jsp">物流详情</a></td>
 									<td>
-										<a href="<%=basePath%>/">修改</a>
+										<a href="<%=basePath%>/queryOrderByOrderId.action?orderId=${orderId }">修改</a>
 									</td>
 								</tr>										
 							</s:iterator>
 						</table>
 					</s:else>
 				
-				<!-- 
-				<table class="list">
-					<tr>
-						<th>ID</th>
-						<th>姓名</th>
-						<th>发货地址</th>
-						<th>状态</th>
-						<th>操作</th>
-					</tr>
-					<tr>
-						<td class="first w4 c">1</td>
-						<td class="w1 c">张三丰</td>
-						<td>高老庄</td>
-						<td class="w1 c">发货</td>
-						<td class="w1 c"><a href="<%=basePath%>/manage/order-modify.jsp">修改</a> <a
-							href="javascript:Delete(1);">删除</a></td>
-					</tr>
-					<tr>
-						<td class="first w4 c">1</td>
-						<td class="w1 c">张三丰</td>
-						<td>花果山</td>
-						<td class="w1 c">审核通过</td>
-						<td class="w1 c"><a href="<%=basePath%>/manage/order-modify.jsp">修改</a> <a
-							href="javascript:Delete(1);">删除</a></td>
-					</tr>
-				</table>
-				 -->
-				
 			</div>
-			
-			<center style="font-size: 14px">
+			<s:if test="#session.role == 1">
+				<center style="font-size: 14px">
 			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
 			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
 			        
@@ -244,6 +216,35 @@
 			        </s:else>
 			    
 			   </center><br>
+			</s:if>
+			<s:else>
+				<center style="font-size: 14px">
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+			        
+			        <s:if test="#request.pageBean.currentPage == 1">
+			           	 首页&nbsp;上一页
+			        </s:if>
+			        
+			        <s:else>
+			            <a href="<%=basePath%>/findAllOrders.action">首页</a>
+			            &nbsp;
+			            <a href="<%=basePath%>/findAllOrders.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			        </s:else>
+			        	&nbsp;
+			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+			            <a href="<%=basePath%>/findAllOrders.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            &nbsp;
+			            <a href="<%=basePath%>/findAllOrders.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			        </s:if>
+			        
+			        <s:else>
+			            	下一页&nbsp;尾页
+			        </s:else>
+			    
+			   </center><br>
+			</s:else>
+			
 		</div>
 		
 		

@@ -331,6 +331,7 @@ public class GoodsAction {
 	
 	//房婷婷2015-12-1
 	 public String findAll() throws Exception {
+		System.out.println("查询所有的商品进来了");
 	     //分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
 		this.pageBean = goodsserviceimpl.queryForPage( 2, page);
 		System.out.println(pageBean);

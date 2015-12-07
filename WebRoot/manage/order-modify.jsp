@@ -129,64 +129,191 @@
 		<div class="main">
 			<h2>修改订单</h2>
 			<div class="manage">
-				<form action="<%=basePath%>/manage/manage-result.jsp">
-					<table class="form">
+				<form action="<%=basePath%>/updateOrderMess.action">
+					<table border="1px" style="font-size: 16px">
 						<tr>
 							<td class="field">订单ID：</td>
 							<td><input type="text" class="text" name="order.orderId"
-								value="100000" readonly="readonly" />
+								value="${order.orderId }" readonly="readonly" />
 							</td>
 						</tr>
 						<tr>
 							<td class="field">商品名：</td>
-							<td><input type="text" class="text" name="seller.sellerName" value="张三" />
+							<td>
+								<input type="text" class="text" name="order.goods.goodsName" 
+								value="${order.goods.goodsName }" readonly="readonly"/>
 							</td>
 						</tr>
 						<tr>
 							<td class="field">运费:</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td><input type="text" class="text" name="order.carriage" value="${order.carriage }" />
 							</td>
 						</tr>
 						<tr>
 							<td class="field">总价</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td><input type="text" class="text" name="order.orderAmount" value="${order.orderAmount }" />
 							</td>
 						</tr>
 						<tr>
-							<td class="field">订货人：</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td class="field">订货人信息信息：</td>
+							<td>
+								<table>
+									<tr>
+										<td class="field">订货人ID：</td>
+										<td><input type="text" class="text" name="order.user.userId" 
+											value="${order.user.userId }" />
+										</td>
+										<td class="field">订货人：</td>
+										<td><input type="text" class="text" name="order.user.userName" 
+											value="${order.user.userName }" />
+										</td>
+										<td class="field">收货地址：</td>
+										<td><input type="text" class="text" name="order.user.password" 
+											value="${order.user.password }" />
+										</td>
+										<td class="field">收货人电话：</td>
+										<td><input type="text" class="text" name="order.user.email" 
+											value="${order.user.email }" />
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						
+						<tr>
+							<td class="field">订货人信息信息：</td>
+							<td>
+								<table>
+									<tr>
+										<td class="field">订货人ID：</td>
+										<td><input type="text" class="text" name="order.user.userId" 
+											value="${order.user.userId }" />
+										</td>
+										<td class="field">订货人：</td>
+										<td><input type="text" class="text" name="order.user.userName" 
+											value="${order.user.userName }" />
+										</td>
+										<td class="field">收货地址：</td>
+										<td><input type="text" class="text" name="order.user.password" 
+											value="${order.user.password }" />
+										</td>
+										<td class="field">收货人电话：</td>
+										<td><input type="text" class="text" name="order.user.email" 
+											value="${order.user.email }" />
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="field">收货人：</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td class="field">收货信息：</td>
+							<td>
+								<table>
+									<tr>
+										<td class="field">收货人ID：</td>
+										<td><input type="text" class="text" name="order.delivery.deliveryId" 
+											value="${order.delivery.deliveryId }" />
+										</td>
+										<td class="field">收货人：</td>
+										<td><input type="text" class="text" name="order.delivery.contactPersonName" 
+											value="${order.delivery.contactPersonName }" />
+										</td>
+										<td class="field">收货地址：</td>
+										<td><input type="text" class="text" name="order.delivery.address" 
+											value="${order.delivery.address }" />
+										</td>
+										<td class="field">收货人电话：</td>
+										<td><input type="text" class="text" name="order.delivery.telephone" 
+											value="${order.delivery.telephone }" />
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr>
 							<td class="field">订单状态：</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td><input type="text" class="text" name="order.orderStatus" value="${order.orderStatus }" />
 							</td>
 						</tr>
 						<tr>
-							<td class="field">分期：</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td class="field">分期信息：</td>
+							<td>
+								<table>
+									<tr>
+										<td class="field">分期：</td>
+										<td><input type="text" class="text" name="order.periodPlan.periodId" 
+										value="${order.periodPlan.periodId }" readonly="readonly"/>
+										</td>
+										<td class="field">分期月数：</td>
+										<td><input type="text" class="text" name="order.periodPlan.periodNumber" 
+											value="${order.periodPlan.periodNumber }" />
+										</td>
+										<td class="field">首付：</td>
+										<td><input type="text" class="text" name="order.periodPlan.downPayment" 
+											value="${order.periodPlan.downPayment }" />
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr>
 							<td class="field">还款信息：</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td>
+								<table>
+									<tr>
+										<td class="field">还款信息：</td>
+										<td><input type="text" class="text" name="order.repayment.repaymentId" 
+										value="${order.repayment.repaymentId }" />
+										</td>
+										<td class="field">分期月数：</td>
+										<td><input type="text" class="text" name="order.repayment.finishPeriodNum" 
+											value="${order.repayment.finishPeriodNum }" />
+										</td>
+										<td class="field">首付：</td>
+										<td><input type="text" class="text" name="order.repayment.needPeriodNum" 
+											value="${order.repayment.needPeriodNum }" />
+										</td>
+										<td class="field">首付：</td>
+										<td><input type="text" class="text" name="order.repayment.onePeriodMoney" 
+											value="${order.repayment.onePeriodMoney }" />
+										<td class="field">首付：</td>
+										<td><input type="text" class="text" name="order.repayment.repaymentState" 
+											value="${order.repayment.repaymentState }" />
+										</td>
+									</tr>
+								</table>
 							</td>
 						</tr>
 						<tr>
-							<td class="field">物流：</td>
-							<td><input type="text" class="text" name="name" value="张三" />
+							<td class="field">物流信息：</td>
+							<td>
+								<table>
+									<tr>
+										<td class="field">物流：</td>
+										<td><input type="text" class="text" name="order.logistics.logisticsId" value="${order.logistics.logisticsId }" />
+										</td>
+										<td class="field">分期月数：</td>
+										<td><input type="text" class="text" name="order.logistics.company" 
+											value="${order.logistics.company }" />
+										</td>
+										<td class="field">首付：</td>
+										<td><input type="text" class="text" name="order.logistics.logisticsStatus" 
+											value="${order.logistics.logisticsStatus }" />
+										</td>
+									</tr>
+								</table>
 							</td>
+						
 						</tr>
 						<tr>
 							<td></td>
-							<td><label class="ui-blue"><input type="submit"
+							<td>
+								<label class="ui-blue"><input type="submit"
 									name="submit" value="更新" />
-							</label>
+								</label>
+								<label class="ui-blue"><input type="reset"
+									name="reset" value="取消" />
+								</label>
 							</td>
 						</tr>
 					</table>

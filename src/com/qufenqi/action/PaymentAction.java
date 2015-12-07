@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.qufenqi.entity.Delivery;
 import com.qufenqi.entity.Order;
 import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.Seller;
@@ -19,6 +20,8 @@ public class PaymentAction {
 	private HttpSession session = request.getSession();
 	private PaymentService paymentService;
 	private UserService userService;
+	private Order order;
+	private int orderId;//接收前台传来的id
 	//第几页
 	private int page;
 	//包含查询结果的信息的bean
@@ -34,6 +37,22 @@ public class PaymentAction {
 
 	public void setUserService(UserService userService) {
 		this.userService = userService;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public int getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
 	public String query(){
@@ -85,7 +104,30 @@ public class PaymentAction {
 	 *根据订单的id去查询 订单
 	 */
 	public String queryOrderByOrderId(){
-		
-		return "";
+		System.out.println("进来了");
+		order = paymentService.get(orderId);
+		System.out.println(order);
+		if(order == null){
+			return "error";
+		}
+		return "success";
+	}
+	
+	public String updateOrderMess(){
+		Delivery delivery = order.getDelivery();
+		System.out.println("delivery=="+delivery);
+		paymentService.updateOrderMess(delivery);
+		return "success";
+	}
+	
+	public String findAllOrders(){
+		this.pageBean = paymentService.queryForPage( 2, page);
+		System.out.println(pageBean);
+		return "success";
+	}
+	
+	public String orders(){
+		paymentService.orders(order);
+		return "success";
 	}
 }

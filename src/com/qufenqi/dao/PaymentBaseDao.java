@@ -1,5 +1,6 @@
 package com.qufenqi.dao;
 
+import com.qufenqi.entity.Delivery;
 import com.qufenqi.entity.Order;
 
 public interface PaymentBaseDao {
@@ -9,4 +10,16 @@ public interface PaymentBaseDao {
 	 * @return
 	 */
 	public Order get(int orderId);
+	/**
+	 *修改订单信息
+	 * @param order
+	 */
+	void updateOrderMess(Delivery delivery);
+	
+	/**
+	 *下单购买
+	 * @param order
+	 */
+	void save(Order order);
+	
 }

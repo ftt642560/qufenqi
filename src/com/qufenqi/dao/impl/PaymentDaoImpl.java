@@ -25,10 +25,20 @@ public class PaymentDaoImpl implements PaymentDao{
 	public List<Order> findAll(int userId) {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = session.beginTransaction();
-		String hql = "from Order as order where order.user.userId = 23";
+		String hql = "from Order as order where order.user.userId = "+userId;
 		List<Order> orderList = session.createQuery(hql).list();
 		transaction.commit();
 		session.close();   
 		return orderList;
+	}
+	@Override
+	public List<Order> findAllOrders() {
+		Session session = sessionFactory.openSession();
+		Transaction transaction = session.beginTransaction();
+		String hql = "from Order";
+		List<Order> ordersList = session.createQuery(hql).list();
+		transaction.commit();
+		session.close();   
+		return ordersList;
 	}
 }
