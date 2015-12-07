@@ -29,8 +29,9 @@ public interface UserService {
 	 * @return
 	 */
 	int add(User user);
-	
 	void update(User user);
+	
+	void update(long tele , String userName);
 	/**
 	 * 查询所有的User实例
 	 */

@@ -1,5 +1,8 @@
 package com.qufenqi.action;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,6 +13,7 @@ import org.apache.struts2.ServletActionContext;
 import com.qufenqi.entity.Order;
 import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.User;
+import com.qufenqi.service.PaymentService;
 import com.qufenqi.service.UserService;
 
 
@@ -18,6 +22,8 @@ public class UserAction {
 	private HttpSession session = request.getSession();
 	private UserService userService;
 	private User user;
+	private InputStream inputStream;
+	private PaymentService paymentService;
 	//第几页
 	private int page;    
 	//包含分布信息的bean
@@ -48,21 +54,25 @@ public class UserAction {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
+	public void setPaymentService(PaymentService paymentService) {
+		this.paymentService = paymentService;
+	}
 	//得到一个公共的User
 	public int queryUserById(){
-		System.out.println("UserAction");
 		User user = (User) session.getAttribute("user");
-		System.out.println("UserAction user === "+ user);
 		String userName = user.getUserName();
-		System.out.println("userName==="+userName);
 		int userId =userService.getByUserName(userName).get(0).getUserId();
-		System.out.println("userId UserAction === "+userId);
 		return userId;
 	}
 	public String queryOrderByUserId(){
 		int userId = queryUserById();
 		List<Order> orderLists = userService.queryOrderByUserId(userId);
-		System.out.println("orderLists.size()"+orderLists.size());
 		return "success";
 	}
 	
@@ -93,5 +103,37 @@ public class UserAction {
 		     return "success";
 		 }
 		 return "error";
+	 }
+	 
+	 public String updateUserMess(){
+		 System.out.println("用户修改自己的信息进来了");
+		 
+		 long tele = user.getTelephone();
+		 System.out.println("tele=="+tele);
+		 String userName = user.getUserName();
+		 userService.update(tele, userName);
+		 System.out.println("userName =="+userName );
+		 User user = userService.getByUserName(userName).get(0);
+		 session.setAttribute("user", user);
+		 System.out.println("user=="+user);
+		 try {
+				inputStream =  new ByteArrayInputStream("1".getBytes("UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+				try {
+					inputStream = new ByteArrayInputStream("0".getBytes("UTF-8"));
+				} catch (UnsupportedEncodingException e1) {
+					e1.printStackTrace();
+				}
+			}	
+		 return "success";
+	 }
+	 
+	 public String findOrderByUserId(){
+		 User user = (User) session.getAttribute("user");
+		 int userId = user.getUserId();
+		 paymentService.queryForPage(userId, null, 2, page);
+		 System.out.println("pageBean=="+pageBean);
+		 return "success";
 	 }
 }

@@ -1,5 +1,7 @@
 package com.qufenqi.dao;
 
+import java.util.List;
+
 import com.qufenqi.entity.Delivery;
 import com.qufenqi.entity.Order;
 
@@ -22,4 +24,8 @@ public interface PaymentBaseDao {
 	 */
 	void save(Order order);
 	
+	/**
+	 * 用户查询自己未付款的订单信息
+	 */
+	List<Order> findByStatus(String status , int userId);
 }

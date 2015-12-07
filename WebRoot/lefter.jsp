@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		 </li>
 	    
 		<li class="item-level2">
-		   <p class="title" id="p-info" ><a href="p-info.jsp" target="_parent">个人信息</a></p>
+		   <p class="title" id="p-info" ><a href="<%=basePath %>queryByName.action" target="_parent">个人信息</a></p>
 		 </li>
 		 <li class="item-level2">
 		   <p class="title" id="info-change" ><a href="info-change.jsp" target="_parent">信息修改</a></p>

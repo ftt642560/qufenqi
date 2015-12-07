@@ -129,6 +129,93 @@
 		<div class="main">
 			<h2>添加商品</h2>
 			<div class="manage">
+				<s:form action="/goods/addgoods.action" theme="simple" method="POST">
+					<table class="form">
+						<tr>
+							<td class="field">商家名称：</td>
+							<td>
+								<input type="text" value="${seller.sellerName }" 
+									name="seller.sellerName" readonly="readonly"/>
+							</td>
+						</tr>
+						<tr>
+							<td class="field">商品名称：</td>
+							<td>
+								<input type="text" value="" name="goods.goodsName" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">品牌：</td>
+							<td>
+								<input type="text" value="" name="goods.brand" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">型号：</td>
+							<td>
+								<input type="text" value="" name="goods.model" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">大小：</td>
+							<td>
+								<input type="text" value="" name="goods.size" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">颜色：</td>
+							<td>
+								<input type="text" value="" name="goods.color" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">材料：</td>
+							<td>
+								<input type="text" value="" name="goods.material" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">商品价格：</td>
+							<td>
+								<input type="text" value="" name="goods.goodsPrice" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">商品数量：</td>
+							<td>
+								<input type="text" value="" name="quantity" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">权重：</td>
+							<td>
+								<input type="text" value="" name="goods.weight" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">商品状态：</td>
+							<td>
+								<input type="text" value="" name="goods.status" />
+							</td>
+						</tr>
+						<tr>
+							<td class="field">商品类型名：</td>
+							<td>
+								<input type="text" value="" name="goodsTypeName" />
+							</td>
+						</tr>
+						<tr>
+							<td colspan="1">
+								<center>
+									<input type="submit" value="添加" />
+								</center>
+							</td>
+						</tr>
+					</table>
+				</s:form>
+				
+			
+			<!-- 
 				<form action="<%=basePath%>/manage/manage-result.jsp">
 					<table class="form">
 						<tr>
@@ -182,6 +269,7 @@
 						</tr>
 					</table>
 				</form>
+				 -->
 			</div>
 		</div>
 		<div class="clear"></div>

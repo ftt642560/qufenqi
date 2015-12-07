@@ -47,8 +47,13 @@ public class UserDaoImpl extends HibernateDaoSupport implements UserDao {
 	 * 修改指定的User实例
 	 * @param user 需要被修改的User实例
 	 */
+	@Override
 	public void update(User user) {
-		getHibernateTemplate().update(user);
+		this.getHibernateTemplate().update(user);
+	}
+	public void update(String hql) {
+		System.out.println("hql=="+hql);
+		this.getHibernateTemplate().getSessionFactory().openSession().createSQLQuery(hql).executeUpdate();
 	}
 	/**
 	 * 持久化指定的User实例

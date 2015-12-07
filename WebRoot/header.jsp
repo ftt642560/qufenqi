@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</li>
 					<li class="active"><a href="<%=basePath%>/user-login.jsp" target="_top">登录</a></li> 
 					<li><a href="<%=basePath%>/register.jsp" target="_top">注册</a></li>
-					<li><a href="<%=basePath%>/personal center.jsp" target="_top">个人中心</a></li> 
+					<li><a href="<%=basePath%>findOrderByStatus.action" target="_top">个人中心</a></li> 
 					
 					<li id="quitLi" style="font-size: 13px;">
 						<a href="<%=basePath%>quitUser.action" class="quit">注销</a>
