@@ -253,6 +253,15 @@
              </interceptor-ref>
 		</action>
 		
+		<!-- 商家添加商品 -->
+		<action name="addgoods" class="goodsAction" method="addGoods">
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<!-- 商家对商品进行上架、下架 -->
+		<action name="changegoodsstatus" class="goodsAction" method="changeGoodsStatus">
+			<result name="success">/index.jsp</result>
+		</action>
 	</package>
 
 </struts>    

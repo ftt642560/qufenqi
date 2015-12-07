@@ -3,6 +3,8 @@ package com.qufenqi.dao;
 import java.util.List;
 
 import com.qufenqi.entity.Goods;
+import com.qufenqi.entity.GoodsType;
+import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.SellerGoods;
 import com.qufenqi.entity.SellerGoodsImages;
 
@@ -73,4 +75,25 @@ public interface GoodsDao {
 	 * 获取每个商家某件商品的图片
 	 */
 	public List<SellerGoodsImages> findImages(String SellerId,String GoodsId);
+	
+	/**
+	 * 商品添加
+	 * @param Goods goods
+	 * 
+	 */
+	public void addGoods(Goods goods,Seller seller,int quantity);
+	
+	/**
+	 * 
+	 * 商品上架、下架
+	 * @param goodsId
+	 * @return 返回值为1，表示成功；返回值为0，表示失败；
+	 */
+	public int changeState(Long goodsId);
+	
+	/**
+	 * 通过商品类型名，查找到商品类型对象
+	 */
+	public GoodsType findgoodstypebytypename(String GoodsTypeName);
 }
+
