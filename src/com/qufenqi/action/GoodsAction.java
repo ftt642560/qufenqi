@@ -46,7 +46,16 @@ public class GoodsAction {
 	public String goodsId;//前后台关联的ID，从前台传过来的数据为String类型
 	public List<SellerGoods> l_sellergoods;//商家商品中间表
 	public String goodsTypeName; //商品类型名
+	public String goodsTypeId;//商品类型ID
 	public List<GoodsType> l_ofgoodsType;//商品类型链表
+	public String getGoodsTypeId() {
+		return goodsTypeId;
+	}
+
+	public void setGoodsTypeId(String goodsTypeId) {
+		this.goodsTypeId = goodsTypeId;
+	}
+
 	public String sellerId; //商家Id
 	public String quantity;//商家商品数量
 	public List<GoodsType> l_goodstype;
@@ -465,9 +474,7 @@ public class GoodsAction {
 		 l_sellergoods = pageBean.getList();
 		 for(int i=0;i<l_sellergoods.size();i++)
 		 {
-			 
-			// List<SellerGoodsImages> aa=new ArrayList<SellerGoodsImages>(l_sellergoods.get(i).getGoods().getSellergoodsimages());
-			// l_sellergoods.get(i).setCoverpic(aa.get(0).getImageUrl());
+
 			 String sid = String.valueOf(l_sellergoods.get(i).getSeller().getSellerId());
 			 String gid = String.valueOf(l_sellergoods.get(i).getGoods().getGoodsId());
 			 List<SellerGoodsImages> l_temp = goodsserviceimpl.findImages(sid,gid);
@@ -486,13 +493,8 @@ public class GoodsAction {
 				 
 //		 List<SellerGoodsImages> l_gi = new ArrayList<SellerGoodsImages>(l_sellergoods.get(0).getGoods().getSellergoodsimages());
 //		 goodscover = l_gi.get(0);
-		 System.out.println(l_sellergoods.get(0).getGoods().getSellergoodsimages());
-		 
-//		 for(int i=0;i<l_sellergoods.size();i++)
-//		 {
-//			// System.out.println("====l_goods.goodsbrand===="+l_sellergoods.get(i).getGoods().getBrand()+"\n");
-//			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
-//		 }
+	//	 System.out.println(l_sellergoods.get(0).getGoods().getSellergoodsimages());
+
 
 		 return "success";
 	 }
@@ -503,10 +505,33 @@ public class GoodsAction {
 	 {
 		// HttpServletRequest request = ServletActionContext.getRequest();
 		// String roles = request.getParameter("goodsTypeName");
-		 System.out.println("goodstypename="+goodsTypeName);
+		 System.out.println("goostypeid="+goodsTypeId);
+		 long typeid = Long.parseLong(goodsTypeId);
+		 GoodsType gt = goodsserviceimpl.searchGoodsTypeById(typeid);
+		 goodsTypeName = gt.getGoodsTypeName();
 		//分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
 		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 3, page);
 		l_sellergoods = pageBean.getList();
+
+		//设置商品封面
+		 l_sellergoods = pageBean.getList();
+		 for(int i=0;i<l_sellergoods.size();i++)
+		 {
+
+			 String sid = String.valueOf(l_sellergoods.get(i).getSeller().getSellerId());
+			 String gid = String.valueOf(l_sellergoods.get(i).getGoods().getGoodsId());
+			 List<SellerGoodsImages> l_temp = goodsserviceimpl.findImages(sid,gid);
+			 if(l_temp.size() ==0)
+				 System.out.println("l_temp.size===is null");
+			 else
+				 System.out.println("l_temp.size=== is not null");
+			 System.out.println("查找的商家的ID===="+l_sellergoods.get(i).getSeller().getSellerId()+"====商品ID=="+l_sellergoods.get(i).getGoods().getGoodsId());
+			 l_sellergoods.get(i).setCoverpic(l_temp.get(0).getImageUrl());
+			 System.out.println(l_temp.get(0).getImageUrl());
+		 }
+		
+		
+		
 //		
 //				
 //		for(int i=0;i<l_goodstype.size();i++)

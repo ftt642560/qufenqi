@@ -97,4 +97,7 @@ public interface GoodsService {
      */
     public List<GoodsType> QueryAllGoodsType();
     
+	//通过商品类型ID，查找商品类型 对象
+	public GoodsType searchGoodsTypeById(long id);
+    
 }
