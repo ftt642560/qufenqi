@@ -74,6 +74,7 @@
 	<bean id="sellergoods" class="com.qufenqi.entity.SellerGoods"></bean>
 	<bean id="manager" class="com.qufenqi.entity.Manager"></bean>
 	<bean id="sellergoodsimages" class="com.qufenqi.entity.SellerGoodsImages"></bean>
+	<bean id="count" class="com.qufenqi.entity.Count"></bean>
 	<!-- 定义DAO： -->  
 	<bean id="goodsDaoImpl" class="com.qufenqi.dao.impl.GoodsDaoImpl">
 		<property name="goods" ref="goods"></property>
@@ -101,7 +102,10 @@
 	<bean id="paymentBaseDao" class="com.qufenqi.dao.impl.PaymentBaseDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-	
+	<bean id="countDao" class="com.qufenqi.dao.impl.CountDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<property name="count" ref="count"></property>
+	</bean>
 	<!-- 定义业务逻辑Service -->
 	<bean id="goodsServiceImpl" class="com.qufenqi.service.impl.GoodsServiceImpl">
 		<property name="goodsDaoImpl" ref="goodsDaoImpl"></property>
@@ -128,6 +132,8 @@
 	<!-- 统计 -->
 	<bean id="countService" class="com.qufenqi.service.impl.CountServiceImpl">
 	  	<property name="paymentDao" ref="paymentDao"></property>
+	  	<property name="countDao" ref="countDao"></property>
+	  	<property name="count" ref="count"></property>
 	</bean>
 	
 	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">

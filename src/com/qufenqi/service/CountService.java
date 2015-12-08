@@ -2,6 +2,7 @@ package com.qufenqi.service;
 
 import java.util.List;
 
+import com.qufenqi.entity.Count;
 import com.qufenqi.entity.Order;
 
 /**
@@ -27,5 +28,8 @@ public interface CountService {
 	 * @return
 	 */
 	List<String> countGoodsName();
-				
+	
+	List<Count> count();
+	
+	List countSaleNumber();
 }

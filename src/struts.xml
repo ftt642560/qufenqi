@@ -27,10 +27,16 @@
 		</interceptors>
 		
 		<!-- 统计 -->
-		<action name="cuntAddress" class="jFreechartAction" method="cuntAddress">
-			<result name="success">/test-countAddress.jsp</result>
+		<action name="showchart" class="jFreechartAction"
+			method="ShowChart">
+			<result name="success">/showchart.jsp</result>
 		</action>
-		
+		<!-- 
+		<action name="DisplayChart" class="jFreechartAction"
+			method="DisplayChart">
+			<result>/DisplayChart</result>
+			</action>
+		 -->
 		<!-- 用户模块 -->
 		<action name="findAllUser" class="userAction" method="findAll">
 			<result name="success">/manage/user.jsp</result>

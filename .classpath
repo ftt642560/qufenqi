@@ -57,6 +57,19 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/activation.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mail.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfreechart-1.0.19-experimental.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfreechart-1.0.19-swt.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jfreesvg-2.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-tree-3.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-3.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-commons-3.3.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/servlet.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/swtgraphics2d.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/orsoncharts-1.4-eval-nofx.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/orsonpdf-1.6-eval.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hamcrest-core-1.3.jar"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.struts2.MYECLIPSE_STRUTS21_CORE"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
