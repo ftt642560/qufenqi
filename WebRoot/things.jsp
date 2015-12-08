@@ -3,6 +3,8 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -12,23 +14,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/user-style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/user-style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery-1.11.1.min.js"></script>
 <!-- dropdown -->
-<script src="js/jquery.easydropdown.js"></script>
+<script src="<%=basePath%>js/jquery.easydropdown.js"></script>
 <!-- start menu -->
 
-<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/megamenu.js"></script>
+<link href="<%=basePath%>css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="<%=basePath%>js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<link rel="stylesheet" href="css/etalage.css">
+<link rel="stylesheet" href="<%=basePath%>css/etalage.css">
 </head>
 <body>
 <div class="header_top2" style="background:#573c27;position:fixed;z-index:9999;width:1366px;">
@@ -48,15 +50,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 <div class="header_bottom2">
 	<div class="container">
-	 <div class="header_bottom-box2">
+	 <div class="header_bottom-box2" style="width:1070px;">
 		
 			<div class="logo">
-				<a href="index.jsp"><img src="images/logo.png" alt=""/></a>
+				<a href="index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
 			</div>
-			<div class="search">
-			  <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-			  <input type="submit" value="">
-			  
+			<form method="post" action="<%=basePath%>goods/usersearchgoods.action">
+				<div class="search">
+			  	<input type="text" name="goodsName" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+			 	 <input type="submit" value="">
+			 </form> 
 			<nav id="navigation">
 			  <ul>
 			        <li class="hotSearchings"><a href="">iphone 7</a></li>
@@ -68,8 +71,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			  </ul>
 			  </nav>
 	  		</div>
-	  		<div class="2D-code" style="width:120px; float:right; ">
-				<a href="index.jsp"><img src="images/2D-code.jpg" alt="" style="width:70px; height:70px;"/></a>
+	  		<div class="2D-code" style="width:70px; float:right; ">
+				<a href="index.jsp"><img src="<%=basePath%>image/2D-code.jpg" alt="" style="width:70px; height:70px;"/></a>
 			</div>
 		</div>
 		
@@ -77,8 +80,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 </div>
 
-<nav class="nav" >
-  <ul class="nav_menu" style="top:500px;">
+<nav class="nav" style="top:500px;margin-top:50px;">
+  <ul class="nav_menu" >
     <li class="nav_menu-item"><a href="" target="_top">所有商品</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
@@ -113,267 +116,99 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <li><a href="">价格</a></li>
    </ul>
   </div>
+  
+  	<script language="javascript">
+			
+				function gotodetails(id)
+				{
+				//	alert("gotoupdate");
+				//	alert("id="+id);
+
+					window.location.href="<%=basePath%>goods/queryOneGoods.action?sellergoodsid="+id;
+					
+				}
+			</script>
+  
+  
 <div class="goods1">
 <div class="grid_2">
 		<div class="goods2">
 			  <div class="box_inner">
-				<div class="goods3">
-				<div class="goods-photo"><img src="images/p1.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p2.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p3.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p4.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p1.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p2.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p3.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p4.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			   <div class="goods3">
-				<div class="goods-photo"><img src="images/p1.jpg" class="img-responsive" alt=""/>
-				 </div>
-				 <div class="goods4">
-				 <div class="goods-info">
-				 <a href=""  ><span>商品简介<br></br></span></a>
-				</div>
-				<div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-				 <div class="shopname">
-				  <a href=""  ><span>店铺信息</span></a>
-				 </div>
-				  </div>
-				 <div class="goods-price">
-				 <span>$150.00</span>
-				 </div>
-				 <div class="goods-buy">
-				 	
-				 	<ul class="list3">
-				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
-				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
-				 	  <div class="clearfix"> </div>
-				 	</ul>
-				 	
-				 </div>
-			   </div>
-			</div>
-			
-			
-			
-			
-			
-			
-			</div>
-			
-			
-			
+			  
+					<s:iterator value="l_sellergoods" id="l_sellergoods" status="status">  
+						<div class="goods3">
+						<div class="goods-photo">
+							<!--<s:iterator value="l_sellergoods.goods.sellergoodsimages" id="coverpic" status="st">
+								<s:if test="#st.first">
+									<img src="${pageContext.request.contextPath}/${coverpic.imageUrl}" class="img-responsive" alt=""/>
+						 		</s:if>
+						 	</s:iterator>-->
+						 	
+						 	<img src="${pageContext.request.contextPath}/${coverpic}" class="img-responsive" alt=""/>
+						 	
+						 	
+						 </div>
+						 <div class="goods4">
+						 <div class="goods-info">
+						 <a style="cursor:pointer;" onclick="gotodetails(<s:property value="#l_sellergoods.id" />);"  ><span><s:property value="#l_sellergoods.goods.goodsName" ></s:property><br></br></span></a>
+						</div>
+						<div class="line">
+				    <span style="width:100%;"></span>
+				    </div>
+						 <div class="shopname">
+						  <a style="cursor:pointer;" onclick="gotodetails(<s:property value="#l_sellergoods.id" />);" >
+						  		<span><s:property value="#l_sellergoods.seller.sellerName" ></s:property></span></a>
+						 </div>
+						  </div>
+						 <div class="goods-price">
+						 <span>￥<s:property value="#l_sellergoods.goods.goodsPrice" /></span>
+						 </div>
+						 <div class="goods-buy">
+						 	
+						 	<ul class="list3">
+						 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车&nbsp;</a></span></li>
+						 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">立即购买</a></span></li>
+						 	  <div class="clearfix"> </div>
+						 	</ul>
+						 	
+						 </div>
+					   </div>
+				   </s:iterator>
+			   
+			   
+			   
+			   		<center>
+	        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+	        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+	        
+	        <s:if test="#request.pageBean.currentPage == 1">
+	           	 首页&nbsp;上一页
+	        </s:if>
+	        
+	        <s:else>
+	            <a href="usersearchgoods.action">首页</a>
+	            &nbsp;
+	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	        </s:else>
+	        	&nbsp;
+	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            &nbsp;
+	            <a href="usersearchgoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	        </s:if>
+	        
+	        <s:else>
+	            	下一页&nbsp;尾页
+	        </s:else>
+	    
+	    </center><br>
+			   
 		</div>
-</div>
-</div>
-<iframe id="footer" src="footer.jsp"  scrolling="no" frameborder="0"></iframe>
+	</div>
+	</div>
+	</div>
+	</div>
+	
+	<iframe id="footer" src="<%=basePath%>footer.jsp"  scrolling="no" frameborder="0"></iframe>
 </body>
 </html>		

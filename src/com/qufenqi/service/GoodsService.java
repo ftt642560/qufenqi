@@ -20,15 +20,22 @@ public interface GoodsService {
 	
 	/**
 	 * 浏览商品：查找商品详情
-	 * @param 商品ID  goodsId
+	 * @param 商品ID  sellergoodsid
 	 */
-	public Goods QueryOneGoods(Long goodsId);
+	public SellerGoods QueryOneGoods(Long sellergoodsid);
+	
+	
+	
+	/**
+	 * 通过商品ID查找一个商品信息
+	 */
+	public Goods QueryOneGoodsById(Long GoodsId);
 	
 	/**
 	 * 购买商品：相应地减少商品量
-	 * @param 商品ID goodsID, 购买数量 buyNum
+	 * @param Long sellergoodsid, 购买数量 buyNum
 	 */
-	public void ReduceGoodsNum(Long goodsId,int buyNum);
+	public void ReduceGoodsNum(Long sellergoodsid,int buyNum);
 	
 	/**
 	 * 商家查询自己的所有商品信息

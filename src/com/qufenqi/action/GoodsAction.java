@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.ServletActionContext;
 import org.jboss.weld.context.ApplicationContext;
 
+import com.google.common.collect.Iterables;
 import com.opensymphony.xwork2.ActionContext;
 import com.qufenqi.entity.Goods;
 import com.qufenqi.entity.GoodsType;
@@ -47,7 +50,43 @@ public class GoodsAction {
 	public String sellerId; //商家Id
 	public String quantity;//商家商品数量
 	public List<GoodsType> l_goodstype;
+	public String sellergoodsid;//商家商品ID
+	public SellerGoods sellergoods;
+	public SellerGoodsImages goodscover;
+	public ArrayList l_usersearchresult; //用户搜查商品结果列表
 	
+	public ArrayList getL_usersearchresult() {
+		return l_usersearchresult;
+	}
+
+	public void setL_usersearchresult(ArrayList l_usersearchresult) {
+		this.l_usersearchresult = l_usersearchresult;
+	}
+
+	public SellerGoods getSellergoods() {
+		return sellergoods;
+	}
+
+	public SellerGoodsImages getGoodscover() {
+		return goodscover;
+	}
+
+	public void setGoodscover(SellerGoodsImages goodscover) {
+		this.goodscover = goodscover;
+	}
+
+	public void setSellergoods(SellerGoods sellergoods) {
+		this.sellergoods = sellergoods;
+	}
+
+	public String getSellergoodsid() {
+		return sellergoodsid;
+	}
+
+	public void setSellergoodsid(String sellergoodsid) {
+		this.sellergoodsid = sellergoodsid;
+	}
+
 	public List<GoodsType> getL_goodstype() {
 		return l_goodstype;
 	}
@@ -317,17 +356,28 @@ public class GoodsAction {
 	 */
 	public String queryOneGoods()
 	{
-		System.out.println("GoodsAction==查询商品详细信息，从前台传过来的ID="+goodsId);
-		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型
-		goods=goodsserviceimpl.QueryOneGoods(goodsid);//通过商品ID查找相应的商品信息
-		System.out.println("queryOneGoods -------goodsId="+goods.getGoodsId());
-		//HttpServletRequest request=null;
-		//request=ServletActionContext.getRequest();	
-		//request.setAttribute("goods", goods);
-		//------------------把数据放到了session范围中....----------------------------------------------------
-		//ActionContext.getContext().getSession().put("goods",goods);	
-		//ActionContext.getContext().getValueStack().push(goods);
+//		System.out.println("GoodsAction==查询商品详细信息，从前台传过来的ID="+goodsId);
+//		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型
+//		goods=goodsserviceimpl.QueryOneGoods(goodsid);//通过商品ID查找相应的商品信息
+//		System.out.println("queryOneGoods -------goodsId="+goods.getGoodsId());
+//		//HttpServletRequest request=null;
+//		//request=ServletActionContext.getRequest();	
+//		//request.setAttribute("goods", goods);
+//		//------------------把数据放到了session范围中....----------------------------------------------------
+//		//ActionContext.getContext().getSession().put("goods",goods);	
+//		//ActionContext.getContext().getValueStack().push(goods);
+//		
 		
+		Long long_sellergoodsid = Long.parseLong(sellergoodsid);//将前台String类型的ID转成Long类型
+		sellergoods = goodsserviceimpl.QueryOneGoods(long_sellergoodsid);
+		
+		String sellerid=Integer.toString(sellergoods.getSeller().getSellerId());
+		String goodsid=Long.toString(sellergoods.getGoods().getGoodsId());
+		
+		sgi = goodsserviceimpl.findImages(sellerid,goodsid);//查找商品图片
+		goodscover = sgi.get(0);//获取第一张图片作为商品封面
+		ActionContext.getContext().put("sgi", sgi);
+		System.out.println("查找一个商品详情===sellergoodsid=="+sellergoods.getId()+"==sellergoodsname="+sellergoods.getGoods().getGoodsName());
 		return "success";
 	}
 	
@@ -338,13 +388,17 @@ public class GoodsAction {
 	public String buyGoods()
 	{
 		System.out.println("===GoodsAction======buyGoods");
-		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型;
+//		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型;
+//		
+//		int buynum = Integer.parseInt(sbuynum);
+//		System.out.println("sbuynum="+sbuynum);
+//		System.out.println("buyGoods=========goodsid="+goodsid+"  buynum="+buynum);
+//		
+//		goodsserviceimpl.ReduceGoodsNum(goodsid, buynum);
 		
+		Long long_sellergoodsid = Long.parseLong(sellergoodsid);
 		int buynum = Integer.parseInt(sbuynum);
-		System.out.println("sbuynum="+sbuynum);
-		System.out.println("buyGoods=========goodsid="+goodsid+"  buynum="+buynum);
-		
-		goodsserviceimpl.ReduceGoodsNum(goodsid, buynum);
+		goodsserviceimpl.ReduceGoodsNum(long_sellergoodsid, buynum);
 		return "success";
 	}
 	
@@ -405,18 +459,41 @@ public class GoodsAction {
 //			// System.out.println("====l_goods.goodsbrand===="+l_sellergoods.get(i).getGoods().getBrand()+"\n");
 //			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
 //		 }
-		 
-		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 1, page);
+		 System.out.println("goodsName=="+goodsName);
+		 this.pageBean = goodsserviceimpl.UserSearchGoods(goodsName, 5, page);
 		 System.out.println("goodsaction====usersearchgoods===分页查询==pageBean===="+pageBean);
 		 l_sellergoods = pageBean.getList();
+		 for(int i=0;i<l_sellergoods.size();i++)
+		 {
+			 
+			// List<SellerGoodsImages> aa=new ArrayList<SellerGoodsImages>(l_sellergoods.get(i).getGoods().getSellergoodsimages());
+			// l_sellergoods.get(i).setCoverpic(aa.get(0).getImageUrl());
+			 String sid = String.valueOf(l_sellergoods.get(i).getSeller().getSellerId());
+			 String gid = String.valueOf(l_sellergoods.get(i).getGoods().getGoodsId());
+			 List<SellerGoodsImages> l_temp = goodsserviceimpl.findImages(sid,gid);
+			 if(l_temp.size() ==0)
+				 System.out.println("l_temp.size===is null");
+			 else
+				 System.out.println("l_temp.size=== is not null");
+			 System.out.println("查找的商家的ID===="+l_sellergoods.get(i).getSeller().getSellerId()+"====商品ID=="+l_sellergoods.get(i).getGoods().getGoodsId());
+			 l_sellergoods.get(i).setCoverpic(l_temp.get(0).getImageUrl());
+			 System.out.println(l_temp.get(0).getImageUrl());
+		 }
 		 
-		 System.out.println(l_sellergoods.get(0).getGoods().getColor());
+			 
+		 
+		 ActionContext.getContext().put("l_sellergoods",l_sellergoods);
+				 
+//		 List<SellerGoodsImages> l_gi = new ArrayList<SellerGoodsImages>(l_sellergoods.get(0).getGoods().getSellergoodsimages());
+//		 goodscover = l_gi.get(0);
+		 System.out.println(l_sellergoods.get(0).getGoods().getSellergoodsimages());
 		 
 //		 for(int i=0;i<l_sellergoods.size();i++)
 //		 {
 //			// System.out.println("====l_goods.goodsbrand===="+l_sellergoods.get(i).getGoods().getBrand()+"\n");
 //			 System.out.println("====seller.sellerName====="+l_sellergoods.get(i).getSeller().getSellerName());
 //		 }
+
 		 return "success";
 	 }
 	 
@@ -479,7 +556,7 @@ public class GoodsAction {
 				seller=sellerservice.findBySellerId(i_sellerid); 
 				
 				Goods goods = new Goods();
-				goods=goodsserviceimpl.QueryOneGoods(long_goodsid);
+				goods=goodsserviceimpl.QueryOneGoodsById(long_goodsid);
 				
 				image.setSeller(seller); //设置图片的所属商家
 				image.setGoods(goods); //设置图片所属商品

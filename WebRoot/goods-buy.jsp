@@ -3,6 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -12,23 +13,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/user-style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/user-style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery-1.11.1.min.js"></script>
 <!-- dropdown -->
-<script src="js/jquery.easydropdown.js"></script>
+<script src="<%=basePath%>js/jquery.easydropdown.js"></script>
 <!-- start menu -->
 
-<link href="css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
-<link href="css/menu.css" rel="stylesheet" type="text/css" media="all" />
-<script type="text/javascript" src="js/megamenu.js"></script>
+<link href="<%=basePath%>css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="<%=basePath%>js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-<link rel="stylesheet" href="css/etalage.css">
+<link rel="stylesheet" href="<%=basePath%>css/etalage.css">
 <script>
   var idOld = "";
   var idNew = "";
@@ -86,7 +87,81 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 </head>
 <body>
-<iframe id="header" src="header.jsp"  scrolling="no" frameborder="0"></iframe>
+<!-- <iframe id="header" src="header.jsp"  scrolling="no" frameborder="0"></iframe>  -->
+<div class="header_top">
+  <div class="container">
+  	<div class="header_top-box">
+  
+			 <div class="cssmenu">
+				<ul>
+					<li id="loginLi" style="color: #fff ; font-size: 13px; ">
+						
+						<s:if test="#session.user == null">
+							未登录
+						</s:if>
+						<s:else>
+							欢迎${user.userName }的登录！
+						</s:else>
+					</li>
+					<li class="active"><a href="<%=basePath%>/user-login.jsp" target="_top">登录</a></li> 
+					<li><a href="<%=basePath%>/register.jsp" target="_top">注册</a></li>
+					<li><a href="<%=basePath%>/personal center.jsp" target="_top">个人中心</a></li> 
+					
+					<li id="quitLi" style="font-size: 13px;">
+						<a href="<%=basePath%>quitUser.action" class="quit">注销</a>
+					</li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+   </div>
+</div>
+</div>
+<div class="header_bottom">
+	<div class="container">
+	 <div class="header_bottom-box">
+		
+			<div class="logo">
+				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>/image/logo.png" alt=""/></a>
+			</div>
+			
+			<script language="javascript">
+				function searchGoods()
+				{
+					var targetForm = document.forms[0];
+					targetForm.action="<%=basePath%>goods/usersearchgoods.action";
+				}
+			</script>
+			
+			<form method="post" action="">
+				<div class="search">
+				  <input type="text" value="" name="goodsName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+				  <input type="submit" value=""  onClick="searchGoods();">
+				 
+				 
+				<nav id="navigation">
+				  <ul>
+				        <li class="hotSearchings"><a href="">iphone 7</a></li>
+						<li><a href="">魅族</a></li>
+						<li><a href="">华为</a></li>
+						<li><a href="">小米</a></li>
+						<li><a href="">运动户外</a></li>
+						
+				  </ul>
+				  </nav>
+	  		</div>
+	  		
+	  		</form>
+	  		
+	  		<div class="2D-code" style="width:120px; float:right; ">
+				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>/image/2D-code.jpg" alt="" style="width:70px; height:70px;"/></a>
+			</div>
+		</div>
+		
+	
+	</div>
+</div>
+
+ 
 
  <nav class="nav">
   <ul class="nav_menu">
@@ -111,45 +186,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </nav>
 <div class="goods-container">
    <div class="goods-container-left">
-   <div class="goods-photo2"><img src="images/p1-1.jpg" class="img-responsive" alt=""/>
+   <div class="goods-photo2"><img src="${pageContext.request.contextPath}/${goodscover.imageUrl}" class="img-responsive" alt=""/>
 				 </div>
    </div>
    <div class="goods-container-right">
      <div class="goodsname1">
-	 <span><h2>iphone 7</h2></span>
+	 <span><h2><s:property value="sellergoods.goods.goodsName" /></h2></span>
    </div>
    <div class="line4"></div>
     <div class="goodsname2">
-	 <span>抢购价：¥6666.66</span>
+	 <span>抢购价：¥<s:property value="sellergoods.goods.goodsPrice" /></span>
    </div>
    
 	 <div class="choose">
 	 <div class="choose1">
      &nbsp;&nbsp;颜色:
-	 <span id="1" onclick="myFun(this.id);">土豪金</span> 
+    <s:property value="sellergoods.goods.color" />
+	<!--   <span id="1" onclick="myFun(this.id);">土豪金</span> 
 	 <span id="2" onclick="myFun(this.id);">尊贵银</span> 
 	 <span id="3" onclick="myFun(this.id);">玫瑰粉</span> 
-	 <span id="4" onclick="myFun(this.id);">至尊黑</span> 
+	 <span id="4" onclick="myFun(this.id);">至尊黑</span> -->
 	 </div>
 	 <div class="choose2">
      选购类型:
-	 <span id="5" onclick="myType(this.id);">移动版64G</span> 
+     <s:property value="sellergoods.goods.model" />
+	 <!--<span id="5" onclick="myType(this.id);">移动版64G</span> 
 	 <span id="6" onclick="myType(this.id);">移动版16G</span> 
 	 <span id="7" onclick="myType(this.id);">三网通64G</span> 
-	 <span id="8" onclick="myType(this.id);">三网通16G</span> 
+	 <span id="8" onclick="myType(this.id);">三网通16G</span> -->
 	 </div>
 	 <div class="choose3">
      &nbsp;&nbsp;库存:
-	 <span id="9" onclick="myNum(this.id);">有货</span> 
+	 <s:property value="sellergoods.quantity" />
 	 </div>
 	 <div class="choose-num">
 	 购买数量：
 	     <input type="button" value="-" id="remove1" onclick="remove()">
-         <input type="text" value="1" id="tx1" width="10px">    
+         <input type="text" value="1" id="tx1" width="10px" name="sbuynum">    
          <input type="button" value="+" id="add1" onclick="add()">
      </div>
-
-   
 
 
 	 <div class="btn1">
@@ -173,13 +248,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</div>
 	<div class="line5"></div>
  <div class="goods-picture">
- <img src="images/2.jpg" class="img" alt=""/>
- <img src="images/2.jpg" class="img" alt=""/>
- <img src="images/2.jpg" class="img" alt=""/>
+ 	<s:iterator value="sgi">
+   		<img src="${pageContext.request.contextPath}/${imageUrl}" class="img" alt=""/>
+   	</s:iterator>
+	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>
+	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>
+	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>
  </div>
  </div>
 </div>
-<iframe id="footer" src="footer.jsp"  scrolling="no" frameborder="0"></iframe>
+<iframe id="footer" src="<%=basePath%>footer.jsp"  scrolling="no" frameborder="0"></iframe>
 
 </body>
 </html>		

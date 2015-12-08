@@ -46,14 +46,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				//	alert("gotoupdate");
 				//	alert("id="+id);
 
-					window.location.href="<%=basePath%>goods/queryOneGoods.action?goodsId="+id;
+					window.location.href="<%=basePath%>goods/queryOneGoods.action?sellergoodsid="+id;
 					
 				}
 			</script>
 			<s:iterator value="l_sellergoods" id="l_sellergoods" status="status">
 				<tr>
 					<td align="center"><s:property value="#l_sellergoods.goods.goodsId"/></td>
-					<td><a  style="color:blue;cursor:pointer;" onclick="gotodetails(<s:property value="#l_sellergoods.goods.goodsId" />);">
+					<td><a  style="color:blue;cursor:pointer;" onclick="gotodetails(<s:property value="#l_sellergoods.id" />);">
 						<s:property value="#l_sellergoods.goods.goodsName" ></s:property>
 					</a></td>
 					<td align="center"><s:property value="#l_sellergoods.goods.brand"/></td>

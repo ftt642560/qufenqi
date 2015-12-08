@@ -12,7 +12,17 @@ public class SellerGoods {
 	private int quantity;//商品数量
 	private Seller seller;
 	private Goods goods;
+	private String coverpic;//封面图片路径
 	
+	
+	public String getCoverpic() {
+		return coverpic;
+	}
+
+	public void setCoverpic(String coverpic) {
+		this.coverpic = coverpic;
+	}
+
 	public Seller getSeller() {
 		return seller;
 	}

@@ -27,7 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- start menu -->
 <link href="<%=basePath%>css/megamenu.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<%=basePath%>css/menu.css" rel="stylesheet" type="text/css"  media="all" />
-<script type="text/javascript" src="js/megamenu.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/megamenu.js"></script>
 <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
 <script src="<%=basePath%>js/responsiveslides.min.js"></script>
 <script src="<%=basePath%>js/index.js"></script>
@@ -85,15 +85,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<script language="javascript">
 				function searchGoods()
 				{
+					alert("!!");
 					var targetForm = document.forms[0];
 					targetForm.action="<%=basePath%>goods/usersearchgoods.action";
 				}
 			</script>
 			
-			<form method="post" action="" >
+			<form method="post" action="<%=basePath%>goods/usersearchgoods.action" >
 				<div class="search">
 				  <input type="text" value="" name="goodsName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-				  <input type="submit" value="" onClick="searchGoods();">
+				  <input type="submit" value="" >
 
 
 					<nav id="navigation">
