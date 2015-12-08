@@ -164,6 +164,8 @@ public class LoginAction {
 	public String login(){
 		System.out.println("role=="+role);
 		if(role == 0){//角色等于0说明是用户登录
+			user.setUserName(userName);
+			user.setPassword(password);
 			int status = userService.login(user);
 			System.out.println(status+"==status");
 			switch (status) {
@@ -180,7 +182,7 @@ public class LoginAction {
 					flag = "error";
 					break;
 				case SUCCESS:
-					session.setAttribute("user", user);
+					session.setAttribute("user", userService.getByUserName(userName).get(0));
 					session.setAttribute("role",0);
 					flag = "userLogin";
 					break;
@@ -281,12 +283,6 @@ public class LoginAction {
 				e1.printStackTrace();
 			}
 		}
-//		if(user != null){
-//			session.removeAttribute("user");
-//			flag = "seccess";
-//		}else{
-//			flag = "error";
-//		}
 		return "success";
 	}
 	

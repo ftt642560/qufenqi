@@ -17,6 +17,11 @@ public interface UserDao {
 	 * @return User 指定用户登录名对应的User实例
 	 */
 	List<User> find(String userName);
+	/**
+	 * 根据邮箱查询用户
+	 * @param email
+	 * @return
+	 */
 	List<User> findByEmail(String email);
 	/**
 	 * 根据标识来加载User实例
@@ -34,6 +39,7 @@ public interface UserDao {
 	 * @param user 需要被修改的User实例
 	 */
 	void update(User user);
+	void update(String hql);
 	/**
 	 * 持久化指定的User实例
 	 * @param user 需要被持久化的User实例 
@@ -70,4 +76,5 @@ public interface UserDao {
 	 * @return 总的记录数
 	 */
 	int getAllRowCount(String hql);
+	
 }

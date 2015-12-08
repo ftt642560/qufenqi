@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -80,22 +81,47 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 
 	<iframe id="lefter" src="lefter.jsp"  scrolling="no" frameborder="0"></iframe>
 	<div class="p-info" >
-	<h2>个人信息</h2>
-	<form id="form1">
-     <br>姓名:<input type="text" size="24"/></br>	 
-	 <br>昵称:<input type="text" size="24"/></br>
-	 <br>性别:<input type="text" size="24"/></br>
-     <br>&nbsp;QQ:<input  type="text" size="24"/></br>
-     <br>邮箱:<input  type="text" size="24"/></br>
-	 <br>联系电话:<input type="text" size="20"/></br>
-	 <br>家庭住址:<input type="text" size="50"/></br>
-     <br></br>
-      </form>
-	  
-		
-	
-</div>
-</div>
+		<h2>个人信息</h2>
+		<div class="line" style="width: 500px"> </div>
+		<table style="width: 700px ; height: 400px;">
+				<tr>
+					<th>用户名</th>
+					<td>${user.userName }</td>
+				</tr>
+				<tr>
+					<th>真实姓名</th>
+					<td>${user.name }</td>
+				</tr>
+				<tr>
+					<th>电话</th>
+					<td>${user.telephone }</td>
+				</tr>
+				<tr>
+					<th>身份证号码</th>
+					<td>${user.idCard }</td>
+				</tr>
+				<tr>
+					<th>email</th>
+					<td>${user.email }</td>
+				</tr>
+				<tr>
+					<th>信誉度</th>
+					<td>${user.quota }</td>
+				</tr>
+				<tr>
+					<th>状态</th>
+					<td>${user.status }</td>
+				</tr>
+				<tr>
+					<td style="color: red ; font-size: 12px" colspan="2">
+						<center>
+							状态：0表示没有邮箱激活 ，1代表已进行邮箱激活
+						</center>
+					</td>
+				</tr>
+		</table>
+	</div>
+   </div>
 			
  </div>
 
@@ -112,7 +138,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</ul>
 		
 	</div>
-
+</div>
 
 </body>
 </html>		

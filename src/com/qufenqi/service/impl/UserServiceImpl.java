@@ -60,6 +60,7 @@ public class UserServiceImpl implements UserService {
 	 * @return 返回登录的状态，true：登录成功  false：登录失败
 	 */
 	public int login(User user) {
+		System.out.println("user=="+user);
 		String userName = user.getUserName();
 		String password = MD5.getMD5(user.getPassword());
 		System.out.println(password);
@@ -93,7 +94,12 @@ public class UserServiceImpl implements UserService {
 		return userId;
 	}
 	@Override
-	public void update(User user) {
+	public void update(long tele , String userName) {
+//		userDao.update(user);
+		String hql = "update user set telephone=" + tele + " where userName = '"+userName+"'";
+		userDao.update(hql);
+	}
+	public void update(User user){
 		userDao.update(user);
 	}
 	/**

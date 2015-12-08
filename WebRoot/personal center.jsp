@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -59,8 +60,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
  
  <div class="user-container">  
    <div class="main-container">
-	 
-	<iframe id="lefter" src="<%=basePath%>lefter.jsp"  scrolling="no" frameborder="0"></iframe>
+	 <frameset>
+	   <frame src="lefter.jsp">
+	   <frame src="basic.jsp" name="framename">
+	 </frameset>
+
+	<iframe id="lefter" src="lefter.jsp"  scrolling="no" frameborder="0"></iframe>
 	
 	  <div class="user-info">
 	  <div class="basic-info">
@@ -68,31 +73,115 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		  <img src="<%=basePath%>/image/t7.jpg" alt="头像" >	
            </div>	
           <div class="basic">		   
-		    <span class="name">XXX</span>
+		    <span class="name">${user.userName }</span>
 		
 			<br>
-			<span class="address">广东省湛江市</span>
-			</br>
-			<span class="mobile">135xxxx6499</span>
+			<span class="address"></span>
+			<br>
+			<span class="mobile">${user.telephone }</span>
 			<br></br>
 		</div>
 		</div>
 	   <div class="limit">
 	     <div class="limit-item">
 		   <span class="lable">剩余可用额度</span>
-		   <span class="money money1">
-		  
+		   <span class="money-money1">
 		   "100"
 		   </span>
 		   <div class="line">
-		    <span style="width:100%;"></span>
-		    </div>
-			<span class="money full">
-		   
-		   "当前授信额度"
-		   <i>100.00</i>
-		   </span>
+		    	<span style="width:100%;"></span>
 		   </div>
+		   <span class="money-full">		   
+		   		"当前授信额度:"
+		   		<i>${user.quota }</i>
+		   </span>
+		 </div>
+	   </div>
+		  <br>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+		 <!-- 
+		  <div class="ordering">
+		  <h2>最近一期还款 </h2>
+		   <div class="line">
+		    
+		    </div>
+		  </div>
+		   -->
+		  <br>&nbsp;&nbsp;&nbsp;&nbsp;<br>
+		<div class="ordering">
+		  <h2>待处理订单 </h2>
+		   	<div class="line" >
+		    </div>
+		    <s:if test="#request.pageBean == null || #request.pageBean.size() == 0">
+						<table>
+							<tr>
+								<td></td>
+							</tr>
+						</table>
+						
+						<table border="1" cellspacing="0" cellpadding="0" width="100%" height="">
+							<tr>
+								<td style="color: red ; font-weight: bolder;"><center>没有商品</center></td>
+							</tr>
+						</table>
+					</s:if>
+					<s:else>
+						<table width="650px">
+							<s:iterator value="#request.pageBean.list">
+								
+							</s:iterator>
+							
+							<tr style="height: 30px">
+					  			<th>订单id</th>
+					  			<th>商品名</th>
+								<th>运费</th>
+								<th>总价</th>
+								<th>订货人</th>
+								<th>收货人</th>
+								<th>状态</th>
+								<th>修改</th>
+							</tr>
+							<s:iterator value="#request.pageBean.list" status="status">
+								<tr style="height: 30px">
+									<td>${orderId }</td>
+									<td><a href="<%=basePath %>/manage/goodsOfMess.jsp">${goods.brand }</a></td>
+									<td>${carriage }</td>
+									<td>${orderAmount }</td>
+									<td><a href="<%=basePath %>/manage/userMessOfBuyGoods.jsp">${user.userName }</a></td>
+									<td><a href="<%=basePath %>/manage/devilery.jsp">收获详情</a></td>
+									<td>${orderStatus }</td>
+									<td>
+										<a href="<%=basePath%>/queryOrderByOrderId.action?orderId=${orderId }">修改</a>
+									</td>
+								</tr>										
+							</s:iterator>
+						</table>
+					</s:else>
+					
+					<center style="font-size: 14px">
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
+			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
+			        
+			        <s:if test="#request.pageBean.currentPage == 1">
+			           	 首页&nbsp;上一页
+			        </s:if>
+			        
+			        <s:else>
+			            <a href="<%=basePath%>findOrderByStatus.action">首页</a>
+			            &nbsp;
+			            <a href="<%=basePath%>findOrderByStatus.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			        </s:else>
+			        	&nbsp;
+			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
+			            <a href="<%=basePath%>findOrderByStatus.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            &nbsp;
+			            <a href="<%=basePath%>findOrderByStatus.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			        </s:if>
+			        
+			        <s:else>
+			            	下一页&nbsp;尾页
+			        </s:else>
+			    
+			   </center><br>
 		  </div>
 		  
 		</div>

@@ -597,6 +597,7 @@ public class GoodsAction {
 	//商家添加商品
 	public String addGoods()
 	{
+		System.out.println("进来了添加商品");
 		 String sellerName = seller.getSellerName();
 		 System.out.println("seller.getSellerName()=="+sellerName );
 		 Seller seller = sellerservice.find(sellerName);

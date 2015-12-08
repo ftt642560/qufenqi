@@ -1,5 +1,7 @@
 package com.qufenqi.dao.impl;
 
+import java.util.List;
+
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import com.qufenqi.dao.PaymentBaseDao;
@@ -25,4 +27,9 @@ public class PaymentBaseDaoImpl extends HibernateDaoSupport implements PaymentBa
 	public void save(Order order) {
 		getHibernateTemplate().save(order);
 	}
+
+	@Override
+	public List<Order> findByStatus(String status , int userId) {
+		return getHibernateTemplate().find("from Order as o where o.orderStatus = '"+status+"' and o.user.userId = "+userId);
+	} 
 }

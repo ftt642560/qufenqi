@@ -130,4 +130,12 @@ public class PaymentAction {
 		paymentService.orders(order);
 		return "success";
 	}
+	
+	public String findOrderByStatus(){
+		User user = (User) session.getAttribute("user");
+		String stauts = "未付款";
+		this.pageBean = paymentService.queryForPage(user.getUserId(), stauts , 1, page);
+		System.out.println(pageBean);
+		return "success";
+	}
 }
