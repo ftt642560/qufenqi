@@ -400,5 +400,12 @@ public class GoodsServiceImpl implements GoodsService {
     {
     	return goodsDaoImpl.QueryAllGoodsType();
     }
+    
+	//通过商品类型ID，查找商品类型 对象
+	public GoodsType searchGoodsTypeById(long id)
+	{
+		GoodsType gt = goodsDaoImpl.searchGoodsTypeById(id);
+		return gt;
+	}
 	
 }

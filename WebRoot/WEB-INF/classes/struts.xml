@@ -260,7 +260,7 @@
 		
 		<!-- 用户按照商品类型查找商品，在不同的商家商家所卖的同一种类型商品，其商品不同 -->
 		<action name="usersearchbytypename" class="goodsAction" method="UserSearchByType">
-			<result name="success">/test_searchbytype.jsp</result>
+			<result name="success">/things2.jsp</result>
 			<!-- 
 				<result name="success">/test_searchbytype.jsp</result>
 			 -->

@@ -315,5 +315,12 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		l_goodstype = this.getHibernateTemplate().find(hql);
 		return l_goodstype;
 	}
+	
+	//通过商品类型ID，查找商品类型 对象
+	public GoodsType searchGoodsTypeById(long id)
+	{
+		GoodsType gt=this.getHibernateTemplate().get(GoodsType.class,id);
+		return gt;
+	}
 
 }
