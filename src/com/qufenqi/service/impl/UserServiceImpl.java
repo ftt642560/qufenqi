@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
 			user.setPassword(password);
 			int registerId = userDao.save(user);
 			if(registerId > 0){
+				System.out.println("发送邮件");
 				String toEmail = user.getEmail();
 				System.out.println(toEmail);
 				SendEmail.send(toEmail);

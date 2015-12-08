@@ -29,9 +29,9 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 .shadow .rt { right:0; top:0; }
 .shadow .box { background:#fff; border:1px solid #bfbfbf; padding:5px; margin-right:3px; margin-bottom:3px; }
 .shadow .box .msg { text-align:center; padding:20px; }
-
+#left{float:left;height:350px;}
 .wrap { width:1300px; margin:0 auto; }
-#header { overflow:hidden; padding-top:10px; }
+#header { overflow:hidden; padding-top:10px;width:100%; }
 #header #logo { float:left; width:120px; text-align:center; }
 #header .help { float:right; }
 #header .help a { margin:0 5px; }
@@ -83,7 +83,7 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 #registerFtt form table .current { background:#edffd5; }
 #registerFtt form label.ui-green { height:30px;}
 #registerFtt form label.ui-green input { font-size:18px; font-weight:bold; line-height:32px; height:30px; padding:0 15px; }
-#footer { clear:both; line-height:30px; text-align:center; margin-top:20px; background:#fafafa; color:#666; border-top:1px solid #e0e0e0; }
+#footer { clear:both; line-height:30px; text-align:center; margin-top:20px; background:#fafafa; color:#666; border-top:1px solid #e0e0e0; width:100%;}
 
 #main { padding:10px 0; }
 #main .lefter { float:left; width:180px; }

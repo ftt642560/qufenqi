@@ -26,7 +26,10 @@
 			</interceptor-stack>
 		</interceptors>
 		
-
+		<!-- 统计 -->
+		<action name="cuntAddress" class="jFreechartAction" method="cuntAddress">
+			<result name="success">/test-countAddress.jsp</result>
+		</action>
 		
 		<!-- 用户模块 -->
 		<action name="findAllUser" class="userAction" method="findAll">
@@ -89,11 +92,11 @@
 			<interceptor-ref name="wall"/>
 		</action>
 		<action name="register" class="loginAction" method="register">
-			<result name="success">login.jsp</result>
+			<result name="success">user-login.jsp</result>
 			<result name="error">register.jsp</result>
 		</action>
 		<action name="registbyEmail" class="loginAction" method="registbyEmail">
-			<result name="success">login.jsp</result>
+			<result name="success">user-login.jsp</result>
 			<result name="error">register.jsp</result>
 		</action>
 		
@@ -237,9 +240,6 @@
 		<!-- 商家查找商品信息 -->
 		<action name="sellerquerygoods" class="goodsAction" method="sellerquerygoods">
 			<result name="success">/manage/GoodsMessOfSeller.jsp</result>
-			<!-- 
-			<result name="success">/buygoodsresult.jsp</result>
-			 -->
 		</action>
 		
 		<!-- 用户搜索商品 -->
@@ -287,17 +287,20 @@
 		
 		<!-- 商家添加商品 -->
 		<action name="addgoods" class="goodsAction" method="addGoods">
-			<result name="success">/index.jsp</result>
+			<result name="success" type="redirectAction">
+				<param name="actionName">sellerquerygoods</param>
+				<param name="namespace">/goods</param>
+			</result>
 		</action>
 		
 		<!-- 商家对商品进行上架、下架 -->
-		<action name="changegoodsstatus" class="goodsAction" method="changeGoodsStatus">
+		<action name="changegoodsstatus" class="sellerAction" method="changeGoodsStatus">
 			<result name="success">/index.jsp</result>
 		</action>
 		
 		<!-- 查找所有的商品类型 -->
 		<action name="findallgoodstype" class="goodsAction" method="queryAllGoodsType">
-			<result name="success">/test_findgoodstype.jsp</result>
+			<result name="success">/manage/product-add.jsp</result>
 		</action>
 	</package>
 

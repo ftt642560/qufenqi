@@ -13,6 +13,7 @@ import com.qufenqi.entity.Manager;
 import com.qufenqi.entity.PageBean;
 import com.qufenqi.entity.Seller;
 import com.qufenqi.entity.User;
+import com.qufenqi.service.GoodsService;
 import com.qufenqi.service.ManagerService;
 import com.qufenqi.service.SellerService;
 
@@ -29,6 +30,8 @@ public class SellerAction {
 	private int sellerId;
 	private String sellerName;
 	private String oldPassword;//接收旧密码
+	private long goodsId;
+	private GoodsService goodsserviceimpl;
 	
 	private String loginName;
 
@@ -123,6 +126,15 @@ public class SellerAction {
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public long getGoodsId() {
+		return goodsId;
+	}
+	public void setGoodsId(long goodsId) {
+		this.goodsId = goodsId;
+	}
+	public void setGoodsserviceimpl(GoodsService goodsserviceimpl) {
+		this.goodsserviceimpl = goodsserviceimpl;
 	}
 	/**
 	 * 注册
@@ -359,5 +371,10 @@ public class SellerAction {
 			return "success";
 		}
 		return null;
+	}
+	
+	public String changeGoodsStatus(){
+		goodsserviceimpl.changeGoodsStatus(goodsId);
+		return "success";
 	}
 }

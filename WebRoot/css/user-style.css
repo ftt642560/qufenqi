@@ -1077,20 +1077,14 @@ span.basic-info{
 }
 .main-container table th{
 	border-bottom:none;
-	border-right:1px solid #f4f4f4;
+	
 }
-.main-container table th:last-child{
-	border-right:1px solid #ddd;
-}
+
 .main-container table tr{
 	border-right:1px solid #ddd;
 }
-.main-container table tr td{
-	border-right:1px solid #fff;
-}
-.main-container table tr td:last-child{
-	border-right:1px solid #ddd;
-}
+
+
 #billform{
 	border-right:1px solid #ddd;
 }
@@ -1271,7 +1265,7 @@ p.cart {
 .register-top-grid input[type="text"], .register-bottom-grid input[type="text"] {
 	border: 1px solid #000000;
 	outline-color:#FF5B36;
-	width: 300px;
+	width: 180px;
 	font-size: 1em;
 	margin:5px 0;
 	-webkit-appearance: none;
@@ -1606,11 +1600,27 @@ div.register-bottom-grid {
 	margin:20px 0;
 }
 .order-info th{
-	float:left;
+	text-align:center;
+}
+.order-top{
+	width:731px;
+	border:2px solid #1bccf7;
+}
+.order-top th{
 	text-align:center;
 }
 .order1{
 	width:731px;
+	margin-top:20px;
+	float:left;
+	border:2px solid #1bccf7;
+}
+.goods-photo2{
+	width:100px;
+	float:left;
+}
+.order table td{
+	text-align:center;
 }
 
 /*--my bill--*/
