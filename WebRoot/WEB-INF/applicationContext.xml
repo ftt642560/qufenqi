@@ -125,6 +125,10 @@
 	<bean id="managerService" class="com.qufenqi.service.impl.ManagerServiceImpl">
 	  	<property name="managerDao" ref="managerDao"></property>
 	</bean>
+	<!-- 统计 -->
+	<bean id="countService" class="com.qufenqi.service.impl.CountServiceImpl">
+	  	<property name="paymentDao" ref="paymentDao"></property>
+	</bean>
 	
 	<bean id="goodsAction" class="com.qufenqi.action.GoodsAction">
 		<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
@@ -156,9 +160,12 @@
 	  	<property name="seller" ref="seller"></property>
 	  	<property name="manager" ref="manager"/>
 	  	<property name="user" ref="user"></property>
+	  	<property name="goodsserviceimpl" ref="goodsServiceImpl"></property>
 	  </bean>
 	  <bean id="managerAction" class="com.qufenqi.action.ManagerAction" scope="prototype">
 		<property name="managerService" ref="managerService"></property>
 	  </bean>
-	  
+	  <bean id="jFreechartAction" class="com.qufenqi.action.JfreechartAction" scope="prototype">
+		<property name="countService" ref="countService"></property>
+	  </bean>
 </beans>

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 	String path = request.getContextPath();
@@ -29,13 +30,28 @@
 							<a href="<%=basePath%>/manage/index.jsp">首页</a>
 						</li>
 						<li>
-							<a href="<%=basePath%>/manage/user.jsp">用户</a>
+							<s:if test="#session.role == 1">
+								<a href="<%=basePath%>findSelf.action">用户</a>
+							</s:if>
+							<s:else>
+								<a href="<%=basePath%>findAllUser.action">用户</a>
+							</s:else>
 						</li>
 						<li>
-							<a href="<%=basePath%>/manage/product.jsp">商品</a>
+							<s:if test="#session.role == 1">
+								<a href="<%=basePath%>/goods/sellerquerygoods.action?sellerName=${seller.sellerName }">商品</a>
+							</s:if>
+							<s:else>
+								<a href="<%=basePath%>/goods/findAllGoods.action">商品</a>
+							</s:else>
 						</li>
 						<li>
-							<a href="<%=basePath%>/manage/order.jsp">订单</a>
+							<s:if test="#session.role == 1">
+								<a href="<%=basePath%>/queryOrderBySelleName.action">订单</a>
+							</s:if>
+							<s:else>
+								<a href="<%=basePath%>/findAllOrders.action">订单</a>
+							</s:else>
 						</li>
 						<li>
 							<a href="<%=basePath%>/manage/guestbook.jsp">留言</a>
@@ -66,20 +82,20 @@
 						<dl>
 							<dt>个人信息管理</dt>
 							<dd>
-								<a href="<%=basePath%>findAllUser.action">用户管理</a>
+								<a href="<%=basePath%>findSelf.action">个人信息管理</a>
 							</dd>
 							<dt>商品管理</dt>
 							<dd>
 								<em><a href="<%=basePath%>/manage/productClass-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理</a>
+								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理${seller.sellerName }</a>
 							</dd>
 							<dd>
-								<em><a href="<%=basePath%>/manage/product-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/findAllGoods.action">商品管理</a>
+								<em><a href="<%=basePath%>goods/findallgoodstype.action">新增</a>
+								</em><a href="<%=basePath%>/goods/sellerquerygoods.action?sellerName=${seller.sellerName }">商品管理${seller.sellerId }</a>
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
-								<a href="<%=basePath%>/manage/order.jsp">订单管理</a>
+								<a href="<%=basePath%>/queryOrderBySelleName.action">订单管理${seller.sellerName }</a>
 							</dd>
 							<dt>申诉管理</dt>
 							<dd>
@@ -111,7 +127,7 @@
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
-								<a href="<%=basePath%>/manage/order.jsp">订单管理</a>
+								<a href="<%=basePath%>/findAllOrders.action">订单管理</a>
 							</dd>
 							<dt>申诉管理</dt>
 							<dd>
@@ -187,21 +203,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="field">权重：</td>
-							<td>
-								<input type="text" value="" name="goods.weight" />
-							</td>
-						</tr>
-						<tr>
-							<td class="field">商品状态：</td>
-							<td>
-								<input type="text" value="" name="goods.status" />
-							</td>
-						</tr>
-						<tr>
 							<td class="field">商品类型名：</td>
 							<td>
-								<input type="text" value="" name="goodsTypeName" />
+								<s:select list="l_goodstype" listKey="goodsTypeName" 
+									listValue="goodsTypeName" name="goodsTypeName"></s:select>
 							</td>
 						</tr>
 						<tr>

@@ -127,6 +127,7 @@ public class LoginAction {
 	 * @return
 	 */
 	public String register(){
+		System.out.println("用户注册进来了");
 		//刚开始注册status为0
 		//该开始注册信誉度为0
 		user.setStatus(0);
@@ -151,8 +152,8 @@ public class LoginAction {
 	 * @return
 	 */
 	public String registbyEmail(){
-		user.setStatus(2);
-		user.setQuota(100);
+		user.setStatus(1);
+		user.setQuota(1000);
 		userService.update(user);
 		return "success";
 	}

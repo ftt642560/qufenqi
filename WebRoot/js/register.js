@@ -1,25 +1,3 @@
-function register(){
-	if(document.getElementById('userName').value.trim() == "") { 
-		  document.getElementById('userDiv').innerHTML = "用户名不能为空";
-		  return false; 
-	}else{
-		 document.getElementById('userDiv').innerHTML = "";
-	}
-	if(document.getElementById('password').value.trim() == "") { 
-		   document.getElementById('pswDiv').innerHTML = "用户名密码不能为空";
-		  return false; 
-	}else{
-		document.getElementById('loginForm').action="<%=basePath%>loginSeller.action";	
-	}
-	if(document.getElementById('email').value.trim() == "") { 
-		   document.getElementById('emailDiv').innerHTML = "用户名密码不能为空";
-		  return false; 
-	}else{
-		document.getElementById('fromRegister').action="register.action";	
-		return true;
-	}
-}			
-
 //function addnode(text,tagid){
 //	var validate_text=document.createElement("span");
 //	var textnode=document.createTextNode(text);	
@@ -48,40 +26,37 @@ function register(){
 //	}
 //}
 //  		
-//function register(){ 		
-//  	var userName=document.getElementById("userName").value;
-//  	var password=document.getElementById("password").value;
-//  	var email=document.getElementById("email").value;
-//		
-//	//对输入条件进行验证
-//	if( userName=="" || password=="" || email == "" ){
-//		if(userName==""){
-//			alert("空");
-//			addnode("用户名不能为空","userName");
-//		}
-//		else{
-//			removenode("userName");
-//		}	
-//				
-//		if(password=="")
-//		{
-//			alert("空");
-//			addnode("密码不能为空","password");				
-//		}
-//		else{
-//			removenode("password");
-//		}
-//		if(email=="")
-//		{
-//			alert("空");
-//			addnode("邮箱不能为空","email");				
-//		}
-//		else{
-//			removenode("email");
-//		}
-//		return false;		
-//	}else{
-//		document.getElementById("fromRegister").action = "register.action";
-//		return true;
-//	}			
-//}
+function register(){ 		
+  	var userName=document.getElementById("userName").value;
+  	var password=document.getElementById("password").value;
+  	var email=document.getElementById("email").value;
+		
+	//对输入条件进行验证
+	if( userName=="" || password=="" || email == "" ){
+		if(userName==""){
+			document.getElementById("userNameSpan").innerHTML = "用户名不能为空";
+		}
+		else{
+			document.getElementById("userNameSpan").innerHTML = "";
+		}	
+				
+		if(password=="")
+		{
+			document.getElementById("passwordSpan").innerHTML = "密码不能为空";
+		}
+		else{
+			document.getElementById("passwordSpan").innerHTML = "密码不能为空";
+		}
+		if(email=="")
+		{
+			document.getElementById("emailSpan").innerHTML = "邮箱不能为空";
+		}
+		else{
+			document.getElementById("emailSpan").innerHTML = "";
+		}
+		return false;		
+	}else{
+		document.getElementById("fromRegister").action = "register.action";
+		return true;
+	}			
+}

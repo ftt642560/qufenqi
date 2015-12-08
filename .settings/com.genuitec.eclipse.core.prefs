@@ -1,4 +1,4 @@
-#Mon Dec 07 14:36:02 CST 2015
+#Tue Dec 08 09:25:42 CST 2015
 eclipse.preferences.version=1
-validator.Checked=WebRoot/test_images.jsp,WebRoot/js/jquery-1.11.1.min.js
+validator.Checked=WebRoot/js/script.js,WebRoot/test_images.jsp,WebRoot/register.jsp,WebRoot/js/jquery-1.11.1.min.js,WebRoot/js/register.js
 validator.Unchecked=

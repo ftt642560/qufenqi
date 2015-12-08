@@ -266,6 +266,7 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	 */
 	public int changeState(Long goodsId)
 	{
+		System.out.println("dao goodsId==33333="+goodsId);
 		int flag=0;
 		Goods goods=this.QueryOneGoodsById(goodsId);
 		int status=0;
