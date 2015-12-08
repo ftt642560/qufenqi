@@ -216,7 +216,8 @@
 		</action>
 		
 		<action name="queryOneGoods" class="goodsAction" method="queryOneGoods">
-			<result name="success">/test_goodsdetail.jsp</result>
+			<!-- <result name="success">/test_goodsdetail.jsp</result> -->
+			<result name="success">/goods-buy.jsp</result>
 		</action>
 		
 		<action name="buyGoods" class="goodsAction" method="buyGoods">
@@ -244,7 +245,8 @@
 		
 		<!-- 用户搜索商品 -->
 		<action name="usersearchgoods" class="goodsAction" method="userSearchGoods">
-			<result name="success">/test_usersearchgoods.jsp</result>
+			<!-- <result name="success">/test_usersearchgoods.jsp</result> -->
+			<result  name="success">/things.jsp</result>
 			<!-- 
 				<result name="success">/test_usersearchgoods.jsp</result>
 			 -->

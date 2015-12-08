@@ -73,29 +73,50 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 
 	/**
 	 * 查找商品详情
-	 * @param  商品ID GoodsId
+	 * @param  Long sellergoodsid
+	 * @return SellerGoods
 	 * 
 	 */
 	@Override
-	public Goods QueryOneGoods(Long GoodsId) {
+	public SellerGoods QueryOneGoods(Long sellergoodsid) {
+		//goods = this.getHibernateTemplate().get(Goods.class, GoodsId);//按照商品ID，查找商品信息
+		//System.out.println("GoodsDaoImpl=======QueryOneGoods====goodsName="+goods.getGoodsName());
+		SellerGoods sellergoods = this.getHibernateTemplate().get(SellerGoods.class,sellergoodsid);
+		return sellergoods;
+	}
+
+	
+
+	/**
+	 * 通过商品ID查找一个商品信息
+	 */
+	public Goods QueryOneGoodsById(Long GoodsId) {
 		goods = this.getHibernateTemplate().get(Goods.class, GoodsId);//按照商品ID，查找商品信息
 		System.out.println("GoodsDaoImpl=======QueryOneGoods====goodsName="+goods.getGoodsName());
 		return goods;
 	}
-
+	
+	
+	
+	
 	/**
 	 *减少商品库存量
-	 * @param 商品ID GoodsId,购买数量 buyNum
+	 * @param Long sellergoodsid,购买数量 buyNum
 	 */
 	@Override
-	public void ReduceGoodsNum(Long GoodsId,int buyNum) {
-		goods = QueryOneGoods(GoodsId);//按照商品ID查找一个商品
-		int goodsStoreNum = goods.getStoreNum();//获取商品库存量
-		goodsStoreNum=goodsStoreNum-buyNum;//商品库存量相应地减少件数
-		goods.setStoreNum(goodsStoreNum);//更新商品库存量
-		this.getHibernateTemplate().update(goods);//连接数据库修改
+	public void ReduceGoodsNum(Long sellergoodsid,int buyNum) {
+//		goods = QueryOneGoodsById(GoodsId);//按照商品ID查找一个商品
+//		int goodsStoreNum = goods.getStoreNum();//获取商品库存量
+//		goodsStoreNum=goodsStoreNum-buyNum;//商品库存量相应地减少件数
+//		goods.setStoreNum(goodsStoreNum);//更新商品库存量
+//		this.getHibernateTemplate().update(goods);//连接数据库修改
 		
-		System.out.println("GoodsDaoImpl========ReduceGoodsNum====storenum="+goods.getStoreNum());
+		SellerGoods sellergoods = this.QueryOneGoods(sellergoodsid);
+		int quantity = sellergoods.getQuantity();
+		quantity = quantity-buyNum;
+		sellergoods.setQuantity(quantity);
+		this.getHibernateTemplate().update(sellergoods);
+		System.out.println("GoodsDaoImpl========ReduceGoodsNum====storenum="+sellergoods.getQuantity());
 
 	}
 	
@@ -235,6 +256,8 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		System.out.println("添加商品，商家名=="+sellergoods.getSeller().getSellerName()+"====商品名=="+sellergoods.getGoods().getGoodsName());
 	}
 	
+	
+	
 	/**
 	 * 
 	 * 商品上架、下架
@@ -245,7 +268,7 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	{
 		System.out.println("dao goodsId==33333="+goodsId);
 		int flag=0;
-		Goods goods=this.QueryOneGoods(goodsId);
+		Goods goods=this.QueryOneGoodsById(goodsId);
 		int status=0;
 		status = goods.getStatus();
 		System.out.println("原来的商品状态===goods.getStatus()==="+goods.getStatus());

@@ -25,18 +25,25 @@ public interface GoodsDao {
 	
 	/**
 	 * 查找商品详情
-	 * @param  商品ID GoodsId
-	 * @return Goods
+	 * @param  Long sellergoodsid
+	 * @return SellerGoods
 	 * 
 	 */
-	public Goods QueryOneGoods(Long GoodsId);
+	public SellerGoods QueryOneGoods(Long sellergoodsid);
+	
+	
+	/**
+	 * 通过商品ID查找一个商品信息
+	 */
+	public Goods QueryOneGoodsById(Long GoodsId);
+	
 	
 	/**
 	 *减少商品库存量
-	 * @param 商品ID GoodsId,购买数量 buyNum
+	 * @param Long sellergoodsid,购买数量 buyNum
 	 * @return 无
 	 */
-	public void ReduceGoodsNum(Long GoodsId,int buyNum);
+	public void ReduceGoodsNum(Long sellergoodsid,int buyNum);
 	
 	
 	/**

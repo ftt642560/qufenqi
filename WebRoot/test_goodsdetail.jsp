@@ -51,31 +51,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 			<tr>
 				<!-- <td><input type="text" value="" id="goodsId"  /><s:property value="goods.goodsId" /></td> -->
-				<td><s:property value="goods.goodsId"  /></td>
+				<td><s:property value="sellergoods.goods.goodsId"  /></td>
 			</tr>
 			
 			<tr>
-				<td><s:property value="goods.goodsName" /></td>
+				<td><s:property value="sellergoods.goods.goodsName" /></td>
 			</tr>
 			
 			<tr>
-				<td><s:property value="goods.brand" /></td>
+				<td><s:property value="sellergoods.goods.brand" /></td>
 			</tr>
 			
 			<tr>
-				<td><s:property value="goods.model" /></td>
+				<td><s:property value="sellergoods.goods.model" /></td>
 			</tr>
 			<tr>
-				<td><s:property value="goods.size" /></td>
+				<td><s:property value="sellergoods.goods.size" /></td>
 			</tr>
 			<tr>
-				<td><s:property value="goods.color" /></td>
+				<td><s:property value="sellergoods.goods.color" /></td>
 			</tr>
 			<tr>
-				<td><s:property value="goods.material" /></td>
+				<td><s:property value="sellergoods.goods.material" /></td>
 			</tr>
 			<tr>
-				<td><s:property value="goods.storeNum" /></td>
+				<td><s:property value="sellergoods.quantity" /></td>
 			</tr>
 			
 		</table>

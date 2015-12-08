@@ -75,28 +75,42 @@ public class GoodsServiceImpl implements GoodsService {
 	 * @return Goods goods
 	 */
 	@Override
-	public Goods QueryOneGoods(Long goodsId) {
-		try{
-			goods=goodsDaoImpl.QueryOneGoods(goodsId);
-			System.out.println("GoodsServiceImpl=====QueryOneGoods====goodsName="+goods.getGoodsName());
-		}
-		catch(Exception e)
-		{
-			
-			e.printStackTrace();
-		}
+	public SellerGoods QueryOneGoods(Long sellergoodsid) {
+		SellerGoods sellergoods = goodsDaoImpl.QueryOneGoods(sellergoodsid);
+//		try{
+//			goods=goodsDaoImpl.QueryOneGoods(sellergoodsid);
+//			SellerGoods sellergoods = goodsDaoImpl.QueryOneGoods(sellergoodsid);
+//			System.out.println("GoodsServiceImpl=====QueryOneGoods====goodsName="+goods.getGoodsName());
+//		}
+//		catch(Exception e)
+//		{
+//			
+//			e.printStackTrace();
+//		}
+		return sellergoods;
+	}
+	
+	
+	
+	/**
+	 * 通过商品ID查找一个商品信息
+	 */
+	public Goods QueryOneGoodsById(Long GoodsId)
+	{
+		goods=goodsDaoImpl.QueryOneGoodsById(GoodsId);
 		return goods;
 	}
+	
 
 	/**
 	 * 购买商品：相应地减少商品量
-	 * @param 商品ID goodsID, 购买数量 buyNum
+	 * @param Long sellergoodsid, 购买数量 buyNum
 	 * @return 无
 	 */
 	@Override
-	public void ReduceGoodsNum(Long goodsId,int buyNum) {
+	public void ReduceGoodsNum(Long sellergoodsid,int buyNum) {
 		try{
-			goodsDaoImpl.ReduceGoodsNum(goodsId, buyNum);
+			goodsDaoImpl.ReduceGoodsNum(sellergoodsid, buyNum);
 		}
 		catch(Exception e)
 		{
