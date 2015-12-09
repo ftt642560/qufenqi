@@ -14,6 +14,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -454,9 +455,11 @@ public class GoodsAction {
 //		goodsserviceimpl.ReduceGoodsNum(goodsid, buynum);
 		
 		Long long_sellergoodsid = Long.parseLong(sellergoodsid);
-		int buynum = Integer.parseInt(sbuynum);
+		String data=ServletActionContext.getRequest().getParameter("sbuynum");
+		System.out.println("data"+data);
+		int buynum = Integer.parseInt(data);
 		goodsserviceimpl.ReduceGoodsNum(long_sellergoodsid, buynum);
-		
+		ServletActionContext.getRequest().setAttribute("mess", "购买成功");
 		return "success";
 	}
 	
