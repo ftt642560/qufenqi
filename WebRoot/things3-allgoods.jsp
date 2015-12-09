@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <li class="nav_menu-item"><a href="<%=basePath%>goods/findallgoods.action?page=0" target="_top">所有商品</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
-               <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1&page=0" target="_top">手机</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1&page=0" target="_top">手机</a></li>
         <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=2&page=0" target="_top">平板</a></li>
         <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=3&page=0" target="_top">电脑</a></li>
 		<li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=4&page=0" target="_top">潮流数码</a></li>
@@ -186,15 +186,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        </s:if>
 	        
 	        <s:else>
-	            <a href="usersearchbytypename.action">首页</a>
+	            <a href="<%=basePath%>goods/findallgoods.action">首页</a>
 	            &nbsp;
-	            <a href="usersearchbytypename.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+	            <a href="<%=basePath%>goods/findallgoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 	        </s:else>
 	        	&nbsp;
 	        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-	            <a href="usersearchbytypename.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+	            <a href="<%=basePath%>goods/findallgoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 	            &nbsp;
-	            <a href="usersearchbytypename.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+	            <a href="<%=basePath%>goods/findallgoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 	        </s:if>
 	        
 	        <s:else>
@@ -209,7 +209,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	
-	<div class="footer">
+<div class="footer">
 	<div class="container">
 		
 		<ul class="footer_nav">

@@ -349,7 +349,7 @@
 		
 		<!-- 查询所有的商品信息 -->
 		<action name="findallgoods" class="goodsAction" method="initIndexpage">
-			<result name="success">/things.jsp</result>
+			<result name="success">/things3-allgoods.jsp</result>
 		</action>
 		
 	</package>

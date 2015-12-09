@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <nav class="nav" style="top:500px;margin-top:50px;">
   <ul class="nav_menu" >
-    <li class="nav_menu-item"><a href="" target="_top">所有商品</a></li>
+    <li class="nav_menu-item"><a href="<%=basePath%>goods/findallgoods.action" target="_top">所有商品</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
         <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1" target="_top">手机</a></li>

@@ -810,7 +810,7 @@ public class GoodsAction {
 	//初始化首页信息,加载商品信息
 	public String initIndexpage()
 	{
-		this.pageBean = goodsserviceimpl.QueryAllGoods(12, page);
+		this.pageBean = goodsserviceimpl.QueryAllGoods(10, page);
 		l_sellergoods = pageBean.getList();
 		return "success";
 	}
