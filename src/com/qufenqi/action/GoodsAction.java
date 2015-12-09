@@ -692,8 +692,8 @@ public class GoodsAction {
 		 int q = Integer.parseInt(quantity);
 		 goods.setWeight(0);
 		 goods.setStatus(0);
-		 SellerGoods sg = goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);//返回值包含了主键
-		 
+		// SellerGoods sg = goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);//返回值包含了主键
+		 SellerGoods sg=goodsserviceimpl.addGoods(goods, seller, q, goodsTypeName);
 		 System.out.println("添加商品成功，，商家商品ID=="+sg.getId());
 		 //添加图片
 		 int sellerid = sg.getSeller().getSellerId();
