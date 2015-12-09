@@ -86,7 +86,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </script>
 
 </head>
-
+<body>
 <!-- <iframe id="header" src="header.jsp"  scrolling="no" frameborder="0"></iframe>  -->
 <div class="header_top">
   <div class="container">
@@ -165,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
  <nav class="nav">
   <ul class="nav_menu">
-    <li class="nav_menu-item"><a href="<%=basePath%>/index.jsp" target="_top">首页</a></li>
+    <li class="nav_menu-item"><a href="<%=basePath%>/goods/initindexpage.action" target="_top">首页</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
         <li class="nav_submenu-item"> <a href="" target="_top">手机</a></li>
@@ -185,34 +185,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </ul>
 </nav>
 <div class="goods-container">
-   <div class="goods-container-left">
-   <div class="goods-photo2"><img src="${pageContext.request.contextPath}/${goodscover.imageUrl}" class="img-responsive" alt=""/>
+   <div class="goods-container-left" style="width:400px;">
+   <div class="goods-photo2" style="width:400px;"><img src="${pageContext.request.contextPath}/${goodscover.imageUrl}" style="width:400px;height:350px;" class="img-responsive" alt=""/>
 				 </div>
    </div>
-   
-   <script language="javascript">
-				window.onload=function(){
-					//var id="${goods.goodsId}";
-					var id;
-					document.getElementById("goodsId").value=id;
-					alert("id="+id);
-				};
-				
-				function buygoods()
-				{
-					alert("购买成功！");
-					var id="${goods.goodsId}";
-					var buynum = document.getElementById("tx1").value;
-					alert("id="+id+"buynum="+buynum);
-					//window.location.href="goods/buyGoods.action?goodsId="+id+"&s_buynum="+s_buynum;
-					document.forms[0].action="<%=basePath%>goods/buyGoods.action";
-					document.forms[0].submit();
-				}
-			</script>
    <div class="goods-container-right">
-   
-   <!-- 购买的form表单 -->
-  <form action="" method="post">
      <div class="goodsname1">
 	 <span><h2><s:property value="sellergoods.goods.goodsName" /></h2></span>
    </div>
@@ -251,14 +228,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	 <div class="btn1">
-	 <!-- 
 	 <input type="button" value="加入购物车" onclick="window.open('index.html')">
 	 <input type="button" value="立即购买" onclick="window.open('index.html')">
-	 -->
-	 	<input type="button" value="购买" onClick="buygoods();" />
+	 
 	 </div>
 	 </div>
-	 </form>
    </div>
 
 
@@ -275,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="line5"></div>
  <div class="goods-picture">
  	<s:iterator value="sgi">
-   		<img src="${pageContext.request.contextPath}/${imageUrl}" class="img" alt=""/>
+   		<img src="${pageContext.request.contextPath}/${imageUrl}"  class="img" alt=""/>
    	</s:iterator>
 	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>
 	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>

@@ -123,11 +123,12 @@
 		<div class="main">
 			<h2>添加商品</h2>
 			<div class="manage">
-				<s:form action="/goods/addgoods.action" theme="simple" method="POST">
+				<s:form action="/goods/addgoods.action" theme="simple" method="post">
 					<table class="form">
 						<tr>
 							<td class="field">商家名称：</td>
 							<td>
+								
 								<input type="text" value="${seller.sellerName }" 
 									name="seller.sellerName" readonly="readonly"/>
 							</td>
@@ -181,6 +182,79 @@
 							</td>
 						</tr>
 						<tr>
+<<<<<<< HEAD
+=======
+							<td class="field">商品类型名：</td>
+							<td>
+								<s:select list="l_goodstype" listKey="goodsTypeName" 
+									listValue="goodsTypeName" name="goodsTypeName"></s:select>
+							</td>
+						</tr>
+						
+						
+			 
+  <script type="text/javascript">
+    function $(id) {
+        return document.getElementById(id);
+    }
+
+    function showimg(src) {
+        var img = $('imgview');
+        img.src = src;
+        img.style.display = 'block';
+    }
+
+    function filechange(file) {
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                showimg(evt.target.result);
+            };
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            file.select();
+            var src = document.selection.createRange().text;
+            showimg(src);
+        }
+    }
+
+
+	function checkform(){
+		var file=document.getElementById('file');
+		if(file.value==""){
+			alert("请上传图片");
+			return false;
+		}else if(!/\.(gif|jpg|jpeg|png|bmp|GIF|JPG|PNG|BMP)$/.test(file.value)){
+				alert("类型必须是.gif,jpeg,jpg,png,bmp中的一种");
+				file.value="";
+				return false;
+		}else{	
+			return true;
+		}
+	}
+
+</script>			
+						
+						
+						<tr>
+							<td class="field">上传商品图片：</td>
+							<td>
+								<!--<s:file name="file" id="file" onchange="filechange(this)"></s:file>-->
+								<input type="file" name="file"  onchange="filechange(this)" />
+							</td>
+						</tr>
+						
+							<tr>
+							<td colspan="2">
+								<div>
+    								<img src="" id="imgview" style="display:none;" alt=""/>
+    							</div>
+							</td>
+							
+						</tr>
+						
+						<tr>
+>>>>>>> origin/master
 							<td colspan="1">
 								<center>
 									<input type="submit" value="添加" />

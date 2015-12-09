@@ -12,6 +12,11 @@ public class GoodsType {
 	private String goodsTypeName; //商品类型名
 	private Set<Goods> goods; //商品
 	
+	public GoodsType()
+	{
+		
+	}
+	
 	public Set<Goods> getGoods() {
 		return goods;
 	}

@@ -88,7 +88,7 @@ public interface GoodsDao {
 	 * @param Goods goods
 	 * 
 	 */
-	public void addGoods(Goods goods,Seller seller,int quantity);
+	public SellerGoods addGoods(Goods goods,Seller seller,int quantity);
 	
 	/**
 	 * 
@@ -111,6 +111,12 @@ public interface GoodsDao {
 	
 	//通过商品类型ID，查找商品类型 对象
 	public GoodsType searchGoodsTypeById(long id);
+	
+	/**
+	 * 查找所有的商品信息，放到首页
+	 * @return
+	 */
+	public List<SellerGoods> QueryAllGoods();
 	
 }
 

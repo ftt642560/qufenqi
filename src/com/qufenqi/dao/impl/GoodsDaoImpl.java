@@ -241,9 +241,10 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	/**
 	 * 添加商品
 	 * @param 商品
-	 * @return 返回值为1，添加成功，返回值为0，添加失败
+	 * @return 
 	 */
-	public void addGoods(Goods goods,Seller seller,int quantity)
+	//public void addGoods(Goods goods,Seller seller,int quantity)
+	public SellerGoods addGoods(Goods goods,Seller seller,int quantity)
 	{
 		
 		this.getHibernateTemplate().save(goods);
@@ -251,9 +252,17 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 		sellergoods.setSeller(seller);
 		sellergoods.setGoods(goods);
 		sellergoods.setQuantity(quantity);
-		this.getHibernateTemplate().save(sellergoods);
-		
+		try{
+			this.getHibernateTemplate().save(sellergoods);
+			
+		}catch(Exception ex)
+		{
+			throw new RuntimeException(
+					"UnChecked Exception occur when creating record:"+ex.getMessage());
+		}
 		System.out.println("添加商品，商家名=="+sellergoods.getSeller().getSellerName()+"====商品名=="+sellergoods.getGoods().getGoodsName());
+		this.getHibernateTemplate().flush();
+		return sellergoods;
 	}
 	
 	
@@ -321,6 +330,17 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 	{
 		GoodsType gt=this.getHibernateTemplate().get(GoodsType.class,id);
 		return gt;
+	}
+	
+	/**
+	 * 查找所有的商品信息，放到首页
+	 * @return
+	 */
+	public List<SellerGoods> QueryAllGoods()
+	{
+		String hql = "from SellerGoods";
+		List<SellerGoods> l_sg=this.getHibernateTemplate().find(hql);
+		return l_sg;
 	}
 
 }

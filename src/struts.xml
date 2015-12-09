@@ -25,6 +25,8 @@
 				<interceptor-ref name="loginInterceptor"/>
 			</interceptor-stack>
 		</interceptors>
+
+		
 		
 		<!-- 统计 -->
 		<action name="showchart" class="jFreechartAction"
@@ -213,6 +215,8 @@
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		
+
+		
 	</package>
 	
 	<package name="goods" extends="struts-default" namespace="/goods">
@@ -225,8 +229,8 @@
 		</action>
 		
 		<action name="queryOneGoods" class="goodsAction" method="queryOneGoods">
-			<!-- <result name="success">/test_goodsdetail.jsp</result> -->
-			<result name="success">/goods-buy.jsp</result>
+			<!-- <result name="success">/test_goodsdetail.jsp</result>  --> 
+				<result name="success">/goods-buy.jsp</result> 
 		</action>
 		
 		<action name="buyGoods" class="goodsAction" method="buyGoods">
@@ -254,8 +258,8 @@
 		
 		<!-- 用户搜索商品 -->
 		<action name="usersearchgoods" class="goodsAction" method="userSearchGoods">
-			<!-- <result name="success">/test_usersearchgoods.jsp</result> -->
-			<result  name="success">/things.jsp</result>
+			<!--  <result name="success">/test_usersearchgoods.jsp</result>  -->
+			 <result  name="success">/things.jsp</result> 
 			<!-- 
 				<result name="success">/test_usersearchgoods.jsp</result>
 			 -->
@@ -302,6 +306,7 @@
 				<param name="actionName">sellerquerygoods</param>
 				<param name="namespace">/goods</param>
 			</result>
+			
 		</action>
 		
 		<!-- 商家对商品进行上架、下架 -->
@@ -313,6 +318,23 @@
 		<action name="findallgoodstype" class="goodsAction" method="queryAllGoodsType">
 			<result name="success">/manage/product-add.jsp</result>
 		</action>
+		
+				
+		<!-- 初始化首页商品信息 -->
+		<action name="initindexpage" class="goodsAction" method="initIndexpage">
+			<result name="success">/index2.jsp</result>
+		</action>
+		
+		
+				<!-- 添加商品同时添加商品图片-->
+		<action name="addgoods2" class="sellerAction" method="addGoods">
+			<!--  <result name="success" type="redirectAction">
+				<param name="actionName">sellerquerygoods</param>
+				<param name="namespace">/goods</param>
+			</result>-->
+			<result name="success">showImage.jsp</result>
+		</action>
+		
 	</package>
 
 </struts>    

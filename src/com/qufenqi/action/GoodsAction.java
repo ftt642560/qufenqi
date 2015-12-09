@@ -1,5 +1,6 @@
 package com.qufenqi.action;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -141,6 +142,46 @@ public class GoodsAction {
 	private List<String> dataUrl;
 	
 	
+	
+	
+	private File file;
+	private String fileName;
+	private String fileContentType;
+	private String adataUrl;
+	
+	
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFileContentType() {
+		return fileContentType;
+	}
+
+	public void setFileContentType(String fileContentType) {
+		this.fileContentType = fileContentType;
+	}
+
+	public String getAdataUrl() {
+		return adataUrl;
+	}
+
+	public void setAdataUrl(String adataUrl) {
+		this.adataUrl = adataUrl;
+	}
 
 	public List<File> getImagesfile() {
 		return imagesfile;
@@ -576,7 +617,10 @@ public class GoodsAction {
 			
 			
 			for(int i=0;i<imagesfile.size();i++){
-				InputStream is=new FileInputStream(imagesfile.get(i));
+				File f = imagesfile.get(i);
+				InputStream is=new FileInputStream(f);
+
+					
 				
 				String path=ServletActionContext.getServletContext().getRealPath("/");		
 				System.out.println(path);	
@@ -628,9 +672,19 @@ public class GoodsAction {
 	 
 	
 	//商家添加商品
-	public String addGoods()
+	public String addGoods() throws IOException
 	{
-		System.out.println("进来了添加商品");
+//		System.out.println("进来了添加商品");
+//		 String sellerName = seller.getSellerName();
+//		 System.out.println("seller.getSellerName()=="+sellerName );
+//		 Seller seller = sellerservice.find(sellerName);
+//		 System.out.println("添加商品====goodstypename==="+goodsTypeName+"====商品名=="+goods.getGoodsName());
+//		 int q = Integer.parseInt(quantity);
+//		 goods.setWeight(0);
+//		 goods.setStatus(0);
+//		 goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);
+		
+		System.out.println("=selleraction===进来了添加商品");
 		 String sellerName = seller.getSellerName();
 		 System.out.println("seller.getSellerName()=="+sellerName );
 		 Seller seller = sellerservice.find(sellerName);
@@ -638,9 +692,94 @@ public class GoodsAction {
 		 int q = Integer.parseInt(quantity);
 		 goods.setWeight(0);
 		 goods.setStatus(0);
-		 goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);
+		 SellerGoods sg = goodsserviceimpl.addGoods(goods, seller, q,goodsTypeName);//返回值包含了主键
 		 
+		 System.out.println("添加商品成功，，商家商品ID=="+sg.getId());
+		 //添加图片
+		 int sellerid = sg.getSeller().getSellerId();
+		 long goodsid = sg.getGoods().getGoodsId();
+		 System.out.println(" ===== SellersAction=====添加图片=========");
+			dataUrl=new ArrayList<String>();
+			String imgpath="upload/";
+			
+			
+			//int i_sellerid=Integer.parseInt(sellerId);//获取商家ID
+			//Long long_goodsid =  Long.parseLong(goodsId);
+			
+			//System.out.println("===图片上传uploadimages.action========imagefiles.size()=="+imagesfile.size());
+			
+			String s_file= ServletActionContext.getRequest().getParameter("file");
+			InputStream is=String2InputStream(s_file);
+			file = new File(s_file);
+			//for(int i=0;i<imagesfile.size();i++){
+				System.out.println("file==="+file);
+				//InputStream is=new FileInputStream(imagesfile.get(i));
+				
+				//File f = (File)imagesfile.get(i);
+				//InputStream is=new FileInputStream(file);
+				
+				//InputStream is=String2InputStream(s_imagesfile);
+				//File imagesfile2 =new File(s_imagesfile);
+				//File imagesfile =  inputstreamtofile(is ,imagesfile2);
+				
+				String path=ServletActionContext.getServletContext().getRealPath("/");		
+				System.out.println(path);	
+				System.out.println(imgpath+this.getFileName());
+				dataUrl.add(imgpath+this.getFileName());
+				File destFile=new File(path+imgpath,s_file);
+				
+				SellerGoodsImages image=new SellerGoodsImages();
+				//Seller seller = new Seller();
+				//seller=sellerService.findBySellerId(sellerId); 
+				
+				//Goods goods = new Goods();
+				//goods=goodsserviceimpl.QueryOneGoodsById(goodsId);
+				Goods goods = sg.getGoods();
+				
+				image.setSeller(seller); //设置图片的所属商家
+				image.setGoods(goods); //设置图片所属商品
+				image.setImageUrl(imgpath+file);
+			    goodsserviceimpl.addImages(image);
+				
+				OutputStream os=new FileOutputStream(destFile);		
+				byte[] buffer=new byte[800];
+				int length=0;
+				while((length=is.read(buffer))>0){
+					os.write(buffer,0,length);
+				}
+				is.close();
+				os.close();
+				
+				
+			//}
+			
+			
+		 System.out.println("====myurl=="+dataUrl);
+		 
+
 		return "success";
+		 
+	}
+	
+	
+	//String转inputstream
+	InputStream String2InputStream(String str){
+		   ByteArrayInputStream stream = new ByteArrayInputStream(str.getBytes());
+		   return stream;
+		}
+	
+	
+	//InputStream --> File
+	public File inputstreamtofile(InputStream ins,File file) throws IOException{
+		OutputStream os = new FileOutputStream(file);
+		int bytesRead = 0;
+		byte[] buffer = new byte[8192];
+		while ((bytesRead = ins.read(buffer, 0, 8192)) != -1) {
+		os.write(buffer, 0, bytesRead);
+		}
+		os.close();
+		ins.close();
+		return file;
 	}
 	 
 	//修改商品状态
@@ -662,6 +801,14 @@ public class GoodsAction {
 		}
 		return "success";
 		
+	}
+	
+	//初始化首页信息,加载商品信息
+	public String initIndexpage()
+	{
+		this.pageBean = goodsserviceimpl.QueryAllGoods(12, page);
+		l_sellergoods = pageBean.getList();
+		return "success";
 	}
 	 
 	 
