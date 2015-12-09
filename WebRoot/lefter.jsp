@@ -37,7 +37,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <ul class="ctrl-panel" style="width:210px;">
 	   <li class="user-tit">个人中心</li>
 	     <li class="item-level2">
-		   <p class="title" id="index1" ><a href="personal center.jsp" target="_parent">首页</a></p>
+		   <p class="title" id="index1" ><a href="<%=basePath%>findOrderByStatus.action" target="_parent">首页</a></p>
 		 </li>
 	    
 		<li class="item-level2">
@@ -47,22 +47,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		   <p class="title" id="info-change" ><a href="info-change.jsp" target="_parent">信息修改</a></p>
 		 </li>
 		<li class="item-level2">
-		   <p class="title" id="order" ><a href="user-order.jsp" target="_parent">我的订单</a></p>
+		   <p class="title" id="order" ><a href="<%=basePath %>/queryUserOrderByUserId.action" target="_parent">我的订单</a></p>
 		 </li>
 		 
 		<li class="item-level2">
-		   <p class="title" id="order" ><a href="user-bill.jsp" target="_parent">我的账单</a></p>
-		 </li>
-		<li class="item-level2">
-		   <p class="title" id="order" ><a href="user-cre.jsp" target="_parent">我的信誉度</a></p>
-		 </li>
-		<li class="item-level2">
-		   <p class="title" id="order" ><a href="user-cer.jsp" target="_parent">我的认证</a></p>
-		 </li>
-		<li class="item-level2">
-		   <p class="title" id="order" ><a href="user-com.jsp" target="_parent">我的申诉</a></p>
+		   <p class="title" id="order" ><a href="<%=basePath %>/querySelfRepayment.action" target="_parent">我的账单</a></p>
 		 </li>
 		 	<div class="clearfix"> </div>
+		 	
 	    </ul>
 		</div>
 

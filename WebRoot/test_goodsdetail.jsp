@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var buynum = document.getElementById("sbuynum").value;
 					alert("id="+id+"buynum="+buynum);
 					//window.location.href="goods/buyGoods.action?goodsId="+id+"&s_buynum="+s_buynum;
-					document.forms[0].action="<%=basePath%>goods/buyGoods.action?goodsId="+id;
+					document.forms[0].action="<%=basePath%>goods/buyGoods.action";
 					document.forms[0].submit();
 				}
 			</script>

@@ -621,7 +621,7 @@ i.promote_icon{
 	height:460px;
 	float:left;
 	margin-left:0;
-	background-color:#1e8449;
+	background-color:#999999;
 }
 #footer{
 	width:1366px;
@@ -698,7 +698,7 @@ a.link2:hover{
 	border:5px solid #8cb273;
 }
 .thumb{
-	width:340px;
+	width:325px;
 	height:275px;
 	background:url(../images/thumb1.jpg)no-repeat;
 	display:block;
@@ -931,7 +931,7 @@ ul.social li a i.skype{
 	width:300px;
 	padding-top:0;
 	float:left;
-	background:#27ae60;
+	background:#cfcfcf;
 	height:500px;
 }
 
@@ -942,14 +942,14 @@ ul.social li a i.skype{
 .user-tit{
 	height:70px;
 	line-height:70px;
-	background:#1e8449;
+	background:#999999;
 	font-size:24px;
 	padding-left:16px;
 }
 .item-level3{
 	line-height:30px;
 	font-size:14px;
-	background:#1e8449;
+	background:#999999;
 	padding-left:16px;
 	padding-top:15px;
 	padding-bottom:30px;
@@ -957,7 +957,7 @@ ul.social li a i.skype{
 .item-level2{
 	line-height:30px;
 	font-size:14px;
-	background:#1e8449;
+	background:#999999;
 	padding-left:20px;
 	padding-top:10px;
 	padding-bottom:8px;
@@ -965,7 +965,7 @@ ul.social li a i.skype{
 .item-level1{
 	line-height:30px;
 	font-size:14px;
-	background:#1e8449;
+	background:#999999;
 	padding-left:16px;
 	padding-top:15px;
 }
@@ -1003,7 +1003,7 @@ ul.social li a i.skype{
 .basic-info{
 	width:350px;
 	padding-top:20px;
-	background:#1e8449;
+	background:#999999;
 	float:left;
 	border:2px solid #dea32c;
 }
@@ -1016,10 +1016,11 @@ span.basic-info{
 }
 .limit{
 	width:300px;
-	background:#1e8449;
+	background:#999999;
 	float:left;
 	border:2px solid #dea32c;
 	padding:20px 20px 24px 20px;
+	height:145px;
 }
 .line{
 	border:2px solid #1bccf7;
@@ -1042,7 +1043,7 @@ span.basic-info{
 	height:150px;
     float:left;
 	padding-top:20px;
-	background:#1e8449;
+	background:#999999;
 }
 
 .money-full{
@@ -1053,7 +1054,7 @@ span.basic-info{
 	padding-left: 30px;
 	margin-left:50px;
 	width:100%;
-	background:#27ae60;
+	background:#cfcfcf;
 	padding-top:20px;
 }
 .main-container{
@@ -1265,7 +1266,7 @@ p.cart {
 .register-top-grid input[type="text"], .register-bottom-grid input[type="text"] {
 	border: 1px solid #000000;
 	outline-color:#FF5B36;
-	width: 180px;
+	width: 300px;
 	font-size: 1em;
 	margin:5px 0;
 	-webkit-appearance: none;
@@ -1358,7 +1359,7 @@ div.register-bottom-grid {
 	padding:2em 0 2em;
 	width:1349px;
 	height:115px;
-	background:#27ae60;
+	background:#cfcfcf;
 	
 }
 .header_bottom-box2{
@@ -1378,11 +1379,11 @@ div.register-bottom-grid {
 .things-container{
 	width:1070px;
 	margin-left:120px;
-	background:#27ae60;
+	background:#cfcfcf;
 	overflow:hidden;
 }
 .sequence{
-	background:#27ae60;
+	background:#cfcfcf;
 	width:1070px;
 	height:50px;	
 	float:left;
@@ -1406,14 +1407,14 @@ div.register-bottom-grid {
 	width:1070px;
 	float:left;
     margin:20px 0 20px 120px;
-	background:#27ae60;
+	background:#cfcfcf;
 
 }
 .goods1{
 	width:1070px;
 	float:left;
 	border:2px solid #1bccf7;
-	background:#27ae60;
+	background:#cfcfcf;
     display:table-cell;
 	overflow:hidden;
 }
@@ -1481,7 +1482,7 @@ div.register-bottom-grid {
 	width:1070px;
 	margin-left:120px;
 	margin-top:20px;
-	background:#27ae60;
+	background:#cfcfcf;
 }
 .goods-container-left{
 	float:left;
@@ -1500,7 +1501,7 @@ div.register-bottom-grid {
 	color:#dea32c;
 	padding:20px 10px;
 }
-.goods-photo2{
+.goods-photo1{
 	width:400px;
 }
 .choose1{
@@ -1592,6 +1593,86 @@ div.register-bottom-grid {
 	margin:10px 0;
 	width:1070px;
 }
+/*--shopping cart--*/
+.goods-choose{
+	overflow:hidden;
+	margin-left:120px;
+}
+.line7{
+	width:1070px;
+	border:2px solid #1bccf7;
+	float:left;
+	margin:10px 0;
+}
+.cart-checkbox label {
+    position: relative;
+    z-index: 1;
+    float: left;
+    width: 15px;
+    height: 15px;
+    background-position: 0 0;
+    line-height: 200em;
+    overflow: hidden;
+    cursor: pointer;
+}
+.cart-top1 {
+    position: relative;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    overflow: hidden;
+	float:left;
+}
+/*--affirm order--*/
+.goods-affirm{
+
+	width:100%;
+	height:auto;
+
+}
+.address{
+	float:right;
+	margin-top:25px;
+	
+}
+.address:hover{
+	background:#1bccf7;
+}
+.address-title{
+	float:left;
+	width:200px;
+}
+.goods-address{
+	width:1070px;
+	margin-left:120px;
+	margin-bottom:200px;
+}
+ 
+.goods-affirm li{
+	float:left;
+	list-style-type:none;
+	width:100%;
+} 
+.order-affirm{
+	width:100%;
+	height:auto;
+
+
+}
+.order-affirminfo{
+	width:1070px;
+	margin-left:120px;
+}
+.btn2{
+	padding:20px;
+	float:right;
+}
+.btn2 input[type="submit"] {
+	background:#dea32c;
+}
+.btn2 input[type="submit"]:hover {
+	background:#1bccf7;
+}
 /*--my order--*/
 .line6{
 	width:800px;
@@ -1614,6 +1695,9 @@ div.register-bottom-grid {
 	margin-top:20px;
 	float:left;
 	border:2px solid #1bccf7;
+}
+.order1 td{
+	text-align:center;
 }
 .goods-photo2{
 	width:100px;
@@ -2197,4 +2281,5 @@ h4.head_single {
 	padding: 0 15px;
 }
 }
+
 

@@ -66,84 +66,30 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<span><h2>订单详情</h2></span>
 	<div class="line6"></div>
 		<div class="spacer"></div>
-					
-					<s:if test="#request.pageBean == null || #request.pageBean.size() == 0">
-						<table border="1px" width="800px" style="font-size: 18px;font-weight: bolder;">
+		<div class="manage">
+						<table class="list"    border="1px" width="800px" style="font-size: 18px;font-weight: bolder;">
 							<tr>
-								<td></td>
+					  			<td>分期id</td>
+								<td>分期月数</td>
+								<td>首付</td>
+								<td>利率</td>
 							</tr>
-						</table>
-						
-						<table border="1" cellspacing="0" cellpadding="0" width="100%" height="">
-							<tr>
-								<td style="color: red ; font-weight: bolder;"><center>没有商品</center></td>
-							</tr>
-						</table>
-					</s:if>
-					<s:else>
-						<table class="list" border="1px" width="800px" style="font-size: 18px;font-weight: bolder;">
-							<tr>
-					  			<td>订单id</td>
-					  			<td>商品名</td>
-								<td>运费</td>
-								<td>总价</td>
-								<td>订货人</td>
-								<td>收货人</td>
-								<td>状态</td>
-								<td>分期</td>
-								<td>还款信息</td>
-								<td>物流</td>
-								<td>修改</td>
-							</tr>
-							<s:iterator value="#request.pageBean.list" status="status">
+							<s:iterator value="#session.pageBean.list" status="status">
 								<tr>
-									<td>${orderId }</td>
-									<td><a href="<%=basePath %>userBuy-goods.jsp">${goods.brand }</a></td>
-									<td>${carriage }</td>
-									<td>${orderAmount }</td>
-									<td>${user.userName }</td>
-									<td><a href="<%=basePath %>/userDelivery.jsp">收获详情</a></td>
-									<td>${orderStatus }</td>
-									<td><a href="<%=basePath %>/user-Goods-period.jsp">分期详情</a></td>
-									<td><a href="<%=basePath %>/user-repayment.jsp">还款详情</a></td>
-									<td><a href="<%=basePath %>/user-logistics.jsp">物流详情</a></td>
-									<td>
-										<a href="#">确定收获</a>
-									</td>
+									<td>${periodPlan.periodId }</td>
+									<td>${periodPlan.periodNumber }</td>
+									<td>${periodPlan.downPayment }</td>
+									<td>${periodPlan.interestPlan.interest }</td>
 								</tr>										
 							</s:iterator>
 						</table>
-					</s:else>
 			</div>
 	</div>
-	<br><br>
-	<center style="font-size: 14px">
-			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
-			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
-			        
-			        <s:if test="#request.pageBean.currentPage == 1">
-			           	 首页&nbsp;上一页
-			        </s:if>
-			        
-			        <s:else>
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action">首页</a>
-			            &nbsp;
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
-			        </s:else>
-			        	&nbsp;
-			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
-			            &nbsp;
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
-			        </s:if>
-			        
-			        <s:else>
-			            	下一页&nbsp;尾页
-			        </s:else>
-			    
-			   </center><br>
+	</div>
     </div>	
-    
+    <div>
+				<center><a href="<%=basePath %>/queryUserOrderByUserId.action">返回订单页</a></center>
+			</div>
 </div>
 			
 <iframe id="footer" src="footer.jsp"  scrolling="no" frameborder="0"></iframe>

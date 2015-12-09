@@ -29,7 +29,7 @@
 		<!-- 统计 -->
 		<action name="showchart" class="jFreechartAction"
 			method="ShowChart">
-			<result name="success">/showchart.jsp</result>
+			<result name="success">/manage/showchart.jsp</result>
 		</action>
 		<!-- 
 		<action name="DisplayChart" class="jFreechartAction"
@@ -87,14 +87,14 @@
 		
 		<action name="*" class="loginAction" method="{1}">
 			<result name="success">/index.jsp</result>
-			<result name="error">login.jsp</result>
-			<result name="login">login.jsp</result>
+			<result name="error">user-login.jsp</result>
+			<result name="login">user-login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
 		<action name="query" class="loginAction" method="query">
 			<result name="success">update.jsp</result>
-			<result name="error">login.jsp</result>
-			<result name="login">login.jsp</result>
+			<result name="error">user-login.jsp</result>
+			<result name="login">user-login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
 		<action name="register" class="loginAction" method="register">
@@ -117,7 +117,7 @@
 		<action name="queryOrders" class="paymentAction" method="query">
 			<result name="success">order.jsp</result>
 			<result name="error">index.jsp</result>
-			<result name="login">login.jsp</result>
+			<result name="login">user-login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
 		<action name="queryOrderBySelleName" class="paymentAction" method="queryOrderBySelleName">
@@ -137,10 +137,13 @@
 		<action name="updateOrderMess" class="paymentAction" method="updateOrderMess">
 			<result name="success" type="redirectAction">
 				<param name="actionName">queryOrderBySelleName</param>
-				<!-- 
-				<param name="namespace">/</param>
-				 -->
 			</result>
+		</action>
+		<action name="querySelfRepayment" class="paymentAction" method="queryRepayment">
+			<result name="success">/user-bill.jsp</result>
+		</action>
+		<action name="queryUserOrderByUserId" class="paymentAction" method="queryUserOrderByUserId">
+			<result name="success">/user-order.jsp</result>
 		</action>
 		<action name="findOrderByStatus" class="paymentAction" method="findOrderByStatus">
 			<result name="success">personal center.jsp</result>
@@ -152,7 +155,7 @@
 		</action>
 		<action name="loginSeller" class="sellerAction" method="login">
 			<result name="success">Main.jsp</result>
-			<result name="error">login_1.jsp</result>
+			<result name="error">user-login.jsp</result>
 		</action>
 			
 		<action name="modifySeller" class="sellerAction" method="modify">
@@ -160,23 +163,23 @@
 		        <param name="contentType">text/html</param>
 		        <param name="inputName">inputStream</param>
 		    </result>
-		    <result name="login">/login.jsp</result>
+		    <result name="login">/user-login.jsp</result>
 		    <interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		<action name="quitSeller" class="sellerAction" method="quit">
-			<result name="success">login.jsp</result>
-			<result name="error">login.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="success">user-login.jsp</result>
+			<result name="error">user-login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="findAll" class="sellerAction" method="findAll">
 			<result name="success">/manage/seller.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="findSomeSeller" class="sellerAction" method="findSomeSeller">
 			<result name="success">/system/findAllSeller.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="deleteSeller" class="sellerAction" method="delete">
@@ -184,29 +187,29 @@
 		        <param name="contentType">text/html</param>
 		        <param name="inputName">inputStream</param>
 		    </result>
-		    <result name="login">/login.jsp</result>
+		    <result name="login">/user-login.jsp</result>
 		    <interceptor-ref name="BgLoginInterceptor" />
 		    
 		</action>
 		<action name="findSelf" class="sellerAction" method="findSelf">
 			<result name="success">/manage/sellerSelfMess.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="findSelfUpdate" class="sellerAction" method="findSelf">
 			<result name="success">/manage/seller-modify.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="updateSel" class="sellerAction" method="updateSelf">
 			<result name="success">/manage/sellerSelfMess.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		<action name="modifyMess" class="sellerAction" method="modifyMess">
 			<result name="success">/manage/sellerSelfMess.jsp</result>
 			<result name="reWrite">/manage/seller-modify.jsp</result>
-			<result name="input">login.jsp</result>
+			<result name="input">user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor"/>
 		</action>
 		

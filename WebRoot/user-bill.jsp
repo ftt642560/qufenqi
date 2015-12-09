@@ -7,8 +7,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<title>我的账单</title>
 <base href="<%=basePath%>">
-<title>我的订单</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Gifty Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -17,7 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <!-- Custom Theme files -->
-<link href="css/user-style.css" rel='stylesheet' type='text/css' />
+<link href="<%=basePath%>css/user-style.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
 <!--webfont-->
 <link href='http://fonts.useso.com/css?family=Raleway:100,200,300,400,500,600,700,800,900' rel='stylesheet' type='text/css'>
@@ -63,61 +63,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<iframe id="lefter" src="lefter.jsp"  scrolling="no" frameborder="0"></iframe>
 	<div class="order-details">
 	<div class="order-title">
-	<span><h2>订单详情</h2></span>
+	<span><h2>账单详情</h2></span>
 	<div class="line6"></div>
-		<div class="spacer"></div>
-					
-					<s:if test="#request.pageBean == null || #request.pageBean.size() == 0">
-						<table border="1px" width="800px" style="font-size: 18px;font-weight: bolder;">
+		<s:if test="#request.pageBean == null || #request.pageBean.size() == 0">
+			<table border="1px" border="1px" width="800px" style="font-size: 18px;font-weight: bolder;">
 							<tr>
 								<td></td>
 							</tr>
 						</table>
 						
-						<table border="1" cellspacing="0" cellpadding="0" width="100%" height="">
+						<table border="1px" cellspacing="0" cellpadding="0" width="100%" height="">
 							<tr>
-								<td style="color: red ; font-weight: bolder;"><center>没有商品</center></td>
+								<td style="color: red ; font-weight: bolder;"><center>账单信息</center></td>
 							</tr>
 						</table>
 					</s:if>
 					<s:else>
-						<table class="list" border="1px" width="800px" style="font-size: 18px;font-weight: bolder;">
-							<tr>
-					  			<td>订单id</td>
-					  			<td>商品名</td>
-								<td>运费</td>
-								<td>总价</td>
-								<td>订货人</td>
-								<td>收货人</td>
-								<td>状态</td>
-								<td>分期</td>
-								<td>还款信息</td>
-								<td>物流</td>
-								<td>修改</td>
+						<table class="list" border="1px" width="800px" >
+							<tr style="font-size: 20px;font-weight: bolder;height: 100px;">
+					  			<td>还款单id</td>
+								<td>已还期数</td>
+								<td>待还期数</td>
+								<td>月还金额</td>
+								<td>还款状态</td>
+								<td>还款</td>
 							</tr>
 							<s:iterator value="#request.pageBean.list" status="status">
 								<tr>
-									<td>${orderId }</td>
-									<td><a href="<%=basePath %>userBuy-goods.jsp">${goods.brand }</a></td>
-									<td>${carriage }</td>
-									<td>${orderAmount }</td>
-									<td>${user.userName }</td>
-									<td><a href="<%=basePath %>/userDelivery.jsp">收获详情</a></td>
-									<td>${orderStatus }</td>
-									<td><a href="<%=basePath %>/user-Goods-period.jsp">分期详情</a></td>
-									<td><a href="<%=basePath %>/user-repayment.jsp">还款详情</a></td>
-									<td><a href="<%=basePath %>/user-logistics.jsp">物流详情</a></td>
+									<td>${repayment.repaymentId }</td>
+									<td>${repayment.finishPeriodNum }</td>
+									<td>${repayment.needPeriodNum }</td>
+									<td>${repayment.onePeriodMoney }</td>
+									<td>${repayment.repaymentState }</td>
 									<td>
-										<a href="#">确定收获</a>
+										<a href="#">我要还款</a>
 									</td>
 								</tr>										
 							</s:iterator>
 						</table>
-					</s:else>
-			</div>
+					</s:else>	
 	</div>
-	<br><br>
-	<center style="font-size: 14px">
+    </div>	
+    <br><br>
+    <center style="font-size: 14px">
 			        <font size="3">共<font color="red"><s:property value="#request.pageBean.totalPage"/></font>页 </font>&nbsp;&nbsp;
 			        <font size="3">共<font color="red"><s:property value="#request.pageBean.allRow"/></font>条记录</font><br><br>
 			        
@@ -126,24 +114,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			        </s:if>
 			        
 			        <s:else>
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action">首页</a>
+			            <a href="<%=basePath %>/querySelfRepayment.action">首页</a>
 			            &nbsp;
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			            <a href="<%=basePath %>/querySelfRepayment.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 			        </s:else>
 			        	&nbsp;
 			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            <a href="<%=basePath %>/querySelfRepayment.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 			            &nbsp;
-			            <a href="<%=basePath %>/queryUserOrderByUserId.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			            <a href="<%=basePath %>/querySelfRepayment.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 			        </s:if>
 			        
 			        <s:else>
 			            	下一页&nbsp;尾页
 			        </s:else>
 			    
-			   </center><br>
-    </div>	
-    
+			   </center><br>		
+</div>
 </div>
 			
 <iframe id="footer" src="footer.jsp"  scrolling="no" frameborder="0"></iframe>

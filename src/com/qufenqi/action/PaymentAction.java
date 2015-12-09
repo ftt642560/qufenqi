@@ -22,6 +22,7 @@ public class PaymentAction {
 	private UserService userService;
 	private Order order;
 	private int orderId;//接收前台传来的id
+	private String userName;
 	//第几页
 	private int page;
 	//包含查询结果的信息的bean
@@ -53,6 +54,14 @@ public class PaymentAction {
 
 	public void setOrderId(int orderId) {
 		this.orderId = orderId;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public String query(){
@@ -138,4 +147,23 @@ public class PaymentAction {
 		System.out.println(pageBean);
 		return "success";
 	}
+	public String queryRepayment(){
+		User user = (User) session.getAttribute("user");
+		int userId = user.getUserId();
+		System.out.println("查询账单的用户的id=="+userId);
+		this.pageBean = paymentService.queryRepaymentForPage(userId, 2, page);
+		System.out.println(pageBean);
+		return "success";
+	}
+	
+	public String queryUserOrderByUserId(){
+		User user = (User) session.getAttribute("user");
+		int userId = user.getUserId();
+		System.out.println("用户的id=="+userId);
+		this.pageBean = paymentService.queryRepaymentForPage(userId, 2, page);
+		System.out.println(pageBean);
+		session.setAttribute("pageBean", pageBean);
+		return "success";
+	}
+	
 }

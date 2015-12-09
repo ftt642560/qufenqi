@@ -164,4 +164,32 @@ public class PaymentServiceImpl implements PaymentService {
 		return pageBean;
 	}
 
+	@Override
+	public PageBean queryRepaymentForPage(int userId, int pageSize,
+			int page) {
+		String hql = "from Order as o where o.user.userId = "+userId;
+		//查询语句
+				//查询数据库中一共有多少条记录
+				int allRow = pageBaseDao.getAllRowCount(hql);
+				//查询总页数
+				int totalPage = PageBean.countTotalPage(pageSize, allRow);
+				//当前页的开始记录
+				final int offset = PageBean.countOffset(pageSize, page);
+						//每页的记录数
+				final int length = pageSize;
+						//获得当前页
+				final int currentPage = PageBean.countCurrentPage(page);
+						//一页的记录
+				List<User> list = pageBaseDao.queryForPage(hql, offset, length);
+						 //把分页信息保存到Bean中
+				PageBean pageBean = new PageBean();
+				pageBean.setPageSize(pageSize);  
+				pageBean.setCurrentPage(currentPage);
+				pageBean.setAllRow(allRow);
+				pageBean.setTotalPage(totalPage);
+				pageBean.setList(list);
+				pageBean.init();
+				return pageBean;
+	}
+
 }

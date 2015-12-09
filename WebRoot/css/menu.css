@@ -16,7 +16,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  background: #27ae60;
+  background: #cfcfcf;
 }
 
 nav ul {
@@ -39,7 +39,7 @@ h1 {
   width: 1070px;
   height: 50px;
   margin: 0 auto;
-  background: #1e8449;
+  background: #999999;
   color: #f0f0f0;
   text-align: lift;
   margin-left:120px;
@@ -62,7 +62,7 @@ h1 {
   position: relative;
 }
 .nav_menu-item:hover {
-  background-color: #9b59b6;
+  background-color: #9966cc;
 }
 .nav_menu-item:hover .nav_submenu {
   display: block;
@@ -73,7 +73,7 @@ h1 {
   display: none;
   position: absolute;
   width: 220px;
-  background-color: #9b59b6;
+  background-color: #9966cc;
 }
 .nav_submenu-item:hover {
   background: rgba(0, 0, 0, 0.1);

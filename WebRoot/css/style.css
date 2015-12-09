@@ -63,7 +63,7 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 #registerFtt .shadow { width:599px; margin:100px auto; }
 #registerFtt .shadow h1 { font-size:24px; background:#e6f5e8; line-height:54px; color:#4c4d4b; padding-left:20px; border-bottom:1px solid #eaeaea; margin-bottom:1px; }
 #registerFtt .steps li { float:left; line-height:25px; background-color:#dbdbdb; width:292px; text-align:center; color:#999; }
-#registerFtt .steps li em { float:right; display:inline-block; height:25px; background-image:url(../images/bg.png); background-repeat:no-repeat; background-position:-26px -90px; }
+#registerFtt .steps li em { float:right; display:inline-block; height:25px; background-images:url(../images/bg.png); background-repeat:no-repeat; background-position:-26px -90px; }
 #registerFtt .steps li.finished { background:#ffdc9a; }
 #registerFtt .steps li.finished em { width:24px; background-position:-51px -90px; }
 #registerFtt .steps li.current,
@@ -86,7 +86,7 @@ a:hover, a:active { color:#3a52a8; text-decoration:underline; }
 #footer { clear:both; line-height:30px; text-align:center; margin-top:20px; background:#fafafa; color:#666; border-top:1px solid #e0e0e0; width:100%;}
 
 #main { padding:10px 0; }
-#main .lefter { float:left; width:180px; }
+#main .lefter { float:left; width:180px;}
 #main .lefter .box { border:1px solid #c3c3c3; }
 #main .lefter h2 { background:#fff0d9; font-size:14px; color:#853200; padding:2px 8px; }
 #main .lefter .box dl dt { color:#404040; font-weight:bold; background:#fafafa; padding:2px 10px; }

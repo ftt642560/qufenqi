@@ -3,7 +3,6 @@ package com.qufenqi.action;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,17 +40,36 @@ public class JfreechartAction  extends ActionSupport implements ServletRequestAw
 		List<List<Integer>> saleNumbeList = countService.countSaleNumber();
 		List<String> areaList = countService.countAddress();
 		List<String> goodsList = countService.countGoodsName();
-		Object[] columnKey =  areaList.toArray();
-
-		String columnKeys = Arrays.toString(columnKey);
-		System.out.println("111=="+columnKeys);
 		
-		Object[] rowKey = goodsList.toArray();
-		String rowKeys = Arrays.toString(rowKey);
-		System.out.println(rowKeys);
 		
-		double[][] data = new double[][]{{0, 0, 0, 0, 0, 10, 0, 0, 0}, {20, 10, 60, 200, 10, 0, 40, 30, 20}};
-		CategoryDataset dataset=DatasetUtilities.createCategoryDataset(rowKeys, columnKeys, data); 
+		final int size = areaList.size();
+		String[] columnKeys = (String[])areaList.toArray(new String[size]);
+		System.out.println(columnKeys.length);
+		
+		final int size2 = goodsList.size();
+		String[] rowKeys = (String[])goodsList.toArray(new String[size2]);
+		System.out.println(rowKeys.length);
+		//外面的list长度是size3
+		int size3 = saleNumbeList.size();
+		double[][] data = null ;
+//		double doubleArrayArray[][] = new double[size3][];
+		for(int i = 0 ; i < size3 ; i++){
+			List<Integer> list = saleNumbeList.get(i);
+			//list里的每个list集合长度是size4
+			int size4 = saleNumbeList.get(i).size();
+			//要转化的二位数组
+			data = new double[size3][size4];
+			for(int j = 0 ; j < size4 ; j++){
+				int dataInt = list.get(j);
+				double dataDouble = dataInt;
+				data[i][j] = dataDouble;
+				System.out.println(data[i][j]);
+			}
+		}
+		System.out.println(data);
+		
+//		double[][] data = new double[][]{{0, 0, 0, 0, 0, 10, 0, 0, 0}, {20, 10, 60, 200, 10, 0, 40, 30, 20}};
+		CategoryDataset dataset=DatasetUtilities.createCategoryDataset( columnKeys,rowKeys, data); 
 		//创建主题样式  
 	    StandardChartTheme standardChartTheme=new StandardChartTheme("CN");  
 	    //设置标题字体  
@@ -62,7 +80,7 @@ public class JfreechartAction  extends ActionSupport implements ServletRequestAw
 	    standardChartTheme.setLargeFont(new Font("宋书",Font.PLAIN,15));  
 	    //应用主题样式  
 	    ChartFactory.setChartTheme(standardChartTheme); 
-	    JFreeChart chart = ChartFactory.createBarChart3D("商品销量统计图", 
+	    JFreeChart chart = ChartFactory.createBarChart3D("某地区的商品销量统计图", 
                 "商品",//目录轴的显示标签
                 "销量",//数据轴的显示标签
                 dataset, //数据源
@@ -94,7 +112,7 @@ public class JfreechartAction  extends ActionSupport implements ServletRequestAw
 
 		  HttpServletRequest request = ServletActionContext.getRequest();
 		  HttpSession session=request.getSession();
-		  String filename = ServletUtilities.saveChartAsPNG(chart, 500, 300, null,session);
+		  String filename = ServletUtilities.saveChartAsPNG(chart,900, 500, null,session);
 		  String graphURL = request.getContextPath() + "/DisplayChart?filename=" + filename;
 		  url=graphURL;
 		  System.out.println(url);

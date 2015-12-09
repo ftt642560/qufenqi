@@ -20,19 +20,18 @@
 			$(function(){
 				//1. 点击 delete 时, 弹出 确定是要删除 xx 的信息吗 ? 若确定, 执行删除, 若不确定, 则取消
 				$(".delete").click(function(){
-					alert("进来了");
-					var sellerId = $(this).next(":input").val();//this代表a链接
-					var flag = confirm("确定要删除"+ sellerId +"的信息吗？");
-					alert(flag);
+					var userId = $(this).next(":input").val();//this代表a链接
+					var flag = confirm("确定要删除"+ userId +"的信息吗？");
+					alert(flag+"11");
 					if(flag){//真的要删除
-						alert("进来了ooooo");
+						alert(1111);
 						var $tr = $(this).parent().parent();
 						//执行删除，实行ajax的方法
 						var url = this.href;
 						var args = {"time":new Date()};
 						$.post(url , args , function(data){//data如何返回
-						alert("ftt");
-							alert(data);
+						alert(111);
+						alert(data);
 							//若data的返回值为1.则提示删除成功，且把当前行删除，
 							if(data == 1){
 								$tr.remove();
@@ -139,6 +138,9 @@
 							</dd>
 							<dt>商品信息</dt>
 							<dd>
+								<a href="<%=basePath%>/goods/findAllGoods.action">分类管理</a>
+							</dd>
+							<dd>
 								<a href="<%=basePath%>/goods/findAllGoods.action">商品管理</a>
 							</dd>
 							<dt>订单管理</dt>
@@ -154,7 +156,7 @@
 				</div>
 			</div>
 			<div class="main">
-				<h2>商家管理</h2>
+				<h2>用户管理</h2>
 				<div class="manage">
 					<table class="list">
 						<tr>
@@ -163,27 +165,26 @@
 							<th>姓名</th>
 							<th>电话</th>
 							<th>身份证</th>
-							<th>电话</th>
 							<th>邮箱</th>
+							<th>信誉度</th>
 							<th>状态</th>
-							<th>审核人</th>
 							<th>操作</th>
 						</tr>
+						
 						<s:iterator value="#request.pageBean.list" status="status">
 								<tr>
-									<td>${sellerId }</td>
-									<td>${sellerName }</td>
-									<td>${sellerpassword }</td>
-									<td>${name }</td>
-									<td>${idCard }</td>
-									<td>${telephone }</td>
+									<td class="first w4 c">${userId }</td>
+									<td class="w1 c">${userName }</td>
+									<td class="gw4 c">${name }</td>
+									<td class="w1 c">${telephone }</td>
+									<td class="w2 c">${idCard }</td>
 									<td>${email }</td>
-									<td>${role }</td>
-									<td>${manager.managName}</td>
-									<td>
-										<a href="<%=basePath%>/deleteSeller.action?sellerId=${sellerId}" class="delete">
-											<input type="hidden" value="${sellerId }">
-												<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />
+									<td>${quota }</td>
+									<td>${status }</td>
+									<td class="w1 c">
+										<a href="<%=basePath%>/delete.action?userId=${userId}" class="delete">
+											<input type="hidden" value="${userId }">
+											<img src="<%=basePath%>/image/del.gif" align="bottom" border="0" alt="删除" />
 										</a>
 									</td>
 								</tr>				
@@ -200,15 +201,15 @@
 			        </s:if>
 			        
 			        <s:else>
-			            <a href="findAll.action">首页</a>
+			            <a href="findAllUser.action">首页</a>
 			            &nbsp;
-			            <a href="findAll.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 			        </s:else>
 			        	&nbsp;
 			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-			            <a href="findAll.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            <a href="findAllUser.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 			            &nbsp;
-			            <a href="findAll.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			            <a href="findAllUser.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 			        </s:if>
 			        
 			        <s:else>

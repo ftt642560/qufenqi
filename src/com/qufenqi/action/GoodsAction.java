@@ -48,6 +48,7 @@ public class GoodsAction {
 	public String goodsTypeName; //商品类型名
 	public String goodsTypeId;//商品类型ID
 	public List<GoodsType> l_ofgoodsType;//商品类型链表
+	private InputStream inputStream;
 	public String getGoodsTypeId() {
 		return goodsTypeId;
 	}
@@ -254,10 +255,15 @@ public class GoodsAction {
 	public void setTestsellerid(String testsellerid) {
 		this.testsellerid = testsellerid;
 	}
+	public InputStream getInputStream() {
+		return inputStream;
+	}
+
+	public void setInputStream(InputStream inputStream) {
+		this.inputStream = inputStream;
+	}
    
 	//----------------------------------------------------
-	
-	
 	//房婷婷-2015-12-1
 	//第几页
 	private int page;    
@@ -396,6 +402,7 @@ public class GoodsAction {
 	 */
 	public String buyGoods()
 	{
+		System.out.println("进来了购买");
 		System.out.println("===GoodsAction======buyGoods");
 //		Long goodsid = Long.parseLong(goodsId);//将前台String类型的ID转成Long类型;
 //		
@@ -408,6 +415,7 @@ public class GoodsAction {
 		Long long_sellergoodsid = Long.parseLong(sellergoodsid);
 		int buynum = Integer.parseInt(sbuynum);
 		goodsserviceimpl.ReduceGoodsNum(long_sellergoodsid, buynum);
+		
 		return "success";
 	}
 	

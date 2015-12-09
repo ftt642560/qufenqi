@@ -55,26 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    
   </ul>
 </nav>
-  <ul class="nav_menu">
-    <li class="nav_menu-item"><a href="index.html" target="_blank">首页</a></li>
-    <li class="nav_menu-item"><a href="" target="_blank">商品分类</a>
-      <ul class="nav_submenu">
-        <li class="nav_submenu-item"> <a href="" target="_blank">手机</a></li>
-        <li class="nav_submenu-item"> <a href="" target="_blank">电脑/平板</a></li>
-        <li class="nav_submenu-item"> <a href="" target="_blank">摄影摄像</a></li>
-		<li class="nav_submenu-item"> <a href="" target="_blank">潮流数码</a></li>
-      </ul>
-    </li>
-    <li class="nav_menu-item"><a href="" target="_blank">特卖商品</a>
-      <ul class="nav_submenu">
-        <li class="nav_submenu-item"> <a href="" target="_blank">零首付</a></li>
-        <li class="nav_submenu-item"> <a href="" target="_blank">三期免息</a></li>
-        <li class="nav_submenu-item"> <a href="" target="_blank">限时特惠</a></li>
-      </ul>
-    </li>
-	<div class="clearfix"> </div>
-  </ul>
-</nav>		
+
  
  <div class="user-container">  
    <div class="main-container">

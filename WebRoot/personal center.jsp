@@ -143,11 +143,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<s:iterator value="#request.pageBean.list" status="status">
 								<tr style="height: 30px">
 									<td>${orderId }</td>
-									<td><a href="<%=basePath %>/manage/goodsOfMess.jsp">${goods.brand }</a></td>
+									<td><a href="<%=basePath %>userBuy-goods.jsp">${goods.brand }</a></td>
 									<td>${carriage }</td>
 									<td>${orderAmount }</td>
-									<td><a href="<%=basePath %>/manage/userMessOfBuyGoods.jsp">${user.userName }</a></td>
-									<td><a href="<%=basePath %>/manage/devilery.jsp">收获详情</a></td>
+									<td>${user.userName }</td>
+									<td><a href="<%=basePath %>/userDelivery.jsp">收获详情</a></td>
 									<td>${orderStatus }</td>
 									<td>
 										<a href="<%=basePath%>/queryOrderByOrderId.action?orderId=${orderId }">修改</a>

@@ -12,7 +12,7 @@
 <head>
 		<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>后台管理 - 易买网</title>
+<title>后台管理 - 趣分期</title>
 <link type="text/css" rel="stylesheet" href="<%=basePath%>/css/style.css" />
 <script type="text/javascript" src="<%=basePath%>/scripts/function-manage.js"></script>
 </head>
@@ -53,12 +53,11 @@
 								<a href="<%=basePath%>/findAllOrders.action">订单</a>
 							</s:else>
 						</li>
-						<li>
-							<a href="<%=basePath%>/manage/guestbook.jsp">留言</a>
-						</li>
-						<li>
-							<a href="<%=basePath%>/manage/news.jsp">新闻</a>
-						</li>
+						<s:if test="#session.role != 1">
+							<li>
+								<a href="<%=basePath%>/<%=basePath%>showchart.action">统计销量</a>
+							</li>
+						</s:if>
 				</ul>
 			</div>
 		</div>
@@ -86,25 +85,12 @@
 							</dd>
 							<dt>商品管理</dt>
 							<dd>
-								<em><a href="<%=basePath%>/manage/productClass-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/goods/findAllGoods.action">分类管理${seller.sellerName }</a>
-							</dd>
-							<dd>
 								<em><a href="<%=basePath%>goods/findallgoodstype.action">新增</a>
 								</em><a href="<%=basePath%>/goods/sellerquerygoods.action?sellerName=${seller.sellerName }">商品管理${seller.sellerId }</a>
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
 								<a href="<%=basePath%>/queryOrderBySelleName.action">订单管理${seller.sellerName }</a>
-							</dd>
-							<dt>申诉管理</dt>
-							<dd>
-								<a href="<%=basePath%>/manage/guestbook.jsp">申诉管理</a>
-							</dd>
-							<dt>新闻管理</dt>
-							<dd>
-								<em><a href="<%=basePath%>/manage/news-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/manage/news.jsp">新闻管理</a>
 							</dd>
 						</dl>
 					</s:if>
@@ -120,23 +106,15 @@
 							</dd>
 							<dt>商品信息</dt>
 							<dd>
-								<a href="<%=basePath%>/goods/findAllGoods.action">分类管理</a>
-							</dd>
-							<dd>
 								<a href="<%=basePath%>/goods/findAllGoods.action">商品管理</a>
 							</dd>
 							<dt>订单管理</dt>
 							<dd>
 								<a href="<%=basePath%>/findAllOrders.action">订单管理</a>
 							</dd>
-							<dt>申诉管理</dt>
+							<dt>统计</dt>
 							<dd>
-								<a href="<%=basePath%>/manage/guestbook.jsp">申诉管理</a>
-							</dd>
-							<dt>新闻管理</dt>
-							<dd>
-								<em><a href="<%=basePath%>/manage/news-add.jsp">新增</a>
-								</em><a href="<%=basePath%>/manage/news.jsp">新闻管理</a>
+								<a href="<%=basePath%>showchart.action">统计销量</a>
 							</dd>
 						</dl>
 					</s:else>
@@ -200,13 +178,6 @@
 							<td class="field">商品数量：</td>
 							<td>
 								<input type="text" value="" name="quantity" />
-							</td>
-						</tr>
-						<tr>
-							<td class="field">商品类型名：</td>
-							<td>
-								<s:select list="l_goodstype" listKey="goodsTypeName" 
-									listValue="goodsTypeName" name="goodsTypeName"></s:select>
 							</td>
 						</tr>
 						<tr>
@@ -279,7 +250,7 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div id="footer">Copyright &copy; 2010 北大青鸟 All Rights Reserved.
-		京ICP证1000001号</div>
+	<div id="footer">Copyright &copy; 2015 广东海洋大学 All Rights Reserved.
+		粤ICP证1000001号</div>
 </body>
 </html>

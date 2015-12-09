@@ -57,7 +57,16 @@ public interface PaymentService {
      * 分页查询：根据用户查询自己的未付款的订单信息
      * @param currentPage 当前第几页
      * @param pageSize 每页大小
+     * @param orderStatus d订单的状态
      * @return 封闭了分页信息(包括记录集list)的Bean
      */
     PageBean queryForPage(int userId , String orderStatus ,  int pageSize,int currentPage);
+    
+    /**
+     * 分页查询：根据用户查询自己的未付款的订单信息
+     * @param currentPage 当前第几页
+     * @param pageSize 每页大小
+     * @return 封闭了分页信息(包括记录集list)的Bean
+     */
+    PageBean queryRepaymentForPage(int userId  ,  int pageSize,int currentPage);
 }
