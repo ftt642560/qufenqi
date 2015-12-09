@@ -165,7 +165,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
  <nav class="nav">
   <ul class="nav_menu">
-    <li class="nav_menu-item"><a href="index.jsp" target="_top">首页</a></li>
+    <li class="nav_menu-item"><a href="<%=basePath%>/goods/initindexpage.action" target="_top">首页</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
         <li class="nav_submenu-item"> <a href="" target="_top">手机</a></li>
@@ -185,8 +185,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   </ul>
 </nav>
 <div class="goods-container">
-   <div class="goods-container-left">
-   <div class="goods-photo2"><img src="${pageContext.request.contextPath}/${goodscover.imageUrl}" class="img-responsive" alt=""/>
+   <div class="goods-container-left" style="width:400px;">
+   <div class="goods-photo2" style="width:400px;"><img src="${pageContext.request.contextPath}/${goodscover.imageUrl}" style="width:400px;height:350px;" class="img-responsive" alt=""/>
 				 </div>
    </div>
    <div class="goods-container-right">
@@ -249,7 +249,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<div class="line5"></div>
  <div class="goods-picture">
  	<s:iterator value="sgi">
-   		<img src="${pageContext.request.contextPath}/${imageUrl}" class="img" alt=""/>
+   		<img src="${pageContext.request.contextPath}/${imageUrl}"  class="img" alt=""/>
    	</s:iterator>
 	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>
 	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>

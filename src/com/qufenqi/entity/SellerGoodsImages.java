@@ -12,6 +12,11 @@ public class SellerGoodsImages {
 	private Seller seller;//商店
 	private Goods goods;//商品
 	
+	public SellerGoodsImages()
+	{
+		
+	}
+	
 	public Seller getSeller() {
 		return seller;
 	}

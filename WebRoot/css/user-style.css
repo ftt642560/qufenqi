@@ -13,7 +13,7 @@ p {margin: 0;}
 html, body{
 	font-family: 'Raleway', sans-serif;
 	font-size: 100%;
-	background:#fff;
+	background:RGB(242,242,242);
 }
 body a{
 	transition: 0.5s all;

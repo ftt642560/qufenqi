@@ -375,11 +375,12 @@ public class GoodsServiceImpl implements GoodsService {
     /**
      * 商家添加商品
      */
-    public void addGoods(Goods goods,Seller seller,int quantity,String goodsTypeName)
+    public SellerGoods addGoods(Goods goods,Seller seller,int quantity,String goodsTypeName)
     {
     	GoodsType gt = goodsDaoImpl.findgoodstypebytypename(goodsTypeName);
     	goods.setGoodstype(gt);
-    	goodsDaoImpl.addGoods(goods, seller, quantity);
+    	SellerGoods sg = goodsDaoImpl.addGoods(goods, seller, quantity);
+    	return sg;
     }
     
     /**
@@ -406,6 +407,59 @@ public class GoodsServiceImpl implements GoodsService {
 	{
 		GoodsType gt = goodsDaoImpl.searchGoodsTypeById(id);
 		return gt;
+	}
+	
+	/**
+	 * 查找所有的商品信息，放到首页
+	 * @return
+	 */
+	//public List<SellerGoods> QueryAllGoods()
+	 public PageBean QueryAllGoods(int pageSize,int page)
+	{
+			String hql = "";
+			hql = "from SellerGoods";
+		//查询语句
+		//查询数据库中一共有多少条记录
+		int allRow = pageBaseDao.getAllRowCount(hql);
+		//查询总页数
+		int totalPage = PageBean.countTotalPage(pageSize, allRow);
+		//当前页的开始记录
+		final int offset = PageBean.countOffset(pageSize, page);
+		//每页的记录数
+		final int length = pageSize;
+		//获得当前页
+		final int currentPage = PageBean.countCurrentPage(page);
+		//一页的记录
+		 List<SellerGoods> list = pageBaseDao.queryForPage(hql, offset, length);
+		 System.out.println("list.size()"+list.size());
+		 
+
+		 for(int i=0;i<list.size();i++)
+		 {
+
+			 String sid = String.valueOf(list.get(i).getSeller().getSellerId());
+			 String gid = String.valueOf(list.get(i).getGoods().getGoodsId());
+			 List<SellerGoodsImages> l_temp = findImages(sid,gid);
+			 if(l_temp.size() ==0)
+				 System.out.println("l_temp.size===is null");
+			 else
+				 System.out.println("l_temp.size=== is not null");
+			 System.out.println("查找的商家的ID===="+list.get(i).getSeller().getSellerId()+"====商品ID=="+list.get(i).getGoods().getGoodsId());
+			 list.get(i).setCoverpic(l_temp.get(0).getImageUrl());
+			 System.out.println(l_temp.get(0).getImageUrl());
+		 }
+		
+		 
+		 
+		 //把分页信息保存到Bean中
+	     PageBean pageBean = new PageBean();
+	     pageBean.setPageSize(pageSize);    
+	     pageBean.setCurrentPage(currentPage);
+	     pageBean.setAllRow(allRow);
+	     pageBean.setTotalPage(totalPage);
+	     pageBean.setList(list);
+	     pageBean.init();
+		 return pageBean;
 	}
 	
 }

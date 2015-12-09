@@ -51,6 +51,11 @@ public class Seller {
 	private Set<SellerGoods> sellergoods = new HashSet<SellerGoods>();
 	private Set<SellerGoodsImages> sellergoodsimages = new HashSet<SellerGoodsImages>();
 	
+	public Seller()
+	{
+		
+	}
+	
 	public Set<SellerGoodsImages> getSellergoodsimages() {
 		return sellergoodsimages;
 	}

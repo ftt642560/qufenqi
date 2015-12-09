@@ -84,7 +84,7 @@ public interface GoodsService {
     /**
      * 商家添加商品
      */
-    public void addGoods(Goods goods,Seller seller,int quantity,String goodsTypeName);
+    public SellerGoods addGoods(Goods goods,Seller seller,int quantity,String goodsTypeName);
     
     /**
      * 
@@ -99,5 +99,11 @@ public interface GoodsService {
     
 	//通过商品类型ID，查找商品类型 对象
 	public GoodsType searchGoodsTypeById(long id);
+	
+	/**
+	 * 查找所有的商品信息，放到首页
+	 * @return
+	 */
+	public PageBean QueryAllGoods(int pageSize,int page);
     
 }

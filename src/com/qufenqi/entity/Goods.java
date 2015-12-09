@@ -26,7 +26,9 @@ public class Goods {
 	private GoodsType goodstype;
 	private Set<SellerGoodsImages> sellergoodsimages;
 	
-	
+	public Goods()
+	{
+	}
 	
 	public Set<SellerGoodsImages> getSellergoodsimages() {
 		return sellergoodsimages;

@@ -14,6 +14,10 @@ public class SellerGoods {
 	private Goods goods;
 	private String coverpic;//封面图片路径
 	
+	public SellerGoods()
+	{
+		
+	}
 	
 	public String getCoverpic() {
 		return coverpic;
