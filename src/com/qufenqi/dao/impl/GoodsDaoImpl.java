@@ -112,6 +112,11 @@ public class GoodsDaoImpl extends HibernateDaoSupport implements GoodsDao {
 //		this.getHibernateTemplate().update(goods);//连接数据库修改
 		
 		SellerGoods sellergoods = this.QueryOneGoods(sellergoodsid);
+		Goods goods = sellergoods.getGoods();
+		long w = goods.getWeight();
+		w=w+buyNum;
+		goods.setWeight(w);
+		this.getHibernateTemplate().update(goods);
 		int quantity = sellergoods.getQuantity();
 		quantity = quantity-buyNum;
 		sellergoods.setQuantity(quantity);

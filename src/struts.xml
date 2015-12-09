@@ -223,7 +223,17 @@
 		<!-- 房婷婷加的拦截器 -->
 		<interceptors>
 			<interceptor name="BgLoginInterceptor" class="com.qufenqi.interceptor.BgLoginInterceptor"/>
+			<!-- 通过指定拦截器名和拦截器实现类来定义拦截器 -->
+			<interceptor name="loginInterceptor" class="com.qufenqi.interceptor.LoginInterceptor"/>
+			<!-- 定义一个包含包含权限检查的拦截器栈 -->
+			<interceptor-stack name="wall">
+				<!-- 定义拦截器栈包含的默认拦截器 -->
+				<interceptor-ref name="defaultStack"/>
+				<!-- 定义拦截器栈包含的自定义拦截器 -->
+				<interceptor-ref name="loginInterceptor"/>
+			</interceptor-stack>
 		</interceptors>
+		
 		<action name="searchGoods" class="goodsAction" method="searchGoods">
 			<result name="success">/test_goods.jsp</result>
 		</action>
@@ -234,7 +244,9 @@
 		</action>
 		
 		<action name="buyGoods" class="goodsAction" method="buyGoods">
-			<result name="success">/buygoodsresult.jsp</result>
+			<result name="success">/goods-buy.jsp</result>
+			<result name="login">/user-login.jsp</result>
+			<interceptor-ref name="wall"/>
 		</action>
 		
 		<!-- 房婷婷加的 -->

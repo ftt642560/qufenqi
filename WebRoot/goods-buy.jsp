@@ -84,7 +84,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
   
   
   </script>
-
+  
 </head>
 <body>
 <!-- <iframe id="header" src="header.jsp"  scrolling="no" frameborder="0"></iframe>  -->
@@ -189,7 +189,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
    <div class="goods-photo2" style="width:400px;"><img src="${pageContext.request.contextPath}/${goodscover.imageUrl}" style="width:400px;height:350px;" class="img-responsive" alt=""/>
 				 </div>
    </div>
+  <script language="javascript">
+				window.onload=function(){
+					//var id="${goods.goodsId}";
+					var id;
+					document.getElementById("goodsId").value=id;
+					alert("id="+id);
+				};
+				
+				function buygoods()
+				{
+					var id="${goods.goodsId}";
+					var buynum = document.getElementById("tx1").value;
+					//window.location.href="goods/buyGoods.action?goodsId="+id+"&s_buynum="+s_buynum;
+					document.forms[0].action="<%=basePath%>goods/buyGoods.action?sbuynum="+buynum;
+					document.forms[0].submit();
+				}
+			</script>
    <div class="goods-container-right">
+   
+   <!-- 购买的form表单 -->
+  <form action="" method="post">
      <div class="goodsname1">
 	 <span><h2><s:property value="sellergoods.goods.goodsName" /></h2></span>
    </div>
@@ -228,15 +248,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 	 <div class="btn1">
+	 <!-- 
 	 <input type="button" value="加入购物车" onclick="window.open('index.html')">
 	 <input type="button" value="立即购买" onclick="window.open('index.html')">
-	 
+	 -->
+	 	<input type="button" value="购买" onClick="buygoods();" />
+	 	<div>
+			<span style="color: red">${requestScope.mess }</span>
+		</div>
 	 </div>
 	 </div>
+	 </form>
    </div>
-
-
-
 </div>		
  <div class="goods-details">
  <div class="sellers_grid1">
@@ -256,7 +279,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <img src="<%=basePath%>image/2.jpg" class="img" alt=""/>
  </div>
  </div>
-</div>
 <iframe id="footer" src="<%=basePath%>footer.jsp"  scrolling="no" frameborder="0"></iframe>
 
 </body>

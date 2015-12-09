@@ -74,7 +74,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li><a href="<%=basePath%>register.jsp">注册</a></li>
 					<li><a href="<%=basePath%>findOrderByStatus.action">个人中心</a></li> 
 					<li id="quitLi" style="font-size: 13px;">
-						<a href="<%=basePath%>quitUser.action" class="quit">注销</a>
+						<s:if test="#session.user == null">
+							注销
+						</s:if>
+						<s:else>
+							<a href="<%=basePath%>quitUser.action" class="quit">注销</a>
+						</s:else>
 					</li>
 				</ul>
 			</div>
