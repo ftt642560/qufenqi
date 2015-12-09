@@ -338,13 +338,18 @@
 		</action>
 		
 		
-				<!-- 添加商品同时添加商品图片-->
+		<!-- 添加商品同时添加商品图片......没用的-->
 		<action name="addgoods2" class="sellerAction" method="addGoods">
 			<!--  <result name="success" type="redirectAction">
 				<param name="actionName">sellerquerygoods</param>
 				<param name="namespace">/goods</param>
 			</result>-->
 			<result name="success">showImage.jsp</result>
+		</action>
+		
+		<!-- 查询所有的商品信息 -->
+		<action name="findallgoods" class="goodsAction" method="initIndexpage">
+			<result name="success">/things.jsp</result>
 		</action>
 		
 	</package>

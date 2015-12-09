@@ -562,7 +562,8 @@ public class GoodsAction {
 		 GoodsType gt = goodsserviceimpl.searchGoodsTypeById(typeid);
 		 goodsTypeName = gt.getGoodsTypeName();
 		//分页的pageBean,参数pageSize表示每页显示记录数,page为当前页
-		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 3, page);
+		
+		this.pageBean = goodsserviceimpl.UserSearchByType(goodsTypeName, 10, page);
 		l_sellergoods = pageBean.getList();
 
 		//设置商品封面

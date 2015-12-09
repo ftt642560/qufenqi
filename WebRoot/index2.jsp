@@ -82,7 +82,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <div class="header_bottom-box">
 		
 			<div class="logo">
-				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
+				<a href="<%=basePath%>goods/initindexpage.action"><img src="<%=basePath%>image/logo.png" alt=""/></a>
 			</div>
 			
 			<script language="javascript">
@@ -127,10 +127,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li class="nav_menu-item"><a href="<%=basePath%>index.jsp" target="_top">首页</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
-        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1" target="_top">手机</a></li>
-        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=2" target="_top">平板</a></li>
-        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=3" target="_top">电脑</a></li>
-		<li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=4" target="_top">潮流数码</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1&page=0" target="_top">手机</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=2&page=0" target="_top">平板</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=3&page=0" target="_top">电脑</a></li>
+		<li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=4&page=0" target="_top">潮流数码</a></li>
       </ul>
     </li>
     <li class="nav_menu-item"><a href="" target="_top">特卖商品</a>

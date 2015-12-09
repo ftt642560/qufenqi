@@ -308,18 +308,38 @@ public class GoodsServiceImpl implements GoodsService {
     	list.clear();
     	//把查询到的链表分段
     	
+    	
+    	
     	int a=pageSize*(page-1); //每一页的起始索引
     	int b=pageSize*page; //每一页的最后一个索引
     	
+    	
+    	
+    	if(b>l_sellergoods.size())
+    	{
+    		b=l_sellergoods.size();
+    	}
+    	
+    	if(a>=b)
+    	{
+    		a=b-pageSize;
+    	}
+    	
     	if(a<0)
     	{
-    		a=0;b=pageSize;
+    		a=0;
+    		//b=pageSize;
+    	}
+    	if(a==0)
+    	{
+    		b=pageSize;
     	}
     	
     	if(b>l_sellergoods.size())
     	{
     		b=l_sellergoods.size();
     	}
+    	
     	System.out.println("page="+page+"===a==="+a+"===b=="+b);
     	for(int i=a;i<b;i++)
     	{

@@ -48,7 +48,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script language="javascript">
 	window.onload=function()
 	{
-		window.location.href="goods/initindexpage.action";
+		window.location.href="<%=basePath%>goods/initindexpage.action";
 	};
 </script>
 
@@ -92,7 +92,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	 <div class="header_bottom-box">
 		
 			<div class="logo">
-				<a href="<%=basePath%>index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
+				<a href="<%=basePath%>goods/initindexpage.action"><img src="<%=basePath%>image/logo.png" alt=""/></a>
 			</div>
 			
 			<script language="javascript">
