@@ -1,3 +1,3 @@
 eclipse.preferences.version=1
-validator.Checked=WebRoot/js/script.js,src/com/qufenqi/action/GoodsAction.java,WebRoot/test_images.jsp,WebRoot/register.jsp,WebRoot/js/jquery-1.11.1.min.js,WebRoot/js/register.js
+validator.Checked=WebRoot/js/script.js,WebRoot/test_images.jsp,WebRoot/register.jsp,WebRoot/js/jquery-1.11.1.min.js,WebRoot/js/register.js
 validator.Unchecked=

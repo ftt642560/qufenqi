@@ -45,7 +45,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="<%=basePath%>js/jquery.countdown.js"></script>
 <script src="<%=basePath%>js/script.js"></script>
 
-
+<script language="javascript">
+	window.onload=function()
+	{
+		window.location.href="<%=basePath%>goods/initindexpage.action";
+	};
+</script>
 
 
 </head>
@@ -68,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<li class="active"><a href="<%=basePath%>user-login.jsp">登录</a></li> 
 					<li><a href="<%=basePath%>register.jsp">注册</a></li>
 					<li><a href="<%=basePath%>findOrderByStatus.action">个人中心</a></li> 
-					<li id="quitLi" style="font-size: 13px;color: #fff">
+					<li id="quitLi" style="font-size: 13px;">
 						<s:if test="#session.user == null">
 							注销
 						</s:if>
@@ -132,10 +137,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <li class="nav_menu-item"><a href="<%=basePath%>index.jsp" target="_top">首页</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
-        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1&page=0" target="_top">手机</a></li>
-        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=2&page=0" target="_top">平板</a></li>
-        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=3&page=0" target="_top">电脑</a></li>
-		<li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=4&page=0" target="_top">潮流数码</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1" target="_top">手机</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=2" target="_top">平板</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=3" target="_top">电脑</a></li>
+		<li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=4" target="_top">潮流数码</a></li>
       </ul>
     </li>
     <li class="nav_menu-item"><a href="" target="_top">特卖商品</a>
@@ -207,18 +212,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="clearfix"> </div>
 		</div>
 		
-		  	<script language="javascript">
-			
-				function gotodetails(id)
-				{
-				//	alert("gotoupdate");
-				//	alert("id="+id);
-
-					window.location.href="<%=basePath%>goods/queryOneGoods.action?sellergoodsid="+id;
-					
-				}
-			</script>
-		
 		<div class="sellers_grid">
 			<ul class="sellers">
 				<i class="star"> </i>
@@ -229,22 +222,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="grid_2">
 		
 			<s:iterator value="l_sellergoods" id="l_sellergoods">
-				
 				<div class="col-md-3 span_6">
 				  <div class="box_inner">
-					   <a style="cursor:pointer;" onclick="gotodetails(<s:property value="#l_sellergoods.id" />);"  >				 
-						<img src="${pageContext.request.contextPath}/${coverpic}" style="width:2000px;height:200px" class="img-responsive" alt=""/>
-						 <div class="sale-box"> </div>
-						 <div class="desc">			
-						 	<h3><span>${goods.goodsName}</h3></a>
-						 	 <h4>售价：${goods.goodsPrice }</h4> 
-							<h5>店铺:${seller.sellerName }</h5>
-						 	<ul class="list2">
-						 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
-						 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
-						 	  <div class="clearfix"> </div>
-						 	</ul>
-						 	<div class="heart"> </div>
+					<img src="${pageContext.request.contextPath}/${imageUrl}" class="img-responsive" alt=""/>
+					 <div class="sale-box"> </div>
+					 <div class="desc">			
+					 	<h3>${goods.goodsName}</h3>
+					 	 <h4>售价：${goods.goodsPrice }</h4> 
+						<h5>店铺:${seller.sellerName }</h5>
+					 	<ul class="list2">
+					 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+					 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+					 	  <div class="clearfix"> </div>
+					 	</ul>
+					 	<div class="heart"> </div>
 					 </div>
 				   </div>
 				</div>
@@ -305,8 +296,185 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="clearfix"> </div>
 		<div class="more"><a href="#" ><p>查看更多热门商品>>></p></a></div>
 		</div>
-
-
+		<div class="sellers_grid">
+			<ul class="sellers">
+				<i class="star"> </i>
+				<li class="sellers_desc"><h2>最新上架</h2></li>
+				<div class="clearfix"> </div>
+			</ul>
+		</div>
+		<div class="grid_2">
+		<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+			<div class="col-md-3 span_6">
+			  <div class="box_inner">
+				<img src="<%=basePath%>image/p4.jpg" class="img-responsive" alt=""/>
+				 
+				 <div class="desc">
+				 	<h3>售价：</h3>
+				 	<h4>首付：</h4>
+					<h5>店铺；</h5>
+				 	<ul class="list2">
+				 	  <li class="list2_left"><span class="m_1"><a href="#" class="link">购物车</a></span></li>
+				 	  <li class="list2_right"><span class="m_2"><a href="#" class="link1">更多</a></span></li>
+				 	  <div class="clearfix"> </div>
+				 	</ul>
+				 	
+				 </div>
+			   </div>
+			</div>
+		</div>
 	</div>
 </div>
 

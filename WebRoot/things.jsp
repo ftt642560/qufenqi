@@ -53,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	 <div class="header_bottom-box2" style="width:1070px;">
 		
 			<div class="logo">
-				<a href="index.jsp"><img src="<%=basePath%>image/logo.png" alt=""/></a>
+				<a href="<%=basePath%>goods/initindexpage.action"><img src="<%=basePath%>image/logo.png" alt=""/></a>
 			</div>
 			<form method="post" action="<%=basePath%>goods/usersearchgoods.action">
 				<div class="search">
@@ -82,13 +82,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <nav class="nav" style="top:500px;margin-top:50px;">
   <ul class="nav_menu" >
-    <li class="nav_menu-item"><a href="" target="_top">所有商品</a></li>
+    <li class="nav_menu-item"><a href="<%=basePath%>goods/findallgoods.action" target="_top">所有商品</a></li>
     <li class="nav_menu-item"><a href="" target="_top">商品分类</a>
       <ul class="nav_submenu">
-        <li class="nav_submenu-item"> <a href="" target="_top">手机</a></li>
-        <li class="nav_submenu-item"> <a href="" target="_top">电脑/平板</a></li>
-        <li class="nav_submenu-item"> <a href="" target="_top">摄影摄像</a></li>
-		<li class="nav_submenu-item"> <a href="" target="_top">潮流数码</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=1" target="_top">手机</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=2" target="_top">平板</a></li>
+        <li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=3" target="_top">电脑</a></li>
+		<li class="nav_submenu-item"> <a href="<%=basePath%>goods/usersearchbytypename.action?goodsTypeId=4" target="_top">潮流数码</a></li>
       </ul>
     </li>
     <li class="nav_menu-item"><a href="" target="_top">特卖商品</a>
@@ -209,6 +209,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	</div>
 	</div>
 	
-	<iframe id="footer" src="<%=basePath%>footer.jsp"  scrolling="no" frameborder="0"></iframe>
+<div class="footer">
+	<div class="container">
+		
+		<ul class="footer_nav">
+		  <li><a href="#">首页</a></li>
+		  <li><a href="#">商品</a></li>
+		  <li><a href="#">商家</a></li>
+		  
+		  <li><a href="#">关于我们</a></li>
+		  <li><a href="<%=basePath%>contact.jsp">联系我们</a></li>
+		</ul>
+		
+	</div>
+</div>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>		
