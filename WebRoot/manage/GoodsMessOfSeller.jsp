@@ -152,7 +152,7 @@
 									<td align="center"><s:property value="#l_ofsellergoods.goods.status"/></td>
 									<td>
 										<a href="<%=basePath%>/goods/changegoodsstatus.action?goodsId=<s:property value="#l_ofsellergoods.goods.goodsId"/>">
-											上架
+											上架/下架
 										</a>
 									</td>
 								</tr>
@@ -168,15 +168,15 @@
 			        </s:if>
 			        
 			        <s:else>
-			            <a href="/goods/sellerquerygoods.action">首页</a>
+			            <a href="<%=basePath%>/goods/sellerquerygoods.action">首页</a>
 			            &nbsp;
-			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
+			            <a href="<%=basePath%>/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage - 1"/>">上一页</a>
 			        </s:else>
 			        	&nbsp;
 			        <s:if test="#request.pageBean.currentPage != #request.pageBean.totalPage">
-			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
+			            <a href="<%=basePath%>/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.currentPage + 1"/>">下一页</a>
 			            &nbsp;
-			            <a href="/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
+			            <a href="<%=basePath%>/goods/sellerquerygoods.action?page=<s:property value="#request.pageBean.totalPage"/>">尾页</a>
 			        </s:if>
 			        
 			        <s:else>

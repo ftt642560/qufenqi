@@ -61,7 +61,7 @@
 		<action name="findSome" class="userAction" method="findSome">
 			<result name="success">/system/findAllUser.jsp</result>
 			<result name="error">/system/index.jsp</result>
-			<result name="login">/login.jsp</result>
+			<result name="login">/user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		<action name="delete" class="loginAction" method="delete">
@@ -69,7 +69,7 @@
 		        <param name="contentType">text/html</param>
 		        <param name="inputName">inputStream</param>
 		    </result>
-		    <result name="login">/login.jsp</result>
+		    <result name="login">/user-login.jsp</result>
 			<interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		
@@ -124,13 +124,13 @@
 		</action>
 		<action name="queryOrderBySelleName" class="paymentAction" method="queryOrderBySelleName">
 			<result name="success">/manage/order.jsp</result>
-			<result name="login">/manage/user-login.jsp</result>
+			<result name="login">/user-login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
 		<action name="queryOrderByOrderId" class="paymentAction" method="queryOrderByOrderId">
 			<result name="success">/manage/order-modify.jsp</result>
-			<result name="error">/manage/user-login.jsp</result>
-			<result name="login">/manage/user-login.jsp</result>
+			<result name="error">/user-login.jsp</result>
+			<result name="login">/user-login.jsp</result>
 			<interceptor-ref name="wall"/>
 		</action>
 		<action name="findAllOrders" class="paymentAction" method="findAllOrders">
@@ -149,6 +149,8 @@
 		</action>
 		<action name="findOrderByStatus" class="paymentAction" method="findOrderByStatus">
 			<result name="success">personal center.jsp</result>
+			<result name="login">/user-login.jsp</result>
+			<interceptor-ref name="wall"/>
 		</action>
 		<!-- 商家模块 -->
 		<action name="sellerRegister" class="sellerAction" method="register">
@@ -260,7 +262,7 @@
 		        <param name="contentType">text/html</param>
 		        <param name="inputName">inputStream</param>
 		    </result>
-		    <result name="login">/login.jsp</result>
+		    <result name="login">/user-login.jsp</result>
 		    <interceptor-ref name="BgLoginInterceptor" />
 		</action>
 		<!-- 商家查找商品信息 -->
@@ -323,7 +325,11 @@
 		
 		<!-- 商家对商品进行上架、下架 -->
 		<action name="changegoodsstatus" class="sellerAction" method="changeGoodsStatus">
-			<result name="success">/index.jsp</result>
+			<!-- <result name="success" type="redirectAction">/index.jsp</result> -->
+			<result name="success" type="redirectAction">
+				<param name="actionName">sellerquerygoods</param>
+				<param name="namespace">/goods</param>
+			</result>
 		</action>
 		
 		<!-- 查找所有的商品类型 -->

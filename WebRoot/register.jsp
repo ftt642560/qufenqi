@@ -40,6 +40,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	$(document).ready(function() {
 		$(".megamenu").megamenu();
 	});
+	function register(){ 	
+	alert("22");	
+  	var userName=document.getElementById("userName").value;
+  	var password=document.getElementById("password").value;
+  	var email=document.getElementById("email").value;
+		
+	//对输入条件进行验证
+	if( userName=="" || password=="" || email == "" ){
+		if(userName==""){
+			document.getElementById("userNameSpan").innerHTML = "用户名不能为空";
+		}
+		else{
+			document.getElementById("userNameSpan").innerHTML = "";
+		}	
+				
+		if(password=="")
+		{
+			document.getElementById("passwordSpan").innerHTML = "密码不能为空";
+		}
+		else{
+			document.getElementById("passwordSpan").innerHTML = "密码不能为空";
+		}
+		if(email=="")
+		{
+			document.getElementById("emailSpan").innerHTML = "邮箱不能为空";
+		}
+		else{
+			document.getElementById("emailSpan").innerHTML = "";
+		}
+		return false;		
+	}else{
+		document.getElementById("fromRegister").action = "register.action";
+		return true;
+	}			
+}
 </script>
 </head>
 <body>
@@ -78,11 +113,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 					<div class="register-top-grid">
 						<h3>新用户注册</h3>
-						<table>
+						<table >
 							<tr>
 								<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用户名：</td>
 								<td>
-									<input type="text" id="userName" name="user.userName">
+									<input type="text" id="userName" name="user.userName" size="6">
 								</td>
 								<td>
 									<span id="userNameSpan" style="color: red"></span>

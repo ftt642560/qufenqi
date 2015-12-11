@@ -163,12 +163,10 @@ public class LoginAction {
 	 * @return
 	 */
 	public String login(){
-		System.out.println("role=="+role);
 		if(role == 0){//角色等于0说明是用户登录
 			user.setUserName(userName);
 			user.setPassword(password);
 			int status = userService.login(user);
-			System.out.println(status+"==status");
 			switch (status) {
 				case NULL:
 					request.setAttribute("mess" , "用户名或者密码不能为空");
@@ -190,10 +188,8 @@ public class LoginAction {
 				default:
 					break;
 			}
-			System.out.println(flag+"==flag");
 			return flag;
 		}else if(role == 1){//角色等于1说明是商家
-			System.out.println("执行管理员的登录");
 			seller.setSellerName(userName);
 			seller.setSellerPassword(password);
 			int status = sellerService.login(seller);
@@ -213,7 +209,6 @@ public class LoginAction {
 				case 0:
 					request.setAttribute("mess", "该商家登录成 功");
 					Seller seller = sellerService.find(userName);
-					System.out.println("seller=="+seller);
 					session.setAttribute("seller", seller);
 					request.setAttribute("role", 1);
 					//因为商家就是管理员，所以将用户登录成功时可以讲登录名和密码赋值给USER,
@@ -222,8 +217,6 @@ public class LoginAction {
 					session.setAttribute("user", user);
 					session.setAttribute("role",1);
 					flag = "sellerLogin";
-					System.out.println("success seller");
-					System.out.println("role==="+role);
 					break;
 				default:
 					break;
@@ -231,11 +224,9 @@ public class LoginAction {
 			System.out.println(flag);
 			return flag;
 		}else {
-			System.out.println("执行管理员的登录");
 			manager.setManagName(userName);
 			manager.setPassword(password);
 			int status = managerService.login(manager);
-			System.out.println(status+"==status");
 			switch (status) {
 				case -1:
 					request.setAttribute("mess", "登录失败");
@@ -252,11 +243,8 @@ public class LoginAction {
 				case 0:
 					request.setAttribute("mess", "该管理员登录成功");
 					session.setAttribute("manager", manager);
-//					request.setAttribute("role", 1);
 					session.setAttribute("role",2);//2是管理员
-					System.out.println("role==="+role);
 					flag = "managerLogin";
-					System.out.println("manager success");
 					break;
 				default:
 					break;

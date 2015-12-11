@@ -34,14 +34,10 @@ public class JfreechartAction  extends ActionSupport implements ServletRequestAw
 	public void setCountService(CountService countService) {
 		this.countService = countService;
 	}
-	
-	
 	public String ShowChart() throws IOException{
 		List<List<Integer>> saleNumbeList = countService.countSaleNumber();
 		List<String> areaList = countService.countAddress();
-		List<String> goodsList = countService.countGoodsName();
-		
-		
+		List<String> goodsList = countService.countGoodsName();	
 		final int size = areaList.size();
 		String[] columnKeys = (String[])areaList.toArray(new String[size]);
 		System.out.println(columnKeys.length);
@@ -67,8 +63,6 @@ public class JfreechartAction  extends ActionSupport implements ServletRequestAw
 			}
 		}
 		System.out.println(data);
-		
-//		double[][] data = new double[][]{{0, 0, 0, 0, 0, 10, 0, 0, 0}, {20, 10, 60, 200, 10, 0, 40, 30, 20}};
 		CategoryDataset dataset=DatasetUtilities.createCategoryDataset( columnKeys,rowKeys, data); 
 		//创建主题样式  
 	    StandardChartTheme standardChartTheme=new StandardChartTheme("CN");  
@@ -95,21 +89,17 @@ public class JfreechartAction  extends ActionSupport implements ServletRequestAw
 		  plot.setDomainGridlinePaint(Color.pink);
 		  //设置网格横线颜色
 		  plot.setRangeGridlinePaint(Color.pink);
-
 		  //显示每个柱的数值，并修改该数值的字体属性
 		  BarRenderer3D renderer = new BarRenderer3D();
 		  renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 		  renderer.setBaseItemLabelsVisible(true);
-
 		  //默认的数字显示在柱子中，通过如下两句可调整数字的显示
 		  //注意：此句很关键，若无此句，那数字的显示会被覆盖，给人数字没有显示出来的问题
 		  renderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BASELINE_LEFT));
 		  renderer.setItemLabelAnchorOffset(10D);
-
 		  //设置每个地区所包含的平行柱的之间距离
 		  renderer.setItemMargin(0.4);
 		  plot.setRenderer(renderer);
-
 		  HttpServletRequest request = ServletActionContext.getRequest();
 		  HttpSession session=request.getSession();
 		  String filename = ServletUtilities.saveChartAsPNG(chart,900, 500, null,session);

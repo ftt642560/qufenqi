@@ -125,12 +125,6 @@
 				<form action="<%=basePath%>/modifyMess.action" method="post">
 					<table class="form">
 						<tr>
-							<td class="field">用户名：</td>
-							<td><input type="hidden" class="text" name="seller.sellerName"
-								value="${seller.sellerName }" />
-							</td>
-						</tr>
-						<tr>
 							<td class="field">手机号码：</td>
 							<td><input type="text" class="text" name="seller.telephone"
 								value="${seller.telephone }" />
